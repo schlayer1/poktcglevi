@@ -165,7 +165,7 @@ export const GymLeaderSelect: React.FC<GymLeaderSelectProps> = ({
           <div className="flex items-center gap-3 bg-slate-950/70 px-4 py-2.5 rounded-2xl border border-slate-700">
             <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center">
               <img
-                src={`/images/pokemon/${currentLeader.aceDexId}.png`}
+                src={`/images/pokemon/${currentLeader.aceDexId}.webp`}
                 alt="Partner-Pokémon"
                 className="w-full h-full object-contain filter drop-shadow"
               />

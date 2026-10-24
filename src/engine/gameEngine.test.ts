@@ -22,7 +22,7 @@ const dummyGlumanda: Card = {
   ],
   retreat: 1,
   weakness: { type: 'Wasser', value: '+20' },
-  artworkUrl: '/images/pokemon/4.png',
+  artworkUrl: '/images/pokemon/4.webp',
   cryUrl: '/audio/cries/4.ogg',
   cardImageUrl: '/images/cards/A1-033.webp'
 };
@@ -40,7 +40,7 @@ const dummyGlutexo: Card = {
   weakness: { type: 'Wasser', value: '+20' },
   evolvesFrom: 'Glumanda',
   preDexId: 4,
-  artworkUrl: '/images/pokemon/5.png',
+  artworkUrl: '/images/pokemon/5.webp',
   cryUrl: '/audio/cries/5.ogg',
   cardImageUrl: '/images/cards/A1-034.webp'
 };
@@ -59,7 +59,7 @@ const dummySchiggy: Card = {
   ],
   retreat: 1,
   weakness: { type: 'Elektro', value: '+20' },
-  artworkUrl: '/images/pokemon/7.png',
+  artworkUrl: '/images/pokemon/7.webp',
   cryUrl: '/audio/cries/7.ogg',
   cardImageUrl: '/images/cards/A1-053.webp'
 };

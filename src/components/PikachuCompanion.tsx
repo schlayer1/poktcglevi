@@ -38,7 +38,7 @@ export const PikachuCompanion: React.FC<PikachuCompanionProps> = ({
       >
         <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-b from-amber-300 to-yellow-400 rounded-full p-1 border-3 border-amber-200 shadow-[0_0_20px_rgba(250,204,21,0.6)] flex items-center justify-center overflow-hidden">
           <img
-            src="/images/pokemon/25.png"
+            src="/images/pokemon/25.webp"
             alt="Pikachu Begleiter"
             className={`w-full h-full object-contain filter drop-shadow ${
               emotion === 'happy' || emotion === 'cheer'

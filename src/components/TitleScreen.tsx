@@ -173,7 +173,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({ onStart }) => {
                   }`}
                 >
                   <img
-                    src={`/images/pokemon/${mon.id}.png`}
+                    src={`/images/pokemon/${mon.id}.webp`}
                     alt={mon.name}
                     className="w-full h-full object-contain filter drop-shadow-[0_10px_14px_rgba(0,0,0,0.9)]"
                   />

@@ -28,7 +28,7 @@ const PACKS: PackInfo[] = [
     name: 'Glurak-Pack',
     themeColor: '#ef4444',
     accentBg: 'from-amber-500/25 via-orange-600/30 to-red-950/90',
-    image: '/images/packs/pack_glurak.png',
+    image: '/images/packs/pack_glurak.webp',
     badge: 'Feuer & Drachen',
     subtitle: 'Unschlagbare Gene'
   },
@@ -37,7 +37,7 @@ const PACKS: PackInfo[] = [
     name: 'Pikachu-Pack',
     themeColor: '#eab308',
     accentBg: 'from-yellow-400/25 via-amber-500/30 to-amber-950/90',
-    image: '/images/packs/pack_pikachu.png',
+    image: '/images/packs/pack_pikachu.webp',
     badge: 'Elektro & Blitz',
     subtitle: 'Unschlagbare Gene'
   },
@@ -46,7 +46,7 @@ const PACKS: PackInfo[] = [
     name: 'Mewtu-Pack',
     themeColor: '#a855f7',
     accentBg: 'from-purple-500/25 via-indigo-600/30 to-slate-950/90',
-    image: '/images/packs/pack_mewtu.png',
+    image: '/images/packs/pack_mewtu.webp',
     badge: 'Psycho & Mystik',
     subtitle: 'Unschlagbare Gene'
   },
@@ -55,7 +55,7 @@ const PACKS: PackInfo[] = [
     name: 'Mew-Pack',
     themeColor: '#06b6d4',
     accentBg: 'from-teal-500/25 via-cyan-600/30 to-pink-950/90',
-    image: '/images/packs/pack_mew.png',
+    image: '/images/packs/pack_mew.webp',
     badge: 'Insel-Serie',
     subtitle: 'Mysteriöse Insel'
   }

@@ -1,0 +1,17 @@
+# Vercel Deployment Ignore
+# Scripts & Local Tools
+scripts/
+*.py
+
+# Raw APK Packages & Android Binaries
+*.apkm
+*.apk
+
+# Tests & Local Documentation
+**/*.test.ts
+**/*.test.tsx
+**/*.md
+!README.md
+
+# OS Files
+.DS_Store

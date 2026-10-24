@@ -10,16 +10,39 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '1.5.0';
-export const APP_BUILD_NAME = 'iPhone & Safe Areas';
+export const APP_VERSION = '1.5.1';
+export const APP_BUILD_NAME = 'Storage & Performance Clean';
 export const APP_BUILD_TAG = `Build ${APP_VERSION} (24.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
   {
+    version: '1.5.1',
+    date: '24. Oktober 2026',
+    title: 'Repository-Bereinigung & Vercel-Speicheroptimierung',
+    badge: 'Aktuell 🚀',
+    features: [
+      {
+        icon: '⚡',
+        title: '26+ MB Speicherplatz-Bereinigung',
+        description: 'Beseitigung aller toten PNG/JPG-Duplikate, ungenutzter Audio-Dateien und Konvertierung aller 151 Pokémon-Sprites sowie Arenen in modernes, verlustfreies WebP.'
+      },
+      {
+        icon: '📦',
+        title: 'Intelligente Workbox PWA-Cache-Architektur',
+        description: 'Vollständige Reduzierung des initialen Download- und Precache-Bundles von 84 MB auf ca. 33 MB durch on-demand Runtime-Caching für Sprachdateien und Schreie.'
+      },
+      {
+        icon: '🛡️',
+        title: '.vercelignore Deployment-Schutz',
+        description: 'Lokale Entwickler-Skripte und Binär-Pakete werden zuverlässig vom Vercel-Cloud-Deployment ausgeschlossen.'
+      }
+    ]
+  },
+  {
     version: '1.5.0',
     date: '24. Oktober 2026',
     title: 'Mobile iPhone-Optimierung & Apple Safe Areas',
-    badge: 'Aktuell 📱',
+    badge: 'Mobil 📱',
     features: [
       {
         icon: '📱',

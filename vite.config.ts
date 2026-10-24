@@ -32,11 +32,31 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg,json,ogg,wav,mp3,m4a}'],
-        maximumFileSizeToCacheInBytes: 60 * 1024 * 1024, // 60MB for complete offline pack
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,json}', 'audio/bgm/*.m4a', 'audio/sfx/*.m4a'],
+        globIgnores: ['**/audio/voice/cards/**', '**/audio/cries/**'],
+        maximumFileSizeToCacheInBytes: 30 * 1024 * 1024,
         skipWaiting: true,
         clientsClaim: true,
-        cleanupOutdatedCaches: true
+        cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: ({ request, url }) =>
+              request.destination === 'audio' ||
+              url.pathname.startsWith('/audio/voice/cards/') ||
+              url.pathname.startsWith('/audio/cries/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'pokemon-voice-and-cries-cache',
+              expiration: {
+                maxEntries: 500,
+                maxAgeSeconds: 60 * 24 * 60 * 60 // 60 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
       }
     })
   ]

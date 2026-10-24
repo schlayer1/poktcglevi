@@ -24,7 +24,7 @@ export const ArenaBackground: React.FC<ArenaBackgroundProps> = ({
 }) => {
   // Normalize arena key
   const arenaKey: ArenaType = arena || 'rocko';
-  const imageSrc = `/images/arenas/${arenaKey}.jpg`;
+  const imageSrc = `/images/arenas/${arenaKey}.webp`;
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none select-none ${className}`}>
