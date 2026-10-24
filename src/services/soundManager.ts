@@ -7,7 +7,7 @@
  * 5. Web Speech API (speechSynthesis) fallback in German
  */
 
-export type BgmTrack = 'title' | 'menu' | 'battle' | 'victory' | null;
+export type BgmTrack = 'title' | 'menu' | 'pack_menu' | 'pack_open' | 'battle' | 'victory' | null;
 
 class SoundManager {
   private ctx: AudioContext | null = null;
@@ -19,10 +19,36 @@ class SoundManager {
   private currentVoiceAudio: HTMLAudioElement | null = null;
   private speechVoice: SpeechSynthesisVoice | null = null;
 
-  // BGM scheduler state
+  // Authentic TCG Pocket Audio Elements
+  private bgmAudio: HTMLAudioElement | null = null;
+  private sfxAudioCache: Map<string, HTMLAudioElement> = new Map();
+
+  // BGM scheduler state (synthesizer fallback)
   private currentTrack: BgmTrack = null;
   private bgmTimer: number | null = null;
   private bgmGainNode: GainNode | null = null;
+
+  // Mapping to official CRIWARE ADX2 converted audio files
+  private static readonly BGM_FILES: Record<string, string> = {
+    title: '/audio/bgm/tcgp_title_default.m4a',
+    menu: '/audio/bgm/tcgp_home_menu.m4a',
+    pack_menu: '/audio/bgm/tcgp_pack_menu.m4a',
+    pack_open: '/audio/bgm/tcgp_pack_opening_1.m4a',
+    battle: '/audio/bgm/tcgp_battle.m4a',
+    victory: '/audio/sfx/tcgp_victory.m4a'
+  };
+
+  private static readonly SFX_FILES: Record<string, string> = {
+    pack_tear: '/audio/sfx/tcgp_pack_tear.m4a',
+    card_slide: '/audio/sfx/tcgp_card_slide.m4a',
+    card_flip: '/audio/sfx/tcgp_card_flip.m4a',
+    rainbow_rare: '/audio/sfx/tcgp_rainbow_rare.m4a',
+    victory: '/audio/sfx/tcgp_victory.m4a',
+    defeat: '/audio/sfx/tcgp_defeat.m4a',
+    achievement: '/audio/sfx/tcgp_gold_achievement.m4a',
+    shuffle: '/audio/sfx/tcgp_shuffle.m4a',
+    click: '/audio/sfx/tcgp_click.m4a'
+  };
 
   constructor() {
     this.loadManifest();
@@ -81,6 +107,9 @@ class SoundManager {
 
   public toggleBgmMute(): boolean {
     this.bgmMuted = !this.bgmMuted;
+    if (this.bgmAudio) {
+      this.bgmAudio.volume = this.bgmMuted || this.muted ? 0 : this.bgmVolume;
+    }
     if (this.bgmGainNode && this.ctx) {
       this.bgmGainNode.gain.setValueAtTime(this.bgmMuted || this.muted ? 0 : this.bgmVolume, this.ctx.currentTime);
     }
@@ -93,7 +122,10 @@ class SoundManager {
 
   public setVolume(vol: number) {
     this.sfxVolume = Math.max(0, Math.min(1, vol));
-    this.bgmVolume = Math.max(0, Math.min(1, vol * 0.4));
+    this.bgmVolume = Math.max(0, Math.min(1, vol * 0.45));
+    if (this.bgmAudio) {
+      this.bgmAudio.volume = this.bgmMuted || this.muted ? 0 : this.bgmVolume;
+    }
     if (this.bgmGainNode && this.ctx && !this.bgmMuted && !this.muted) {
       this.bgmGainNode.gain.setValueAtTime(this.bgmVolume, this.ctx.currentTime);
     }
@@ -104,7 +136,7 @@ class SoundManager {
   }
 
   // =========================================================================
-  // BGM SYNTHESIZER (16-Bit Chiptune Melodies)
+  // BGM ENGINE (Authentic CRIWARE TCG Pocket Audio with Synth Fallback)
   // =========================================================================
   public playBgm(track: BgmTrack) {
     if (this.currentTrack === track) return;
@@ -112,6 +144,57 @@ class SoundManager {
     if (!track || this.muted) return;
 
     this.currentTrack = track;
+
+    // Check if authentic audio file exists
+    const audioSrc = SoundManager.BGM_FILES[track];
+    if (audioSrc) {
+      try {
+        const audio = new Audio(audioSrc);
+        audio.loop = true;
+        audio.volume = this.bgmMuted ? 0 : this.bgmVolume;
+        this.bgmAudio = audio;
+
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay policy or error: fallback to synthesizer
+            if (this.currentTrack === track && (!this.bgmAudio || this.bgmAudio.paused)) {
+              this.playSynthesizedBgm(track);
+            }
+          });
+        }
+        return;
+      } catch {
+        // Fallback to synthesizer below
+      }
+    }
+
+    this.playSynthesizedBgm(track);
+  }
+
+  public stopBgm() {
+    if (this.bgmAudio) {
+      try {
+        this.bgmAudio.pause();
+        this.bgmAudio.currentTime = 0;
+      } catch {}
+      this.bgmAudio = null;
+    }
+    if (this.bgmTimer) {
+      clearTimeout(this.bgmTimer);
+      this.bgmTimer = null;
+    }
+    if (this.bgmGainNode) {
+      try {
+        this.bgmGainNode.disconnect();
+      } catch {}
+      this.bgmGainNode = null;
+    }
+    this.currentTrack = null;
+  }
+
+  private playSynthesizedBgm(track: BgmTrack) {
+    if (!track || this.muted || this.bgmAudio) return;
     const ctx = this.getAudioContext();
 
     this.bgmGainNode = ctx.createGain();
@@ -228,22 +311,8 @@ class SoundManager {
     scheduleLoop(ctx.currentTime + 0.05);
   }
 
-  public stopBgm() {
-    if (this.bgmTimer) {
-      clearTimeout(this.bgmTimer);
-      this.bgmTimer = null;
-    }
-    if (this.bgmGainNode) {
-      try {
-        this.bgmGainNode.disconnect();
-      } catch {}
-      this.bgmGainNode = null;
-    }
-    this.currentTrack = null;
-  }
-
   // =========================================================================
-  // SOUND EFFECTS (Web Audio API)
+  // SOUND EFFECTS (Authentic CRIWARE TCG Pocket SFX + Web Audio API)
   // =========================================================================
   public playSfx(
     type:
@@ -259,8 +328,32 @@ class SoundManager {
       | 'ko'
       | 'button'
       | 'victory'
+      | 'pack_tear'
+      | 'card_slide'
+      | 'card_flip'
+      | 'rainbow_rare'
+      | 'defeat'
+      | 'achievement'
+      | 'shuffle'
+      | 'click'
   ) {
     if (this.muted) return;
+
+    // 1. Play authentic CRIWARE audio file if mapped
+    const sfxFile = SoundManager.SFX_FILES[type];
+    if (sfxFile) {
+      try {
+        const audio = new Audio(sfxFile);
+        audio.volume = this.sfxVolume;
+        audio.play().catch(() => {});
+      } catch {}
+
+      // Non-combat UI / ceremony sounds are fully handled by the official audio
+      if (['pack_tear', 'card_slide', 'card_flip', 'rainbow_rare', 'defeat', 'achievement', 'shuffle', 'click'].includes(type)) {
+        return;
+      }
+    }
+
     try {
       const ctx = this.getAudioContext();
       const now = ctx.currentTime;

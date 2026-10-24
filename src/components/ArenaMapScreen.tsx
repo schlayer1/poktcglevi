@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, PokemonType } from '../types/game';
 import { GymBadge, BadgeType } from './GymBadge';
 import { EnergyBadge } from './EnergyBadge';
@@ -63,6 +63,10 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
     const nextUnbeaten = GYM_CAMPAIGN.find((g) => isNodeUnlocked(g) && !earnedBadges.includes(g.id));
     return nextUnbeaten || GYM_CAMPAIGN[0];
   });
+
+  useEffect(() => {
+    soundManager.playBgm('menu');
+  }, []);
 
   const handleNodeClick = (node: GymNode) => {
     const unlocked = isNodeUnlocked(node);

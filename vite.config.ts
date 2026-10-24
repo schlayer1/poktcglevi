@@ -32,7 +32,7 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg,json,ogg,wav,mp3}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webp,jpg,jpeg,json,ogg,wav,mp3,m4a}'],
         maximumFileSizeToCacheInBytes: 60 * 1024 * 1024, // 60MB for complete offline pack
         skipWaiting: true,
         clientsClaim: true,

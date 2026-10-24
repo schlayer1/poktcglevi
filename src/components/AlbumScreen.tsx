@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, PokemonType } from '../types/game';
 import { CardView } from './CardView';
 import { CardDetailModal } from './CardDetailModal';
@@ -20,6 +20,10 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
 }) => {
   const [selectedType, setSelectedType] = useState<string>('all');
   const [inspectedCard, setInspectedCard] = useState<Card | null>(null);
+
+  useEffect(() => {
+    soundManager.playBgm('menu');
+  }, []);
 
   const profile = storageService.loadProfile(allCards);
   const unlockedMap = profile.unlockedCards;

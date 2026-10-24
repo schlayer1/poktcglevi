@@ -9,6 +9,10 @@ interface TitleScreenProps {
 export const TitleScreen: React.FC<TitleScreenProps> = ({ onStart }) => {
   const [bgmMuted, setBgmMuted] = React.useState(soundManager.isBgmMuted());
 
+  useEffect(() => {
+    soundManager.playBgm('title');
+  }, []);
+
   const handlePlayClick = () => {
     // Resume audio context and play fanfare
     soundManager.getAudioContext();

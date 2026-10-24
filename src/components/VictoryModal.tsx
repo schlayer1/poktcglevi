@@ -17,21 +17,24 @@ export const VictoryModal: React.FC<VictoryModalProps> = ({
   onOpenBooster
 }) => {
   useEffect(() => {
-    // Fire celebratory confetti!
-    confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.6 }
-    });
-
-    soundManager.playSfx('victory');
+    soundManager.stopBgm();
 
     if (isLeviWinner) {
+      // Fire celebratory confetti!
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.55 },
+        colors: ['#fbbf24', '#f59e0b', '#ef4444', '#10b981', '#3b82f6']
+      });
+
+      soundManager.playSfx('victory');
       soundManager.playVoice(
         'win_game',
         `Glückwunsch ${winnerName}! Du hast gewonnen! Du bist ein wahrer Pokémon-Meister!`
       );
     } else {
+      soundManager.playSfx('defeat');
       soundManager.playVoice(
         'cheer_loss',
         'Schade, fast geschafft! Nächstes Mal gewinnst du bestimmt!'
