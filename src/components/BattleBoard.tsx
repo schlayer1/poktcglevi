@@ -10,6 +10,8 @@ import { ParentSettingsModal } from './ParentSettingsModal';
 import { ArenaBackground, ArenaType } from './ArenaBackground';
 import { AttackEffects, AttackAnimationData } from './AttackEffects';
 import { GymBadge, BadgeType } from './GymBadge';
+import { TurnBanner } from './TurnBanner';
+import { CoinTossModal } from './CoinTossModal';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
 import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight, Film, Zap } from 'lucide-react';
@@ -51,6 +53,8 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   const [animData, setAnimData] = useState<AttackAnimationData | null>(null);
   const [animSpeed, setAnimSpeed] = useState<'cinematic' | 'fast'>(storageService.getBattleAnimSpeed());
   const [bgmMuted, setBgmMuted] = useState<boolean>(soundManager.isBgmMuted());
+  const [turnBanner, setTurnBanner] = useState<'player' | 'opponent' | null>(null);
+  const [showCoinModal, setShowCoinModal] = useState<boolean>(false);
 
   const p1 = gameState.players[0]; // Levi
   const p2 = gameState.players[1]; // Opponent (Gym Leader or Papa)
@@ -87,6 +91,26 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       soundManager.playVoice('turn_papa', `${p2.name} ist am Zug!`);
     }
   }, [gameState.turnNumber, gameState.activePlayerIndex, gameState.turnPhase, isPvP]);
+
+  // TCG Pocket Turn Banner Trigger
+  useEffect(() => {
+    if (gameState.winner !== null || gameState.turnPhase === 'promote_needed') return;
+
+    const side = isLeviTurn ? 'player' : 'opponent';
+    setTurnBanner(side);
+
+    if (side === 'player') {
+      soundManager.playSfx('transition');
+    } else {
+      soundManager.playSfx('ok');
+    }
+
+    const timer = setTimeout(() => {
+      setTurnBanner(null);
+    }, 1100);
+
+    return () => clearTimeout(timer);
+  }, [gameState.turnNumber, gameState.activePlayerIndex]);
 
   // Record win/loss when match finishes
   useEffect(() => {
@@ -499,6 +523,18 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             {gymBadgeId && (
               <GymBadge type={gymBadgeId} earned={storageService.loadProfile(allCards).badges.includes(gymBadgeId)} size="sm" />
             )}
+            {/* 3D Pikachu Coin Toss Button */}
+            <button
+              onClick={() => {
+                setShowCoinModal(true);
+                soundManager.playSfx('click');
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-900/85 border border-slate-700 text-xs font-black text-amber-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
+              title="3D Pikachu Münze werfen"
+            >
+              <span className="text-base leading-none">🪙</span>
+              <span className="hidden sm:inline">Münze</span>
+            </button>
             {/* Anim Speed Quick-Toggle */}
             <button
               onClick={() => {
@@ -941,6 +977,21 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       {/* 5. Attack Visual Effects & Projectiles */}
       <AttackEffects animData={animData} speed={animSpeed} />
       <CardDetailModal card={inspectedCard} onClose={() => setInspectedCard(null)} />
+
+      {/* 5b. TCG Pocket Dynamic Turn Banner */}
+      <TurnBanner
+        banner={turnBanner}
+        playerName={p1.name}
+        opponentName={p2.name}
+      />
+
+      {/* 5c. 3D Pikachu Coin Toss Modal */}
+      {showCoinModal && (
+        <CoinTossModal
+          onClose={() => setShowCoinModal(false)}
+          title="Pikachu Glücksmünze"
+        />
+      )}
 
       {/* 6. Victory / Defeat Modal */}
       {gameState.winner !== null && (

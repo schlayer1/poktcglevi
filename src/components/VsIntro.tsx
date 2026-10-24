@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { soundManager } from '../services/soundManager';
+import { PikachuCoin } from './PikachuCoin';
 
 interface VsIntroProps {
   p1Name: string;
@@ -81,17 +82,17 @@ export const VsIntro: React.FC<VsIntroProps> = ({
           </div>
         </div>
 
-        {/* 3D Pokéball Coin Flip */}
+        {/* 3D Pikachu Gold Coin Flip */}
         <div className="flex flex-col items-center gap-2">
-          <div
-            className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white bg-gradient-to-b from-rose-600 via-rose-600 to-white shadow-[0_0_20px_rgba(244,63,94,0.8)] flex items-center justify-center ${
-              !flipped ? 'animate-spin' : 'scale-110 transition-transform'
-            }`}
-          >
-            <div className="w-6 h-6 rounded-full bg-white border-3 border-slate-900" />
-          </div>
-          <span className="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-widest bg-slate-900/90 px-3 py-1 rounded-full border border-amber-400/50">
-            {flipped ? `${p1Name} beginnt! ⭐` : 'Münzwurf...'}
+          <PikachuCoin
+            size="md"
+            isFlipping={!flipped}
+            result="heads"
+            interactive={false}
+            showLabel={false}
+          />
+          <span className="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-widest bg-slate-900/90 px-4 py-1.5 rounded-full border border-amber-400/60 shadow-xl">
+            {flipped ? `${p1Name} beginnt! Kopf (Pikachu) ⭐` : 'Münzwurf läuft... ⚡'}
           </span>
         </div>
       </div>
