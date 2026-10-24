@@ -169,1134 +169,1417 @@
   },
   "rule_welcome": {
     "file": "/audio/voice/rule_welcome.m4a",
-    "text": "Willkommen bei den Pokémon-Karten, Levi! Hier lernst du ganz einfach die Spielregeln."
+    "text": "Willkommen bei den Pokémon-Karten, Levi! Hier lernst du ganz leicht, wie du kämpfst und gewinnst!",
+    "voice": "de-DE-AmalaNeural"
   },
   "rule_goal": {
     "file": "/audio/voice/rule_goal.m4a",
-    "text": "Ziel des Spiels: Besiege drei gegnerische Pokémon, um drei Siegespunkte zu sammeln und Meister zu werden!"
+    "text": "Ziel des Spiels: Besiege drei gegnerische Pokémon, um drei Siegespunkte zu sammeln und den Kampf zu gewinnen!",
+    "voice": "de-DE-AmalaNeural"
   },
   "rule_energy": {
     "file": "/audio/voice/rule_energy.m4a",
-    "text": "1. Energie anlegen: Jede Runde bekommst du eine neue Energie. Ziehe sie einfach auf dein Pokémon!"
+    "text": "1. Energie anlegen: Jede Runde bekommst du eine neue Energie. Ziehe sie einfach auf dein aktives Pokémon oder auf die Bank!",
+    "voice": "de-DE-AmalaNeural"
   },
   "rule_bench": {
     "file": "/audio/voice/rule_bench.m4a",
-    "text": "2. Deine Bank: Bis zu drei Basis-Pokémon können sich auf deiner Bank bereitmachen."
+    "text": "2. Deine Bank: Bis zu drei Basis-Pokémon können sich auf deiner Bank ausruhen, während dein aktives Pokémon kämpft.",
+    "voice": "de-DE-AmalaNeural"
   },
   "rule_evolve": {
     "file": "/audio/voice/rule_evolve.m4a",
-    "text": "3. Entwicklung: Lege ein passendes Entwicklungs-Pokémon auf dein Basis-Pokémon, um es viel stärker zu machen!"
+    "text": "3. Entwicklung: Lege ein passendes Entwicklungs-Pokémon auf dein Basis-Pokémon, um es viel stärker zu machen!",
+    "voice": "de-DE-AmalaNeural"
   },
   "rule_attack": {
     "file": "/audio/voice/rule_attack.m4a",
-    "text": "4. Angreifen: Hat dein Pokémon genug Energie? Dann tippe auf die Attacke und greife den Gegner an!"
+    "text": "4. Angreifen: Hat dein Pokémon genug Energie? Dann tippe auf die Attacke, um dem Gegner Schaden zuzufügen!",
+    "voice": "de-DE-AmalaNeural"
   },
   "rule_ko": {
     "file": "/audio/voice/rule_ko.m4a",
-    "text": "5. K.O. und Punkte: Wenn die Kraftpunkte des Gegners auf Null sinken, ist das Pokémon K.O. und du bekommst einen Siegespunkt!"
+    "text": "5. K.O. und Punkte: Wenn die Kraftpunkte des Gegners auf Null sinken, ist das Pokémon besiegt und du bekommst einen Punkt!",
+    "voice": "de-DE-AmalaNeural"
   },
   "rule_status": {
     "file": "/audio/voice/rule_status.m4a",
-    "text": "6. Status-Effekte: Schlaf lässt dein Pokémon ausruhen, Gift zieht Kraftpunkte ab und Paralyse lässt es pausieren."
+    "text": "6. Status-Effekte: Schlaf lässt dein Pokémon ausruhen, Gift zieht jede Runde Kraftpunkte ab, und Paralyse lässt es pausieren.",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_detail_intro": {
     "file": "/audio/voice/card_detail_intro.m4a",
-    "text": "Hier siehst du alle Werte und Attacken deines Pokémon! Wische mit dem Finger für den 3D-Hologramm-Effekt!"
+    "text": "Hier siehst du alle Werte und Attacken deines Pokémon! Wische mit dem Finger für dreidimensionalen Glanz!",
+    "voice": "de-DE-AmalaNeural"
   },
   "album_locked": {
     "file": "/audio/voice/album_locked.m4a",
-    "text": "Dieses Pokémon hast du noch nicht entdeckt! Öffne Booster-Packs, um es zu finden!"
+    "text": "Dieses Pokémon hast du noch nicht entdeckt! Öffne Booster-Packs, um es zu finden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "album_card_owned": {
     "file": "/audio/voice/album_card_owned.m4a",
-    "text": "Tolle Karte für deine Sammlung!"
+    "text": "Tolle Karte für deine Sammlung!",
+    "voice": "de-DE-AmalaNeural"
   },
   "booster_card_reveal": {
     "file": "/audio/voice/booster_card_reveal.m4a",
-    "text": "Ein tolles neues Pokémon für dich!"
+    "text": "Ein tolles neues Pokémon für dich!",
+    "voice": "de-DE-AmalaNeural"
   },
   "deck_max_copies": {
     "file": "/audio/voice/deck_max_copies.m4a",
-    "text": "Du darfst höchstens zwei gleiche Karten in deinem Deck haben!"
+    "text": "Du darfst höchstens zwei gleiche Karten in deinem Deck haben!",
+    "voice": "de-DE-AmalaNeural"
   },
   "deck_no_more_copies": {
     "file": "/audio/voice/deck_no_more_copies.m4a",
-    "text": "Du hast keine weiteren Kopien dieser Karte!"
+    "text": "Du hast keine weiteren Kopien dieser Karte!",
+    "voice": "de-DE-AmalaNeural"
   },
   "prompt_attack_confirm": {
     "file": "/audio/voice/prompt_attack_confirm.m4a",
-    "text": "Tippe noch einmal auf die Attacke zum Angreifen!"
+    "text": "Tippe noch einmal auf die Attacke zum Angreifen!",
+    "voice": "de-DE-AmalaNeural"
   },
   "deck_info": {
     "file": "/audio/voice/deck_info.m4a",
-    "text": "Das ist dein Kartenstapel! In jeder Runde ziehst du hier eine neue Karte."
+    "text": "Das ist dein Kartenstapel! In jeder Runde ziehst du hier eine neue Karte!",
+    "voice": "de-DE-AmalaNeural"
   },
   "prompt_evolve": {
     "file": "/audio/voice/prompt_evolve.m4a",
-    "text": "Entwicklung bereit! Ziehe die Karte auf dein Pokémon!"
+    "text": "Entwicklung bereit! Ziehe die Karte auf dein Pokémon!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_glurak": {
     "file": "/audio/voice/card_glurak.m4a",
-    "text": "Glurak! Das legendäre Feuer-Pokémon mit gewaltigen Flammenflügeln und feurigem Atem!"
+    "text": "Glurak! Das legendäre Feuer-Pokémon mit gewaltigen Flammenflügeln!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_pikachu": {
     "file": "/audio/voice/card_pikachu.m4a",
-    "text": "Pikachu! Voller Elektro-Power und blitzschnellen Donner-Attacken!"
+    "text": "Pikachu! Voller Elektro-Power und blitzschnellen Donner-Attacken!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_turtok": {
     "file": "/audio/voice/card_turtok.m4a",
-    "text": "Turtok! Das gigantische Wasser-Pokémon mit zwei mächtigen Wasserkanonen!"
+    "text": "Turtok! Das gigantische Wasser-Pokémon mit zwei mächtigen Wasserkanonen!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_bisaflor": {
     "file": "/audio/voice/card_bisaflor.m4a",
-    "text": "Bisaflor! Das uralte Pflanzen-Pokémon mit einer riesigen Blüte voller Naturkraft!"
+    "text": "Bisaflor! Das uralte Pflanzen-Pokémon mit einer riesigen Blüte auf dem Rücken!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_mewtu": {
     "file": "/audio/voice/card_mewtu.m4a",
-    "text": "Mewtu! Das geheimnisvolle Psycho-Pokémon mit unendlicher geistiger Energie!"
+    "text": "Mewtu! Das geheimnisvolle Psycho-Pokémon mit unendlicher geistiger Kraft!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_onix": {
     "file": "/audio/voice/card_onix.m4a",
-    "text": "Onix! Die gigantische Felsenschlange von Arenaleiter Rocko!"
+    "text": "Onix! Die gigantische Felsenschlange von Arenaleiter Rocko!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_gengar": {
     "file": "/audio/voice/card_gengar.m4a",
-    "text": "Gengar! Das schaurige Schatten-Geist-Pokémon mit verblüffenden Zauberkräften!"
+    "text": "Gengar! Das schaurige Schatten-Geist-Pokémon mit verblüffenden Tricks!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_eevee": {
     "file": "/audio/voice/card_eevee.m4a",
-    "text": "Evoli! Das fröhliche und wandlungsfähige Pokémon mit vielen spannenden Entwicklungen!"
+    "text": "Evoli! Das fröhliche und wandlungsfähige Pokémon mit vielen Entwicklungen!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_001": {
     "file": "/audio/voice/cards/a1_001.m4a",
-    "text": "Bisasam! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Rankenhieb mit 40 Schaden!"
+    "text": "Bisasam! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Rankenhieb mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_002": {
     "file": "/audio/voice/cards/a1_002.m4a",
-    "text": "Bisaknosp! Phase-Eins Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Rasierblatt mit 60 Schaden!"
+    "text": "Bisaknosp! Phase-Eins Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Rasierblatt mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_003": {
     "file": "/audio/voice/cards/a1_003.m4a",
-    "text": "Bisaflor! Starkes Phase-Zwei Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Megasauger mit 80 Schaden!"
+    "text": "Bisaflor! Starkes Phase-Zwei Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Megasauger mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_004": {
     "file": "/audio/voice/cards/a1_004.m4a",
-    "text": "Bisaflor-ex! Legendäres Pflanzen-Pokémon mit 190 Kraftpunkten. Attacken: Rasierblatt mit 60 Schaden und Riesenblüte mit 100 Schaden!"
+    "text": "Bisaflor-ex! Legendäres Pflanzen-Pokémon mit 190 Kraftpunkten. Attacken: Rasierblatt mit 60 Schaden und Riesenblüte mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_005": {
     "file": "/audio/voice/cards/a1_005.m4a",
-    "text": "Raupy! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Freunde finden mit 10 Schaden!"
+    "text": "Raupy! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Freunde finden mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_006": {
     "file": "/audio/voice/cards/a1_006.m4a",
-    "text": "Safcon! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Käferbiss mit 30 Schaden!"
+    "text": "Safcon! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Käferbiss mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_007": {
     "file": "/audio/voice/cards/a1_007.m4a",
-    "text": "Smettbo! Starkes Phase-Zwei Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Windstoß mit 60 Schaden!"
+    "text": "Smettbo! Starkes Phase-Zwei Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Windstoß mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_008": {
     "file": "/audio/voice/cards/a1_008.m4a",
-    "text": "Hornliu! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Einstich mit 20 Schaden!"
+    "text": "Hornliu! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Einstich mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_009": {
     "file": "/audio/voice/cards/a1_009.m4a",
-    "text": "Kokuna! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Käferbiss mit 30 Schaden!"
+    "text": "Kokuna! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Käferbiss mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_010": {
     "file": "/audio/voice/cards/a1_010.m4a",
-    "text": "Bibor! Starkes Phase-Zwei Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Scharfer Stich mit 70 Schaden!"
+    "text": "Bibor! Starkes Phase-Zwei Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Scharfer Stich mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_011": {
     "file": "/audio/voice/cards/a1_011.m4a",
-    "text": "Myrapla! Pflanzen-Pokémon mit 60 Kraftpunkten. Attacke: Ramme mit 20 Schaden!"
+    "text": "Myrapla! Pflanzen-Pokémon mit 60 Kraftpunkten. Attacke: Ramme mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_012": {
     "file": "/audio/voice/cards/a1_012.m4a",
-    "text": "Duflor! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Sabbern mit 40 Schaden!"
+    "text": "Duflor! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Sabbern mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_013": {
     "file": "/audio/voice/cards/a1_013.m4a",
-    "text": "Giflor! Starkes Phase-Zwei Pflanzen-Pokémon mit 140 Kraftpunkten. Attacke: Beruhigender Duft mit 80 Schaden!"
+    "text": "Giflor! Starkes Phase-Zwei Pflanzen-Pokémon mit 140 Kraftpunkten. Attacke: Beruhigender Duft mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_014": {
     "file": "/audio/voice/cards/a1_014.m4a",
-    "text": "Paras! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Kratzer mit 30 Schaden!"
+    "text": "Paras! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Kratzer mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_015": {
     "file": "/audio/voice/cards/a1_015.m4a",
-    "text": "Parasek! Phase-Eins Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Schlitzer mit 80 Schaden!"
+    "text": "Parasek! Phase-Eins Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Schlitzer mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_016": {
     "file": "/audio/voice/cards/a1_016.m4a",
-    "text": "Bluzuk! Pflanzen-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Bluzuk! Pflanzen-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_017": {
     "file": "/audio/voice/cards/a1_017.m4a",
-    "text": "Omot! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Giftpuder mit 30 Schaden!"
+    "text": "Omot! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Giftpuder mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_018": {
     "file": "/audio/voice/cards/a1_018.m4a",
-    "text": "Knofensa! Pflanzen-Pokémon mit 60 Kraftpunkten. Attacke: Rankenhieb mit 20 Schaden!"
+    "text": "Knofensa! Pflanzen-Pokémon mit 60 Kraftpunkten. Attacke: Rankenhieb mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_019": {
     "file": "/audio/voice/cards/a1_019.m4a",
-    "text": "Ultrigaria! Phase-Eins Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Rasierblatt mit 40 Schaden!"
+    "text": "Ultrigaria! Phase-Eins Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Rasierblatt mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_020": {
     "file": "/audio/voice/cards/a1_020.m4a",
-    "text": "Sarzenia! Starkes Phase-Zwei Pflanzen-Pokémon mit 140 Kraftpunkten. Attacke: Rankenhieb mit 60 Schaden!"
+    "text": "Sarzenia! Starkes Phase-Zwei Pflanzen-Pokémon mit 140 Kraftpunkten. Attacke: Rankenhieb mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_021": {
     "file": "/audio/voice/cards/a1_021.m4a",
-    "text": "Owei! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Samenbomben mit 20 Schaden!"
+    "text": "Owei! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Samenbomben mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_022": {
     "file": "/audio/voice/cards/a1_022.m4a",
-    "text": "Kokowei! Phase-Eins Pflanzen-Pokémon mit 130 Kraftpunkten. Attacke: Stampfer mit 30 Schaden!"
+    "text": "Kokowei! Phase-Eins Pflanzen-Pokémon mit 130 Kraftpunkten. Attacke: Stampfer mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_023": {
     "file": "/audio/voice/cards/a1_023.m4a",
-    "text": "Kokowei-ex! Legendäres Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Tropenschwung mit 40 Schaden!"
+    "text": "Kokowei-ex! Legendäres Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Tropenschwung mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_024": {
     "file": "/audio/voice/cards/a1_024.m4a",
-    "text": "Tangela! Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Absorber mit 40 Schaden!"
+    "text": "Tangela! Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Absorber mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_025": {
     "file": "/audio/voice/cards/a1_025.m4a",
-    "text": "Sichlor! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Scharfe Sense mit 30 Schaden!"
+    "text": "Sichlor! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Scharfe Sense mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_026": {
     "file": "/audio/voice/cards/a1_026.m4a",
-    "text": "Pinsir! Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Doppelhorn mit 50 Schaden!"
+    "text": "Pinsir! Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Doppelhorn mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_033": {
     "file": "/audio/voice/cards/a1_033.m4a",
-    "text": "Glumanda! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Glut mit 30 Schaden!"
+    "text": "Glumanda! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Glut mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_034": {
     "file": "/audio/voice/cards/a1_034.m4a",
-    "text": "Glutexo! Phase-Eins Feuer-Pokémon mit 90 Kraftpunkten. Attacke: Feuerkrallen mit 60 Schaden!"
+    "text": "Glutexo! Phase-Eins Feuer-Pokémon mit 90 Kraftpunkten. Attacke: Feuerkrallen mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_035": {
     "file": "/audio/voice/cards/a1_035.m4a",
-    "text": "Glurak! Starkes Phase-Zwei Feuer-Pokémon mit 150 Kraftpunkten. Attacke: Feuerwirbel mit 150 Schaden!"
+    "text": "Glurak! Starkes Phase-Zwei Feuer-Pokémon mit 150 Kraftpunkten. Attacke: Feuerwirbel mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_036": {
     "file": "/audio/voice/cards/a1_036.m4a",
-    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!"
+    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_037": {
     "file": "/audio/voice/cards/a1_037.m4a",
-    "text": "Vulpix! Feuer-Pokémon mit 50 Kraftpunkten. Attacke: Rutenschlag mit 10 Schaden!"
+    "text": "Vulpix! Feuer-Pokémon mit 50 Kraftpunkten. Attacke: Rutenschlag mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_038": {
     "file": "/audio/voice/cards/a1_038.m4a",
-    "text": "Vulnona! Phase-Eins Feuer-Pokémon mit 90 Kraftpunkten. Attacke: Flammenwurf mit 90 Schaden!"
+    "text": "Vulnona! Phase-Eins Feuer-Pokémon mit 90 Kraftpunkten. Attacke: Flammenwurf mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_039": {
     "file": "/audio/voice/cards/a1_039.m4a",
-    "text": "Fukano! Feuer-Pokémon mit 70 Kraftpunkten. Attacke: Biss mit 20 Schaden!"
+    "text": "Fukano! Feuer-Pokémon mit 70 Kraftpunkten. Attacke: Biss mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_040": {
     "file": "/audio/voice/cards/a1_040.m4a",
-    "text": "Arkani! Phase-Eins Feuer-Pokémon mit 130 Kraftpunkten. Attacke: Hitze-Tackle mit 100 Schaden!"
+    "text": "Arkani! Phase-Eins Feuer-Pokémon mit 130 Kraftpunkten. Attacke: Hitze-Tackle mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_041": {
     "file": "/audio/voice/cards/a1_041.m4a",
-    "text": "Arkani-ex! Legendäres Feuer-Pokémon mit 150 Kraftpunkten. Attacke: Inferno-Ansturm mit 120 Schaden!"
+    "text": "Arkani-ex! Legendäres Feuer-Pokémon mit 150 Kraftpunkten. Attacke: Inferno-Ansturm mit 120 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_042": {
     "file": "/audio/voice/cards/a1_042.m4a",
-    "text": "Ponita! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Flackern mit 20 Schaden!"
+    "text": "Ponita! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Flackern mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_043": {
     "file": "/audio/voice/cards/a1_043.m4a",
-    "text": "Gallopa! Phase-Eins Feuer-Pokémon mit 100 Kraftpunkten. Attacke: Flammenmähne mit 40 Schaden!"
+    "text": "Gallopa! Phase-Eins Feuer-Pokémon mit 100 Kraftpunkten. Attacke: Flammenmähne mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_044": {
     "file": "/audio/voice/cards/a1_044.m4a",
-    "text": "Magmar! Feuer-Pokémon mit 80 Kraftpunkten. Attacke: Magmahieb mit 50 Schaden!"
+    "text": "Magmar! Feuer-Pokémon mit 80 Kraftpunkten. Attacke: Magmahieb mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_045": {
     "file": "/audio/voice/cards/a1_045.m4a",
-    "text": "Flamara! Phase-Eins Feuer-Pokémon mit 120 Kraftpunkten. Attacke: Flammenwurf mit 110 Schaden!"
+    "text": "Flamara! Phase-Eins Feuer-Pokémon mit 120 Kraftpunkten. Attacke: Flammenwurf mit 110 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_046": {
     "file": "/audio/voice/cards/a1_046.m4a",
-    "text": "Lavados! Feuer-Pokémon mit 100 Kraftpunkten. Attacke: Himmelsfeger mit 130 Schaden!"
+    "text": "Lavados! Feuer-Pokémon mit 100 Kraftpunkten. Attacke: Himmelsfeger mit 130 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_047": {
     "file": "/audio/voice/cards/a1_047.m4a",
-    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!"
+    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_053": {
     "file": "/audio/voice/cards/a1_053.m4a",
-    "text": "Schiggy! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!"
+    "text": "Schiggy! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_054": {
     "file": "/audio/voice/cards/a1_054.m4a",
-    "text": "Schillok! Phase-Eins Wasser-Pokémon mit 80 Kraftpunkten. Attacke: Wellenplatscher mit 40 Schaden!"
+    "text": "Schillok! Phase-Eins Wasser-Pokémon mit 80 Kraftpunkten. Attacke: Wellenplatscher mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_055": {
     "file": "/audio/voice/cards/a1_055.m4a",
-    "text": "Turtok! Starkes Phase-Zwei Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hydropumpe mit 80 Schaden!"
+    "text": "Turtok! Starkes Phase-Zwei Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hydropumpe mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_056": {
     "file": "/audio/voice/cards/a1_056.m4a",
-    "text": "Turtok-ex! Legendäres Wasser-Pokémon mit 180 Kraftpunkten. Attacken: Surfer mit 40 Schaden und Hydro-Bazooka mit 100 Schaden!"
+    "text": "Turtok-ex! Legendäres Wasser-Pokémon mit 180 Kraftpunkten. Attacken: Surfer mit 40 Schaden und Hydro-Bazooka mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_057": {
     "file": "/audio/voice/cards/a1_057.m4a",
-    "text": "Enton! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Kopfweh mit 10 Schaden!"
+    "text": "Enton! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Kopfweh mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_058": {
     "file": "/audio/voice/cards/a1_058.m4a",
-    "text": "Entoron! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Aquaschneide mit 70 Schaden!"
+    "text": "Entoron! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Aquaschneide mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_059": {
     "file": "/audio/voice/cards/a1_059.m4a",
-    "text": "Quapsel! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Rasierflosse mit 10 Schaden!"
+    "text": "Quapsel! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Rasierflosse mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_060": {
     "file": "/audio/voice/cards/a1_060.m4a",
-    "text": "Quaputzi! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Knöchelhieb mit 40 Schaden!"
+    "text": "Quaputzi! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Knöchelhieb mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_061": {
     "file": "/audio/voice/cards/a1_061.m4a",
-    "text": "Quappo! Starkes Phase-Zwei Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Megahieb mit 80 Schaden!"
+    "text": "Quappo! Starkes Phase-Zwei Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Megahieb mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_062": {
     "file": "/audio/voice/cards/a1_062.m4a",
-    "text": "Tentacha! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Sanfter Hieb mit 20 Schaden!"
+    "text": "Tentacha! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Sanfter Hieb mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_063": {
     "file": "/audio/voice/cards/a1_063.m4a",
-    "text": "Tentoxa! Phase-Eins Wasser-Pokémon mit 110 Kraftpunkten. Attacke: Giftige Tentakel mit 50 Schaden!"
+    "text": "Tentoxa! Phase-Eins Wasser-Pokémon mit 110 Kraftpunkten. Attacke: Giftige Tentakel mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_064": {
     "file": "/audio/voice/cards/a1_064.m4a",
-    "text": "Jurob! Wasser-Pokémon mit 80 Kraftpunkten. Attacke: Kopfnuss mit 30 Schaden!"
+    "text": "Jurob! Wasser-Pokémon mit 80 Kraftpunkten. Attacke: Kopfnuss mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_065": {
     "file": "/audio/voice/cards/a1_065.m4a",
-    "text": "Jugong! Phase-Eins Wasser-Pokémon mit 120 Kraftpunkten. Attacke: Surfer mit 90 Schaden!"
+    "text": "Jugong! Phase-Eins Wasser-Pokémon mit 120 Kraftpunkten. Attacke: Surfer mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_066": {
     "file": "/audio/voice/cards/a1_066.m4a",
-    "text": "Muschas! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Zungenschelle mit 20 Schaden!"
+    "text": "Muschas! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Zungenschelle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_067": {
     "file": "/audio/voice/cards/a1_067.m4a",
-    "text": "Austos! Phase-Eins Wasser-Pokémon mit 120 Kraftpunkten. Attacke: Surfer mit 70 Schaden!"
+    "text": "Austos! Phase-Eins Wasser-Pokémon mit 120 Kraftpunkten. Attacke: Surfer mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_068": {
     "file": "/audio/voice/cards/a1_068.m4a",
-    "text": "Krabby! Wasser-Pokémon mit 70 Kraftpunkten. Attacke: Klammer mit 40 Schaden!"
+    "text": "Krabby! Wasser-Pokémon mit 70 Kraftpunkten. Attacke: Klammer mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_069": {
     "file": "/audio/voice/cards/a1_069.m4a",
-    "text": "Kingler! Phase-Eins Wasser-Pokémon mit 120 Kraftpunkten. Attacke: K.O.-Krabbe mit 80 Schaden!"
+    "text": "Kingler! Phase-Eins Wasser-Pokémon mit 120 Kraftpunkten. Attacke: K.O.-Krabbe mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_070": {
     "file": "/audio/voice/cards/a1_070.m4a",
-    "text": "Seeper! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!"
+    "text": "Seeper! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_071": {
     "file": "/audio/voice/cards/a1_071.m4a",
-    "text": "Seemon! Phase-Eins Wasser-Pokémon mit 70 Kraftpunkten. Attacke: Wasserpfeil mit 10 Schaden!"
+    "text": "Seemon! Phase-Eins Wasser-Pokémon mit 70 Kraftpunkten. Attacke: Wasserpfeil mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_072": {
     "file": "/audio/voice/cards/a1_072.m4a",
-    "text": "Goldini! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Plumps mit 10 Schaden!"
+    "text": "Goldini! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Plumps mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_073": {
     "file": "/audio/voice/cards/a1_073.m4a",
-    "text": "Golking! Phase-Eins Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Gefährliches Horn mit 80 Schaden!"
+    "text": "Golking! Phase-Eins Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Gefährliches Horn mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_074": {
     "file": "/audio/voice/cards/a1_074.m4a",
-    "text": "Sterndu! Wasser-Pokémon mit 50 Kraftpunkten. Attacke: Klatscher mit 20 Schaden!"
+    "text": "Sterndu! Wasser-Pokémon mit 50 Kraftpunkten. Attacke: Klatscher mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_075": {
     "file": "/audio/voice/cards/a1_075.m4a",
-    "text": "Starmie! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Wellenplatscher mit 40 Schaden!"
+    "text": "Starmie! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Wellenplatscher mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_076": {
     "file": "/audio/voice/cards/a1_076.m4a",
-    "text": "Starmie-ex! Legendäres Wasser-Pokémon mit 130 Kraftpunkten. Attacke: Hydroplatscher mit 90 Schaden!"
+    "text": "Starmie-ex! Legendäres Wasser-Pokémon mit 130 Kraftpunkten. Attacke: Hydroplatscher mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_077": {
     "file": "/audio/voice/cards/a1_077.m4a",
-    "text": "Karpador! Wasser-Pokémon mit 30 Kraftpunkten. Attacke: Platscher mit 10 Schaden!"
+    "text": "Karpador! Wasser-Pokémon mit 30 Kraftpunkten. Attacke: Platscher mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_078": {
     "file": "/audio/voice/cards/a1_078.m4a",
-    "text": "Garados! Phase-Eins Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hyperstrahl mit 100 Schaden!"
+    "text": "Garados! Phase-Eins Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hyperstrahl mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_079": {
     "file": "/audio/voice/cards/a1_079.m4a",
-    "text": "Lapras! Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Hydropumpe mit 20 Schaden!"
+    "text": "Lapras! Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Hydropumpe mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_080": {
     "file": "/audio/voice/cards/a1_080.m4a",
-    "text": "Aquana! Phase-Eins Wasser-Pokémon mit 130 Kraftpunkten. Attacke: Blasengully mit 60 Schaden!"
+    "text": "Aquana! Phase-Eins Wasser-Pokémon mit 130 Kraftpunkten. Attacke: Blasengully mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_081": {
     "file": "/audio/voice/cards/a1_081.m4a",
-    "text": "Amonitas! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Aquaknarre mit 40 Schaden!"
+    "text": "Amonitas! Phase-Eins Wasser-Pokémon mit 90 Kraftpunkten. Attacke: Aquaknarre mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_082": {
     "file": "/audio/voice/cards/a1_082.m4a",
-    "text": "Amoroso! Starkes Phase-Zwei Wasser-Pokémon mit 140 Kraftpunkten. Attacke: Urzeitsog mit 70 Schaden!"
+    "text": "Amoroso! Starkes Phase-Zwei Wasser-Pokémon mit 140 Kraftpunkten. Attacke: Urzeitsog mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_083": {
     "file": "/audio/voice/cards/a1_083.m4a",
-    "text": "Arktos! Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Eisstrahl mit 60 Schaden!"
+    "text": "Arktos! Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Eisstrahl mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_084": {
     "file": "/audio/voice/cards/a1_084.m4a",
-    "text": "Arktos-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacken: Frostschwinge mit 40 Schaden und Blizzard mit 80 Schaden!"
+    "text": "Arktos-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacken: Frostschwinge mit 40 Schaden und Blizzard mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_094": {
     "file": "/audio/voice/cards/a1_094.m4a",
-    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!"
+    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_095": {
     "file": "/audio/voice/cards/a1_095.m4a",
-    "text": "Raichu! Phase-Eins Elektro-Pokémon mit 100 Kraftpunkten. Attacke: Donnerblitz mit 140 Schaden!"
+    "text": "Raichu! Phase-Eins Elektro-Pokémon mit 100 Kraftpunkten. Attacke: Donnerblitz mit 140 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_096": {
     "file": "/audio/voice/cards/a1_096.m4a",
-    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!"
+    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_097": {
     "file": "/audio/voice/cards/a1_097.m4a",
-    "text": "Magnetilo! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Kugelblitz mit 20 Schaden!"
+    "text": "Magnetilo! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Kugelblitz mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_098": {
     "file": "/audio/voice/cards/a1_098.m4a",
-    "text": "Magneton! Phase-Eins Elektro-Pokémon mit 80 Kraftpunkten. Attacke: Rundumangriff mit 60 Schaden!"
+    "text": "Magneton! Phase-Eins Elektro-Pokémon mit 80 Kraftpunkten. Attacke: Rundumangriff mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_099": {
     "file": "/audio/voice/cards/a1_099.m4a",
-    "text": "Voltobal! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Voltobal! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_100": {
     "file": "/audio/voice/cards/a1_100.m4a",
-    "text": "Lektrobal! Phase-Eins Elektro-Pokémon mit 80 Kraftpunkten. Attacke: Elektroball mit 70 Schaden!"
+    "text": "Lektrobal! Phase-Eins Elektro-Pokémon mit 80 Kraftpunkten. Attacke: Elektroball mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_101": {
     "file": "/audio/voice/cards/a1_101.m4a",
-    "text": "Elektek! Elektro-Pokémon mit 70 Kraftpunkten. Attacke: Donnerschlag mit 40 Schaden!"
+    "text": "Elektek! Elektro-Pokémon mit 70 Kraftpunkten. Attacke: Donnerschlag mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_102": {
     "file": "/audio/voice/cards/a1_102.m4a",
-    "text": "Blitza! Phase-Eins Elektro-Pokémon mit 90 Kraftpunkten. Attacke: Nadelrakete mit 40 Schaden!"
+    "text": "Blitza! Phase-Eins Elektro-Pokémon mit 90 Kraftpunkten. Attacke: Nadelrakete mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_103": {
     "file": "/audio/voice/cards/a1_103.m4a",
-    "text": "Zapdos! Elektro-Pokémon mit 100 Kraftpunkten. Attacke: Tosender Donner mit 100 Schaden!"
+    "text": "Zapdos! Elektro-Pokémon mit 100 Kraftpunkten. Attacke: Tosender Donner mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_104": {
     "file": "/audio/voice/cards/a1_104.m4a",
-    "text": "Zapdos-ex! Legendäres Elektro-Pokémon mit 130 Kraftpunkten. Attacken: Pikser mit 20 Schaden und Donnernder Orkan mit 50 Schaden!"
+    "text": "Zapdos-ex! Legendäres Elektro-Pokémon mit 130 Kraftpunkten. Attacken: Pikser mit 20 Schaden und Donnernder Orkan mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_113": {
     "file": "/audio/voice/cards/a1_113.m4a",
-    "text": "Piepi! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Hieb mit 20 Schaden!"
+    "text": "Piepi! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Hieb mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_114": {
     "file": "/audio/voice/cards/a1_114.m4a",
-    "text": "Pixi! Phase-Eins Psycho-Pokémon mit 100 Kraftpunkten. Attacke: Magischer Schuss mit 40 Schaden!"
+    "text": "Pixi! Phase-Eins Psycho-Pokémon mit 100 Kraftpunkten. Attacke: Magischer Schuss mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_115": {
     "file": "/audio/voice/cards/a1_115.m4a",
-    "text": "Abra! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Teleport mit 10 Schaden!"
+    "text": "Abra! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Teleport mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_116": {
     "file": "/audio/voice/cards/a1_116.m4a",
-    "text": "Kadabra! Phase-Eins Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Super-Psischlag mit 60 Schaden!"
+    "text": "Kadabra! Phase-Eins Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Super-Psischlag mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_117": {
     "file": "/audio/voice/cards/a1_117.m4a",
-    "text": "Simsala! Starkes Phase-Zwei Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Psychokinese mit 60 Schaden!"
+    "text": "Simsala! Starkes Phase-Zwei Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Psychokinese mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_118": {
     "file": "/audio/voice/cards/a1_118.m4a",
-    "text": "Flegmon! Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Schweifvertrimmer mit 30 Schaden!"
+    "text": "Flegmon! Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Schweifvertrimmer mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_119": {
     "file": "/audio/voice/cards/a1_119.m4a",
-    "text": "Lahmus! Phase-Eins Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Super-Psischlag mit 80 Schaden!"
+    "text": "Lahmus! Phase-Eins Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Super-Psischlag mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_120": {
     "file": "/audio/voice/cards/a1_120.m4a",
-    "text": "Nebulak! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Würgegas mit 20 Schaden!"
+    "text": "Nebulak! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Würgegas mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_121": {
     "file": "/audio/voice/cards/a1_121.m4a",
-    "text": "Alpollo! Phase-Eins Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Irrlicht mit 30 Schaden!"
+    "text": "Alpollo! Phase-Eins Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Irrlicht mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_122": {
     "file": "/audio/voice/cards/a1_122.m4a",
-    "text": "Gengar! Starkes Phase-Zwei Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Tortur mit 50 Schaden!"
+    "text": "Gengar! Starkes Phase-Zwei Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Tortur mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_123": {
     "file": "/audio/voice/cards/a1_123.m4a",
-    "text": "Gengar-ex! Legendäres Psycho-Pokémon mit 170 Kraftpunkten. Attacke: Spukschuss mit 100 Schaden!"
+    "text": "Gengar-ex! Legendäres Psycho-Pokémon mit 170 Kraftpunkten. Attacke: Spukschuss mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_124": {
     "file": "/audio/voice/cards/a1_124.m4a",
-    "text": "Traumato! Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Grummeln mit 30 Schaden!"
+    "text": "Traumato! Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Grummeln mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_125": {
     "file": "/audio/voice/cards/a1_125.m4a",
-    "text": "Hypno! Phase-Eins Psycho-Pokémon mit 100 Kraftpunkten. Attacke: Psyhieb mit 50 Schaden!"
+    "text": "Hypno! Phase-Eins Psycho-Pokémon mit 100 Kraftpunkten. Attacke: Psyhieb mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_126": {
     "file": "/audio/voice/cards/a1_126.m4a",
-    "text": "Pantimos! Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Angriffsbarriere mit 30 Schaden!"
+    "text": "Pantimos! Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Angriffsbarriere mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_127": {
     "file": "/audio/voice/cards/a1_127.m4a",
-    "text": "Rossana! Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Psychokinese mit 30 Schaden!"
+    "text": "Rossana! Psycho-Pokémon mit 80 Kraftpunkten. Attacke: Psychokinese mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_128": {
     "file": "/audio/voice/cards/a1_128.m4a",
-    "text": "Mewtu! Psycho-Pokémon mit 120 Kraftpunkten. Attacke: Powerschuss mit 120 Schaden!"
+    "text": "Mewtu! Psycho-Pokémon mit 120 Kraftpunkten. Attacke: Powerschuss mit 120 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_129": {
     "file": "/audio/voice/cards/a1_129.m4a",
-    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!"
+    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_137": {
     "file": "/audio/voice/cards/a1_137.m4a",
-    "text": "Sandan! Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Kratzer mit 10 Schaden!"
+    "text": "Sandan! Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Kratzer mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_138": {
     "file": "/audio/voice/cards/a1_138.m4a",
-    "text": "Sandamer! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Schlitzer mit 70 Schaden!"
+    "text": "Sandamer! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Schlitzer mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_139": {
     "file": "/audio/voice/cards/a1_139.m4a",
-    "text": "Digda! Kampf-Pokémon mit 50 Kraftpunkten. Attacke: Lehmschelle mit 20 Schaden!"
+    "text": "Digda! Kampf-Pokémon mit 50 Kraftpunkten. Attacke: Lehmschelle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_140": {
     "file": "/audio/voice/cards/a1_140.m4a",
-    "text": "Digdri! Phase-Eins Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Schaufler mit 40 Schaden!"
+    "text": "Digdri! Phase-Eins Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Schaufler mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_141": {
     "file": "/audio/voice/cards/a1_141.m4a",
-    "text": "Menki! Kampf-Pokémon mit 60 Kraftpunkten. Attacke: Fußkick mit 20 Schaden!"
+    "text": "Menki! Kampf-Pokémon mit 60 Kraftpunkten. Attacke: Fußkick mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_142": {
     "file": "/audio/voice/cards/a1_142.m4a",
-    "text": "Rasaff! Phase-Eins Kampf-Pokémon mit 90 Kraftpunkten. Attacke: Zur Wehr setzen mit 40 Schaden!"
+    "text": "Rasaff! Phase-Eins Kampf-Pokémon mit 90 Kraftpunkten. Attacke: Zur Wehr setzen mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_143": {
     "file": "/audio/voice/cards/a1_143.m4a",
-    "text": "Machollo! Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Knöchelhieb mit 20 Schaden!"
+    "text": "Machollo! Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Knöchelhieb mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_144": {
     "file": "/audio/voice/cards/a1_144.m4a",
-    "text": "Maschock! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Stärke mit 50 Schaden!"
+    "text": "Maschock! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Stärke mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_145": {
     "file": "/audio/voice/cards/a1_145.m4a",
-    "text": "Machomei! Starkes Phase-Zwei Kampf-Pokémon mit 150 Kraftpunkten. Attacke: Geowurf mit 100 Schaden!"
+    "text": "Machomei! Starkes Phase-Zwei Kampf-Pokémon mit 150 Kraftpunkten. Attacke: Geowurf mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_146": {
     "file": "/audio/voice/cards/a1_146.m4a",
-    "text": "Machomei-ex! Legendäres Kampf-Pokémon mit 180 Kraftpunkten. Attacke: Megahieb mit 120 Schaden!"
+    "text": "Machomei-ex! Legendäres Kampf-Pokémon mit 180 Kraftpunkten. Attacke: Megahieb mit 120 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_147": {
     "file": "/audio/voice/cards/a1_147.m4a",
-    "text": "Kleinstein! Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Kleinstein! Kampf-Pokémon mit 70 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_148": {
     "file": "/audio/voice/cards/a1_148.m4a",
-    "text": "Georok! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Walzer mit 70 Schaden!"
+    "text": "Georok! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Walzer mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_149": {
     "file": "/audio/voice/cards/a1_149.m4a",
-    "text": "Geowaz! Starkes Phase-Zwei Kampf-Pokémon mit 160 Kraftpunkten. Attacke: Risikotackle mit 150 Schaden!"
+    "text": "Geowaz! Starkes Phase-Zwei Kampf-Pokémon mit 160 Kraftpunkten. Attacke: Risikotackle mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_150": {
     "file": "/audio/voice/cards/a1_150.m4a",
-    "text": "Onix! Kampf-Pokémon mit 110 Kraftpunkten. Attacke: Schollenbrecher mit 70 Schaden!"
+    "text": "Onix! Kampf-Pokémon mit 110 Kraftpunkten. Attacke: Schollenbrecher mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_151": {
     "file": "/audio/voice/cards/a1_151.m4a",
-    "text": "Tragosso! Kampf-Pokémon mit 60 Kraftpunkten. Attacke: Heuler mit 10 Schaden!"
+    "text": "Tragosso! Kampf-Pokémon mit 60 Kraftpunkten. Attacke: Heuler mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_152": {
     "file": "/audio/voice/cards/a1_152.m4a",
-    "text": "Knogga! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Knochenprügel mit 40 Schaden!"
+    "text": "Knogga! Phase-Eins Kampf-Pokémon mit 100 Kraftpunkten. Attacke: Knochenprügel mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_153": {
     "file": "/audio/voice/cards/a1_153.m4a",
-    "text": "Knogga-ex! Legendäres Kampf-Pokémon mit 140 Kraftpunkten. Attacke: Knochmerang mit 80 Schaden!"
+    "text": "Knogga-ex! Legendäres Kampf-Pokémon mit 140 Kraftpunkten. Attacke: Knochmerang mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_154": {
     "file": "/audio/voice/cards/a1_154.m4a",
-    "text": "Kicklee! Kampf-Pokémon mit 80 Kraftpunkten. Attacke: Streckkick mit 10 Schaden!"
+    "text": "Kicklee! Kampf-Pokémon mit 80 Kraftpunkten. Attacke: Streckkick mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_155": {
     "file": "/audio/voice/cards/a1_155.m4a",
-    "text": "Nockchan! Kampf-Pokémon mit 80 Kraftpunkten. Attacke: Boxschlag mit 30 Schaden!"
+    "text": "Nockchan! Kampf-Pokémon mit 80 Kraftpunkten. Attacke: Boxschlag mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_156": {
     "file": "/audio/voice/cards/a1_156.m4a",
-    "text": "Rihorn! Kampf-Pokémon mit 80 Kraftpunkten. Attacke: Tackle mit 60 Schaden!"
+    "text": "Rihorn! Kampf-Pokémon mit 80 Kraftpunkten. Attacke: Tackle mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_157": {
     "file": "/audio/voice/cards/a1_157.m4a",
-    "text": "Rizeros! Phase-Eins Kampf-Pokémon mit 120 Kraftpunkten. Attacke: Hornbohrer mit 100 Schaden!"
+    "text": "Rizeros! Phase-Eins Kampf-Pokémon mit 120 Kraftpunkten. Attacke: Hornbohrer mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_158": {
     "file": "/audio/voice/cards/a1_158.m4a",
-    "text": "Kabuto! Phase-Eins Kampf-Pokémon mit 90 Kraftpunkten. Attacke: Muschelangriff mit 40 Schaden!"
+    "text": "Kabuto! Phase-Eins Kampf-Pokémon mit 90 Kraftpunkten. Attacke: Muschelangriff mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_159": {
     "file": "/audio/voice/cards/a1_159.m4a",
-    "text": "Kabutops! Starkes Phase-Zwei Kampf-Pokémon mit 140 Kraftpunkten. Attacke: Blutsauger mit 50 Schaden!"
+    "text": "Kabutops! Starkes Phase-Zwei Kampf-Pokémon mit 140 Kraftpunkten. Attacke: Blutsauger mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_164": {
     "file": "/audio/voice/cards/a1_164.m4a",
-    "text": "Rettan! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Biss mit 20 Schaden!"
+    "text": "Rettan! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Biss mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_165": {
     "file": "/audio/voice/cards/a1_165.m4a",
-    "text": "Arbok! Phase-Eins Unlicht-Pokémon mit 100 Kraftpunkten. Attacke: Bedrängen mit 60 Schaden!"
+    "text": "Arbok! Phase-Eins Unlicht-Pokémon mit 100 Kraftpunkten. Attacke: Bedrängen mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_166": {
     "file": "/audio/voice/cards/a1_166.m4a",
-    "text": "Nidoran♀! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Familienruf mit 10 Schaden!"
+    "text": "Nidoran♀! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Familienruf mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_167": {
     "file": "/audio/voice/cards/a1_167.m4a",
-    "text": "Nidorina! Phase-Eins Unlicht-Pokémon mit 80 Kraftpunkten. Attacke: Biss mit 30 Schaden!"
+    "text": "Nidorina! Phase-Eins Unlicht-Pokémon mit 80 Kraftpunkten. Attacke: Biss mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_168": {
     "file": "/audio/voice/cards/a1_168.m4a",
-    "text": "Nidoqueen! Starkes Phase-Zwei Unlicht-Pokémon mit 140 Kraftpunkten. Attacke: Liebestaumel mit 80 Schaden!"
+    "text": "Nidoqueen! Starkes Phase-Zwei Unlicht-Pokémon mit 140 Kraftpunkten. Attacke: Liebestaumel mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_169": {
     "file": "/audio/voice/cards/a1_169.m4a",
-    "text": "Nidoran♂! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Pikser mit 20 Schaden!"
+    "text": "Nidoran♂! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Pikser mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_170": {
     "file": "/audio/voice/cards/a1_170.m4a",
-    "text": "Nidorino! Phase-Eins Unlicht-Pokémon mit 90 Kraftpunkten. Attacke: Hornattacke mit 40 Schaden!"
+    "text": "Nidorino! Phase-Eins Unlicht-Pokémon mit 90 Kraftpunkten. Attacke: Hornattacke mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_171": {
     "file": "/audio/voice/cards/a1_171.m4a",
-    "text": "Nidoking! Starkes Phase-Zwei Unlicht-Pokémon mit 150 Kraftpunkten. Attacke: Gifthorn mit 90 Schaden!"
+    "text": "Nidoking! Starkes Phase-Zwei Unlicht-Pokémon mit 150 Kraftpunkten. Attacke: Gifthorn mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_172": {
     "file": "/audio/voice/cards/a1_172.m4a",
-    "text": "Zubat! Unlicht-Pokémon mit 50 Kraftpunkten. Attacke: Gleiten mit 10 Schaden!"
+    "text": "Zubat! Unlicht-Pokémon mit 50 Kraftpunkten. Attacke: Gleiten mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_173": {
     "file": "/audio/voice/cards/a1_173.m4a",
-    "text": "Golbat! Phase-Eins Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Flügelschlag mit 40 Schaden!"
+    "text": "Golbat! Phase-Eins Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Flügelschlag mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_174": {
     "file": "/audio/voice/cards/a1_174.m4a",
-    "text": "Sleima! Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Giftwolke mit 10 Schaden!"
+    "text": "Sleima! Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Giftwolke mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_175": {
     "file": "/audio/voice/cards/a1_175.m4a",
-    "text": "Sleimok! Phase-Eins Unlicht-Pokémon mit 130 Kraftpunkten. Attacke: Giftschock mit 70 Schaden!"
+    "text": "Sleimok! Phase-Eins Unlicht-Pokémon mit 130 Kraftpunkten. Attacke: Giftschock mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_176": {
     "file": "/audio/voice/cards/a1_176.m4a",
-    "text": "Smogon! Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Würgegas mit 20 Schaden!"
+    "text": "Smogon! Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Würgegas mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_177": {
     "file": "/audio/voice/cards/a1_177.m4a",
-    "text": "Smogmog! Phase-Eins Unlicht-Pokémon mit 110 Kraftpunkten. Attacke: Tackle mit 30 Schaden!"
+    "text": "Smogmog! Phase-Eins Unlicht-Pokémon mit 110 Kraftpunkten. Attacke: Tackle mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_183": {
     "file": "/audio/voice/cards/a1_183.m4a",
-    "text": "Dratini! Drachen-Pokémon mit 70 Kraftpunkten. Attacke: Ramme mit 40 Schaden!"
+    "text": "Dratini! Drachen-Pokémon mit 70 Kraftpunkten. Attacke: Ramme mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_184": {
     "file": "/audio/voice/cards/a1_184.m4a",
-    "text": "Dragonir! Phase-Eins Drachen-Pokémon mit 100 Kraftpunkten. Attacke: Schweifschlag mit 80 Schaden!"
+    "text": "Dragonir! Phase-Eins Drachen-Pokémon mit 100 Kraftpunkten. Attacke: Schweifschlag mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_185": {
     "file": "/audio/voice/cards/a1_185.m4a",
-    "text": "Dragoran! Starkes Phase-Zwei Drachen-Pokémon mit 160 Kraftpunkten. Attacke: Draco Meteor mit 10 Schaden!"
+    "text": "Dragoran! Starkes Phase-Zwei Drachen-Pokémon mit 160 Kraftpunkten. Attacke: Draco Meteor mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_186": {
     "file": "/audio/voice/cards/a1_186.m4a",
-    "text": "Taubsi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Windstoß mit 10 Schaden!"
+    "text": "Taubsi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Windstoß mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_187": {
     "file": "/audio/voice/cards/a1_187.m4a",
-    "text": "Tauboga! Phase-Eins Normal-Pokémon mit 80 Kraftpunkten. Attacke: Windstoß mit 30 Schaden!"
+    "text": "Tauboga! Phase-Eins Normal-Pokémon mit 80 Kraftpunkten. Attacke: Windstoß mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_188": {
     "file": "/audio/voice/cards/a1_188.m4a",
-    "text": "Tauboss! Starkes Phase-Zwei Normal-Pokémon mit 130 Kraftpunkten. Attacke: Flügelschlag mit 70 Schaden!"
+    "text": "Tauboss! Starkes Phase-Zwei Normal-Pokémon mit 130 Kraftpunkten. Attacke: Flügelschlag mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_189": {
     "file": "/audio/voice/cards/a1_189.m4a",
-    "text": "Rattfratz! Normal-Pokémon mit 40 Kraftpunkten. Attacke: Nagen mit 20 Schaden!"
+    "text": "Rattfratz! Normal-Pokémon mit 40 Kraftpunkten. Attacke: Nagen mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_190": {
     "file": "/audio/voice/cards/a1_190.m4a",
-    "text": "Rattikarl! Phase-Eins Normal-Pokémon mit 80 Kraftpunkten. Attacke: Biss mit 40 Schaden!"
+    "text": "Rattikarl! Phase-Eins Normal-Pokémon mit 80 Kraftpunkten. Attacke: Biss mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_191": {
     "file": "/audio/voice/cards/a1_191.m4a",
-    "text": "Habitak! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Pikser mit 20 Schaden!"
+    "text": "Habitak! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Pikser mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_192": {
     "file": "/audio/voice/cards/a1_192.m4a",
-    "text": "Ibitak! Phase-Eins Normal-Pokémon mit 100 Kraftpunkten. Attacke: Schlagbohrer mit 50 Schaden!"
+    "text": "Ibitak! Phase-Eins Normal-Pokémon mit 100 Kraftpunkten. Attacke: Schlagbohrer mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_193": {
     "file": "/audio/voice/cards/a1_193.m4a",
-    "text": "Pummeluff! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Klaps mit 30 Schaden!"
+    "text": "Pummeluff! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Klaps mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_194": {
     "file": "/audio/voice/cards/a1_194.m4a",
-    "text": "Knuddeluff! Phase-Eins Normal-Pokémon mit 100 Kraftpunkten. Attacke: Schallwelle mit 60 Schaden!"
+    "text": "Knuddeluff! Phase-Eins Normal-Pokémon mit 100 Kraftpunkten. Attacke: Schallwelle mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_195": {
     "file": "/audio/voice/cards/a1_195.m4a",
-    "text": "Knuddeluff-ex! Legendäres Normal-Pokémon mit 140 Kraftpunkten. Attacke: Schlummerlied mit 80 Schaden!"
+    "text": "Knuddeluff-ex! Legendäres Normal-Pokémon mit 140 Kraftpunkten. Attacke: Schlummerlied mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_196": {
     "file": "/audio/voice/cards/a1_196.m4a",
-    "text": "Mauzi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Zahltag mit 10 Schaden!"
+    "text": "Mauzi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Zahltag mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_197": {
     "file": "/audio/voice/cards/a1_197.m4a",
-    "text": "Snobilikat! Phase-Eins Normal-Pokémon mit 90 Kraftpunkten. Attacke: Dunkelklaue mit 40 Schaden!"
+    "text": "Snobilikat! Phase-Eins Normal-Pokémon mit 90 Kraftpunkten. Attacke: Dunkelklaue mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_198": {
     "file": "/audio/voice/cards/a1_198.m4a",
-    "text": "Porenta! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Lauchschlag mit 40 Schaden!"
+    "text": "Porenta! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Lauchschlag mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_199": {
     "file": "/audio/voice/cards/a1_199.m4a",
-    "text": "Dodu! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Pikser mit 20 Schaden!"
+    "text": "Dodu! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Pikser mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_200": {
     "file": "/audio/voice/cards/a1_200.m4a",
-    "text": "Dodri! Phase-Eins Normal-Pokémon mit 80 Kraftpunkten. Attacke: Bohrschnabel mit 40 Schaden!"
+    "text": "Dodri! Phase-Eins Normal-Pokémon mit 80 Kraftpunkten. Attacke: Bohrschnabel mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_201": {
     "file": "/audio/voice/cards/a1_201.m4a",
-    "text": "Schlurp! Normal-Pokémon mit 90 Kraftpunkten. Attacke: Dauerschlecker mit 60 Schaden!"
+    "text": "Schlurp! Normal-Pokémon mit 90 Kraftpunkten. Attacke: Dauerschlecker mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_202": {
     "file": "/audio/voice/cards/a1_202.m4a",
-    "text": "Chaneira! Normal-Pokémon mit 120 Kraftpunkten. Attacke: Sanfter Hieb mit 60 Schaden!"
+    "text": "Chaneira! Normal-Pokémon mit 120 Kraftpunkten. Attacke: Sanfter Hieb mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_203": {
     "file": "/audio/voice/cards/a1_203.m4a",
-    "text": "Kangama! Normal-Pokémon mit 100 Kraftpunkten. Attacke: Irrschlag mit 30 Schaden!"
+    "text": "Kangama! Normal-Pokémon mit 100 Kraftpunkten. Attacke: Irrschlag mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_204": {
     "file": "/audio/voice/cards/a1_204.m4a",
-    "text": "Tauros! Normal-Pokémon mit 100 Kraftpunkten. Attacke: Hornattacke mit 50 Schaden!"
+    "text": "Tauros! Normal-Pokémon mit 100 Kraftpunkten. Attacke: Hornattacke mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_205": {
     "file": "/audio/voice/cards/a1_205.m4a",
-    "text": "Ditto! Normal-Pokémon mit 70 Kraftpunkten. Attacke: Alleskopierer mit 10 Schaden!"
+    "text": "Ditto! Normal-Pokémon mit 70 Kraftpunkten. Attacke: Alleskopierer mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_206": {
     "file": "/audio/voice/cards/a1_206.m4a",
-    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_207": {
     "file": "/audio/voice/cards/a1_207.m4a",
-    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_208": {
     "file": "/audio/voice/cards/a1_208.m4a",
-    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_209": {
     "file": "/audio/voice/cards/a1_209.m4a",
-    "text": "Porygon! Normal-Pokémon mit 50 Kraftpunkten. Attacke: Schärfer mit 20 Schaden!"
+    "text": "Porygon! Normal-Pokémon mit 50 Kraftpunkten. Attacke: Schärfer mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_210": {
     "file": "/audio/voice/cards/a1_210.m4a",
-    "text": "Aerodactyl! Phase-Eins Normal-Pokémon mit 100 Kraftpunkten. Attacke: Antikschwinge mit 10 Schaden!"
+    "text": "Aerodactyl! Phase-Eins Normal-Pokémon mit 100 Kraftpunkten. Attacke: Antikschwinge mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_211": {
     "file": "/audio/voice/cards/a1_211.m4a",
-    "text": "Relaxo! Normal-Pokémon mit 150 Kraftpunkten. Attacke: Walzer mit 70 Schaden!"
+    "text": "Relaxo! Normal-Pokémon mit 150 Kraftpunkten. Attacke: Walzer mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_227": {
     "file": "/audio/voice/cards/a1_227.m4a",
-    "text": "Bisasam! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Rankenhieb mit 40 Schaden!"
+    "text": "Bisasam! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Rankenhieb mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_228": {
     "file": "/audio/voice/cards/a1_228.m4a",
-    "text": "Duflor! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Sabbern mit 40 Schaden!"
+    "text": "Duflor! Phase-Eins Pflanzen-Pokémon mit 80 Kraftpunkten. Attacke: Sabbern mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_229": {
     "file": "/audio/voice/cards/a1_229.m4a",
-    "text": "Pinsir! Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Doppelhorn mit 50 Schaden!"
+    "text": "Pinsir! Pflanzen-Pokémon mit 90 Kraftpunkten. Attacke: Doppelhorn mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_230": {
     "file": "/audio/voice/cards/a1_230.m4a",
-    "text": "Glumanda! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Glut mit 30 Schaden!"
+    "text": "Glumanda! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Glut mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_231": {
     "file": "/audio/voice/cards/a1_231.m4a",
-    "text": "Gallopa! Phase-Eins Feuer-Pokémon mit 100 Kraftpunkten. Attacke: Flammenmähne mit 40 Schaden!"
+    "text": "Gallopa! Phase-Eins Feuer-Pokémon mit 100 Kraftpunkten. Attacke: Flammenmähne mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_232": {
     "file": "/audio/voice/cards/a1_232.m4a",
-    "text": "Schiggy! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!"
+    "text": "Schiggy! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_233": {
     "file": "/audio/voice/cards/a1_233.m4a",
-    "text": "Garados! Phase-Eins Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hyperstrahl mit 100 Schaden!"
+    "text": "Garados! Phase-Eins Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hyperstrahl mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_234": {
     "file": "/audio/voice/cards/a1_234.m4a",
-    "text": "Lapras! Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Hydropumpe mit 20 Schaden!"
+    "text": "Lapras! Wasser-Pokémon mit 100 Kraftpunkten. Attacke: Hydropumpe mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_235": {
     "file": "/audio/voice/cards/a1_235.m4a",
-    "text": "Lektrobal! Phase-Eins Elektro-Pokémon mit 80 Kraftpunkten. Attacke: Elektroball mit 70 Schaden!"
+    "text": "Lektrobal! Phase-Eins Elektro-Pokémon mit 80 Kraftpunkten. Attacke: Elektroball mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_236": {
     "file": "/audio/voice/cards/a1_236.m4a",
-    "text": "Simsala! Starkes Phase-Zwei Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Psychokinese mit 60 Schaden!"
+    "text": "Simsala! Starkes Phase-Zwei Psycho-Pokémon mit 130 Kraftpunkten. Attacke: Psychokinese mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_237": {
     "file": "/audio/voice/cards/a1_237.m4a",
-    "text": "Flegmon! Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Schweifvertrimmer mit 30 Schaden!"
+    "text": "Flegmon! Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Schweifvertrimmer mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_238": {
     "file": "/audio/voice/cards/a1_238.m4a",
-    "text": "Digda! Kampf-Pokémon mit 50 Kraftpunkten. Attacke: Lehmschelle mit 20 Schaden!"
+    "text": "Digda! Kampf-Pokémon mit 50 Kraftpunkten. Attacke: Lehmschelle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_239": {
     "file": "/audio/voice/cards/a1_239.m4a",
-    "text": "Tragosso! Kampf-Pokémon mit 60 Kraftpunkten. Attacke: Heuler mit 10 Schaden!"
+    "text": "Tragosso! Kampf-Pokémon mit 60 Kraftpunkten. Attacke: Heuler mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_240": {
     "file": "/audio/voice/cards/a1_240.m4a",
-    "text": "Nidoqueen! Starkes Phase-Zwei Unlicht-Pokémon mit 140 Kraftpunkten. Attacke: Liebestaumel mit 80 Schaden!"
+    "text": "Nidoqueen! Starkes Phase-Zwei Unlicht-Pokémon mit 140 Kraftpunkten. Attacke: Liebestaumel mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_241": {
     "file": "/audio/voice/cards/a1_241.m4a",
-    "text": "Nidoking! Starkes Phase-Zwei Unlicht-Pokémon mit 150 Kraftpunkten. Attacke: Gifthorn mit 90 Schaden!"
+    "text": "Nidoking! Starkes Phase-Zwei Unlicht-Pokémon mit 150 Kraftpunkten. Attacke: Gifthorn mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_242": {
     "file": "/audio/voice/cards/a1_242.m4a",
-    "text": "Golbat! Phase-Eins Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Flügelschlag mit 40 Schaden!"
+    "text": "Golbat! Phase-Eins Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Flügelschlag mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_243": {
     "file": "/audio/voice/cards/a1_243.m4a",
-    "text": "Smogmog! Phase-Eins Unlicht-Pokémon mit 110 Kraftpunkten. Attacke: Tackle mit 30 Schaden!"
+    "text": "Smogmog! Phase-Eins Unlicht-Pokémon mit 110 Kraftpunkten. Attacke: Tackle mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_244": {
     "file": "/audio/voice/cards/a1_244.m4a",
-    "text": "Dragoran! Starkes Phase-Zwei Drachen-Pokémon mit 160 Kraftpunkten. Attacke: Draco Meteor mit 10 Schaden!"
+    "text": "Dragoran! Starkes Phase-Zwei Drachen-Pokémon mit 160 Kraftpunkten. Attacke: Draco Meteor mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_245": {
     "file": "/audio/voice/cards/a1_245.m4a",
-    "text": "Tauboss! Starkes Phase-Zwei Normal-Pokémon mit 130 Kraftpunkten. Attacke: Flügelschlag mit 70 Schaden!"
+    "text": "Tauboss! Starkes Phase-Zwei Normal-Pokémon mit 130 Kraftpunkten. Attacke: Flügelschlag mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_246": {
     "file": "/audio/voice/cards/a1_246.m4a",
-    "text": "Mauzi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Zahltag mit 10 Schaden!"
+    "text": "Mauzi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Zahltag mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_247": {
     "file": "/audio/voice/cards/a1_247.m4a",
-    "text": "Ditto! Normal-Pokémon mit 70 Kraftpunkten. Attacke: Alleskopierer mit 10 Schaden!"
+    "text": "Ditto! Normal-Pokémon mit 70 Kraftpunkten. Attacke: Alleskopierer mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_248": {
     "file": "/audio/voice/cards/a1_248.m4a",
-    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_249": {
     "file": "/audio/voice/cards/a1_249.m4a",
-    "text": "Porygon! Normal-Pokémon mit 50 Kraftpunkten. Attacke: Schärfer mit 20 Schaden!"
+    "text": "Porygon! Normal-Pokémon mit 50 Kraftpunkten. Attacke: Schärfer mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_250": {
     "file": "/audio/voice/cards/a1_250.m4a",
-    "text": "Relaxo! Normal-Pokémon mit 150 Kraftpunkten. Attacke: Walzer mit 70 Schaden!"
+    "text": "Relaxo! Normal-Pokémon mit 150 Kraftpunkten. Attacke: Walzer mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_251": {
     "file": "/audio/voice/cards/a1_251.m4a",
-    "text": "Bisaflor-ex! Legendäres Pflanzen-Pokémon mit 190 Kraftpunkten. Attacken: Rasierblatt mit 60 Schaden und Riesenblüte mit 100 Schaden!"
+    "text": "Bisaflor-ex! Legendäres Pflanzen-Pokémon mit 190 Kraftpunkten. Attacken: Rasierblatt mit 60 Schaden und Riesenblüte mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_252": {
     "file": "/audio/voice/cards/a1_252.m4a",
-    "text": "Kokowei-ex! Legendäres Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Tropenschwung mit 40 Schaden!"
+    "text": "Kokowei-ex! Legendäres Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Tropenschwung mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_253": {
     "file": "/audio/voice/cards/a1_253.m4a",
-    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!"
+    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_254": {
     "file": "/audio/voice/cards/a1_254.m4a",
-    "text": "Arkani-ex! Legendäres Feuer-Pokémon mit 150 Kraftpunkten. Attacke: Inferno-Ansturm mit 120 Schaden!"
+    "text": "Arkani-ex! Legendäres Feuer-Pokémon mit 150 Kraftpunkten. Attacke: Inferno-Ansturm mit 120 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_255": {
     "file": "/audio/voice/cards/a1_255.m4a",
-    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!"
+    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_256": {
     "file": "/audio/voice/cards/a1_256.m4a",
-    "text": "Turtok-ex! Legendäres Wasser-Pokémon mit 180 Kraftpunkten. Attacken: Surfer mit 40 Schaden und Hydro-Bazooka mit 100 Schaden!"
+    "text": "Turtok-ex! Legendäres Wasser-Pokémon mit 180 Kraftpunkten. Attacken: Surfer mit 40 Schaden und Hydro-Bazooka mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_257": {
     "file": "/audio/voice/cards/a1_257.m4a",
-    "text": "Starmie-ex! Legendäres Wasser-Pokémon mit 130 Kraftpunkten. Attacke: Hydroplatscher mit 90 Schaden!"
+    "text": "Starmie-ex! Legendäres Wasser-Pokémon mit 130 Kraftpunkten. Attacke: Hydroplatscher mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_258": {
     "file": "/audio/voice/cards/a1_258.m4a",
-    "text": "Arktos-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacken: Frostschwinge mit 40 Schaden und Blizzard mit 80 Schaden!"
+    "text": "Arktos-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacken: Frostschwinge mit 40 Schaden und Blizzard mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_259": {
     "file": "/audio/voice/cards/a1_259.m4a",
-    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!"
+    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_260": {
     "file": "/audio/voice/cards/a1_260.m4a",
-    "text": "Zapdos-ex! Legendäres Elektro-Pokémon mit 130 Kraftpunkten. Attacken: Pikser mit 20 Schaden und Donnernder Orkan mit 50 Schaden!"
+    "text": "Zapdos-ex! Legendäres Elektro-Pokémon mit 130 Kraftpunkten. Attacken: Pikser mit 20 Schaden und Donnernder Orkan mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_261": {
     "file": "/audio/voice/cards/a1_261.m4a",
-    "text": "Gengar-ex! Legendäres Psycho-Pokémon mit 170 Kraftpunkten. Attacke: Spukschuss mit 100 Schaden!"
+    "text": "Gengar-ex! Legendäres Psycho-Pokémon mit 170 Kraftpunkten. Attacke: Spukschuss mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_262": {
     "file": "/audio/voice/cards/a1_262.m4a",
-    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!"
+    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_263": {
     "file": "/audio/voice/cards/a1_263.m4a",
-    "text": "Machomei-ex! Legendäres Kampf-Pokémon mit 180 Kraftpunkten. Attacke: Megahieb mit 120 Schaden!"
+    "text": "Machomei-ex! Legendäres Kampf-Pokémon mit 180 Kraftpunkten. Attacke: Megahieb mit 120 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_264": {
     "file": "/audio/voice/cards/a1_264.m4a",
-    "text": "Knogga-ex! Legendäres Kampf-Pokémon mit 140 Kraftpunkten. Attacke: Knochmerang mit 80 Schaden!"
+    "text": "Knogga-ex! Legendäres Kampf-Pokémon mit 140 Kraftpunkten. Attacke: Knochmerang mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_265": {
     "file": "/audio/voice/cards/a1_265.m4a",
-    "text": "Knuddeluff-ex! Legendäres Normal-Pokémon mit 140 Kraftpunkten. Attacke: Schlummerlied mit 80 Schaden!"
+    "text": "Knuddeluff-ex! Legendäres Normal-Pokémon mit 140 Kraftpunkten. Attacke: Schlummerlied mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_274": {
     "file": "/audio/voice/cards/a1_274.m4a",
-    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!"
+    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_275": {
     "file": "/audio/voice/cards/a1_275.m4a",
-    "text": "Arktos-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacken: Frostschwinge mit 40 Schaden und Blizzard mit 80 Schaden!"
+    "text": "Arktos-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacken: Frostschwinge mit 40 Schaden und Blizzard mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_276": {
     "file": "/audio/voice/cards/a1_276.m4a",
-    "text": "Zapdos-ex! Legendäres Elektro-Pokémon mit 130 Kraftpunkten. Attacken: Pikser mit 20 Schaden und Donnernder Orkan mit 50 Schaden!"
+    "text": "Zapdos-ex! Legendäres Elektro-Pokémon mit 130 Kraftpunkten. Attacken: Pikser mit 20 Schaden und Donnernder Orkan mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_277": {
     "file": "/audio/voice/cards/a1_277.m4a",
-    "text": "Gengar-ex! Legendäres Psycho-Pokémon mit 170 Kraftpunkten. Attacke: Spukschuss mit 100 Schaden!"
+    "text": "Gengar-ex! Legendäres Psycho-Pokémon mit 170 Kraftpunkten. Attacke: Spukschuss mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_278": {
     "file": "/audio/voice/cards/a1_278.m4a",
-    "text": "Machomei-ex! Legendäres Kampf-Pokémon mit 180 Kraftpunkten. Attacke: Megahieb mit 120 Schaden!"
+    "text": "Machomei-ex! Legendäres Kampf-Pokémon mit 180 Kraftpunkten. Attacke: Megahieb mit 120 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_279": {
     "file": "/audio/voice/cards/a1_279.m4a",
-    "text": "Knuddeluff-ex! Legendäres Normal-Pokémon mit 140 Kraftpunkten. Attacke: Schlummerlied mit 80 Schaden!"
+    "text": "Knuddeluff-ex! Legendäres Normal-Pokémon mit 140 Kraftpunkten. Attacke: Schlummerlied mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_280": {
     "file": "/audio/voice/cards/a1_280.m4a",
-    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!"
+    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_281": {
     "file": "/audio/voice/cards/a1_281.m4a",
-    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!"
+    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_282": {
     "file": "/audio/voice/cards/a1_282.m4a",
-    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!"
+    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_283": {
     "file": "/audio/voice/cards/a1_283.m4a",
-    "text": "Mew! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Psycho-Offenlegung mit 20 Schaden!"
+    "text": "Mew! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Psycho-Offenlegung mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_284": {
     "file": "/audio/voice/cards/a1_284.m4a",
-    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!"
+    "text": "Glurak-ex! Legendäres Feuer-Pokémon mit 180 Kraftpunkten. Attacken: Schlitzer mit 60 Schaden und Feuerroter Sturm mit 200 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_285": {
     "file": "/audio/voice/cards/a1_285.m4a",
-    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!"
+    "text": "Pikachu-ex! Legendäres Elektro-Pokémon mit 120 Kraftpunkten. Attacke: Rundparcours mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_a1_286": {
     "file": "/audio/voice/cards/a1_286.m4a",
-    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!"
+    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_009": {
     "file": "/audio/voice/cards/p_a_009.m4a",
-    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!"
+    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_010": {
     "file": "/audio/voice/cards/p_a_010.m4a",
-    "text": "Mewtu! Psycho-Pokémon mit 120 Kraftpunkten. Attacke: Powerschuss mit 120 Schaden!"
+    "text": "Mewtu! Psycho-Pokémon mit 120 Kraftpunkten. Attacke: Powerschuss mit 120 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_011": {
     "file": "/audio/voice/cards/p_a_011.m4a",
-    "text": "Chaneira! Normal-Pokémon mit 120 Kraftpunkten. Attacke: Sanfter Hieb mit 60 Schaden!"
+    "text": "Chaneira! Normal-Pokémon mit 120 Kraftpunkten. Attacke: Sanfter Hieb mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_012": {
     "file": "/audio/voice/cards/p_a_012.m4a",
-    "text": "Mauzi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Zahltag mit 10 Schaden!"
+    "text": "Mauzi! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Zahltag mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_013": {
     "file": "/audio/voice/cards/p_a_013.m4a",
-    "text": "Smettbo! Starkes Phase-Zwei Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Windstoß mit 60 Schaden!"
+    "text": "Smettbo! Starkes Phase-Zwei Pflanzen-Pokémon mit 120 Kraftpunkten. Attacke: Windstoß mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_014": {
     "file": "/audio/voice/cards/p_a_014.m4a",
-    "text": "Lapras-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacke: Blasengully mit 80 Schaden!"
+    "text": "Lapras-ex! Legendäres Wasser-Pokémon mit 140 Kraftpunkten. Attacke: Blasengully mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_015": {
     "file": "/audio/voice/cards/p_a_015.m4a",
-    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!"
+    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_016": {
     "file": "/audio/voice/cards/p_a_016.m4a",
-    "text": "Piepi! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Hieb mit 20 Schaden!"
+    "text": "Piepi! Psycho-Pokémon mit 60 Kraftpunkten. Attacke: Hieb mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_017": {
     "file": "/audio/voice/cards/p_a_017.m4a",
-    "text": "Menki! Kampf-Pokémon mit 50 Kraftpunkten. Attacke: Waghalsiger Sturmangriff mit 30 Schaden!"
+    "text": "Menki! Kampf-Pokémon mit 50 Kraftpunkten. Attacke: Waghalsiger Sturmangriff mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_018": {
     "file": "/audio/voice/cards/p_a_018.m4a",
-    "text": "Bisaflor! Starkes Phase-Zwei Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Megasauger mit 80 Schaden!"
+    "text": "Bisaflor! Starkes Phase-Zwei Pflanzen-Pokémon mit 160 Kraftpunkten. Attacke: Megasauger mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_020": {
     "file": "/audio/voice/cards/p_a_020.m4a",
-    "text": "Alpollo! Phase-Eins Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Überraschungsangriff mit 50 Schaden!"
+    "text": "Alpollo! Phase-Eins Psycho-Pokémon mit 70 Kraftpunkten. Attacke: Überraschungsangriff mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_021": {
     "file": "/audio/voice/cards/p_a_021.m4a",
-    "text": "Onix! Kampf-Pokémon mit 110 Kraftpunkten. Attacke: Schollenbrecher mit 70 Schaden!"
+    "text": "Onix! Kampf-Pokémon mit 110 Kraftpunkten. Attacke: Schollenbrecher mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_022": {
     "file": "/audio/voice/cards/p_a_022.m4a",
-    "text": "Pummeluff! Normal-Pokémon mit 50 Kraftpunkten. Attacke: Gesang mit 10 Schaden!"
+    "text": "Pummeluff! Normal-Pokémon mit 50 Kraftpunkten. Attacke: Gesang mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_023": {
     "file": "/audio/voice/cards/p_a_023.m4a",
-    "text": "Bisasam! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Rankenhieb mit 40 Schaden!"
+    "text": "Bisasam! Pflanzen-Pokémon mit 70 Kraftpunkten. Attacke: Rankenhieb mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_024": {
     "file": "/audio/voice/cards/p_a_024.m4a",
-    "text": "Magnetilo! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Kugelblitz mit 20 Schaden!"
+    "text": "Magnetilo! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Kugelblitz mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_025": {
     "file": "/audio/voice/cards/p_a_025.m4a",
-    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!"
+    "text": "Lavados-ex! Legendäres Feuer-Pokémon mit 140 Kraftpunkten. Attacken: Infernotanz mit 10 Schaden und Hitzestoß mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_026": {
     "file": "/audio/voice/cards/p_a_026.m4a",
-    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!"
+    "text": "Pikachu! Elektro-Pokémon mit 60 Kraftpunkten. Attacke: Nagen mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_029": {
     "file": "/audio/voice/cards/p_a_029.m4a",
-    "text": "Turtok! Starkes Phase-Zwei Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hydropumpe mit 80 Schaden!"
+    "text": "Turtok! Starkes Phase-Zwei Wasser-Pokémon mit 150 Kraftpunkten. Attacke: Hydropumpe mit 80 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_030": {
     "file": "/audio/voice/cards/p_a_030.m4a",
-    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Heuler mit 10 Schaden!"
+    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Heuler mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_032": {
     "file": "/audio/voice/cards/p_a_032.m4a",
-    "text": "Glumanda! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Glut mit 30 Schaden!"
+    "text": "Glumanda! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Glut mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_033": {
     "file": "/audio/voice/cards/p_a_033.m4a",
-    "text": "Schiggy! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!"
+    "text": "Schiggy! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_044": {
     "file": "/audio/voice/cards/p_a_044.m4a",
-    "text": "Raichu! Phase-Eins Elektro-Pokémon mit 90 Kraftpunkten. Attacke: Funkensprung mit 40 Schaden!"
+    "text": "Raichu! Phase-Eins Elektro-Pokémon mit 90 Kraftpunkten. Attacke: Funkensprung mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_049": {
     "file": "/audio/voice/cards/p_a_049.m4a",
-    "text": "Relaxo! Normal-Pokémon mit 140 Kraftpunkten. Attacke: Kollaps mit 100 Schaden!"
+    "text": "Relaxo! Normal-Pokémon mit 140 Kraftpunkten. Attacke: Kollaps mit 100 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_050": {
     "file": "/audio/voice/cards/p_a_050.m4a",
-    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!"
+    "text": "Mewtu-ex! Legendäres Psycho-Pokémon mit 150 Kraftpunkten. Attacken: Psychosphäre mit 50 Schaden und Psycho-Antrieb mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_055": {
     "file": "/audio/voice/cards/p_a_055.m4a",
-    "text": "Machomei! Starkes Phase-Zwei Kampf-Pokémon mit 150 Kraftpunkten. Attacke: Powerdruck mit 70 Schaden!"
+    "text": "Machomei! Starkes Phase-Zwei Kampf-Pokémon mit 150 Kraftpunkten. Attacke: Powerdruck mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_056": {
     "file": "/audio/voice/cards/p_a_056.m4a",
-    "text": "Rettan! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Giftstachel mit 10 Schaden!"
+    "text": "Rettan! Unlicht-Pokémon mit 60 Kraftpunkten. Attacke: Giftstachel mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_060": {
     "file": "/audio/voice/cards/p_a_060.m4a",
-    "text": "Owei! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Wachstumsschub mit 10 Schaden!"
+    "text": "Owei! Pflanzen-Pokémon mit 50 Kraftpunkten. Attacke: Wachstumsschub mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_062": {
     "file": "/audio/voice/cards/p_a_062.m4a",
-    "text": "Porenta! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Lauchschlag mit 40 Schaden!"
+    "text": "Porenta! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Lauchschlag mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_069": {
     "file": "/audio/voice/cards/p_a_069.m4a",
-    "text": "Alola-Kokowei! Phase-Eins Pflanzen-Pokémon mit 150 Kraftpunkten. Attacke: Tropischer Hammer mit 150 Schaden!"
+    "text": "Alola-Kokowei! Phase-Eins Pflanzen-Pokémon mit 150 Kraftpunkten. Attacke: Tropischer Hammer mit 150 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_070": {
     "file": "/audio/voice/cards/p_a_070.m4a",
-    "text": "Alola-Vulnona! Phase-Eins Wasser-Pokémon mit 110 Kraftpunkten. Attacke: Blizzard mit 60 Schaden!"
+    "text": "Alola-Vulnona! Phase-Eins Wasser-Pokémon mit 110 Kraftpunkten. Attacke: Blizzard mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_072": {
     "file": "/audio/voice/cards/p_a_072.m4a",
-    "text": "Alola-Sleima! Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Giftwolke mit 10 Schaden!"
+    "text": "Alola-Sleima! Unlicht-Pokémon mit 70 Kraftpunkten. Attacke: Giftwolke mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_086": {
     "file": "/audio/voice/cards/p_a_086.m4a",
-    "text": "Blitza! Phase-Eins Elektro-Pokémon mit 90 Kraftpunkten. Attacke: Startspannung mit 40 Schaden!"
+    "text": "Blitza! Phase-Eins Elektro-Pokémon mit 90 Kraftpunkten. Attacke: Startspannung mit 40 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_088": {
     "file": "/audio/voice/cards/p_a_088.m4a",
-    "text": "Dragonir! Phase-Eins Drachen-Pokémon mit 100 Kraftpunkten. Attacke: Expidermis mit 10 Schaden!"
+    "text": "Dragonir! Phase-Eins Drachen-Pokémon mit 100 Kraftpunkten. Attacke: Expidermis mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_092": {
     "file": "/audio/voice/cards/p_a_092.m4a",
-    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!"
+    "text": "Evoli! Normal-Pokémon mit 60 Kraftpunkten. Attacke: Tackle mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_094": {
     "file": "/audio/voice/cards/p_a_094.m4a",
-    "text": "Seeper! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Wasserpfeil mit 10 Schaden!"
+    "text": "Seeper! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Wasserpfeil mit 10 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_097": {
     "file": "/audio/voice/cards/p_a_097.m4a",
-    "text": "Kangama! Normal-Pokémon mit 100 Kraftpunkten. Attacke: Überkreuzzerschneider mit 20 Schaden!"
+    "text": "Kangama! Normal-Pokémon mit 100 Kraftpunkten. Attacke: Überkreuzzerschneider mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_001": {
     "file": "/audio/voice/cards/p_a_001.m4a",
-    "text": "Trainerkarte: Trank! Heilt 20 KP eines deiner Pokémon."
+    "text": "Trainerkarte: Trank! Heilt 20 KP eines deiner Pokémon.",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_005": {
     "file": "/audio/voice/cards/p_a_005.m4a",
-    "text": "Trainerkarte: Pokéball! Zieht 1 Basis-Pokémon aus deinem Deck auf deine Hand."
+    "text": "Trainerkarte: Pokéball! Zieht 1 Basis-Pokémon aus deinem Deck auf deine Hand.",
+    "voice": "de-DE-AmalaNeural"
   },
   "card_p_a_007": {
     "file": "/audio/voice/cards/p_a_007.m4a",
-    "text": "Trainerkarte: Forschung des Professors! Ziehe 2 Karten aus deinem Deck."
+    "text": "Trainerkarte: Forschung des Professors! Ziehe 2 Karten aus deinem Deck.",
+    "voice": "de-DE-AmalaNeural"
   }
 }
