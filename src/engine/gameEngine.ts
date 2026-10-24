@@ -547,6 +547,24 @@ export function reduceGameState(state: GameState, action: Action): GameState {
         };
       }
 
+      // Status Condition Infliction (Rule Level >= 2)
+      if (state.stage >= 2 && attack.effect) {
+        const eff = attack.effect.toLowerCase();
+        if (eff.includes('vergiftet')) {
+          pOpponent.active.status = 'poisoned';
+          log.push(`🧪 ${pOpponent.active.card.name} wurde vergiftet!`);
+        } else if (eff.includes('schläft') || eff.includes('schlaf')) {
+          pOpponent.active.status = 'asleep';
+          log.push(`💤 ${pOpponent.active.card.name} ist eingeschlafen!`);
+        } else if (eff.includes('paralysiert')) {
+          const needsCoin = eff.includes('münze') || eff.includes('kopf');
+          if (!needsCoin || Math.random() < 0.5) {
+            pOpponent.active.status = 'paralyzed';
+            log.push(`⚡ ${pOpponent.active.card.name} wurde paralysiert!`);
+          }
+        }
+      }
+
       const nextPlayers: [PlayerState, PlayerState] = activeIdx === 0 ? [pActive, pOpponent] : [pOpponent, pActive];
       return {
         ...state,

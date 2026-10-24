@@ -428,11 +428,14 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                 phase === 'sliding' ? '-translate-y-20 scale-105 opacity-100' : 'translate-y-12 scale-90 opacity-0'
               }`}
             >
-              <div className="w-48 sm:w-56 aspect-[5/7] rounded-2xl bg-gradient-to-br from-blue-700 via-indigo-950 to-slate-950 border-3 border-amber-400 shadow-[0_0_40px_rgba(251,191,36,0.8)] flex flex-col items-center justify-center gap-3 p-4">
-                <Sparkles className="w-12 h-12 text-amber-300 animate-spin" />
-                <span className="text-xs font-black uppercase text-amber-300 tracking-widest text-center">
-                  5 KARTEN WERDEN ENTHÜLLT...
-                </span>
+              <div className="relative w-48 sm:w-56 aspect-[5/7] rounded-2xl overflow-hidden border-2 border-amber-400 shadow-[0_0_40px_rgba(251,191,36,0.9)] flex flex-col items-center justify-center">
+                <img src="/images/cards/card_back.webp" alt="Kartenstapel" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] flex flex-col items-center justify-center p-3 gap-2">
+                  <Sparkles className="w-10 h-10 text-amber-300 animate-spin" />
+                  <span className="text-xs font-black uppercase text-amber-300 tracking-widest text-center drop-shadow">
+                    5 KARTEN ENTHÜLLT! ⭐
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -485,17 +488,22 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                       <CardView card={card} size="active" />
                     </div>
                   ) : (
-                    /* Facedown Authentic Card Back */
-                    <div className="w-48 sm:w-56 aspect-[5/7] rounded-2xl bg-gradient-to-br from-blue-700 via-indigo-900 to-slate-950 border-3 border-amber-300 shadow-2xl flex flex-col items-center justify-center gap-4 p-4 hover:scale-105 active:scale-95 transition-transform animate-pulse">
-                      <div className="w-16 h-16 rounded-full border-3 border-white bg-rose-500 flex items-center justify-center shadow-lg">
-                        <div className="w-6 h-6 rounded-full bg-white border-2 border-slate-900" />
-                      </div>
-                      <div className="text-center">
-                        <span className="text-xs font-black uppercase text-amber-300 tracking-widest block">
-                          Tippen zum Aufdecken!
+                    /* Facedown Official TCG Pocket Card Back */
+                    <div className="relative w-48 sm:w-56 aspect-[5/7] rounded-2xl overflow-hidden border-2 border-amber-300/80 shadow-[0_0_35px_rgba(251,191,36,0.6)] hover:scale-105 active:scale-95 transition-transform group">
+                      <img
+                        src="/images/cards/card_back.webp"
+                        alt="Verdeckte Karte"
+                        className="w-full h-full object-cover rounded-2xl pointer-events-none"
+                      />
+                      {/* Specular Shimmer */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent pointer-events-none group-hover:via-white/50 transition-all" />
+                      {/* Interactive Prompt Badge */}
+                      <div className="absolute bottom-4 left-3 right-3 bg-slate-950/90 py-1.5 px-3 rounded-full border border-amber-400 text-center shadow-lg animate-pulse">
+                        <span className="text-xs font-black uppercase text-amber-300 tracking-wider block">
+                          Tippen zum Aufdecken! ✂️
                         </span>
                         <span className="text-[10px] text-slate-300 font-bold">
-                          Karte {idx + 1}
+                          Karte {idx + 1} von {pulledCards.length}
                         </span>
                       </div>
                     </div>

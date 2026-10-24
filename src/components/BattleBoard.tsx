@@ -12,6 +12,7 @@ import { AttackEffects, AttackAnimationData } from './AttackEffects';
 import { GymBadge, BadgeType } from './GymBadge';
 import { TurnBanner } from './TurnBanner';
 import { CoinTossModal } from './CoinTossModal';
+import { StatusBadge } from './StatusBadge';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
 import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight, Film, Zap } from 'lucide-react';
@@ -328,6 +329,13 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             <div className="absolute inset-0 bg-red-600/40 rounded-full blur-md animate-ping pointer-events-none" />
           )}
 
+          {/* 3D Status Token (Schlaf, Gift, Paralyse) with Speech */}
+          <StatusBadge
+            status={mon.status}
+            pokemonName={card.name}
+            className="absolute -top-3 right-2"
+          />
+
           {/* Attached Energy Spheres Badges */}
           {mon.attachedEnergy.length > 0 && (
             <div className="absolute -bottom-1 flex items-center gap-1 bg-slate-950/90 px-3 py-1 rounded-full border-2 border-amber-400/80 shadow-xl z-30">
@@ -514,6 +522,13 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             <div>
               <span className="font-black text-sm sm:text-base text-white block leading-tight">{p2.name}</span>
               <span className="text-[10px] sm:text-xs font-bold text-sky-300">{p2.deck.length} Karten im Deck</span>
+            </div>
+            {/* Opponent 3D Deck Stack */}
+            <div
+              className="relative w-7 h-10 sm:w-8 sm:h-11 rounded-lg overflow-hidden border border-amber-400/60 shadow-md shrink-0 hidden xs:block"
+              title={`${p2.deck.length} Karten im Deck`}
+            >
+              <img src="/images/cards/card_back.webp" alt="Gegner Deck" className="w-full h-full object-cover" />
             </div>
             {renderPoints(p2.points)}
           </div>
@@ -873,6 +888,22 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           voiceKey={legalActions.voiceKey}
           emotion={gameState.lastDamageEvent?.isKo ? 'happy' : 'idle'}
         />
+
+        {/* Levi 3D Deck Stack */}
+        <div
+          className="relative w-12 h-16 sm:w-16 sm:h-22 rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.6)] shrink-0 hidden sm:flex flex-col items-center justify-end group cursor-pointer transition-transform hover:scale-105"
+          onClick={() => {
+            soundManager.speakText(`Du hast noch ${p1.deck.length} Karten in deinem Deck!`);
+          }}
+          title={`Dein Deck (${p1.deck.length} Karten)`}
+        >
+          <img src="/images/cards/card_back.webp" alt="Levis Deck" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex items-end justify-center pb-1">
+            <span className="text-[10px] sm:text-xs font-black text-amber-300 drop-shadow">
+              {p1.deck.length} 🎴
+            </span>
+          </div>
+        </div>
 
         {/* Fanned Hand Cards (Spacious, Legible, Artworks Visible) */}
         <div className="flex items-end justify-center -space-x-3 sm:-space-x-4 overflow-visible py-2 px-2 max-w-3xl">
