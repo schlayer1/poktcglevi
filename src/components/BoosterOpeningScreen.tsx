@@ -101,6 +101,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
   const handleSelectPackToOpen = () => {
     soundManager.playSfx('click');
     soundManager.playBgm('pack_open');
+    soundManager.playVoice('booster_tear_prompt', 'Reiße die Folie mit dem Finger auf!');
     setPhase('ready_to_tear');
   };
 
@@ -168,7 +169,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
       if (card.isEx || card.stage === 'Rang 2' || card.hp >= 120) {
         setIsRainbowActive(true);
         soundManager.playSfx('rainbow_rare');
-        soundManager.playVoice('cheer_super', `Boah Levi! Ein seltenes ${card.name}!`);
+        soundManager.playVoice('booster_reveal_rare', `Boah Levi! Ein seltenes ${card.name}!`);
         confetti({
           particleCount: 120,
           spread: 90,
@@ -186,6 +187,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
       setTimeout(() => {
         setPhase('summary');
         soundManager.playSfx('achievement');
+        soundManager.playVoice('booster_summary', 'Tolle neue Karten für deine Sammlung!');
       }, 1400);
     } else {
       setCurrentRevealIdx(idx + 1);

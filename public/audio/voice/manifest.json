@@ -1,30 +1,170 @@
 {
   "welcome": {
-    "file": "/audio/voice/welcome.wav",
+    "file": "/audio/voice/welcome.m4a",
     "text": "Hallo Levi! Bist du bereit für den Pokémon-Kampf?"
   },
   "turn_start": {
-    "file": "/audio/voice/turn_start.wav",
+    "file": "/audio/voice/turn_start.m4a",
     "text": "Du bist am Zug!"
   },
+  "opponent_turn": {
+    "file": "/audio/voice/opponent_turn.m4a",
+    "text": "Der Gegner ist am Zug."
+  },
+  "turn_papa": {
+    "file": "/audio/voice/turn_papa.m4a",
+    "text": "Papa ist am Zug!"
+  },
+  "turn_levi": {
+    "file": "/audio/voice/turn_levi.m4a",
+    "text": "Levi ist am Zug!"
+  },
   "prompt_energy": {
-    "file": "/audio/voice/prompt_energy.wav",
+    "file": "/audio/voice/prompt_energy.m4a",
     "text": "Zieh eine Energie auf dein Pokémon!"
   },
   "prompt_bench": {
-    "file": "/audio/voice/prompt_bench.wav",
+    "file": "/audio/voice/prompt_bench.m4a",
     "text": "Lege ein Pokémon auf deine Bank!"
   },
   "prompt_attack": {
-    "file": "/audio/voice/prompt_attack.wav",
+    "file": "/audio/voice/prompt_attack.m4a",
     "text": "Wähle eine Attacke aus!"
   },
   "prompt_done": {
-    "file": "/audio/voice/prompt_done.wav",
+    "file": "/audio/voice/prompt_done.m4a",
     "text": "Drücke auf Fertig, wenn du fertig bist."
   },
   "prompt_promote": {
-    "file": "/audio/voice/prompt_promote.wav",
+    "file": "/audio/voice/prompt_promote.m4a",
     "text": "Wähle ein neues Pokémon von deiner Bank!"
+  },
+  "prompt_retreat": {
+    "file": "/audio/voice/prompt_retreat.m4a",
+    "text": "Du kannst dein Pokémon auf die Bank zurückziehen!"
+  },
+  "evolution_success": {
+    "file": "/audio/voice/evolution_success.m4a",
+    "text": "Entwicklung! Was für ein starkes Pokémon!"
+  },
+  "win_game": {
+    "file": "/audio/voice/win_game.m4a",
+    "text": "Glückwunsch Levi! Du hast gewonnen! Du bist ein wahrer Pokémon-Meister!"
+  },
+  "cheer_loss": {
+    "file": "/audio/voice/cheer_loss.m4a",
+    "text": "Schade, fast geschafft! Nächstes Mal gewinnst du bestimmt!"
+  },
+  "cheer_attack": {
+    "file": "/audio/voice/cheer_attack.m4a",
+    "text": "Klasse Angriff!"
+  },
+  "cheer_super": {
+    "file": "/audio/voice/cheer_super.m4a",
+    "text": "Super gemacht, Levi!"
+  },
+  "cheer_wellplayed": {
+    "file": "/audio/voice/cheer_wellplayed.m4a",
+    "text": "Toll gespielt!"
+  },
+  "point_scored": {
+    "file": "/audio/voice/point_scored.m4a",
+    "text": "K.O.! Du erhältst einen Siegespunkt!"
+  },
+  "pokemon_ko": {
+    "file": "/audio/voice/pokemon_ko.m4a",
+    "text": "Oh nein, dein Pokémon ist kampfunfähig!"
+  },
+  "pinch_climax": {
+    "file": "/audio/voice/pinch_climax.m4a",
+    "text": "Achtung! Letzter Punkt zum Sieg! Jetzt geht es um alles!"
+  },
+  "vs_rocko": {
+    "file": "/audio/voice/vs_rocko.m4a",
+    "text": "Arenaleiter Rocko fordert dich heraus!"
+  },
+  "vs_misty": {
+    "file": "/audio/voice/vs_misty.m4a",
+    "text": "Arenaleiterin Misty fordert dich heraus!"
+  },
+  "vs_majorbob": {
+    "file": "/audio/voice/vs_majorbob.m4a",
+    "text": "Major Bob fordert dich heraus!"
+  },
+  "vs_erika": {
+    "file": "/audio/voice/vs_erika.m4a",
+    "text": "Arenaleiterin Erika fordert dich heraus!"
+  },
+  "vs_koga": {
+    "file": "/audio/voice/vs_koga.m4a",
+    "text": "Ninja-Meister Koga fordert dich heraus!"
+  },
+  "vs_sabrina": {
+    "file": "/audio/voice/vs_sabrina.m4a",
+    "text": "Arenaleiterin Sabrina fordert dich heraus!"
+  },
+  "vs_pyro": {
+    "file": "/audio/voice/vs_pyro.m4a",
+    "text": "Arenaleiter Pyro fordert dich heraus!"
+  },
+  "vs_giovanni": {
+    "file": "/audio/voice/vs_giovanni.m4a",
+    "text": "Boss Giovanni fordert dich heraus!"
+  },
+  "vs_gary": {
+    "file": "/audio/voice/vs_gary.m4a",
+    "text": "Rivale Gary fordert dich heraus!"
+  },
+  "vs_papa": {
+    "file": "/audio/voice/vs_papa.m4a",
+    "text": "Papa fordert dich zu einem Match heraus!"
+  },
+  "gym_locked": {
+    "file": "/audio/voice/gym_locked.m4a",
+    "text": "Diese Arena ist noch verschlossen! Gewinne zuerst den vorherigen Orden!"
+  },
+  "coin_heads": {
+    "file": "/audio/voice/coin_heads.m4a",
+    "text": "Kopf! Pikachu bringt dir Glück!"
+  },
+  "coin_tails": {
+    "file": "/audio/voice/coin_tails.m4a",
+    "text": "Zahl! Der Pokéball liegt oben!"
+  },
+  "status_sleep": {
+    "file": "/audio/voice/status_sleep.m4a",
+    "text": "Dein Pokémon schläft tief und fest und ruht sich aus!"
+  },
+  "status_poison": {
+    "file": "/audio/voice/status_poison.m4a",
+    "text": "Achtung! Dein Pokémon ist vergiftet und verliert Kraftpunkte!"
+  },
+  "status_paralysis": {
+    "file": "/audio/voice/status_paralysis.m4a",
+    "text": "Dein Pokémon ist gelähmt und muss eine Runde pausieren!"
+  },
+  "booster_tear_prompt": {
+    "file": "/audio/voice/booster_tear_prompt.m4a",
+    "text": "Reiße die Folie mit dem Finger auf!"
+  },
+  "booster_reveal_rare": {
+    "file": "/audio/voice/booster_reveal_rare.m4a",
+    "text": "Boah Levi! Ein seltenes Holo-Pokémon!"
+  },
+  "booster_summary": {
+    "file": "/audio/voice/booster_summary.m4a",
+    "text": "Tolle neue Karten für deine Sammlung!"
+  },
+  "menu_welcome": {
+    "file": "/audio/voice/menu_welcome.m4a",
+    "text": "Hallo Levi! Was möchtest du heute spielen?"
+  },
+  "deck_saved": {
+    "file": "/audio/voice/deck_saved.m4a",
+    "text": "Super gemacht, Levi! Dein neues Zauber-Deck ist bereit!"
+  },
+  "deck_limit": {
+    "file": "/audio/voice/deck_limit.m4a",
+    "text": "Dein Deck hat schon zwanzig Karten!"
   }
 }

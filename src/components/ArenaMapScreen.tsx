@@ -73,9 +73,7 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
     setSelectedGym(node);
     soundManager.playSfx('button');
     if (!unlocked) {
-      const idx = GYM_CAMPAIGN.findIndex((g) => g.id === node.id);
-      const prevGym = GYM_CAMPAIGN[idx - 1];
-      soundManager.speakText(`Gesperrt! Besiege zuerst ${prevGym.name}, um hier zu kämpfen!`);
+      soundManager.playVoice('gym_locked', 'Diese Arena ist noch verschlossen! Gewinne zuerst den vorherigen Orden!');
     } else {
       soundManager.playVoice(`vs_${node.id}`, `${node.name} aus ${node.city} fordert dich heraus!`);
     }

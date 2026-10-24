@@ -19,9 +19,9 @@ export const CoinTossModal: React.FC<CoinTossModalProps> = ({
     setResult(outcome);
     setIsFlipping(false);
     if (outcome === 'heads') {
-      soundManager.speakText('Kopf! Pikachu bringt dir Glück!');
+      soundManager.playVoice('coin_heads', 'Kopf! Pikachu bringt dir Glück!');
     } else {
-      soundManager.speakText('Zahl! Der Pokéball liegt oben.');
+      soundManager.playVoice('coin_tails', 'Zahl! Der Pokéball liegt oben!');
     }
   };
 

@@ -95,7 +95,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       if (!pinchAnnounced) {
         setPinchAnnounced(true);
         soundManager.playSfx('star_rare');
-        soundManager.speakText('Achtung! Letzter Punkt zum Sieg! Jetzt geht es um alles!');
+        soundManager.playVoice('pinch_climax', 'Achtung! Letzter Punkt zum Sieg! Jetzt geht es um alles!');
       }
     } else {
       soundManager.setBgmPinch(false);
@@ -119,6 +119,8 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       }
     } else if (isPvP) {
       soundManager.playVoice('turn_papa', `${p2.name} ist am Zug!`);
+    } else {
+      soundManager.playVoice('opponent_turn', 'Der Gegner ist am Zug.');
     }
   }, [gameState.turnNumber, gameState.activePlayerIndex, gameState.turnPhase, isPvP]);
 
@@ -180,6 +182,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               isKo: willKo,
               onComplete: () => {
                 setAnimData(null);
+                if (willKo) {
+                  soundManager.playVoice('pokemon_ko', 'Oh nein, dein Pokémon ist kampfunfähig!');
+                }
                 setGameState((prev) => reduceGameState(prev, aiMove));
               }
             });
@@ -226,6 +231,13 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       isKo: willKo,
       onComplete: () => {
         setAnimData(null);
+        if (willKo) {
+          if (playerIndex === 0) {
+            soundManager.playVoice('point_scored', 'K.O.! Du erhältst einen Siegespunkt!');
+          } else {
+            soundManager.playVoice('pokemon_ko', 'Oh nein, dein Pokémon ist kampfunfähig!');
+          }
+        }
         setGameState((prev) => reduceGameState(prev, { type: 'ATTACK', attackIndex: atkIdx }));
       }
     });
@@ -239,7 +251,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       soundManager.playSfx('card_play');
     } else if (action.type === 'EVOLVE') {
       soundManager.playSfx('victory');
-      soundManager.speakText('Entwicklung! Tolles Pokémon!');
+      soundManager.playVoice('evolution_success', 'Entwicklung! Was für ein starkes Pokémon!');
       setSelectedHandEvoIdx(null);
     } else if (action.type === 'RETREAT') {
       soundManager.playSfx('card_play');

@@ -21,11 +21,11 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
     soundManager.playSfx('toast');
 
     if (status === 'asleep') {
-      soundManager.speakText(`${pokemonName} schläft friedlich und kann sich kurz ausruhen!`);
+      soundManager.playVoice('status_sleep', `${pokemonName} schläft tief und fest und ruht sich aus!`);
     } else if (status === 'poisoned') {
-      soundManager.speakText(`${pokemonName} ist vergiftet und verliert jede Runde 10 Kraftpunkte!`);
+      soundManager.playVoice('status_poison', `Achtung! ${pokemonName} ist vergiftet und verliert Kraftpunkte!`);
     } else if (status === 'paralyzed') {
-      soundManager.speakText(`${pokemonName} ist paralysiert und kann diese Runde nicht angreifen!`);
+      soundManager.playVoice('status_paralysis', `${pokemonName} ist gelähmt und muss eine Runde pausieren!`);
     }
   };
 

@@ -53,7 +53,7 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
   // Add card to deck
   const handleAddCard = (card: Card) => {
     if (deckCardIds.length >= 20) {
-      soundManager.speakText('Dein Deck hat schon 20 Karten!');
+      soundManager.playVoice('deck_limit', 'Dein Deck hat schon zwanzig Karten!');
       return;
     }
     const currentCount = deckCardIds.filter((id) => id === card.id).length;
@@ -107,7 +107,7 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
 
     setDeckCardIds(newDeck.slice(0, 20));
     setDeckName(`Levis ${type}-Deck`);
-    soundManager.playVoice('cheer_super', 'Super gemacht, Levi! Dein Zauber-Deck ist fertig!');
+    soundManager.playVoice('deck_saved', 'Super gemacht, Levi! Dein neues Zauber-Deck ist bereit!');
   };
 
   const handleSaveAndPlay = () => {

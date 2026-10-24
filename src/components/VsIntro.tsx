@@ -27,7 +27,7 @@ export const VsIntro: React.FC<VsIntroProps> = ({
     const timer1 = setTimeout(() => {
       setFlipped(true);
       soundManager.playSfx('button');
-      soundManager.speakText(`Münzwurf! ${p1Name} darf als Erster ziehen!`);
+      soundManager.playVoice('coin_heads', `Münzwurf! ${p1Name} darf als Erster ziehen!`);
     }, 1200);
 
     const timer2 = setTimeout(() => {

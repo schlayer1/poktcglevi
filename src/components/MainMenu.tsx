@@ -24,7 +24,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
 
   useEffect(() => {
     soundManager.playBgm('menu');
-    soundManager.speakText('Hallo Levi! Was möchtest du heute spielen?');
+    soundManager.playVoice('menu_welcome', 'Hallo Levi! Was möchtest du heute spielen?');
   }, []);
 
   const toggleSound = () => {
