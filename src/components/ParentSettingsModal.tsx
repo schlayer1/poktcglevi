@@ -125,11 +125,11 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 select-none animate-in fade-in duration-200 overflow-y-auto"
+      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-safe select-none animate-in fade-in duration-200 overflow-y-auto"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-md w-full bg-slate-900 border-2 border-slate-700 rounded-3xl p-6 shadow-2xl flex flex-col gap-5 text-white my-auto max-h-[90vh] overflow-y-auto"
+        className="relative max-w-md w-full bg-slate-900 border-2 border-slate-700 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col gap-4 sm:gap-5 text-white my-auto max-h-[92dvh] overflow-y-auto"
       >
         <button
           onClick={onClose}

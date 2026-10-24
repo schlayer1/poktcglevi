@@ -141,27 +141,27 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
   });
 
   return (
-    <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col justify-between p-3 sm:p-5 select-none">
+    <div className="relative w-full h-full h-dvh bg-slate-950 overflow-hidden flex flex-col justify-between p-safe select-none">
       {/* Top Header */}
-      <div className="relative z-20 flex items-center justify-between bg-slate-900/90 p-3 rounded-2xl border border-slate-700 shadow-xl">
+      <div className="relative z-20 flex items-center justify-between bg-slate-900/90 p-2 sm:p-3 rounded-2xl border border-slate-700 shadow-xl flex-wrap sm:flex-nowrap gap-2">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-black text-xs sm:text-sm border border-slate-600 transition-transform active:scale-95"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-black text-xs sm:text-sm border border-slate-600 transition-transform active:scale-95 cursor-pointer shrink-0"
         >
-          <ArrowLeft className="w-4 h-4 text-amber-400" />
+          <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
           <span>Zurück</span>
         </button>
 
         {/* Deck Title & Count Indicator */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <input
             type="text"
             value={deckName}
             onChange={(e) => setDeckName(e.target.value)}
-            className="bg-slate-950 text-amber-300 font-black text-sm sm:text-base px-3 py-1 rounded-xl border border-slate-700 text-center"
+            className="bg-slate-950 text-amber-300 font-black text-xs sm:text-base px-2.5 py-1 rounded-xl border border-slate-700 text-center max-w-[150px] sm:max-w-none"
           />
           <div
-            className={`px-3 py-1 rounded-xl font-black text-xs sm:text-sm border-2 ${
+            className={`px-2.5 py-1 rounded-xl font-black text-xs sm:text-sm border-2 whitespace-nowrap ${
               isComplete
                 ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.5)]'
                 : 'bg-rose-500/20 text-rose-300 border-rose-400'
@@ -172,12 +172,12 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
         </div>
 
         {/* Magic Auto-Build Buttons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {(['Feuer', 'Wasser', 'Pflanze', 'Elektro'] as PokemonType[]).map((t) => (
             <button
               key={t}
               onClick={() => handleAutoBuild(t)}
-              className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 shadow"
+              className="p-1 sm:p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 shadow cursor-pointer active:scale-90"
               title={`Zauber-Deck: ${t}`}
             >
               <EnergyBadge type={t} size="sm" />
@@ -301,13 +301,13 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
       </div>
 
       {/* Bottom Save & Play Button */}
-      <div className="relative z-20 flex justify-center pt-1">
+      <div className="relative z-20 flex justify-center pt-1 pb-safe">
         <button
           disabled={!isComplete}
           onClick={handleSaveAndPlay}
-          className={`py-3.5 px-8 rounded-2xl font-black text-lg border-2 shadow-2xl flex items-center gap-3 transition-transform active:scale-95 ${
+          className={`py-2.5 sm:py-3.5 px-6 sm:px-8 rounded-2xl font-black text-sm sm:text-lg border-2 shadow-2xl flex items-center gap-2 sm:gap-3 transition-transform active:scale-95 ${
             isComplete
-              ? 'bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 border-white shadow-[0_0_25px_rgba(251,191,36,0.8)] animate-bounce'
+              ? 'bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 border-white shadow-[0_0_25px_rgba(251,191,36,0.8)] animate-bounce cursor-pointer'
               : 'bg-slate-800 text-slate-500 border-slate-700 opacity-40 cursor-not-allowed'
           }`}
         >

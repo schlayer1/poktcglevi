@@ -43,7 +43,7 @@ export const VsIntro: React.FC<VsIntroProps> = ({
   return (
     <div
       onClick={onFinish}
-      className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-between p-4 sm:p-8 select-none cursor-pointer overflow-hidden"
+      className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-between p-safe select-none cursor-pointer overflow-hidden"
     >
       {/* Background Stadium Grid & Lasers */}
       <div className="absolute inset-0 bg-gradient-to-r from-red-950/60 via-slate-950 to-blue-950/60 pointer-events-none" />
@@ -51,16 +51,16 @@ export const VsIntro: React.FC<VsIntroProps> = ({
 
       {/* Top Banner (Opponent) */}
       <div className="relative z-10 w-full flex items-center justify-end animate-[slideDown_0.6s_ease-out]">
-        <div className="flex items-center gap-4 bg-gradient-to-l from-blue-900/90 via-indigo-950/90 to-transparent p-4 pr-8 rounded-l-3xl border-r-4 border-sky-400 shadow-2xl">
+        <div className="flex items-center gap-2.5 sm:gap-4 bg-gradient-to-l from-blue-900/90 via-indigo-950/90 to-transparent p-2 sm:p-4 pr-4 sm:pr-8 rounded-l-3xl border-r-4 border-sky-400 shadow-2xl">
           <div className="text-right">
-            <span className="text-xs font-bold text-sky-300 uppercase tracking-widest block">
+            <span className="text-[10px] sm:text-xs font-bold text-sky-300 uppercase tracking-widest block">
               Herausforderer
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-white drop-shadow">
+            <h2 className="text-xl sm:text-4xl md:text-5xl font-black text-white drop-shadow">
               {p2Name}
             </h2>
           </div>
-          <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-4 border-sky-400 bg-slate-950 p-2 shadow-[0_0_25px_rgba(56,189,248,0.7)] flex items-center justify-center">
+          <div className="w-14 h-14 sm:w-20 md:w-28 sm:h-20 md:h-28 rounded-full border-3 sm:border-4 border-sky-400 bg-slate-950 p-1 sm:p-2 shadow-[0_0_25px_rgba(56,189,248,0.7)] flex items-center justify-center shrink-0">
             <img
               src={`/images/trainers/${p2Avatar}.png`}
               alt={p2Name}
@@ -71,19 +71,19 @@ export const VsIntro: React.FC<VsIntroProps> = ({
       </div>
 
       {/* Center: HUGE "VS" Lightning Emblem & Coin Toss */}
-      <div className="relative z-20 flex flex-col items-center justify-center gap-3">
+      <div className="relative z-20 flex flex-col items-center justify-center gap-2 sm:gap-3">
         {/* Lightning "VS" Logo */}
         <div className="relative">
-          <div className="text-7xl sm:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-tr from-amber-400 via-yellow-300 to-white drop-shadow-[0_0_35px_rgba(251,191,36,0.9)] animate-pulse">
+          <div className="text-5xl sm:text-8xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-tr from-amber-400 via-yellow-300 to-white drop-shadow-[0_0_35px_rgba(251,191,36,0.9)] animate-pulse">
             VS
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-32 h-1 bg-amber-300/80 blur-sm rotate-45" />
+            <div className="w-24 sm:w-32 h-1 bg-amber-300/80 blur-sm rotate-45" />
           </div>
         </div>
 
         {/* 3D Pikachu Gold Coin Flip */}
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center gap-1.5 sm:gap-2">
           <PikachuCoin
             size="md"
             isFlipping={!flipped}
@@ -91,7 +91,7 @@ export const VsIntro: React.FC<VsIntroProps> = ({
             interactive={false}
             showLabel={false}
           />
-          <span className="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-widest bg-slate-900/90 px-4 py-1.5 rounded-full border border-amber-400/60 shadow-xl">
+          <span className="text-[10px] sm:text-xs md:text-sm font-black text-amber-300 uppercase tracking-widest bg-slate-900/90 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-amber-400/60 shadow-xl">
             {flipped ? `${p1Name} beginnt! Kopf (Pikachu) ⭐` : 'Münzwurf läuft... ⚡'}
           </span>
         </div>
@@ -99,8 +99,8 @@ export const VsIntro: React.FC<VsIntroProps> = ({
 
       {/* Bottom Banner (Levi) */}
       <div className="relative z-10 w-full flex items-center justify-start animate-[slideUp_0.6s_ease-out]">
-        <div className="flex items-center gap-4 bg-gradient-to-r from-amber-900/90 via-orange-950/90 to-transparent p-4 pl-8 rounded-r-3xl border-l-4 border-amber-400 shadow-2xl">
-          <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-4 border-amber-400 bg-slate-950 p-2 shadow-[0_0_25px_rgba(251,191,36,0.7)] flex items-center justify-center">
+        <div className="flex items-center gap-2.5 sm:gap-4 bg-gradient-to-r from-amber-900/90 via-orange-950/90 to-transparent p-2 sm:p-4 pl-4 sm:pl-8 rounded-r-3xl border-l-4 border-amber-400 shadow-2xl">
+          <div className="w-14 h-14 sm:w-20 md:w-28 sm:h-20 md:h-28 rounded-full border-3 sm:border-4 border-amber-400 bg-slate-950 p-1 sm:p-2 shadow-[0_0_25px_rgba(251,191,36,0.7)] flex items-center justify-center shrink-0">
             <img
               src={`/images/trainers/${p1Avatar}.png`}
               alt={p1Name}
@@ -108,10 +108,10 @@ export const VsIntro: React.FC<VsIntroProps> = ({
             />
           </div>
           <div className="text-left">
-            <span className="text-xs font-bold text-amber-300 uppercase tracking-widest block">
+            <span className="text-[10px] sm:text-xs font-bold text-amber-300 uppercase tracking-widest block">
               Pokémontrainer
             </span>
-            <h2 className="text-3xl sm:text-5xl font-black text-white drop-shadow">
+            <h2 className="text-xl sm:text-4xl md:text-5xl font-black text-white drop-shadow">
               {p1Name}
             </h2>
           </div>

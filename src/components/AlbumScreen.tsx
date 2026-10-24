@@ -49,50 +49,50 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
   });
 
   return (
-    <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col justify-between p-3 sm:p-6 select-none">
+    <div className="relative w-full h-full h-dvh bg-slate-950 overflow-hidden flex flex-col justify-between p-safe select-none">
       {/* Background Atmosphere */}
       <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-slate-900 to-slate-950 pointer-events-none" />
 
       {/* Header Bar */}
-      <div className="relative z-20 flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900/80 p-3 sm:p-4 rounded-3xl border border-slate-700 shadow-xl">
-        <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-start">
+      <div className="relative z-20 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 bg-slate-900/80 p-2.5 sm:p-4 rounded-3xl border border-slate-700 shadow-xl">
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-start">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-black text-xs sm:text-sm transition-transform active:scale-95"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-black text-xs sm:text-sm transition-transform active:scale-95 cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4 text-amber-400" />
+            <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
             <span>Zurück</span>
           </button>
 
           <div className="flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-purple-400" />
-            <h1 className="text-lg sm:text-xl font-black text-white">
+            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
+            <h1 className="text-base sm:text-xl font-black text-white">
               Levis Sammelalbum
             </h1>
           </div>
         </div>
 
         {/* Progress Bar & Booster Button */}
-        <div className="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-          <div className="flex items-center gap-3 bg-slate-950 px-3 py-1.5 rounded-2xl border border-slate-800">
-            <span className="text-xs font-black text-amber-300">
+        <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-end">
+          <div className="flex items-center gap-2 bg-slate-950 px-2.5 py-1 rounded-2xl border border-slate-800">
+            <span className="text-[11px] sm:text-xs font-black text-amber-300">
               {totalOwnedCount} / 151
             </span>
-            <div className="w-24 sm:w-36 h-2.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+            <div className="w-20 sm:w-36 h-2 sm:h-2.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
               <div
                 className="h-full bg-gradient-to-r from-purple-500 via-amber-400 to-emerald-400 transition-all duration-500"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <span className="text-[10px] font-bold text-slate-400">{progressPercent}%</span>
+            <span className="text-[9px] sm:text-[10px] font-bold text-slate-400">{progressPercent}%</span>
           </div>
 
           {profile.unopenedBoosters > 0 && (
             <button
               onClick={onOpenBooster}
-              className="px-3.5 py-1.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-xs shadow-lg flex items-center gap-1.5 transition-transform active:scale-95 animate-bounce"
+              className="px-3 py-1.5 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-xs shadow-lg flex items-center gap-1.5 transition-transform active:scale-95 animate-bounce cursor-pointer shrink-0"
             >
-              <PackageOpen className="w-4 h-4" />
+              <PackageOpen className="w-3.5 h-3.5" />
               <span>{profile.unopenedBoosters} Booster!</span>
             </button>
           )}
@@ -100,7 +100,7 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
       </div>
 
       {/* Filter Tabs Bar */}
-      <div className="relative z-10 flex items-center gap-1.5 overflow-x-auto py-2 px-1 scrollbar-none">
+      <div className="relative z-10 flex items-center gap-1.5 overflow-x-auto py-1.5 px-1 scrollbar-none touch-pan-x">
         {[
           { id: 'all', label: 'Alle (151)' },
           { id: 'Feuer', label: 'Feuer 🔥' },

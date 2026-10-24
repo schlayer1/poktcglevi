@@ -10,11 +10,11 @@ export const ChangelogModal: React.FC<ChangelogModalProps> = ({ onClose }) => {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200 select-none"
+      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-safe animate-in fade-in duration-200 select-none"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-2xl w-full max-h-[88vh] bg-slate-900 border-2 border-amber-400 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col gap-4 text-white overflow-hidden"
+        className="relative max-w-2xl w-full max-h-[92dvh] bg-slate-900 border-2 border-amber-400 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col gap-3 sm:gap-4 text-white overflow-hidden my-auto"
       >
         {/* Close Button */}
         <button

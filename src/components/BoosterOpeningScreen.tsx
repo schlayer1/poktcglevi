@@ -210,7 +210,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
   const remainingBoosters = profile.unopenedBoosters;
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-between p-3 sm:p-6 select-none overflow-hidden font-sans">
+    <div className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-between p-safe select-none overflow-hidden font-sans">
       {/* Dynamic Background Atmosphere */}
       <div className={`absolute inset-0 bg-gradient-to-b ${activePack.accentBg} pointer-events-none transition-all duration-700`} />
       <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
@@ -294,7 +294,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                   transition: 'transform 0.15s ease-out',
                   transformStyle: 'preserve-3d'
                 }}
-                className="relative w-56 sm:w-64 md:w-72 aspect-[334/644] flex items-center justify-center drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-all duration-300"
+                className="relative w-44 xs:w-52 sm:w-64 md:w-72 max-h-[55dvh] aspect-[334/644] flex items-center justify-center drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-all duration-300"
               >
                 {/* Authentic Official Booster Pack Artwork */}
                 <img
@@ -383,7 +383,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
             onTouchStart={handleTearTouchStart}
             onTouchEnd={handleTearTouchEnd}
             onClick={executeTear}
-            className="relative w-56 sm:w-64 md:w-72 aspect-[334/644] drop-shadow-[0_25px_40px_rgba(0,0,0,0.9)] cursor-pointer group"
+            className="relative w-44 xs:w-52 sm:w-64 md:w-72 max-h-[55dvh] aspect-[334/644] drop-shadow-[0_25px_40px_rgba(0,0,0,0.9)] cursor-pointer group"
           >
             <img src={activePack.image} alt={activePack.name} className="w-full h-full object-contain pointer-events-none" />
 
@@ -403,7 +403,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
           {/* Alternative Tap Button for 5-Year-Old Levi */}
           <button
             onClick={executeTear}
-            className="py-4 px-10 rounded-3xl bg-gradient-to-r from-red-500 via-rose-500 to-amber-500 text-white font-black text-xl border-3 border-white shadow-[0_10px_35px_rgba(244,63,94,0.6)] flex items-center gap-3 transition-transform active:scale-95 animate-bounce"
+            className="py-3 sm:py-4 px-6 sm:px-10 rounded-3xl bg-gradient-to-r from-red-500 via-rose-500 to-amber-500 text-white font-black text-base sm:text-xl border-2 sm:border-3 border-white shadow-[0_10px_35px_rgba(244,63,94,0.6)] flex items-center gap-2.5 sm:gap-3 transition-transform active:scale-95 animate-bounce cursor-pointer"
           >
             <Scissors className="w-6 h-6 rotate-90" />
             <span>JETZT AUFREISSEN! ✂️</span>

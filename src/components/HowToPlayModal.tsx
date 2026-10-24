@@ -215,18 +215,18 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ onClose }) => {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200 select-none overflow-y-auto"
+      className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-safe animate-in fade-in duration-200 select-none overflow-y-auto"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`relative max-w-2xl w-full bg-gradient-to-b ${currentChapter.bgGradient} border-3 ${currentChapter.borderColor} rounded-3xl p-5 sm:p-7 shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col justify-between gap-5 transition-all duration-300 text-white`}
+        className={`relative max-w-2xl w-full max-h-[92dvh] bg-gradient-to-b ${currentChapter.bgGradient} border-3 ${currentChapter.borderColor} rounded-3xl p-4 sm:p-7 shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col justify-between gap-3 sm:gap-5 transition-all duration-300 text-white my-auto overflow-y-auto`}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute -top-3 -right-3 w-11 h-11 bg-rose-500 hover:bg-rose-600 text-white border-2 border-white rounded-full flex items-center justify-center shadow-xl transition-transform active:scale-90 z-20 cursor-pointer"
+          className="absolute top-2 right-2 sm:-top-3 sm:-right-3 w-9 h-9 sm:w-11 sm:h-11 bg-rose-500 hover:bg-rose-600 text-white border-2 border-white rounded-full flex items-center justify-center shadow-xl transition-transform active:scale-90 z-20 cursor-pointer"
         >
-          <X className="w-6 h-6 stroke-[3]" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
         </button>
 
         {/* Top Header */}

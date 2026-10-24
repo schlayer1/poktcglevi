@@ -80,8 +80,8 @@ export const DeckSelectionModal: React.FC<DeckSelectionModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-40 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 select-none overflow-y-auto">
-      <div className="relative max-w-4xl w-full bg-slate-900 border-2 border-amber-400 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col gap-5">
+    <div className="fixed inset-0 z-40 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-safe select-none overflow-y-auto">
+      <div className="relative max-w-4xl w-full max-h-[92dvh] bg-slate-900 border-2 border-amber-400 rounded-3xl p-3.5 sm:p-6 shadow-2xl flex flex-col gap-4 sm:gap-5 my-auto overflow-y-auto">
         {/* Title */}
         <div className="text-center space-y-1">
           <div className="inline-flex items-center gap-2 bg-amber-400/20 px-3 py-1 rounded-full border border-amber-400/40">

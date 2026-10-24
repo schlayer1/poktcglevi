@@ -43,8 +43,8 @@ export const VictoryModal: React.FC<VictoryModalProps> = ({
   }, [winnerName, isLeviWinner]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 select-none animate-in fade-in duration-300">
-      <div className="relative max-w-md w-full bg-gradient-to-b from-slate-900 via-slate-900 to-amber-950/40 border-3 border-amber-400 rounded-3xl p-6 shadow-2xl flex flex-col items-center text-center gap-5">
+    <div className="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-safe select-none animate-in fade-in duration-300 overflow-y-auto">
+      <div className="relative max-w-md w-full max-h-[92dvh] bg-gradient-to-b from-slate-900 via-slate-900 to-amber-950/40 border-3 border-amber-400 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col items-center text-center gap-3 sm:gap-5 my-auto overflow-y-auto">
         {/* Glowing Trophy Icon */}
         <div className="relative">
           <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-amber-400 via-yellow-300 to-amber-500 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.8)] border-4 border-white animate-bounce">

@@ -33,11 +33,11 @@ export const CoinTossModal: React.FC<CoinTossModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200 select-none"
+      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-safe animate-in fade-in duration-200 select-none"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-sm w-full bg-slate-900 border-2 border-amber-400 rounded-3xl p-6 shadow-2xl flex flex-col items-center gap-6 text-white"
+        className="relative max-w-sm w-full max-h-[92dvh] bg-slate-900 border-2 border-amber-400 rounded-3xl p-5 sm:p-6 shadow-2xl flex flex-col items-center gap-4 sm:gap-6 text-white my-auto overflow-y-auto"
       >
         {/* Close Button */}
         <button

@@ -10,16 +10,49 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '1.4.0';
-export const APP_BUILD_NAME = 'Amala & Kanto-Map';
+export const APP_VERSION = '1.5.0';
+export const APP_BUILD_NAME = 'iPhone & Safe Areas';
 export const APP_BUILD_TAG = `Build ${APP_VERSION} (24.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
   {
+    version: '1.5.0',
+    date: '24. Oktober 2026',
+    title: 'Mobile iPhone-Optimierung & Apple Safe Areas',
+    badge: 'Aktuell 📱',
+    features: [
+      {
+        icon: '📱',
+        title: 'Voll adaptives TCG Pocket Duell-Layout',
+        description: 'Im Hochformat auf dem iPhone verwandelt sich das Spielfeld in ein vertikales Duell (Gegner oben, Levi unten, daumen-optimierte Aktionsleiste).'
+      },
+      {
+        icon: '🛡️',
+        title: 'Apple Safe Area Insets (Notch & Dynamic Island)',
+        description: 'Vollständiger Schutz vor Abschneiden durch die Notch, Dynamic Island oder den iOS-Home-Balken über native CSS env(safe-area-inset-*).'
+      },
+      {
+        icon: '📐',
+        title: '100dvh Dynamic Viewport & Rubberband-Schutz',
+        description: 'Kein Ruckeln oder Springen der Safari-Adressleiste mehr dank moderner dynamischer Viewport-Höhe (100dvh).'
+      },
+      {
+        icon: '✨',
+        title: 'Bento Touch-Kacheln im Hauptmenü',
+        description: 'Auf dem Handy passen alle 3 Menükacheln als elegante horizontale Touch-Karten perfekt auf das Display, ohne den Pikachu-Begleiter zu verdecken.'
+      },
+      {
+        icon: '🔍',
+        title: 'Optimierte Modale & Booster-Packs',
+        description: 'Alle Dialoge (Regeln, Eltern, Kartendetails, Changelog) nutzen sichere Innenränder und flüssige Wischgesten.'
+      }
+    ]
+  },
+  {
     version: '1.4.0',
     date: '24. Oktober 2026',
     title: 'Dynamische Starter-Welten & Kindgerechte Spielbalance',
-    badge: 'Aktuell ⚡',
+    badge: 'v1.4.0',
     features: [
       {
         icon: '🎨',

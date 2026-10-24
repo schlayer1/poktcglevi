@@ -29,32 +29,32 @@ export const CardDetailModal: React.FC<CardDetailModalProps> = ({ card, onClose 
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200 select-none"
+      className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-safe animate-in fade-in duration-200 select-none overflow-y-auto"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-sm sm:max-w-md w-full bg-slate-900 border-2 border-amber-400 rounded-3xl p-5 shadow-2xl flex flex-col items-center gap-4"
+        className="relative max-w-sm sm:max-w-md w-full max-h-[92dvh] bg-slate-900 border-2 border-amber-400 rounded-3xl p-3.5 sm:p-5 shadow-2xl flex flex-col items-center gap-3 sm:gap-4 my-auto overflow-y-auto"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute -top-3 -right-3 w-11 h-11 bg-rose-500 hover:bg-rose-600 text-white border-2 border-white rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-90"
+          className="absolute top-2 right-2 sm:-top-3 sm:-right-3 w-9 h-9 sm:w-11 sm:h-11 bg-rose-500 hover:bg-rose-600 text-white border-2 border-white rounded-full flex items-center justify-center shadow-lg transition-transform active:scale-90 cursor-pointer z-20"
         >
-          <X className="w-6 h-6 stroke-[3]" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
         </button>
 
         {/* Header Title with Sound Button */}
-        <div className="flex items-center justify-between w-full px-2">
+        <div className="flex items-center justify-between w-full px-2 pr-8 sm:pr-2">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-amber-400" />
-            <h2 className="text-xl sm:text-2xl font-black text-amber-300 drop-shadow">
+            <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400" />
+            <h2 className="text-lg sm:text-2xl font-black text-amber-300 drop-shadow">
               {card.name}
             </h2>
           </div>
 
           <button
             onClick={handleSpeak}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow active:scale-95 transition-transform"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow active:scale-95 transition-transform cursor-pointer"
           >
             <Volume2 className="w-4 h-4" />
             <span>Vorlesen</span>
@@ -62,14 +62,14 @@ export const CardDetailModal: React.FC<CardDetailModalProps> = ({ card, onClose 
         </div>
 
         {/* 3D Holographic Card Stage */}
-        <div className="relative w-full max-h-[62vh] aspect-[5/7] flex items-center justify-center">
+        <div className="relative w-full max-h-[50dvh] aspect-[5/7] flex items-center justify-center">
           <HoloCard card={card} interactive={true} className="w-full h-full" />
         </div>
 
         {/* Gyroscope / Drag Hint */}
-        <div className="flex items-center gap-1.5 text-[11px] font-bold text-amber-300/80 bg-slate-950/60 px-3 py-1 rounded-full border border-amber-400/30">
+        <div className="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-amber-300/80 bg-slate-950/60 px-3 py-1 rounded-full border border-amber-400/30">
           <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" />
-          <span>Wische mit dem Finger oder neige dein Tablet für 3D-Glanz!</span>
+          <span>Wische mit dem Finger für 3D-Glanz!</span>
         </div>
 
         {/* Quick Didactic Summary */}

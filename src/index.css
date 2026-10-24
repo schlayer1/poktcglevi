@@ -1,15 +1,84 @@
 @import "tailwindcss";
 
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+}
+
 @layer base {
   * {
     -webkit-tap-highlight-color: transparent;
   }
 
-  body {
+  html, body {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    overscroll-behavior: none;
+    -webkit-touch-callout: none;
   }
+
+  #root {
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
+/* Apple Safe Area Utility Classes */
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top, 0px), 0.5rem);
+}
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 0.5rem);
+}
+.pl-safe {
+  padding-left: max(env(safe-area-inset-left, 0px), 0.5rem);
+}
+.pr-safe {
+  padding-right: max(env(safe-area-inset-right, 0px), 0.5rem);
+}
+.p-safe {
+  padding-top: max(env(safe-area-inset-top, 0px), 0.5rem);
+  padding-right: max(env(safe-area-inset-right, 0px), 0.5rem);
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 0.5rem);
+  padding-left: max(env(safe-area-inset-left, 0px), 0.5rem);
+}
+
+.top-safe {
+  top: max(env(safe-area-inset-top, 0px), 0.5rem);
+}
+.bottom-safe {
+  bottom: max(env(safe-area-inset-bottom, 0px), 0.5rem);
+}
+.left-safe {
+  left: max(env(safe-area-inset-left, 0px), 0.5rem);
+}
+.right-safe {
+  right: max(env(safe-area-inset-right, 0px), 0.5rem);
+}
+
+/* Dynamic Viewport Utilities */
+.h-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+.min-h-dvh {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.max-h-dvh {
+  max-height: 100vh;
+  max-height: 100dvh;
 }
 
 @keyframes flyUp {
