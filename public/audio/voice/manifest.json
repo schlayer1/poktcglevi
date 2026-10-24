@@ -1,0 +1,30 @@
+{
+  "welcome": {
+    "file": "/audio/voice/welcome.wav",
+    "text": "Hallo Levi! Bist du bereit für den Pokémon-Kampf?"
+  },
+  "turn_start": {
+    "file": "/audio/voice/turn_start.wav",
+    "text": "Du bist am Zug!"
+  },
+  "prompt_energy": {
+    "file": "/audio/voice/prompt_energy.wav",
+    "text": "Zieh eine Energie auf dein Pokémon!"
+  },
+  "prompt_bench": {
+    "file": "/audio/voice/prompt_bench.wav",
+    "text": "Lege ein Pokémon auf deine Bank!"
+  },
+  "prompt_attack": {
+    "file": "/audio/voice/prompt_attack.wav",
+    "text": "Wähle eine Attacke aus!"
+  },
+  "prompt_done": {
+    "file": "/audio/voice/prompt_done.wav",
+    "text": "Drücke auf Fertig, wenn du fertig bist."
+  },
+  "prompt_promote": {
+    "file": "/audio/voice/prompt_promote.wav",
+    "text": "Wähle ein neues Pokémon von deiner Bank!"
+  }
+}
