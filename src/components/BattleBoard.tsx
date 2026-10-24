@@ -1,29 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { GameState, Card, Action, InPlayPokemon } from '../types/game';
-import { getLegalActions, reduceGameState, getAiAction } from '../engine/gameEngine';
+import { GameState, Card, Action, InPlayPokemon, PokemonType } from '../types/game';
+import { getLegalActions, reduceGameState, getAiAction, canPayCost } from '../engine/gameEngine';
 import { CardView } from './CardView';
 import { EnergyBadge } from './EnergyBadge';
 import { PikachuCompanion } from './PikachuCompanion';
 import { CardDetailModal } from './CardDetailModal';
 import { VictoryModal } from './VictoryModal';
 import { ParentSettingsModal } from './ParentSettingsModal';
+import { ArenaBackground, ArenaType } from './ArenaBackground';
+import { AttackEffects, AttackAnimationData } from './AttackEffects';
 import { soundManager } from '../services/soundManager';
-import { Check, Settings, Sparkles, Shield, Trophy } from 'lucide-react';
+import { Check, Settings, Sparkles, Volume2, VolumeX, Flame } from 'lucide-react';
 
 interface BattleBoardProps {
   initialState: GameState;
+  arena?: ArenaType;
   onExitMatch: () => void;
 }
 
 export const BattleBoard: React.FC<BattleBoardProps> = ({
   initialState,
+  arena = 'stadium',
   onExitMatch
 }) => {
   const [gameState, setGameState] = useState<GameState>(initialState);
   const [selectedEnergy, setSelectedEnergy] = useState<boolean>(false);
+  const [selectedAttackIdx, setSelectedAttackIdx] = useState<number | null>(null);
   const [inspectedCard, setInspectedCard] = useState<Card | null>(null);
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [aiDifficulty, setAiDifficulty] = useState<'leicht' | 'schlau'>('leicht');
+  const [animData, setAnimData] = useState<AttackAnimationData | null>(null);
+  const [bgmMuted, setBgmMuted] = useState<boolean>(soundManager.isBgmMuted());
 
   const p1 = gameState.players[0]; // Levi
   const p2 = gameState.players[1]; // Opponent / Papa
@@ -32,7 +39,15 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
 
   const legalActions = getLegalActions(gameState);
 
-  // Auto-play voice instructions whenever phase/active player changes
+  // Play battle BGM when battle starts
+  useEffect(() => {
+    soundManager.playBgm('battle');
+    return () => {
+      soundManager.stopBgm();
+    };
+  }, []);
+
+  // Play voice instructions on phase change
   useEffect(() => {
     if (gameState.winner !== null) return;
 
@@ -52,21 +67,32 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     }
   }, [gameState.turnNumber, gameState.activePlayerIndex, gameState.turnPhase]);
 
-  // AI Turn handler for Solo Mode
+  // AI Opponent automation in Solo Mode
   useEffect(() => {
-    if (gameState.gameMode !== 'solo' || isLeviTurn || gameState.winner !== null) {
+    if (gameState.gameMode !== 'solo' || isLeviTurn || gameState.winner !== null || animData !== null) {
       return;
     }
 
     const timer = setTimeout(() => {
       const aiMove = getAiAction(gameState);
       if (aiMove) {
-        // Play action sound / feedback
         if (aiMove.type === 'ATTACK') {
-          soundManager.playSfx('attack_hit');
           const atkCard = p2.active?.card;
-          if (atkCard) {
-            soundManager.speakText(`${p2.name} greift mit ${atkCard.name} an!`);
+          const attack = atkCard?.attacks[aiMove.attackIndex];
+          if (atkCard && attack && p1.active) {
+            const willKo = attack.damage >= p1.active.currentHp;
+            setAnimData({
+              attackerSide: 'opponent',
+              type: atkCard.types[0] || 'Farblos',
+              damage: attack.damage,
+              attackName: attack.name,
+              isKo: willKo,
+              onComplete: () => {
+                setAnimData(null);
+                setGameState((prev) => reduceGameState(prev, aiMove));
+              }
+            });
+            return;
           }
         } else if (aiMove.type === 'ATTACH_ENERGY') {
           soundManager.playSfx('energy_attach');
@@ -78,39 +104,63 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       } else {
         setGameState((prev) => reduceGameState(prev, { type: 'END_TURN' }));
       }
-    }, 1300);
+    }, 1400);
 
     return () => clearTimeout(timer);
-  }, [gameState, isLeviTurn]);
+  }, [gameState, isLeviTurn, animData]);
 
-  // Dispatch game action with sounds
+  // Handle Player Attack with Animation
+  const executePlayerAttack = (atkIdx: number) => {
+    if (!p1.active || !p2.active || gameState.attackedThisTurn) return;
+    const attack = p1.active.card.attacks[atkIdx];
+    if (!attack || !canPayCost(p1.active.attachedEnergy, attack.cost)) return;
+
+    const willKo = attack.damage >= p2.active.currentHp;
+    setSelectedAttackIdx(null);
+
+    setAnimData({
+      attackerSide: 'player',
+      type: p1.active.card.types[0] || 'Farblos',
+      damage: attack.damage,
+      attackName: attack.name,
+      isKo: willKo,
+      onComplete: () => {
+        setAnimData(null);
+        setGameState((prev) => reduceGameState(prev, { type: 'ATTACK', attackIndex: atkIdx }));
+      }
+    });
+  };
+
   const handleAction = (action: Action) => {
     if (action.type === 'ATTACH_ENERGY') {
       soundManager.playSfx('energy_attach');
       setSelectedEnergy(false);
     } else if (action.type === 'PLAY_BENCH') {
       soundManager.playSfx('card_play');
-    } else if (action.type === 'ATTACK') {
-      soundManager.playSfx('attack_hit');
-      soundManager.playVoice('cheer_attack', 'Klasse Angriff!');
     } else if (action.type === 'END_TURN') {
       soundManager.playSfx('button');
       setSelectedEnergy(false);
+      setSelectedAttackIdx(null);
     }
 
     setGameState((prev) => reduceGameState(prev, action));
   };
 
-  // Render 3 Pokeball score stars for each trainer
+  const toggleSound = () => {
+    const next = soundManager.toggleBgmMute();
+    setBgmMuted(next);
+  };
+
+  // Helper: Render Pokeball Score Stars
   const renderPoints = (points: number) => {
     return (
-      <div className="flex items-center gap-1.5 bg-slate-900/80 px-2.5 py-1 rounded-full border border-slate-700 shadow">
+      <div className="flex items-center gap-1.5 bg-slate-900/80 px-3 py-1 rounded-full border border-slate-700 shadow-md">
         {[1, 2, 3].map((pt) => (
           <div
             key={pt}
-            className={`w-6 h-6 rounded-full border-2 border-white flex items-center justify-center text-[10px] font-black transition-all ${
+            className={`w-7 h-7 rounded-full border-2 border-white flex items-center justify-center text-xs font-black transition-all ${
               pt <= points
-                ? 'bg-rose-500 text-white shadow-[0_0_8px_rgba(244,63,94,0.8)] scale-110'
+                ? 'bg-rose-500 text-white shadow-[0_0_10px_rgba(244,63,94,0.9)] scale-110'
                 : 'bg-slate-700 text-slate-500 opacity-40'
             }`}
           >
@@ -121,73 +171,115 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     );
   };
 
-  // Render Trainer Header Badge
-  const renderTrainerBadge = (
-    player: typeof p1,
-    isCurrent: boolean,
-    isTop: boolean
+  // Helper: Render 3D Battle Pedestal for Active Pokémon
+  const renderActivePedestal = (
+    mon: InPlayPokemon | null,
+    isPlayer: boolean,
+    previewDmg: number = 0
   ) => {
+    if (!mon) {
+      return (
+        <div className="w-56 h-36 rounded-[50%] border-3 border-dashed border-slate-700 bg-slate-900/40 flex items-center justify-center">
+          <span className="text-xs font-black text-rose-400 animate-pulse">
+            Pokémon K.O. – Ersatz nötig!
+          </span>
+        </div>
+      );
+    }
+
+    const card = mon.card;
+    const currentHp = mon.currentHp;
+    const maxHp = card.hp;
+    const effectiveHp = Math.max(0, currentHp - previewDmg);
+    const hpPercent = (currentHp / maxHp) * 100;
+    const effectiveHpPercent = (effectiveHp / maxHp) * 100;
+    const isTargetOfEnergy = selectedEnergy && isPlayer && isLeviTurn;
+
     return (
       <div
-        className={`flex items-center gap-2.5 px-3 py-1.5 rounded-2xl border-2 transition-all backdrop-blur-md ${
-          isCurrent
-            ? 'bg-amber-400/25 border-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.5)]'
-            : 'bg-slate-900/60 border-slate-700/80'
+        onClick={() => {
+          if (isTargetOfEnergy) {
+            handleAction({ type: 'ATTACH_ENERGY', target: 'active' });
+          } else {
+            setInspectedCard(card);
+          }
+        }}
+        className={`relative flex flex-col items-center cursor-pointer transition-transform duration-300 ${
+          isTargetOfEnergy ? 'scale-105' : 'hover:scale-102'
         }`}
       >
-        <div className="w-10 h-10 rounded-full bg-slate-950 p-0.5 border border-amber-300/80 overflow-hidden shrink-0">
+        {/* Large Cutout Pokémon Figure Standing in Arena */}
+        <div className="relative w-40 h-40 sm:w-52 sm:h-52 flex items-center justify-center z-20">
           <img
-            src={`/images/trainers/${player.avatar}.png`}
-            alt={player.name}
-            className="w-full h-full object-contain"
+            src={card.artworkUrl}
+            alt={card.name}
+            className={`w-full h-full object-contain filter drop-shadow-[0_12px_16px_rgba(0,0,0,0.8)] transition-transform ${
+              isPlayer ? 'scale-x-[-1]' : ''
+            }`}
           />
-        </div>
-        <div className="flex flex-col">
-          <span className="font-black text-xs sm:text-sm text-white drop-shadow truncate">
-            {player.name}
-          </span>
-          <span className="text-[10px] font-bold text-amber-300">
-            {player.deck.length} Karten im Deck
-          </span>
-        </div>
-        {renderPoints(player.points)}
-      </div>
-    );
-  };
 
-  // Energy Zone Component (Large glowing orb)
-  const renderEnergyZone = (
-    player: typeof p1,
-    isTurn: boolean,
-    onEnergyClick: () => void
-  ) => {
-    const hasEnergy = player.energyZone.length > 0 && !gameState.energyAttachedThisTurn;
-    const currentEnergy = player.energyZone[0] || 'Feuer';
+          {/* Attached Energy Spheres Glowing Below Figure */}
+          {mon.attachedEnergy.length > 0 && (
+            <div className="absolute -bottom-2 flex items-center gap-1 bg-slate-950/80 px-2.5 py-1 rounded-full border border-amber-400/60 shadow-lg z-30">
+              {mon.attachedEnergy.map((eType, idx) => (
+                <EnergyBadge key={idx} type={eType} size="sm" />
+              ))}
+            </div>
+          )}
+        </div>
 
-    return (
-      <div className="flex flex-col items-center gap-1 select-none">
-        <span className="text-[10px] font-black tracking-wider text-amber-300 uppercase">
-          Energie
-        </span>
+        {/* Glowing Oval 3D Pedestal Base */}
         <div
-          onClick={() => {
-            if (isTurn && hasEnergy) {
-              soundManager.playSfx('button');
-              onEnergyClick();
-            }
-          }}
-          className={`relative p-1 rounded-full cursor-pointer transition-all ${
-            isTurn && hasEnergy
-              ? 'ring-4 ring-amber-400 ring-offset-2 ring-offset-slate-950 scale-105 animate-pulse shadow-[0_0_20px_rgba(251,191,36,0.8)]'
-              : 'opacity-40 grayscale'
+          className={`relative -mt-6 w-48 sm:w-60 h-16 sm:h-20 rounded-[50%] border-3 bg-gradient-to-b from-amber-400/30 to-amber-950/60 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.5)] z-10 ${
+            isTargetOfEnergy
+              ? 'border-white animate-pulse shadow-[0_0_40px_rgba(255,255,255,0.8)]'
+              : 'border-amber-400/70'
           }`}
-          title="Tippe auf die Energie und dann auf dein Pokémon!"
         >
-          <EnergyBadge type={currentEnergy} size="lg" pulse={isTurn && hasEnergy} />
-          {hasEnergy && (
-            <span className="absolute -top-1 -right-1 bg-amber-400 text-slate-950 font-black text-[10px] rounded-full w-5 h-5 flex items-center justify-center border border-white">
-              1
-            </span>
+          <div className="w-[85%] h-[60%] rounded-[50%] border border-amber-300/40 bg-slate-950/60 flex items-center justify-center" />
+        </div>
+
+        {/* Fat Health Bar & Name Plate */}
+        <div className="relative z-30 -mt-2 w-48 sm:w-56 bg-slate-900/90 border-2 border-slate-700 rounded-2xl p-2 shadow-xl flex flex-col gap-1 backdrop-blur-md">
+          <div className="flex items-center justify-between text-xs font-black">
+            <span className="text-white drop-shadow truncate">{card.name}</span>
+            <div className="flex items-center gap-1">
+              <span
+                className={`text-sm ${
+                  effectiveHp === 0 ? 'text-rose-400 font-extrabold animate-pulse' : 'text-emerald-400'
+                }`}
+              >
+                {effectiveHp}
+              </span>
+              <span className="text-[10px] text-slate-400">/ {maxHp} KP</span>
+            </div>
+          </div>
+
+          {/* HP Bar with Ghost Preview */}
+          <div className="relative h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+            {/* Ghost preview bar (loss) */}
+            <div
+              className="absolute inset-y-0 left-0 bg-rose-500/50 transition-all duration-300"
+              style={{ width: `${hpPercent}%` }}
+            />
+            {/* Real remaining HP bar */}
+            <div
+              className={`h-full transition-all duration-300 ${
+                effectiveHpPercent > 50
+                  ? 'bg-emerald-500'
+                  : effectiveHpPercent > 20
+                  ? 'bg-amber-400'
+                  : 'bg-rose-500 animate-pulse'
+              }`}
+              style={{ width: `${effectiveHpPercent}%` }}
+            />
+          </div>
+
+          {/* KO Pokeball Indicator if preview kills */}
+          {previewDmg > 0 && effectiveHp === 0 && (
+            <div className="text-[10px] font-black text-rose-400 text-center animate-bounce">
+              ⚡ K.O.-Treffer!
+            </div>
           )}
         </div>
       </div>
@@ -197,283 +289,295 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   const isPvP = gameState.gameMode === 'pvp';
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden flex flex-col justify-between p-2 sm:p-3 select-none">
-      {/* Background Stadium Lines */}
-      <div className="absolute inset-0 pointer-events-none opacity-10 flex items-center justify-center">
-        <div className="w-[600px] h-[600px] rounded-full border-4 border-amber-400" />
-        <div className="absolute w-full h-0.5 bg-amber-400" />
-      </div>
+    <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col justify-between p-2 sm:p-4 select-none">
+      {/* 1. Atmospheric Theme Arena Background */}
+      <ArenaBackground arena={arena} />
 
-      {/* Floating Settings Button in Corner */}
-      <button
-        onClick={() => setShowSettings(true)}
-        className="absolute top-2 right-2 z-40 p-2.5 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 shadow-lg"
-        title="Eltern-Einstellungen"
-      >
-        <Settings className="w-5 h-5" />
-      </button>
-
-      {/* ============================================================== */}
-      {/* TOP HALF: OPPONENT / PAPA                                      */}
-      {/* ============================================================== */}
-      <div
-        className={`relative z-10 flex flex-col justify-between transition-transform duration-300 ${
-          isPvP ? 'rotate-180 origin-center' : ''
-        }`}
-      >
-        {/* Opponent Header Bar */}
-        <div className="flex items-center justify-between px-2 py-1">
-          {renderTrainerBadge(p2, activeIdx === 1, true)}
-
-          {/* Opponent Hand (facedown card backs) */}
-          <div className="flex items-center gap-1">
-            {p2.hand.map((_, idx) => (
-              <div
-                key={idx}
-                className="w-8 sm:w-10 aspect-[5/7] bg-gradient-to-br from-blue-700 to-indigo-900 rounded-md border border-amber-300/60 shadow-sm"
-              />
-            ))}
+      {/* 2. Top Utility Bar: Sound Toggle & Parent Settings */}
+      <div className="relative z-30 flex items-center justify-between px-2">
+        {/* Opponent Trainer Badge */}
+        <div className="flex items-center gap-3 bg-slate-900/80 px-3.5 py-1.5 rounded-2xl border-2 border-slate-700/80 backdrop-blur-md shadow-lg">
+          <div className="w-10 h-10 rounded-full border-2 border-sky-400 bg-slate-950 p-1 flex items-center justify-center">
+            <img src={`/images/trainers/${p2.avatar}.png`} alt={p2.name} className="w-full h-full object-contain" />
           </div>
-
-          {/* Opponent Energy Zone */}
-          {renderEnergyZone(p2, activeIdx === 1, () => {
-            if (activeIdx === 1 && isPvP) {
-              setSelectedEnergy(true);
-            }
-          })}
+          <div>
+            <span className="font-black text-sm text-white block">{p2.name}</span>
+            <span className="text-[10px] font-bold text-sky-300">{p2.deck.length} Karten</span>
+          </div>
+          {renderPoints(p2.points)}
         </div>
 
-        {/* Opponent Bench & Active Pokémon */}
-        <div className="flex items-center justify-center gap-4 sm:gap-8 my-1">
-          {/* Opponent Bench (3 slots) */}
-          <div className="flex items-center gap-2">
-            {[0, 1, 2].map((slotIdx) => {
-              const benchMon = p2.bench[slotIdx];
-              const isPromotable =
-                gameState.turnPhase === 'promote_needed' &&
-                activeIdx === 0 &&
-                slotIdx < p2.bench.length;
+        {/* Controls: Mute BGM & Settings */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggleSound}
+            className="p-2.5 rounded-full bg-slate-900/80 border border-slate-700 text-amber-300 hover:text-white shadow-lg"
+            title="Musik an/aus"
+          >
+            {bgmMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+          </button>
+          <button
+            onClick={() => setShowSettings(true)}
+            className="p-2.5 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white shadow-lg"
+            title="Eltern-Einstellungen"
+          >
+            <Settings className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
 
+      {/* 3. CENTER BATTLE STADIUM (Active Pokémon Facing Each Other) */}
+      <div className="relative z-20 flex-1 flex items-center justify-center gap-8 sm:gap-16 my-auto">
+        {/* Opponent Active Pedestal */}
+        <div className="flex items-center gap-4">
+          {renderActivePedestal(
+            p2.active,
+            false,
+            selectedAttackIdx !== null && p1.active?.card.attacks[selectedAttackIdx]
+              ? p1.active.card.attacks[selectedAttackIdx].damage
+              : 0
+          )}
+
+          {/* Opponent Bench (3 small slots) */}
+          <div className="flex flex-col gap-2">
+            {[0, 1, 2].map((idx) => {
+              const benchMon = p2.bench[idx];
               return (
                 <div
-                  key={slotIdx}
-                  className="w-20 sm:w-24 md:w-28 aspect-[5/7] rounded-2xl border-2 border-dashed border-slate-800 flex items-center justify-center relative"
+                  key={idx}
+                  className="w-14 sm:w-16 aspect-[5/7] rounded-xl border-2 border-dashed border-slate-800 bg-slate-950/40 flex items-center justify-center overflow-hidden"
                 >
-                  {benchMon ? (
-                    <CardView
-                      card={benchMon.card}
-                      inPlay={benchMon}
-                      size="bench"
-                      isOpponent={!isPvP}
-                      isSelectable={isPromotable}
-                      onSelect={() => {
-                        if (isPromotable) {
-                          handleAction({ type: 'PROMOTE', benchIndex: slotIdx });
-                        } else {
-                          setInspectedCard(benchMon.card);
-                        }
-                      }}
-                      onInspect={() => setInspectedCard(benchMon.card)}
+                  {benchMon && (
+                    <img
+                      src={benchMon.card.artworkUrl}
+                      alt={benchMon.card.name}
+                      className="w-full h-full object-contain filter drop-shadow p-1"
                     />
-                  ) : (
-                    <span className="text-[10px] text-slate-700 font-bold">Bank</span>
                   )}
                 </div>
               );
             })}
           </div>
-
-          {/* Opponent Active Pokémon Spot */}
-          <div className="relative">
-            <div className="w-32 sm:w-40 md:w-44 aspect-[5/7] rounded-2xl border-2 border-amber-400/40 bg-slate-900/50 flex items-center justify-center relative shadow-inner">
-              {p2.active ? (
-                <CardView
-                  card={p2.active.card}
-                  inPlay={p2.active}
-                  size="active"
-                  isOpponent={!isPvP}
-                  onInspect={() => setInspectedCard(p2.active!.card)}
-                />
-              ) : (
-                <span className="text-xs font-bold text-rose-400 animate-pulse">
-                  K.O. - Ersatz nötig!
-                </span>
-              )}
-            </div>
-          </div>
         </div>
-      </div>
 
-      {/* ============================================================== */}
-      {/* CENTER: BATTLE ARENA & ACTION STATUS                           */}
-      {/* ============================================================== */}
-      <div className="relative z-10 flex items-center justify-center py-0.5">
-        <div className="bg-slate-950/80 px-4 py-1.5 rounded-full border border-slate-700 shadow-md flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-amber-400 animate-spin" />
-          <span className="font-extrabold text-xs sm:text-sm text-amber-300">
-            {gameState.turnPhase === 'promote_needed'
-              ? 'Neues Pokémon auswählen!'
-              : isLeviTurn
-              ? 'Levi ist dran!'
-              : `${p2.name} ist dran!`}
-          </span>
+        {/* Versus Energy Divider */}
+        <div className="hidden sm:flex flex-col items-center justify-center text-amber-400 font-black text-2xl drop-shadow-[0_0_15px_#f59e0b]">
+          ⚡
         </div>
-      </div>
 
-      {/* ============================================================== */}
-      {/* BOTTOM HALF: LEVI (PLAYER 1)                                   */}
-      {/* ============================================================== */}
-      <div className="relative z-10 flex flex-col justify-between">
-        {/* Levi Active & Bench Pokémon */}
-        <div className="flex items-center justify-center gap-4 sm:gap-8 my-1">
-          {/* Levi Active Pokémon Spot */}
-          <div className="relative">
-            <div className="w-32 sm:w-40 md:w-44 aspect-[5/7] rounded-2xl border-2 border-amber-400/40 bg-slate-900/50 flex items-center justify-center relative shadow-inner">
-              {p1.active ? (
-                <CardView
-                  card={p1.active.card}
-                  inPlay={p1.active}
-                  size="active"
-                  canAttack={isLeviTurn && !gameState.attackedThisTurn}
-                  usableAttackIndices={isLeviTurn ? legalActions.usableAttackIndices : []}
-                  isSelectable={selectedEnergy && isLeviTurn}
-                  onSelect={() => {
-                    if (selectedEnergy && isLeviTurn) {
-                      handleAction({ type: 'ATTACH_ENERGY', target: 'active' });
-                    }
-                  }}
-                  onAttack={(atkIdx) => {
-                    handleAction({ type: 'ATTACK', attackIndex: atkIdx });
-                  }}
-                  onInspect={() => setInspectedCard(p1.active!.card)}
-                />
-              ) : (
-                <span className="text-xs font-bold text-rose-400 animate-pulse">
-                  K.O. - Ersatz nötig!
-                </span>
-              )}
-            </div>
-          </div>
-
-          {/* Levi Bench (3 slots) */}
-          <div className="flex items-center gap-2">
-            {[0, 1, 2].map((slotIdx) => {
-              const benchMon = p1.bench[slotIdx];
+        {/* Levi Active Pedestal + Action Buttons */}
+        <div className="flex items-center gap-4">
+          {/* Levi Bench (3 small slots) */}
+          <div className="flex flex-col gap-2">
+            {[0, 1, 2].map((idx) => {
+              const benchMon = p1.bench[idx];
               const isPromotable =
                 gameState.turnPhase === 'promote_needed' &&
                 activeIdx === 1 &&
-                slotIdx < p1.bench.length;
+                idx < p1.bench.length;
+              const isTargetOfEnergy = selectedEnergy && isLeviTurn;
 
               return (
                 <div
-                  key={slotIdx}
-                  className="w-20 sm:w-24 md:w-28 aspect-[5/7] rounded-2xl border-2 border-dashed border-slate-800 flex items-center justify-center relative"
+                  key={idx}
+                  onClick={() => {
+                    if (isPromotable) {
+                      handleAction({ type: 'PROMOTE', benchIndex: idx });
+                    } else if (isTargetOfEnergy && benchMon) {
+                      handleAction({ type: 'ATTACH_ENERGY', target: idx });
+                    } else if (benchMon) {
+                      setInspectedCard(benchMon.card);
+                    }
+                  }}
+                  className={`w-14 sm:w-16 aspect-[5/7] rounded-xl border-2 flex items-center justify-center overflow-hidden cursor-pointer transition-all ${
+                    isPromotable || isTargetOfEnergy
+                      ? 'border-amber-400 bg-amber-400/20 shadow-[0_0_15px_rgba(251,191,36,0.6)] scale-105 animate-pulse'
+                      : 'border-slate-800 bg-slate-950/40 hover:border-slate-600'
+                  }`}
                 >
                   {benchMon ? (
-                    <CardView
-                      card={benchMon.card}
-                      inPlay={benchMon}
-                      size="bench"
-                      isSelectable={
-                        (selectedEnergy && isLeviTurn) || isPromotable
-                      }
-                      onSelect={() => {
-                        if (isPromotable) {
-                          handleAction({ type: 'PROMOTE', benchIndex: slotIdx });
-                        } else if (selectedEnergy && isLeviTurn) {
-                          handleAction({ type: 'ATTACH_ENERGY', target: slotIdx });
-                        } else {
-                          setInspectedCard(benchMon.card);
-                        }
-                      }}
-                      onInspect={() => setInspectedCard(benchMon.card)}
+                    <img
+                      src={benchMon.card.artworkUrl}
+                      alt={benchMon.card.name}
+                      className="w-full h-full object-contain filter drop-shadow p-1"
                     />
                   ) : (
-                    <span className="text-[10px] text-slate-700 font-bold">Bank</span>
+                    <span className="text-[9px] text-slate-700 font-bold">Bank</span>
                   )}
                 </div>
               );
             })}
           </div>
-        </div>
 
-        {/* Levi Hand & Controls Bar */}
-        <div className="flex items-end justify-between px-2 pt-1 gap-2">
-          {/* Left: Pikachu Companion with Speech */}
+          {renderActivePedestal(p1.active, true, 0)}
+
+          {/* LARGE ATTACK BUTTONS NEXT TO ACTIVE POKEMON */}
+          {p1.active && isLeviTurn && !gameState.attackedThisTurn && gameState.turnNumber > 1 && (
+            <div className="flex flex-col gap-2 z-30 animate-in fade-in">
+              {p1.active.card.attacks.map((atk, idx) => {
+                const canUse = canPayCost(p1.active!.attachedEnergy, atk.cost);
+                const isSelected = selectedAttackIdx === idx;
+
+                return (
+                  <button
+                    key={idx}
+                    disabled={!canUse}
+                    onClick={() => {
+                      if (!canUse) return;
+                      if (isSelected) {
+                        // Second tap confirms attack!
+                        executePlayerAttack(idx);
+                      } else {
+                        // First tap previews damage!
+                        soundManager.playSfx('button');
+                        setSelectedAttackIdx(idx);
+                        soundManager.speakText(`${atk.name}! ${atk.damage} Schaden! Tippe noch einmal zum Angreifen!`);
+                      }
+                    }}
+                    className={`px-4 py-2.5 rounded-2xl border-2 flex items-center gap-3 transition-all active:scale-95 shadow-xl ${
+                      canUse
+                        ? isSelected
+                          ? 'bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 border-white text-white scale-110 shadow-[0_0_25px_rgba(244,63,94,0.9)] animate-bounce'
+                          : 'bg-gradient-to-r from-amber-500 to-orange-500 border-amber-300 text-slate-950 hover:scale-105 shadow-[0_0_15px_rgba(251,191,36,0.7)] animate-pulse'
+                        : 'bg-slate-900/60 border-slate-700 text-slate-500 opacity-40 cursor-not-allowed'
+                    }`}
+                  >
+                    <div className="flex items-center gap-0.5">
+                      {atk.cost.map((cType, cIdx) => (
+                        <EnergyBadge key={cIdx} type={cType} size="sm" />
+                      ))}
+                    </div>
+                    <div className="text-left">
+                      <span className="font-black text-xs sm:text-sm block leading-tight">
+                        {atk.name}
+                      </span>
+                      <span className="text-[10px] font-extrabold opacity-90">
+                        {isSelected ? 'Tippe zum Starten! ▶️' : 'Angriff'}
+                      </span>
+                    </div>
+                    <span className="bg-slate-950/80 text-amber-300 px-2 py-0.5 rounded-lg text-sm sm:text-base font-black">
+                      {atk.damage}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 4. BOTTOM BAR: TCG POCKET FANNED HAND & CONTROLS */}
+      <div className="relative z-30 flex items-end justify-between px-2 pt-1 gap-2">
+        {/* Left: Pikachu Companion & Trainer Profile */}
+        <div className="flex items-end gap-3 shrink-0">
           <PikachuCompanion
             promptText={legalActions.description}
             voiceKey={legalActions.voiceKey}
             emotion={gameState.lastDamageEvent?.isKo ? 'happy' : 'idle'}
-            className="shrink-0"
           />
-
-          {/* Center: Levi's Hand Cards */}
-          <div className="flex items-center justify-center gap-1.5 overflow-x-auto py-1 px-2 scrollbar-none">
-            {p1.hand.map((card, hIdx) => {
-              const isPlayable =
-                isLeviTurn &&
-                legalActions.playableHandIndices?.includes(hIdx);
-
-              return (
-                <div
-                  key={hIdx}
-                  className="transform hover:-translate-y-2 transition-transform duration-200"
-                >
-                  <CardView
-                    card={card}
-                    size="hand"
-                    isSelectable={isPlayable}
-                    onSelect={() => {
-                      if (isPlayable) {
-                        handleAction({ type: 'PLAY_BENCH', handIndex: hIdx });
-                      } else {
-                        setInspectedCard(card);
-                      }
-                    }}
-                    onInspect={() => setInspectedCard(card)}
-                  />
-                </div>
-              );
-            })}
+          <div className="hidden md:flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-2xl border border-slate-700 shadow-md">
+            <span className="text-xs font-black text-amber-300">{p1.name}</span>
+            {renderPoints(p1.points)}
           </div>
+        </div>
 
-          {/* Right Controls: Energy Zone & Big "FERTIG" Turn Button */}
-          <div className="flex items-center gap-3 shrink-0">
-            {renderEnergyZone(p1, isLeviTurn, () => {
-              setSelectedEnergy((prev) => !prev);
-            })}
+        {/* Center: TCG POCKET FANNED HAND CARDS */}
+        <div className="flex items-end justify-center -space-x-4 sm:-space-x-6 overflow-visible py-2 px-4 max-w-2xl">
+          {p1.hand.map((card, hIdx) => {
+            const isPlayable = isLeviTurn && legalActions.playableHandIndices?.includes(hIdx);
 
-            {/* Giant "FERTIG" Button */}
-            <button
+            return (
+              <div
+                key={hIdx}
+                onMouseEnter={() => soundManager.playSfx('card_hover')}
+                onClick={() => {
+                  if (isPlayable) {
+                    handleAction({ type: 'PLAY_BENCH', handIndex: hIdx });
+                  } else {
+                    setInspectedCard(card);
+                  }
+                }}
+                className={`relative group transform transition-all duration-300 cursor-pointer origin-bottom hover:-translate-y-6 hover:scale-115 hover:z-40 ${
+                  isPlayable ? 'ring-4 ring-amber-400 rounded-2xl animate-pulse shadow-[0_0_20px_#f59e0b]' : ''
+                }`}
+                style={{
+                  transform: `rotate(${(hIdx - (p1.hand.length - 1) / 2) * 5}deg)`
+                }}
+              >
+                <CardView
+                  card={card}
+                  size="hand"
+                  isSelectable={isPlayable}
+                  onInspect={() => setInspectedCard(card)}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Right Controls: Energy Zone & Big "FERTIG" Button */}
+        <div className="flex items-center gap-3 shrink-0">
+          {/* Energy Zone */}
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-[10px] font-black uppercase text-amber-300">
+              Energie
+            </span>
+            <div
               onClick={() => {
-                if (isLeviTurn && gameState.turnPhase !== 'promote_needed') {
-                  handleAction({ type: 'END_TURN' });
+                if (isLeviTurn && p1.energyZone.length > 0 && !gameState.energyAttachedThisTurn) {
+                  soundManager.playSfx('button');
+                  setSelectedEnergy((prev) => !prev);
+                  soundManager.playVoice('prompt_energy', 'Zieh deine Energie auf ein Pokémon!');
                 }
               }}
-              disabled={!isLeviTurn || gameState.turnPhase === 'promote_needed'}
-              className={`h-16 w-16 sm:h-20 sm:w-20 rounded-full font-black text-xs sm:text-sm flex flex-col items-center justify-center gap-0.5 border-3 border-white shadow-2xl transition-all active:scale-90 ${
-                isLeviTurn && gameState.turnPhase !== 'promote_needed'
-                  ? 'bg-gradient-to-tr from-amber-400 via-yellow-400 to-amber-500 text-slate-950 shadow-[0_0_20px_rgba(251,191,36,0.8)] animate-bounce cursor-pointer'
-                  : 'bg-slate-800 text-slate-500 border-slate-700 opacity-40 cursor-not-allowed'
+              className={`p-1 rounded-full cursor-pointer transition-all ${
+                isLeviTurn && p1.energyZone.length > 0 && !gameState.energyAttachedThisTurn
+                  ? selectedEnergy
+                    ? 'ring-4 ring-white scale-110 shadow-[0_0_25px_rgba(255,255,255,0.9)] animate-bounce'
+                    : 'ring-4 ring-amber-400 ring-offset-2 ring-offset-slate-950 scale-105 shadow-[0_0_20px_rgba(251,191,36,0.8)] animate-pulse'
+                  : 'opacity-40 grayscale'
               }`}
-              title="Zug beenden"
+              title="Energie anlegen"
             >
-              <Check className="w-6 h-6 stroke-[3]" />
-              <span className="font-extrabold uppercase tracking-wider text-[11px]">
-                Fertig
-              </span>
-            </button>
+              <EnergyBadge
+                type={p1.energyZone[0] || 'Feuer'}
+                size="lg"
+                pulse={isLeviTurn && p1.energyZone.length > 0}
+              />
+            </div>
           </div>
+
+          {/* Big "FERTIG" Button */}
+          <button
+            disabled={!isLeviTurn || gameState.turnPhase === 'promote_needed'}
+            onClick={() => {
+              if (isLeviTurn && gameState.turnPhase !== 'promote_needed') {
+                handleAction({ type: 'END_TURN' });
+              }
+            }}
+            className={`h-16 w-16 sm:h-20 sm:w-20 rounded-full font-black flex flex-col items-center justify-center border-3 border-white shadow-2xl transition-all active:scale-90 ${
+              isLeviTurn && gameState.turnPhase !== 'promote_needed'
+                ? 'bg-gradient-to-tr from-amber-400 via-yellow-400 to-amber-500 text-slate-950 shadow-[0_0_25px_rgba(251,191,36,0.9)] animate-bounce cursor-pointer'
+                : 'bg-slate-800 text-slate-500 border-slate-700 opacity-40 cursor-not-allowed'
+            }`}
+            title="Zug beenden"
+          >
+            <Check className="w-6 h-6 stroke-[3]" />
+            <span className="font-extrabold uppercase text-[10px]">Fertig</span>
+          </button>
         </div>
       </div>
 
-      {/* Card Detail Modal (Pocket Scan Inspector) */}
+      {/* 5. Attack Visual Effects & Impact Projectiles */}
+      <AttackEffects animData={animData} />
+
+      {/* 6. Card Detail Modal (Full TCG Pocket Scan Inspector) */}
       <CardDetailModal
         card={inspectedCard}
         onClose={() => setInspectedCard(null)}
       />
 
-      {/* Victory / Defeat Modal */}
+      {/* 7. Victory / Defeat Modal */}
       {gameState.winner !== null && (
         <VictoryModal
           winnerName={gameState.players[gameState.winner].name}
@@ -486,7 +590,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
         />
       )}
 
-      {/* Parent Settings Modal */}
+      {/* 8. Parent Settings Modal */}
       {showSettings && (
         <ParentSettingsModal
           onClose={() => setShowSettings(false)}
