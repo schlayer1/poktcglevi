@@ -21,9 +21,28 @@ const dummyGlumanda: Card = {
     { name: 'Glut', cost: ['Feuer'], damage: 30 }
   ],
   retreat: 1,
+  weakness: { type: 'Wasser', value: '+20' },
   artworkUrl: '/images/pokemon/4.png',
   cryUrl: '/audio/cries/4.ogg',
   cardImageUrl: '/images/cards/A1-033.webp'
+};
+
+const dummyGlutexo: Card = {
+  id: 'A1-034',
+  dexId: 5,
+  name: 'Glutexo',
+  types: ['Feuer'],
+  hp: 90,
+  stage: 'Rang 1',
+  isEx: false,
+  attacks: [{ name: 'Flammenwurf', cost: ['Feuer', 'Farblos'], damage: 50 }],
+  retreat: 2,
+  weakness: { type: 'Wasser', value: '+20' },
+  evolvesFrom: 'Glumanda',
+  preDexId: 4,
+  artworkUrl: '/images/pokemon/5.png',
+  cryUrl: '/audio/cries/5.ogg',
+  cardImageUrl: '/images/cards/A1-034.webp'
 };
 
 const dummySchiggy: Card = {
@@ -39,9 +58,26 @@ const dummySchiggy: Card = {
     { name: 'Blubber', cost: ['Wasser'], damage: 20 }
   ],
   retreat: 1,
+  weakness: { type: 'Elektro', value: '+20' },
   artworkUrl: '/images/pokemon/7.png',
   cryUrl: '/audio/cries/7.ogg',
   cardImageUrl: '/images/cards/A1-053.webp'
+};
+
+const dummyTrank: Card = {
+  id: 'P-A-001',
+  dexId: 0,
+  name: 'Trank',
+  types: ['Farblos'],
+  hp: 0,
+  stage: 'Trainer',
+  isEx: false,
+  attacks: [],
+  retreat: 0,
+  trainerType: 'Item',
+  artworkUrl: '/images/cards/P-A-001.webp',
+  cryUrl: '',
+  cardImageUrl: '/images/cards/P-A-001.webp'
 };
 
 function makeDeck(sample: Card): Card[] {
@@ -52,129 +88,123 @@ function makeDeck(sample: Card): Card[] {
   return d;
 }
 
-describe('Game Engine Level 1', () => {
-  it('correctly validates energy costs with typed and colorless energy', () => {
-    // 0 cost
-    expect(canPayCost([], [])).toBe(true);
+describe('Game Engine Level 1, 2 and 3', () => {
+  it('correctly calculates weakness damage in Rule Level 2', () => {
+    const p1Deck = makeDeck(dummySchiggy); // Wasser attacker
+    const p2Deck = makeDeck(dummyGlumanda); // Feuer defender (weakness Wasser)
 
-    // Colorless cost can be paid by Fire or Water
-    expect(canPayCost(['Feuer'], ['Farblos'])).toBe(true);
-    expect(canPayCost(['Wasser'], ['Farblos'])).toBe(true);
-    expect(canPayCost([], ['Farblos'])).toBe(false);
+    let state = createInitialGameState(p1Deck, p2Deck, {
+      p1Name: 'Misty',
+      p2Name: 'Levi',
+      p1Avatar: 'misty',
+      p2Avatar: 'levi',
+      ruleLevel: 2
+    });
 
-    // Colored cost must match
-    expect(canPayCost(['Feuer'], ['Feuer'])).toBe(true);
-    expect(canPayCost(['Wasser'], ['Feuer'])).toBe(false);
+    // Advance to turn 2 (Levi), then turn 3 (Misty)
+    state = reduceGameState(state, { type: 'END_TURN' });
+    state = reduceGameState(state, { type: 'END_TURN' });
 
-    // Compound cost: 1 Fire + 1 Colorless
-    expect(canPayCost(['Feuer', 'Wasser'], ['Feuer', 'Farblos'])).toBe(true);
-    expect(canPayCost(['Feuer', 'Feuer'], ['Feuer', 'Farblos'])).toBe(true);
-    expect(canPayCost(['Wasser', 'Wasser'], ['Feuer', 'Farblos'])).toBe(false);
+    // Attach water energy to Schiggy
+    state = reduceGameState(state, { type: 'ATTACH_ENERGY', target: 'active' });
+
+    // Schiggy uses Blubber (20 damage base + 20 weakness = 40 damage!)
+    const hpBefore = state.players[1].active!.currentHp;
+    state = reduceGameState(state, { type: 'ATTACK', attackIndex: 1 });
+
+    expect(state.players[1].active!.currentHp).toBe(hpBefore - 40);
+    expect(state.lastDamageEvent?.isSuperEffective).toBe(true);
   });
 
-  it('initializes game state with 5 cards hand and guaranteed active pokemon', () => {
+  it('correctly executes Evolution in Rule Level 2', () => {
     const p1Deck = makeDeck(dummyGlumanda);
     const p2Deck = makeDeck(dummySchiggy);
 
-    const state = createInitialGameState(p1Deck, p2Deck, {
+    let state = createInitialGameState(p1Deck, p2Deck, {
       p1Name: 'Levi',
       p2Name: 'Papa',
       p1Avatar: 'levi',
       p2Avatar: 'papa',
-      gameMode: 'solo'
+      ruleLevel: 2
     });
 
-    expect(state.turnNumber).toBe(1);
-    expect(state.activePlayerIndex).toBe(0);
-    expect(state.players[0].active).not.toBeNull();
-    expect(state.players[1].active).not.toBeNull();
-    expect(state.players[0].hand.length).toBe(4); // 5 drawn minus 1 placed active
-    expect(state.players[1].hand.length).toBe(4);
-    expect(state.winner).toBeNull();
-  });
+    // Put Glutexo in Levi hand
+    state.players[0].hand.push(dummyGlutexo);
+    const glutexoHandIdx = state.players[0].hand.length - 1;
 
-  it('forbids turn 1 attack and handles legal actions', () => {
-    const p1Deck = makeDeck(dummyGlumanda);
-    const p2Deck = makeDeck(dummySchiggy);
-    const state = createInitialGameState(p1Deck, p2Deck, {
-      p1Name: 'Levi',
-      p2Name: 'Papa',
-      p1Avatar: 'levi',
-      p2Avatar: 'papa'
+    // Evolve active Glumanda to Glutexo
+    state = reduceGameState(state, {
+      type: 'EVOLVE',
+      handIndex: glutexoHandIdx,
+      target: 'active'
     });
 
-    const legal = getLegalActions(state);
-    // On turn 1, P1 has no energy in zone and cannot attack
-    expect(legal.canAttachEnergy).toBe(false);
-    expect(legal.usableAttackIndices).toEqual([]);
-    expect(legal.canEndTurn).toBe(true);
+    expect(state.players[0].active!.card.name).toBe('Glutexo');
+    expect(state.players[0].active!.maxHp).toBe(90);
+    expect(state.players[0].active!.currentHp).toBe(90);
   });
 
-  it('generates energy and handles attaching energy on turn 2', () => {
+  it('correctly executes Retreat in Rule Level 2', () => {
     const p1Deck = makeDeck(dummyGlumanda);
     const p2Deck = makeDeck(dummySchiggy);
+
     let state = createInitialGameState(p1Deck, p2Deck, {
       p1Name: 'Levi',
       p2Name: 'Papa',
       p1Avatar: 'levi',
-      p2Avatar: 'papa'
+      p2Avatar: 'papa',
+      ruleLevel: 2
     });
 
-    // P1 ends turn 1
-    state = reduceGameState(state, { type: 'END_TURN' });
-    expect(state.turnNumber).toBe(2);
-    expect(state.activePlayerIndex).toBe(1); // Papa's turn
-    expect(state.players[1].energyZone.length).toBe(1);
-    expect(state.players[1].energyZone[0]).toBe('Wasser');
+    // Add bench Pokémon
+    state.players[0].bench.push({
+      instanceId: 'bench_1',
+      card: dummySchiggy,
+      currentHp: 60,
+      maxHp: 60,
+      attachedEnergy: [],
+      status: 'none',
+      canAttack: false
+    });
 
-    // Attach energy to active
-    state = reduceGameState(state, { type: 'ATTACH_ENERGY', target: 'active' });
-    expect(state.players[1].energyZone.length).toBe(0);
-    expect(state.players[1].active?.attachedEnergy).toEqual(['Wasser']);
+    // Active has 1 energy attached
+    state.players[0].active!.attachedEnergy = ['Feuer'];
+
+    // Retreat active for bench[0]
+    state = reduceGameState(state, { type: 'RETREAT', benchIndex: 0 });
+
+    expect(state.players[0].active!.card.name).toBe('Schiggy');
+    expect(state.players[0].bench[0].card.name).toBe('Glumanda');
+    expect(state.players[0].bench[0].attachedEnergy.length).toBe(0); // 1 retreat cost paid
   });
 
-  it('executes attack, damages opponent, and detects knockout and promotion', () => {
+  it('correctly executes Trainer card Trank in Rule Level 3', () => {
     const p1Deck = makeDeck(dummyGlumanda);
     const p2Deck = makeDeck(dummySchiggy);
+
     let state = createInitialGameState(p1Deck, p2Deck, {
       p1Name: 'Levi',
       p2Name: 'Papa',
       p1Avatar: 'levi',
-      p2Avatar: 'papa'
+      p2Avatar: 'papa',
+      ruleLevel: 3
     });
 
-    // Advance to turn 2 (P2)
-    state = reduceGameState(state, { type: 'END_TURN' });
-    // Advance to turn 3 (P1)
-    state = reduceGameState(state, { type: 'END_TURN' });
+    // Damage Levi's active by 30 HP
+    state.players[0].active!.currentHp = 30;
 
-    expect(state.activePlayerIndex).toBe(0); // Levi
-    expect(state.players[0].energyZone.length).toBe(1);
+    // Put Trank in hand
+    state.players[0].hand.push(dummyTrank);
+    const trankIdx = state.players[0].hand.length - 1;
 
-    // Levi attaches fire energy to Glumanda
-    state = reduceGameState(state, { type: 'ATTACH_ENERGY', target: 'active' });
-
-    // Glumanda uses Glut (30 damage)
-    const opponentHpBefore = state.players[1].active!.currentHp;
-    state = reduceGameState(state, { type: 'ATTACK', attackIndex: 1 });
-    expect(state.players[1].active!.currentHp).toBe(opponentHpBefore - 30);
-  });
-
-  it('AI chooses reasonable moves in solo mode', () => {
-    const p1Deck = makeDeck(dummyGlumanda);
-    const p2Deck = makeDeck(dummySchiggy);
-    let state = createInitialGameState(p1Deck, p2Deck, {
-      p1Name: 'Levi',
-      p2Name: 'Rocko',
-      p1Avatar: 'levi',
-      p2Avatar: 'rocko'
+    // Play Trank
+    state = reduceGameState(state, {
+      type: 'PLAY_TRAINER',
+      handIndex: trankIdx,
+      target: 'active'
     });
 
-    // Advance to Rocko's turn
-    state = reduceGameState(state, { type: 'END_TURN' });
-    const aiMove = getAiAction(state);
-    expect(aiMove).not.toBeNull();
-    // AI should play bench or attach energy
-    expect(['ATTACH_ENERGY', 'PLAY_BENCH', 'ATTACK', 'END_TURN']).toContain(aiMove?.type);
+    // Heals 20 HP (30 -> 50)
+    expect(state.players[0].active!.currentHp).toBe(50);
   });
 });

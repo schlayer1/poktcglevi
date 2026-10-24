@@ -3,18 +3,26 @@ import { Card, GameState } from './types/game';
 import { createInitialGameState } from './engine/gameEngine';
 import { TitleScreen } from './components/TitleScreen';
 import { MainMenu } from './components/MainMenu';
-import { GymLeaderSelect } from './components/GymLeaderSelect';
+import { ArenaMapScreen } from './components/ArenaMapScreen';
+import { AlbumScreen } from './components/AlbumScreen';
+import { BoosterOpeningScreen } from './components/BoosterOpeningScreen';
+import { DeckBuilderScreen } from './components/DeckBuilderScreen';
 import { VsIntro } from './components/VsIntro';
 import { BattleBoard } from './components/BattleBoard';
 import { DeckSelectionModal, DeckInfo } from './components/DeckSelectionModal';
 import { ArenaType } from './components/ArenaBackground';
+import { BadgeType } from './components/GymBadge';
+import { storageService } from './services/storageService';
 import { soundManager } from './services/soundManager';
 
 type AppScreen =
   | 'loading'
   | 'title'
   | 'menu'
-  | 'leader_select'
+  | 'arena_map'
+  | 'album'
+  | 'deck_builder'
+  | 'booster_opening'
   | 'pvp_select'
   | 'vs_intro'
   | 'battle';
@@ -26,12 +34,14 @@ interface MatchConfig {
   opponentName: string;
   opponentAvatar: string;
   arena: ArenaType;
+  gymBadgeId?: BadgeType;
 }
 
 export const App: React.FC = () => {
   const [screen, setScreen] = useState<AppScreen>('loading');
   const [loadProgress, setLoadProgress] = useState<number>(15);
   const [cardsMap, setCardsMap] = useState<Record<string, Card>>({});
+  const [allCardsList, setAllCardsList] = useState<Card[]>([]);
   const [decks, setDecks] = useState<DeckInfo[]>([]);
 
   const [pendingMatchConfig, setPendingMatchConfig] = useState<MatchConfig | null>(null);
@@ -57,7 +67,12 @@ export const App: React.FC = () => {
         });
 
         setCardsMap(map);
+        setAllCardsList(cardsList);
         setDecks(decksList);
+
+        // Initialize user savegame profile
+        storageService.loadProfile(cardsList);
+
         setLoadProgress(100);
 
         setTimeout(() => {
@@ -75,23 +90,27 @@ export const App: React.FC = () => {
   const handleStartMatch = (config: MatchConfig) => {
     setPendingMatchConfig(config);
 
-    const deck1 = decks.find((d) => d.id === config.p1DeckId) || decks[0];
+    const profile = storageService.loadProfile(allCardsList);
+
+    // Get cards for P1 (either from custom deck or starter deck)
+    let p1Cards: Card[] = [];
+    if (profile.customDecks.length > 0 && config.p1DeckId === profile.customDecks[0].id) {
+      p1Cards = profile.customDecks[0].cards.map((id) => cardsMap[id]).filter((c): c is Card => !!c);
+    } else {
+      const deck1 = decks.find((d) => d.id === config.p1DeckId) || decks[0];
+      p1Cards = deck1.cards.map((cid) => cardsMap[cid]).filter((c): c is Card => !!c);
+    }
+
     const deck2 = decks.find((d) => d.id === config.p2DeckId) || decks[1];
-
-    const p1Cards: Card[] = deck1.cards
-      .map((cid) => cardsMap[cid])
-      .filter((c): c is Card => !!c);
-
-    const p2Cards: Card[] = deck2.cards
-      .map((cid) => cardsMap[cid])
-      .filter((c): c is Card => !!c);
+    const p2Cards: Card[] = deck2.cards.map((cid) => cardsMap[cid]).filter((c): c is Card => !!c);
 
     const initial = createInitialGameState(p1Cards, p2Cards, {
       p1Name: 'Levi',
       p2Name: config.opponentName,
       p1Avatar: 'levi',
       p2Avatar: config.opponentAvatar,
-      gameMode: config.mode
+      gameMode: config.mode,
+      ruleLevel: profile.ruleLevel
     });
 
     setCurrentMatch(initial);
@@ -131,25 +150,62 @@ export const App: React.FC = () => {
   if (screen === 'menu') {
     return (
       <MainMenu
-        onSelectSolo={() => setScreen('leader_select')}
+        onSelectSolo={() => setScreen('arena_map')}
         onSelectPvP={() => setScreen('pvp_select')}
-        onSelectAlbum={() => {}}
+        onSelectAlbum={() => setScreen('album')}
+        onOpenDeckBuilder={() => setScreen('deck_builder')}
+        onOpenBoosters={() => setScreen('booster_opening')}
       />
     );
   }
 
-  if (screen === 'leader_select') {
+  if (screen === 'arena_map') {
     return (
-      <GymLeaderSelect
-        decks={decks}
-        allCards={cardsMap}
+      <ArenaMapScreen
         onBack={() => setScreen('menu')}
-        onConfirm={(cfg) => {
+        onSelectGym={(gym) => {
+          const profile = storageService.loadProfile(allCardsList);
           handleStartMatch({
             mode: 'solo',
-            ...cfg
+            p1DeckId: profile.activeDeckId || 'deck_feuer',
+            p2DeckId: gym.opponentDeckId,
+            opponentName: gym.opponentName,
+            opponentAvatar: gym.opponentAvatar,
+            arena: gym.arena,
+            gymBadgeId: gym.badgeId
           });
         }}
+      />
+    );
+  }
+
+  if (screen === 'album') {
+    return (
+      <AlbumScreen
+        allCards={allCardsList}
+        onBack={() => setScreen('menu')}
+        onOpenBooster={() => setScreen('booster_opening')}
+      />
+    );
+  }
+
+  if (screen === 'deck_builder') {
+    return (
+      <DeckBuilderScreen
+        allCards={allCardsList}
+        onBack={() => setScreen('menu')}
+        onPlayWithDeck={(deckCards) => {
+          setScreen('arena_map');
+        }}
+      />
+    );
+  }
+
+  if (screen === 'booster_opening') {
+    return (
+      <BoosterOpeningScreen
+        allCards={allCardsList}
+        onFinish={() => setScreen('album')}
       />
     );
   }
@@ -186,10 +242,16 @@ export const App: React.FC = () => {
       <BattleBoard
         initialState={currentMatch}
         arena={pendingMatchConfig.arena}
+        gymBadgeId={pendingMatchConfig.gymBadgeId}
+        allCards={allCardsList}
         onExitMatch={() => {
           soundManager.stopBgm();
           soundManager.playBgm('menu');
           setScreen('menu');
+        }}
+        onOpenBooster={() => {
+          soundManager.stopBgm();
+          setScreen('booster_opening');
         }}
       />
     );

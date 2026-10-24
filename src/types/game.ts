@@ -10,6 +10,8 @@ export type PokemonType =
   | 'Drache'
   | 'Farblos';
 
+export type StatusCondition = 'none' | 'asleep' | 'poisoned' | 'paralyzed';
+
 export interface Attack {
   name: string;
   cost: PokemonType[];
@@ -28,7 +30,7 @@ export interface Card {
   name: string;
   types: PokemonType[];
   hp: number;
-  stage: 'Basis' | 'Rang 1' | 'Rang 2';
+  stage: 'Basis' | 'Rang 1' | 'Rang 2' | 'Trainer';
   isEx: boolean;
   attacks: Attack[];
   weakness?: Weakness | null;
@@ -38,6 +40,10 @@ export interface Card {
   cryUrl: string;
   cardImageUrl: string;
   cdnCardUrl?: string;
+  preDexId?: number | null;
+  evolvesFrom?: string | null;
+  trainerEffect?: string;
+  trainerType?: string;
 }
 
 export interface InPlayPokemon {
@@ -46,6 +52,7 @@ export interface InPlayPokemon {
   currentHp: number;
   maxHp: number;
   attachedEnergy: PokemonType[];
+  status: StatusCondition;
   canAttack: boolean;
 }
 
@@ -59,32 +66,38 @@ export interface PlayerState {
   bench: InPlayPokemon[];
   discard: Card[];
   energyZone: PokemonType[];
-  points: number; // Knockout points (3 points win)
+  points: number; // 3 points win
 }
 
 export type TurnPhase = 'main' | 'promote_needed' | 'game_over';
 
 export interface GameState {
   gameMode: 'solo' | 'pvp';
-  stage: 'level1' | 'level2' | 'level3';
+  stage: 1 | 2 | 3; // Rule Level
   turnNumber: number;
-  activePlayerIndex: 0 | 1; // 0 = Levi / P1, 1 = Opponent / P2
+  activePlayerIndex: 0 | 1;
   players: [PlayerState, PlayerState];
-  winner: number | null; // index of winner or null
+  winner: number | null;
   log: string[];
   turnPhase: TurnPhase;
   energyAttachedThisTurn: boolean;
   attackedThisTurn: boolean;
+  retreatedThisTurn?: boolean;
+  supporterPlayedThisTurn?: boolean;
   lastDamageEvent?: {
     targetInstanceId: string;
     damage: number;
     isKo: boolean;
+    isSuperEffective?: boolean;
   };
 }
 
 export type Action =
-  | { type: 'ATTACH_ENERGY'; target: 'active' | number } // number is benchIndex
+  | { type: 'ATTACH_ENERGY'; target: 'active' | number }
   | { type: 'PLAY_BENCH'; handIndex: number }
+  | { type: 'EVOLVE'; handIndex: number; target: 'active' | number }
+  | { type: 'RETREAT'; benchIndex: number }
+  | { type: 'PLAY_TRAINER'; handIndex: number; target?: 'active' | number }
   | { type: 'ATTACK'; attackIndex: number }
   | { type: 'PROMOTE'; benchIndex: number }
   | { type: 'END_TURN' };
@@ -96,6 +109,10 @@ export interface LegalAction {
   canAttachEnergy?: boolean;
   validEnergyTargets?: ('active' | number)[];
   playableHandIndices?: number[];
+  evolvableHandIndices?: { handIndex: number; targets: ('active' | number)[] }[];
+  canRetreat?: boolean;
+  retreatableBenchIndices?: number[];
+  playableTrainerIndices?: number[];
   usableAttackIndices?: number[];
   promotableBenchIndices?: number[];
   canEndTurn?: boolean;

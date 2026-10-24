@@ -29,7 +29,9 @@
     "artworkUrl": "/images/pokemon/1.png",
     "cryUrl": "/audio/cries/1.ogg",
     "cardImageUrl": "/images/cards/A1-001.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/001/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/001/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-002",
@@ -62,7 +64,9 @@
     "artworkUrl": "/images/pokemon/2.png",
     "cryUrl": "/audio/cries/2.ogg",
     "cardImageUrl": "/images/cards/A1-002.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/002/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/002/high.webp",
+    "preDexId": 1,
+    "evolvesFrom": "Bisasam"
   },
   {
     "id": "A1-003",
@@ -96,7 +100,9 @@
     "artworkUrl": "/images/pokemon/3.png",
     "cryUrl": "/audio/cries/3.ogg",
     "cardImageUrl": "/images/cards/A1-003.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/003/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/003/high.webp",
+    "preDexId": 2,
+    "evolvesFrom": "Bisaknosp"
   },
   {
     "id": "A1-004",
@@ -140,7 +146,9 @@
     "artworkUrl": "/images/pokemon/3.png",
     "cryUrl": "/audio/cries/3.ogg",
     "cardImageUrl": "/images/cards/A1-004.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/004/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/004/high.webp",
+    "preDexId": 2,
+    "evolvesFrom": "Bisaknosp"
   },
   {
     "id": "A1-005",
@@ -171,7 +179,9 @@
     "artworkUrl": "/images/pokemon/10.png",
     "cryUrl": "/audio/cries/10.ogg",
     "cardImageUrl": "/images/cards/A1-005.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/005/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/005/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-006",
@@ -203,7 +213,9 @@
     "artworkUrl": "/images/pokemon/11.png",
     "cryUrl": "/audio/cries/11.ogg",
     "cardImageUrl": "/images/cards/A1-006.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/006/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/006/high.webp",
+    "preDexId": 10,
+    "evolvesFrom": "Raupy"
   },
   {
     "id": "A1-007",
@@ -236,7 +248,9 @@
     "artworkUrl": "/images/pokemon/12.png",
     "cryUrl": "/audio/cries/12.ogg",
     "cardImageUrl": "/images/cards/A1-007.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/007/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/007/high.webp",
+    "preDexId": 11,
+    "evolvesFrom": "Safcon"
   },
   {
     "id": "A1-008",
@@ -267,7 +281,9 @@
     "artworkUrl": "/images/pokemon/13.png",
     "cryUrl": "/audio/cries/13.ogg",
     "cardImageUrl": "/images/cards/A1-008.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/008/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/008/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-009",
@@ -298,7 +314,9 @@
     "artworkUrl": "/images/pokemon/14.png",
     "cryUrl": "/audio/cries/14.ogg",
     "cardImageUrl": "/images/cards/A1-009.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/009/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/009/high.webp",
+    "preDexId": 13,
+    "evolvesFrom": "Hornliu"
   },
   {
     "id": "A1-010",
@@ -329,7 +347,9 @@
     "artworkUrl": "/images/pokemon/15.png",
     "cryUrl": "/audio/cries/15.ogg",
     "cardImageUrl": "/images/cards/A1-010.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/010/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/010/high.webp",
+    "preDexId": 14,
+    "evolvesFrom": "Kokuna"
   },
   {
     "id": "A1-011",
@@ -360,7 +380,9 @@
     "artworkUrl": "/images/pokemon/43.png",
     "cryUrl": "/audio/cries/43.ogg",
     "cardImageUrl": "/images/cards/A1-011.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/011/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/011/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-012",
@@ -392,7 +414,9 @@
     "artworkUrl": "/images/pokemon/44.png",
     "cryUrl": "/audio/cries/44.ogg",
     "cardImageUrl": "/images/cards/A1-012.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/012/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/012/high.webp",
+    "preDexId": 43,
+    "evolvesFrom": "Myrapla"
   },
   {
     "id": "A1-013",
@@ -425,7 +449,9 @@
     "artworkUrl": "/images/pokemon/45.png",
     "cryUrl": "/audio/cries/45.ogg",
     "cardImageUrl": "/images/cards/A1-013.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/013/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/013/high.webp",
+    "preDexId": 44,
+    "evolvesFrom": "Duflor"
   },
   {
     "id": "A1-014",
@@ -457,7 +483,9 @@
     "artworkUrl": "/images/pokemon/46.png",
     "cryUrl": "/audio/cries/46.ogg",
     "cardImageUrl": "/images/cards/A1-014.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/014/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/014/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-015",
@@ -490,7 +518,9 @@
     "artworkUrl": "/images/pokemon/47.png",
     "cryUrl": "/audio/cries/47.ogg",
     "cardImageUrl": "/images/cards/A1-015.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/015/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/015/high.webp",
+    "preDexId": 46,
+    "evolvesFrom": "Paras"
   },
   {
     "id": "A1-016",
@@ -521,7 +551,9 @@
     "artworkUrl": "/images/pokemon/48.png",
     "cryUrl": "/audio/cries/48.ogg",
     "cardImageUrl": "/images/cards/A1-016.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/016/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/016/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-017",
@@ -552,7 +584,9 @@
     "artworkUrl": "/images/pokemon/49.png",
     "cryUrl": "/audio/cries/49.ogg",
     "cardImageUrl": "/images/cards/A1-017.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/017/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/017/high.webp",
+    "preDexId": 48,
+    "evolvesFrom": "Bluzuk"
   },
   {
     "id": "A1-018",
@@ -583,7 +617,9 @@
     "artworkUrl": "/images/pokemon/69.png",
     "cryUrl": "/audio/cries/69.ogg",
     "cardImageUrl": "/images/cards/A1-018.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/018/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/018/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-019",
@@ -615,7 +651,9 @@
     "artworkUrl": "/images/pokemon/70.png",
     "cryUrl": "/audio/cries/70.ogg",
     "cardImageUrl": "/images/cards/A1-019.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/019/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/019/high.webp",
+    "preDexId": 69,
+    "evolvesFrom": "Knofensa"
   },
   {
     "id": "A1-020",
@@ -647,7 +685,9 @@
     "artworkUrl": "/images/pokemon/71.png",
     "cryUrl": "/audio/cries/71.ogg",
     "cardImageUrl": "/images/cards/A1-020.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/020/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/020/high.webp",
+    "preDexId": 70,
+    "evolvesFrom": "Ultrigaria"
   },
   {
     "id": "A1-021",
@@ -678,7 +718,9 @@
     "artworkUrl": "/images/pokemon/102.png",
     "cryUrl": "/audio/cries/102.ogg",
     "cardImageUrl": "/images/cards/A1-021.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/021/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/021/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-022",
@@ -709,7 +751,9 @@
     "artworkUrl": "/images/pokemon/103.png",
     "cryUrl": "/audio/cries/103.ogg",
     "cardImageUrl": "/images/cards/A1-022.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/022/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/022/high.webp",
+    "preDexId": 102,
+    "evolvesFrom": "Owei"
   },
   {
     "id": "A1-023",
@@ -740,7 +784,9 @@
     "artworkUrl": "/images/pokemon/103.png",
     "cryUrl": "/audio/cries/103.ogg",
     "cardImageUrl": "/images/cards/A1-023.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/023/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/023/high.webp",
+    "preDexId": 102,
+    "evolvesFrom": "Owei"
   },
   {
     "id": "A1-024",
@@ -772,7 +818,9 @@
     "artworkUrl": "/images/pokemon/114.png",
     "cryUrl": "/audio/cries/114.ogg",
     "cardImageUrl": "/images/cards/A1-024.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/024/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/024/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-025",
@@ -803,7 +851,9 @@
     "artworkUrl": "/images/pokemon/123.png",
     "cryUrl": "/audio/cries/123.ogg",
     "cardImageUrl": "/images/cards/A1-025.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/025/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/025/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-026",
@@ -835,7 +885,9 @@
     "artworkUrl": "/images/pokemon/127.png",
     "cryUrl": "/audio/cries/127.ogg",
     "cardImageUrl": "/images/cards/A1-026.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/026/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/026/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-033",
@@ -866,7 +918,9 @@
     "artworkUrl": "/images/pokemon/4.png",
     "cryUrl": "/audio/cries/4.ogg",
     "cardImageUrl": "/images/cards/A1-033.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/033/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/033/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-034",
@@ -899,7 +953,9 @@
     "artworkUrl": "/images/pokemon/5.png",
     "cryUrl": "/audio/cries/5.ogg",
     "cardImageUrl": "/images/cards/A1-034.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/034/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/034/high.webp",
+    "preDexId": 4,
+    "evolvesFrom": "Glumanda"
   },
   {
     "id": "A1-035",
@@ -933,7 +989,9 @@
     "artworkUrl": "/images/pokemon/6.png",
     "cryUrl": "/audio/cries/6.ogg",
     "cardImageUrl": "/images/cards/A1-035.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/035/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/035/high.webp",
+    "preDexId": 5,
+    "evolvesFrom": "Glutexo"
   },
   {
     "id": "A1-036",
@@ -977,7 +1035,9 @@
     "artworkUrl": "/images/pokemon/6.png",
     "cryUrl": "/audio/cries/6.ogg",
     "cardImageUrl": "/images/cards/A1-036.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/036/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/036/high.webp",
+    "preDexId": 5,
+    "evolvesFrom": "Glutexo"
   },
   {
     "id": "A1-037",
@@ -1008,7 +1068,9 @@
     "artworkUrl": "/images/pokemon/37.png",
     "cryUrl": "/audio/cries/37.ogg",
     "cardImageUrl": "/images/cards/A1-037.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/037/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/037/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-038",
@@ -1040,7 +1102,9 @@
     "artworkUrl": "/images/pokemon/38.png",
     "cryUrl": "/audio/cries/38.ogg",
     "cardImageUrl": "/images/cards/A1-038.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/038/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/038/high.webp",
+    "preDexId": 37,
+    "evolvesFrom": "Vulpix"
   },
   {
     "id": "A1-039",
@@ -1072,7 +1136,9 @@
     "artworkUrl": "/images/pokemon/58.png",
     "cryUrl": "/audio/cries/58.ogg",
     "cardImageUrl": "/images/cards/A1-039.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/039/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/039/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-040",
@@ -1105,7 +1171,9 @@
     "artworkUrl": "/images/pokemon/59.png",
     "cryUrl": "/audio/cries/59.ogg",
     "cardImageUrl": "/images/cards/A1-040.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/040/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/040/high.webp",
+    "preDexId": 58,
+    "evolvesFrom": "Fukano"
   },
   {
     "id": "A1-041",
@@ -1138,7 +1206,9 @@
     "artworkUrl": "/images/pokemon/59.png",
     "cryUrl": "/audio/cries/59.ogg",
     "cardImageUrl": "/images/cards/A1-041.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/041/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/041/high.webp",
+    "preDexId": 58,
+    "evolvesFrom": "Fukano"
   },
   {
     "id": "A1-042",
@@ -1169,7 +1239,9 @@
     "artworkUrl": "/images/pokemon/77.png",
     "cryUrl": "/audio/cries/77.ogg",
     "cardImageUrl": "/images/cards/A1-042.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/042/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/042/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-043",
@@ -1200,7 +1272,9 @@
     "artworkUrl": "/images/pokemon/78.png",
     "cryUrl": "/audio/cries/78.ogg",
     "cardImageUrl": "/images/cards/A1-043.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/043/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/043/high.webp",
+    "preDexId": 77,
+    "evolvesFrom": "Ponita"
   },
   {
     "id": "A1-044",
@@ -1232,7 +1306,9 @@
     "artworkUrl": "/images/pokemon/126.png",
     "cryUrl": "/audio/cries/126.ogg",
     "cardImageUrl": "/images/cards/A1-044.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/044/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/044/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-045",
@@ -1265,7 +1341,9 @@
     "artworkUrl": "/images/pokemon/136.png",
     "cryUrl": "/audio/cries/136.ogg",
     "cardImageUrl": "/images/cards/A1-045.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/045/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/045/high.webp",
+    "preDexId": 133,
+    "evolvesFrom": "Evoli"
   },
   {
     "id": "A1-046",
@@ -1298,7 +1376,9 @@
     "artworkUrl": "/images/pokemon/146.png",
     "cryUrl": "/audio/cries/146.ogg",
     "cardImageUrl": "/images/cards/A1-046.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/046/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/046/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-047",
@@ -1339,7 +1419,9 @@
     "artworkUrl": "/images/pokemon/146.png",
     "cryUrl": "/audio/cries/146.ogg",
     "cardImageUrl": "/images/cards/A1-047.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/047/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/047/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-053",
@@ -1370,7 +1452,9 @@
     "artworkUrl": "/images/pokemon/7.png",
     "cryUrl": "/audio/cries/7.ogg",
     "cardImageUrl": "/images/cards/A1-053.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/053/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/053/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-054",
@@ -1402,7 +1486,9 @@
     "artworkUrl": "/images/pokemon/8.png",
     "cryUrl": "/audio/cries/8.ogg",
     "cardImageUrl": "/images/cards/A1-054.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/054/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/054/high.webp",
+    "preDexId": 7,
+    "evolvesFrom": "Schiggy"
   },
   {
     "id": "A1-055",
@@ -1434,7 +1520,9 @@
     "artworkUrl": "/images/pokemon/9.png",
     "cryUrl": "/audio/cries/9.ogg",
     "cardImageUrl": "/images/cards/A1-055.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/055/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/055/high.webp",
+    "preDexId": 8,
+    "evolvesFrom": "Schillok"
   },
   {
     "id": "A1-056",
@@ -1476,7 +1564,9 @@
     "artworkUrl": "/images/pokemon/9.png",
     "cryUrl": "/audio/cries/9.ogg",
     "cardImageUrl": "/images/cards/A1-056.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/056/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/056/high.webp",
+    "preDexId": 8,
+    "evolvesFrom": "Schillok"
   },
   {
     "id": "A1-057",
@@ -1507,7 +1597,9 @@
     "artworkUrl": "/images/pokemon/54.png",
     "cryUrl": "/audio/cries/54.ogg",
     "cardImageUrl": "/images/cards/A1-057.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/057/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/057/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-058",
@@ -1539,7 +1631,9 @@
     "artworkUrl": "/images/pokemon/55.png",
     "cryUrl": "/audio/cries/55.ogg",
     "cardImageUrl": "/images/cards/A1-058.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/058/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/058/high.webp",
+    "preDexId": 54,
+    "evolvesFrom": "Enton"
   },
   {
     "id": "A1-059",
@@ -1570,7 +1664,9 @@
     "artworkUrl": "/images/pokemon/60.png",
     "cryUrl": "/audio/cries/60.ogg",
     "cardImageUrl": "/images/cards/A1-059.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/059/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/059/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-060",
@@ -1602,7 +1698,9 @@
     "artworkUrl": "/images/pokemon/61.png",
     "cryUrl": "/audio/cries/61.ogg",
     "cardImageUrl": "/images/cards/A1-060.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/060/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/060/high.webp",
+    "preDexId": 60,
+    "evolvesFrom": "Quapsel"
   },
   {
     "id": "A1-061",
@@ -1635,7 +1733,9 @@
     "artworkUrl": "/images/pokemon/62.png",
     "cryUrl": "/audio/cries/62.ogg",
     "cardImageUrl": "/images/cards/A1-061.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/061/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/061/high.webp",
+    "preDexId": 61,
+    "evolvesFrom": "Quaputzi"
   },
   {
     "id": "A1-062",
@@ -1666,7 +1766,9 @@
     "artworkUrl": "/images/pokemon/72.png",
     "cryUrl": "/audio/cries/72.ogg",
     "cardImageUrl": "/images/cards/A1-062.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/062/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/062/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-063",
@@ -1698,7 +1800,9 @@
     "artworkUrl": "/images/pokemon/73.png",
     "cryUrl": "/audio/cries/73.ogg",
     "cardImageUrl": "/images/cards/A1-063.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/063/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/063/high.webp",
+    "preDexId": 72,
+    "evolvesFrom": "Tentacha"
   },
   {
     "id": "A1-064",
@@ -1730,7 +1834,9 @@
     "artworkUrl": "/images/pokemon/86.png",
     "cryUrl": "/audio/cries/86.ogg",
     "cardImageUrl": "/images/cards/A1-064.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/064/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/064/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-065",
@@ -1763,7 +1869,9 @@
     "artworkUrl": "/images/pokemon/87.png",
     "cryUrl": "/audio/cries/87.ogg",
     "cardImageUrl": "/images/cards/A1-065.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/065/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/065/high.webp",
+    "preDexId": 86,
+    "evolvesFrom": "Jurob"
   },
   {
     "id": "A1-066",
@@ -1794,7 +1902,9 @@
     "artworkUrl": "/images/pokemon/90.png",
     "cryUrl": "/audio/cries/90.ogg",
     "cardImageUrl": "/images/cards/A1-066.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/066/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/066/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-067",
@@ -1827,7 +1937,9 @@
     "artworkUrl": "/images/pokemon/91.png",
     "cryUrl": "/audio/cries/91.ogg",
     "cardImageUrl": "/images/cards/A1-067.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/067/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/067/high.webp",
+    "preDexId": 90,
+    "evolvesFrom": "Muschas"
   },
   {
     "id": "A1-068",
@@ -1859,7 +1971,9 @@
     "artworkUrl": "/images/pokemon/98.png",
     "cryUrl": "/audio/cries/98.ogg",
     "cardImageUrl": "/images/cards/A1-068.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/068/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/068/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-069",
@@ -1892,7 +2006,9 @@
     "artworkUrl": "/images/pokemon/99.png",
     "cryUrl": "/audio/cries/99.ogg",
     "cardImageUrl": "/images/cards/A1-069.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/069/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/069/high.webp",
+    "preDexId": 98,
+    "evolvesFrom": "Krabby"
   },
   {
     "id": "A1-070",
@@ -1923,7 +2039,9 @@
     "artworkUrl": "/images/pokemon/116.png",
     "cryUrl": "/audio/cries/116.ogg",
     "cardImageUrl": "/images/cards/A1-070.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/070/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/070/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-071",
@@ -1956,7 +2074,9 @@
     "artworkUrl": "/images/pokemon/117.png",
     "cryUrl": "/audio/cries/117.ogg",
     "cardImageUrl": "/images/cards/A1-071.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/071/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/071/high.webp",
+    "preDexId": 116,
+    "evolvesFrom": "Seeper"
   },
   {
     "id": "A1-072",
@@ -1987,7 +2107,9 @@
     "artworkUrl": "/images/pokemon/118.png",
     "cryUrl": "/audio/cries/118.ogg",
     "cardImageUrl": "/images/cards/A1-072.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/072/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/072/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-073",
@@ -2018,7 +2140,9 @@
     "artworkUrl": "/images/pokemon/119.png",
     "cryUrl": "/audio/cries/119.ogg",
     "cardImageUrl": "/images/cards/A1-073.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/073/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/073/high.webp",
+    "preDexId": 118,
+    "evolvesFrom": "Goldini"
   },
   {
     "id": "A1-074",
@@ -2049,7 +2173,9 @@
     "artworkUrl": "/images/pokemon/120.png",
     "cryUrl": "/audio/cries/120.ogg",
     "cardImageUrl": "/images/cards/A1-074.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/074/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/074/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-075",
@@ -2080,7 +2206,9 @@
     "artworkUrl": "/images/pokemon/121.png",
     "cryUrl": "/audio/cries/121.ogg",
     "cardImageUrl": "/images/cards/A1-075.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/075/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/075/high.webp",
+    "preDexId": 120,
+    "evolvesFrom": "Sterndu"
   },
   {
     "id": "A1-076",
@@ -2112,7 +2240,9 @@
     "artworkUrl": "/images/pokemon/121.png",
     "cryUrl": "/audio/cries/121.ogg",
     "cardImageUrl": "/images/cards/A1-076.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/076/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/076/high.webp",
+    "preDexId": 120,
+    "evolvesFrom": "Sterndu"
   },
   {
     "id": "A1-077",
@@ -2143,7 +2273,9 @@
     "artworkUrl": "/images/pokemon/129.png",
     "cryUrl": "/audio/cries/129.ogg",
     "cardImageUrl": "/images/cards/A1-077.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/077/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/077/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-078",
@@ -2177,7 +2309,9 @@
     "artworkUrl": "/images/pokemon/130.png",
     "cryUrl": "/audio/cries/130.ogg",
     "cardImageUrl": "/images/cards/A1-078.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/078/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/078/high.webp",
+    "preDexId": 129,
+    "evolvesFrom": "Karpador"
   },
   {
     "id": "A1-079",
@@ -2208,7 +2342,9 @@
     "artworkUrl": "/images/pokemon/131.png",
     "cryUrl": "/audio/cries/131.ogg",
     "cardImageUrl": "/images/cards/A1-079.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/079/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/079/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-080",
@@ -2241,7 +2377,9 @@
     "artworkUrl": "/images/pokemon/134.png",
     "cryUrl": "/audio/cries/134.ogg",
     "cardImageUrl": "/images/cards/A1-080.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/080/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/080/high.webp",
+    "preDexId": 133,
+    "evolvesFrom": "Evoli"
   },
   {
     "id": "A1-081",
@@ -2272,7 +2410,9 @@
     "artworkUrl": "/images/pokemon/138.png",
     "cryUrl": "/audio/cries/138.ogg",
     "cardImageUrl": "/images/cards/A1-081.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/081/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/081/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-082",
@@ -2305,7 +2445,9 @@
     "artworkUrl": "/images/pokemon/139.png",
     "cryUrl": "/audio/cries/139.ogg",
     "cardImageUrl": "/images/cards/A1-082.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/082/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/082/high.webp",
+    "preDexId": 138,
+    "evolvesFrom": "Amonitas"
   },
   {
     "id": "A1-083",
@@ -2338,7 +2480,9 @@
     "artworkUrl": "/images/pokemon/144.png",
     "cryUrl": "/audio/cries/144.ogg",
     "cardImageUrl": "/images/cards/A1-083.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/083/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/083/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-084",
@@ -2380,7 +2524,9 @@
     "artworkUrl": "/images/pokemon/144.png",
     "cryUrl": "/audio/cries/144.ogg",
     "cardImageUrl": "/images/cards/A1-084.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/084/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/084/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-094",
@@ -2411,7 +2557,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/A1-094.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/094/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/094/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-095",
@@ -2444,7 +2592,9 @@
     "artworkUrl": "/images/pokemon/26.png",
     "cryUrl": "/audio/cries/26.ogg",
     "cardImageUrl": "/images/cards/A1-095.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/095/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/095/high.webp",
+    "preDexId": 25,
+    "evolvesFrom": "Pikachu"
   },
   {
     "id": "A1-096",
@@ -2476,7 +2626,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/A1-096.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/096/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/096/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-097",
@@ -2507,7 +2659,9 @@
     "artworkUrl": "/images/pokemon/81.png",
     "cryUrl": "/audio/cries/81.ogg",
     "cardImageUrl": "/images/cards/A1-097.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/097/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/097/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-098",
@@ -2541,7 +2695,9 @@
     "artworkUrl": "/images/pokemon/82.png",
     "cryUrl": "/audio/cries/82.ogg",
     "cardImageUrl": "/images/cards/A1-098.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/098/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/098/high.webp",
+    "preDexId": 81,
+    "evolvesFrom": "Magnetilo"
   },
   {
     "id": "A1-099",
@@ -2572,7 +2728,9 @@
     "artworkUrl": "/images/pokemon/100.png",
     "cryUrl": "/audio/cries/100.ogg",
     "cardImageUrl": "/images/cards/A1-099.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/099/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/099/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-100",
@@ -2604,7 +2762,9 @@
     "artworkUrl": "/images/pokemon/101.png",
     "cryUrl": "/audio/cries/101.ogg",
     "cardImageUrl": "/images/cards/A1-100.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/100/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/100/high.webp",
+    "preDexId": 100,
+    "evolvesFrom": "Voltobal"
   },
   {
     "id": "A1-101",
@@ -2636,7 +2796,9 @@
     "artworkUrl": "/images/pokemon/125.png",
     "cryUrl": "/audio/cries/125.ogg",
     "cardImageUrl": "/images/cards/A1-101.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/101/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/101/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-102",
@@ -2668,7 +2830,9 @@
     "artworkUrl": "/images/pokemon/135.png",
     "cryUrl": "/audio/cries/135.ogg",
     "cardImageUrl": "/images/cards/A1-102.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/102/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/102/high.webp",
+    "preDexId": 133,
+    "evolvesFrom": "Evoli"
   },
   {
     "id": "A1-103",
@@ -2701,7 +2865,9 @@
     "artworkUrl": "/images/pokemon/145.png",
     "cryUrl": "/audio/cries/145.ogg",
     "cardImageUrl": "/images/cards/A1-103.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/103/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/103/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-104",
@@ -2742,7 +2908,9 @@
     "artworkUrl": "/images/pokemon/145.png",
     "cryUrl": "/audio/cries/145.ogg",
     "cardImageUrl": "/images/cards/A1-104.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/104/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/104/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-113",
@@ -2773,7 +2941,9 @@
     "artworkUrl": "/images/pokemon/35.png",
     "cryUrl": "/audio/cries/35.ogg",
     "cardImageUrl": "/images/cards/A1-113.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/113/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/113/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-114",
@@ -2804,7 +2974,9 @@
     "artworkUrl": "/images/pokemon/36.png",
     "cryUrl": "/audio/cries/36.ogg",
     "cardImageUrl": "/images/cards/A1-114.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/114/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/114/high.webp",
+    "preDexId": 35,
+    "evolvesFrom": "Piepi"
   },
   {
     "id": "A1-115",
@@ -2835,7 +3007,9 @@
     "artworkUrl": "/images/pokemon/63.png",
     "cryUrl": "/audio/cries/63.ogg",
     "cardImageUrl": "/images/cards/A1-115.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/115/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/115/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-116",
@@ -2868,7 +3042,9 @@
     "artworkUrl": "/images/pokemon/64.png",
     "cryUrl": "/audio/cries/64.ogg",
     "cardImageUrl": "/images/cards/A1-116.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/116/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/116/high.webp",
+    "preDexId": 63,
+    "evolvesFrom": "Abra"
   },
   {
     "id": "A1-117",
@@ -2901,7 +3077,9 @@
     "artworkUrl": "/images/pokemon/65.png",
     "cryUrl": "/audio/cries/65.ogg",
     "cardImageUrl": "/images/cards/A1-117.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/117/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/117/high.webp",
+    "preDexId": 64,
+    "evolvesFrom": "Kadabra"
   },
   {
     "id": "A1-118",
@@ -2933,7 +3111,9 @@
     "artworkUrl": "/images/pokemon/79.png",
     "cryUrl": "/audio/cries/79.ogg",
     "cardImageUrl": "/images/cards/A1-118.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/118/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/118/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-119",
@@ -2966,7 +3146,9 @@
     "artworkUrl": "/images/pokemon/80.png",
     "cryUrl": "/audio/cries/80.ogg",
     "cardImageUrl": "/images/cards/A1-119.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/119/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/119/high.webp",
+    "preDexId": 79,
+    "evolvesFrom": "Flegmon"
   },
   {
     "id": "A1-120",
@@ -2997,7 +3179,9 @@
     "artworkUrl": "/images/pokemon/92.png",
     "cryUrl": "/audio/cries/92.ogg",
     "cardImageUrl": "/images/cards/A1-120.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/120/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/120/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-121",
@@ -3028,7 +3212,9 @@
     "artworkUrl": "/images/pokemon/93.png",
     "cryUrl": "/audio/cries/93.ogg",
     "cardImageUrl": "/images/cards/A1-121.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/121/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/121/high.webp",
+    "preDexId": 92,
+    "evolvesFrom": "Nebulak"
   },
   {
     "id": "A1-122",
@@ -3059,7 +3245,9 @@
     "artworkUrl": "/images/pokemon/94.png",
     "cryUrl": "/audio/cries/94.ogg",
     "cardImageUrl": "/images/cards/A1-122.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/122/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/122/high.webp",
+    "preDexId": 93,
+    "evolvesFrom": "Alpollo"
   },
   {
     "id": "A1-123",
@@ -3092,7 +3280,9 @@
     "artworkUrl": "/images/pokemon/94.png",
     "cryUrl": "/audio/cries/94.ogg",
     "cardImageUrl": "/images/cards/A1-123.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/123/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/123/high.webp",
+    "preDexId": 93,
+    "evolvesFrom": "Alpollo"
   },
   {
     "id": "A1-124",
@@ -3124,7 +3314,9 @@
     "artworkUrl": "/images/pokemon/96.png",
     "cryUrl": "/audio/cries/96.ogg",
     "cardImageUrl": "/images/cards/A1-124.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/124/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/124/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-125",
@@ -3157,7 +3349,9 @@
     "artworkUrl": "/images/pokemon/97.png",
     "cryUrl": "/audio/cries/97.ogg",
     "cardImageUrl": "/images/cards/A1-125.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/125/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/125/high.webp",
+    "preDexId": 96,
+    "evolvesFrom": "Traumato"
   },
   {
     "id": "A1-126",
@@ -3189,7 +3383,9 @@
     "artworkUrl": "/images/pokemon/122.png",
     "cryUrl": "/audio/cries/122.ogg",
     "cardImageUrl": "/images/cards/A1-126.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/126/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/126/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-127",
@@ -3221,7 +3417,9 @@
     "artworkUrl": "/images/pokemon/124.png",
     "cryUrl": "/audio/cries/124.ogg",
     "cardImageUrl": "/images/cards/A1-127.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/127/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/127/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-128",
@@ -3255,7 +3453,9 @@
     "artworkUrl": "/images/pokemon/150.png",
     "cryUrl": "/audio/cries/150.ogg",
     "cardImageUrl": "/images/cards/A1-128.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/128/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/128/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-129",
@@ -3298,7 +3498,9 @@
     "artworkUrl": "/images/pokemon/150.png",
     "cryUrl": "/audio/cries/150.ogg",
     "cardImageUrl": "/images/cards/A1-129.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/129/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/129/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-137",
@@ -3329,7 +3531,9 @@
     "artworkUrl": "/images/pokemon/27.png",
     "cryUrl": "/audio/cries/27.ogg",
     "cardImageUrl": "/images/cards/A1-137.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/137/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/137/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-138",
@@ -3361,7 +3565,9 @@
     "artworkUrl": "/images/pokemon/28.png",
     "cryUrl": "/audio/cries/28.ogg",
     "cardImageUrl": "/images/cards/A1-138.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/138/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/138/high.webp",
+    "preDexId": 27,
+    "evolvesFrom": "Sandan"
   },
   {
     "id": "A1-139",
@@ -3392,7 +3598,9 @@
     "artworkUrl": "/images/pokemon/50.png",
     "cryUrl": "/audio/cries/50.ogg",
     "cardImageUrl": "/images/cards/A1-139.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/139/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/139/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-140",
@@ -3423,7 +3631,9 @@
     "artworkUrl": "/images/pokemon/51.png",
     "cryUrl": "/audio/cries/51.ogg",
     "cardImageUrl": "/images/cards/A1-140.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/140/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/140/high.webp",
+    "preDexId": 50,
+    "evolvesFrom": "Digda"
   },
   {
     "id": "A1-141",
@@ -3454,7 +3664,9 @@
     "artworkUrl": "/images/pokemon/56.png",
     "cryUrl": "/audio/cries/56.ogg",
     "cardImageUrl": "/images/cards/A1-141.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/141/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/141/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-142",
@@ -3486,7 +3698,9 @@
     "artworkUrl": "/images/pokemon/57.png",
     "cryUrl": "/audio/cries/57.ogg",
     "cardImageUrl": "/images/cards/A1-142.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/142/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/142/high.webp",
+    "preDexId": 56,
+    "evolvesFrom": "Menki"
   },
   {
     "id": "A1-143",
@@ -3517,7 +3731,9 @@
     "artworkUrl": "/images/pokemon/66.png",
     "cryUrl": "/audio/cries/66.ogg",
     "cardImageUrl": "/images/cards/A1-143.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/143/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/143/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-144",
@@ -3549,7 +3765,9 @@
     "artworkUrl": "/images/pokemon/67.png",
     "cryUrl": "/audio/cries/67.ogg",
     "cardImageUrl": "/images/cards/A1-144.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/144/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/144/high.webp",
+    "preDexId": 66,
+    "evolvesFrom": "Machollo"
   },
   {
     "id": "A1-145",
@@ -3582,7 +3800,9 @@
     "artworkUrl": "/images/pokemon/68.png",
     "cryUrl": "/audio/cries/68.ogg",
     "cardImageUrl": "/images/cards/A1-145.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/145/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/145/high.webp",
+    "preDexId": 67,
+    "evolvesFrom": "Maschock"
   },
   {
     "id": "A1-146",
@@ -3615,7 +3835,9 @@
     "artworkUrl": "/images/pokemon/68.png",
     "cryUrl": "/audio/cries/68.ogg",
     "cardImageUrl": "/images/cards/A1-146.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/146/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/146/high.webp",
+    "preDexId": 67,
+    "evolvesFrom": "Maschock"
   },
   {
     "id": "A1-147",
@@ -3646,7 +3868,9 @@
     "artworkUrl": "/images/pokemon/74.png",
     "cryUrl": "/audio/cries/74.ogg",
     "cardImageUrl": "/images/cards/A1-147.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/147/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/147/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-148",
@@ -3679,7 +3903,9 @@
     "artworkUrl": "/images/pokemon/75.png",
     "cryUrl": "/audio/cries/75.ogg",
     "cardImageUrl": "/images/cards/A1-148.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/148/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/148/high.webp",
+    "preDexId": 74,
+    "evolvesFrom": "Kleinstein"
   },
   {
     "id": "A1-149",
@@ -3713,7 +3939,9 @@
     "artworkUrl": "/images/pokemon/76.png",
     "cryUrl": "/audio/cries/76.ogg",
     "cardImageUrl": "/images/cards/A1-149.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/149/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/149/high.webp",
+    "preDexId": 75,
+    "evolvesFrom": "Georok"
   },
   {
     "id": "A1-150",
@@ -3746,7 +3974,9 @@
     "artworkUrl": "/images/pokemon/95.png",
     "cryUrl": "/audio/cries/95.ogg",
     "cardImageUrl": "/images/cards/A1-150.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/150/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/150/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-151",
@@ -3777,7 +4007,9 @@
     "artworkUrl": "/images/pokemon/104.png",
     "cryUrl": "/audio/cries/104.ogg",
     "cardImageUrl": "/images/cards/A1-151.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/151/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/151/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-152",
@@ -3808,7 +4040,9 @@
     "artworkUrl": "/images/pokemon/105.png",
     "cryUrl": "/audio/cries/105.ogg",
     "cardImageUrl": "/images/cards/A1-152.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/152/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/152/high.webp",
+    "preDexId": 104,
+    "evolvesFrom": "Tragosso"
   },
   {
     "id": "A1-153",
@@ -3840,7 +4074,9 @@
     "artworkUrl": "/images/pokemon/105.png",
     "cryUrl": "/audio/cries/105.ogg",
     "cardImageUrl": "/images/cards/A1-153.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/153/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/153/high.webp",
+    "preDexId": 104,
+    "evolvesFrom": "Tragosso"
   },
   {
     "id": "A1-154",
@@ -3871,7 +4107,9 @@
     "artworkUrl": "/images/pokemon/106.png",
     "cryUrl": "/audio/cries/106.ogg",
     "cardImageUrl": "/images/cards/A1-154.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/154/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/154/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-155",
@@ -3902,7 +4140,9 @@
     "artworkUrl": "/images/pokemon/107.png",
     "cryUrl": "/audio/cries/107.ogg",
     "cardImageUrl": "/images/cards/A1-155.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/155/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/155/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-156",
@@ -3935,7 +4175,9 @@
     "artworkUrl": "/images/pokemon/111.png",
     "cryUrl": "/audio/cries/111.ogg",
     "cardImageUrl": "/images/cards/A1-156.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/156/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/156/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-157",
@@ -3969,7 +4211,9 @@
     "artworkUrl": "/images/pokemon/112.png",
     "cryUrl": "/audio/cries/112.ogg",
     "cardImageUrl": "/images/cards/A1-157.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/157/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/157/high.webp",
+    "preDexId": 111,
+    "evolvesFrom": "Rihorn"
   },
   {
     "id": "A1-158",
@@ -4000,7 +4244,9 @@
     "artworkUrl": "/images/pokemon/140.png",
     "cryUrl": "/audio/cries/140.ogg",
     "cardImageUrl": "/images/cards/A1-158.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/158/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/158/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-159",
@@ -4031,7 +4277,9 @@
     "artworkUrl": "/images/pokemon/141.png",
     "cryUrl": "/audio/cries/141.ogg",
     "cardImageUrl": "/images/cards/A1-159.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/159/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/159/high.webp",
+    "preDexId": 140,
+    "evolvesFrom": "Kabuto"
   },
   {
     "id": "A1-164",
@@ -4062,7 +4310,9 @@
     "artworkUrl": "/images/pokemon/23.png",
     "cryUrl": "/audio/cries/23.ogg",
     "cardImageUrl": "/images/cards/A1-164.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/164/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/164/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-165",
@@ -4094,7 +4344,9 @@
     "artworkUrl": "/images/pokemon/24.png",
     "cryUrl": "/audio/cries/24.ogg",
     "cardImageUrl": "/images/cards/A1-165.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/165/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/165/high.webp",
+    "preDexId": 23,
+    "evolvesFrom": "Rettan"
   },
   {
     "id": "A1-166",
@@ -4125,7 +4377,9 @@
     "artworkUrl": "/images/pokemon/29.png",
     "cryUrl": "/audio/cries/29.ogg",
     "cardImageUrl": "/images/cards/A1-166.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/166/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/166/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-167",
@@ -4156,7 +4410,9 @@
     "artworkUrl": "/images/pokemon/30.png",
     "cryUrl": "/audio/cries/30.ogg",
     "cardImageUrl": "/images/cards/A1-167.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/167/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/167/high.webp",
+    "preDexId": 29,
+    "evolvesFrom": "Nidoran♀"
   },
   {
     "id": "A1-168",
@@ -4189,7 +4445,9 @@
     "artworkUrl": "/images/pokemon/31.png",
     "cryUrl": "/audio/cries/31.ogg",
     "cardImageUrl": "/images/cards/A1-168.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/168/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/168/high.webp",
+    "preDexId": 30,
+    "evolvesFrom": "Nidorina"
   },
   {
     "id": "A1-169",
@@ -4220,7 +4478,9 @@
     "artworkUrl": "/images/pokemon/32.png",
     "cryUrl": "/audio/cries/32.ogg",
     "cardImageUrl": "/images/cards/A1-169.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/169/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/169/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-170",
@@ -4252,7 +4512,9 @@
     "artworkUrl": "/images/pokemon/33.png",
     "cryUrl": "/audio/cries/33.ogg",
     "cardImageUrl": "/images/cards/A1-170.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/170/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/170/high.webp",
+    "preDexId": 32,
+    "evolvesFrom": "Nidoran♂"
   },
   {
     "id": "A1-171",
@@ -4285,7 +4547,9 @@
     "artworkUrl": "/images/pokemon/34.png",
     "cryUrl": "/audio/cries/34.ogg",
     "cardImageUrl": "/images/cards/A1-171.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/171/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/171/high.webp",
+    "preDexId": 33,
+    "evolvesFrom": "Nidorino"
   },
   {
     "id": "A1-172",
@@ -4316,7 +4580,9 @@
     "artworkUrl": "/images/pokemon/41.png",
     "cryUrl": "/audio/cries/41.ogg",
     "cardImageUrl": "/images/cards/A1-172.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/172/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/172/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-173",
@@ -4347,7 +4613,9 @@
     "artworkUrl": "/images/pokemon/42.png",
     "cryUrl": "/audio/cries/42.ogg",
     "cardImageUrl": "/images/cards/A1-173.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/173/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/173/high.webp",
+    "preDexId": 41,
+    "evolvesFrom": "Zubat"
   },
   {
     "id": "A1-174",
@@ -4378,7 +4646,9 @@
     "artworkUrl": "/images/pokemon/88.png",
     "cryUrl": "/audio/cries/88.ogg",
     "cardImageUrl": "/images/cards/A1-174.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/174/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/174/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-175",
@@ -4411,7 +4681,9 @@
     "artworkUrl": "/images/pokemon/89.png",
     "cryUrl": "/audio/cries/89.ogg",
     "cardImageUrl": "/images/cards/A1-175.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/175/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/175/high.webp",
+    "preDexId": 88,
+    "evolvesFrom": "Alola-Sleima"
   },
   {
     "id": "A1-176",
@@ -4442,7 +4714,9 @@
     "artworkUrl": "/images/pokemon/109.png",
     "cryUrl": "/audio/cries/109.ogg",
     "cardImageUrl": "/images/cards/A1-176.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/176/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/176/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-177",
@@ -4473,7 +4747,9 @@
     "artworkUrl": "/images/pokemon/110.png",
     "cryUrl": "/audio/cries/110.ogg",
     "cardImageUrl": "/images/cards/A1-177.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/177/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/177/high.webp",
+    "preDexId": 109,
+    "evolvesFrom": "Smogon"
   },
   {
     "id": "A1-183",
@@ -4502,7 +4778,9 @@
     "artworkUrl": "/images/pokemon/147.png",
     "cryUrl": "/audio/cries/147.ogg",
     "cardImageUrl": "/images/cards/A1-183.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/183/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/183/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-184",
@@ -4532,7 +4810,9 @@
     "artworkUrl": "/images/pokemon/148.png",
     "cryUrl": "/audio/cries/148.ogg",
     "cardImageUrl": "/images/cards/A1-184.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/184/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/184/high.webp",
+    "preDexId": 147,
+    "evolvesFrom": "Dratini"
   },
   {
     "id": "A1-185",
@@ -4563,7 +4843,9 @@
     "artworkUrl": "/images/pokemon/149.png",
     "cryUrl": "/audio/cries/149.ogg",
     "cardImageUrl": "/images/cards/A1-185.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/185/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/185/high.webp",
+    "preDexId": 148,
+    "evolvesFrom": "Dragonir"
   },
   {
     "id": "A1-186",
@@ -4594,7 +4876,9 @@
     "artworkUrl": "/images/pokemon/16.png",
     "cryUrl": "/audio/cries/16.ogg",
     "cardImageUrl": "/images/cards/A1-186.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/186/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/186/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-187",
@@ -4625,7 +4909,9 @@
     "artworkUrl": "/images/pokemon/17.png",
     "cryUrl": "/audio/cries/17.ogg",
     "cardImageUrl": "/images/cards/A1-187.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/187/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/187/high.webp",
+    "preDexId": 16,
+    "evolvesFrom": "Taubsi"
   },
   {
     "id": "A1-188",
@@ -4657,7 +4943,9 @@
     "artworkUrl": "/images/pokemon/18.png",
     "cryUrl": "/audio/cries/18.ogg",
     "cardImageUrl": "/images/cards/A1-188.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/188/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/188/high.webp",
+    "preDexId": 17,
+    "evolvesFrom": "Tauboga"
   },
   {
     "id": "A1-189",
@@ -4688,7 +4976,9 @@
     "artworkUrl": "/images/pokemon/19.png",
     "cryUrl": "/audio/cries/19.ogg",
     "cardImageUrl": "/images/cards/A1-189.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/189/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/189/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-190",
@@ -4719,7 +5009,9 @@
     "artworkUrl": "/images/pokemon/20.png",
     "cryUrl": "/audio/cries/20.ogg",
     "cardImageUrl": "/images/cards/A1-190.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/190/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/190/high.webp",
+    "preDexId": 19,
+    "evolvesFrom": "Rattfratz"
   },
   {
     "id": "A1-191",
@@ -4750,7 +5042,9 @@
     "artworkUrl": "/images/pokemon/21.png",
     "cryUrl": "/audio/cries/21.ogg",
     "cardImageUrl": "/images/cards/A1-191.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/191/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/191/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-192",
@@ -4782,7 +5076,9 @@
     "artworkUrl": "/images/pokemon/22.png",
     "cryUrl": "/audio/cries/22.ogg",
     "cardImageUrl": "/images/cards/A1-192.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/192/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/192/high.webp",
+    "preDexId": 21,
+    "evolvesFrom": "Habitak"
   },
   {
     "id": "A1-193",
@@ -4814,7 +5110,9 @@
     "artworkUrl": "/images/pokemon/39.png",
     "cryUrl": "/audio/cries/39.ogg",
     "cardImageUrl": "/images/cards/A1-193.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/193/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/193/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-194",
@@ -4846,7 +5144,9 @@
     "artworkUrl": "/images/pokemon/40.png",
     "cryUrl": "/audio/cries/40.ogg",
     "cardImageUrl": "/images/cards/A1-194.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/194/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/194/high.webp",
+    "preDexId": 39,
+    "evolvesFrom": "Pummeluff"
   },
   {
     "id": "A1-195",
@@ -4879,7 +5179,9 @@
     "artworkUrl": "/images/pokemon/40.png",
     "cryUrl": "/audio/cries/40.ogg",
     "cardImageUrl": "/images/cards/A1-195.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/195/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/195/high.webp",
+    "preDexId": 39,
+    "evolvesFrom": "Pummeluff"
   },
   {
     "id": "A1-196",
@@ -4910,7 +5212,9 @@
     "artworkUrl": "/images/pokemon/52.png",
     "cryUrl": "/audio/cries/52.ogg",
     "cardImageUrl": "/images/cards/A1-196.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/196/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/196/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-197",
@@ -4942,7 +5246,9 @@
     "artworkUrl": "/images/pokemon/53.png",
     "cryUrl": "/audio/cries/53.ogg",
     "cardImageUrl": "/images/cards/A1-197.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/197/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/197/high.webp",
+    "preDexId": 52,
+    "evolvesFrom": "Mauzi"
   },
   {
     "id": "A1-198",
@@ -4973,7 +5279,9 @@
     "artworkUrl": "/images/pokemon/83.png",
     "cryUrl": "/audio/cries/83.ogg",
     "cardImageUrl": "/images/cards/A1-198.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/198/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/198/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-199",
@@ -5004,7 +5312,9 @@
     "artworkUrl": "/images/pokemon/84.png",
     "cryUrl": "/audio/cries/84.ogg",
     "cardImageUrl": "/images/cards/A1-199.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/199/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/199/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-200",
@@ -5035,7 +5345,9 @@
     "artworkUrl": "/images/pokemon/85.png",
     "cryUrl": "/audio/cries/85.ogg",
     "cardImageUrl": "/images/cards/A1-200.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/200/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/200/high.webp",
+    "preDexId": 84,
+    "evolvesFrom": "Dodu"
   },
   {
     "id": "A1-201",
@@ -5068,7 +5380,9 @@
     "artworkUrl": "/images/pokemon/108.png",
     "cryUrl": "/audio/cries/108.ogg",
     "cardImageUrl": "/images/cards/A1-201.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/201/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/201/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-202",
@@ -5101,7 +5415,9 @@
     "artworkUrl": "/images/pokemon/113.png",
     "cryUrl": "/audio/cries/113.ogg",
     "cardImageUrl": "/images/cards/A1-202.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/202/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/202/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-203",
@@ -5132,7 +5448,9 @@
     "artworkUrl": "/images/pokemon/115.png",
     "cryUrl": "/audio/cries/115.ogg",
     "cardImageUrl": "/images/cards/A1-203.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/203/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/203/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-204",
@@ -5164,7 +5482,9 @@
     "artworkUrl": "/images/pokemon/128.png",
     "cryUrl": "/audio/cries/128.ogg",
     "cardImageUrl": "/images/cards/A1-204.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/204/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/204/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-205",
@@ -5195,7 +5515,9 @@
     "artworkUrl": "/images/pokemon/132.png",
     "cryUrl": "/audio/cries/132.ogg",
     "cardImageUrl": "/images/cards/A1-205.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/205/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/205/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-206",
@@ -5226,7 +5548,9 @@
     "artworkUrl": "/images/pokemon/133.png",
     "cryUrl": "/audio/cries/133.ogg",
     "cardImageUrl": "/images/cards/A1-206.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/206/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/206/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-207",
@@ -5257,7 +5581,9 @@
     "artworkUrl": "/images/pokemon/133.png",
     "cryUrl": "/audio/cries/133.ogg",
     "cardImageUrl": "/images/cards/A1-207.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/207/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/207/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-208",
@@ -5288,7 +5614,9 @@
     "artworkUrl": "/images/pokemon/133.png",
     "cryUrl": "/audio/cries/133.ogg",
     "cardImageUrl": "/images/cards/A1-208.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/208/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/208/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-209",
@@ -5319,7 +5647,9 @@
     "artworkUrl": "/images/pokemon/137.png",
     "cryUrl": "/audio/cries/137.ogg",
     "cardImageUrl": "/images/cards/A1-209.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/209/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/209/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-210",
@@ -5351,7 +5681,9 @@
     "artworkUrl": "/images/pokemon/142.png",
     "cryUrl": "/audio/cries/142.ogg",
     "cardImageUrl": "/images/cards/A1-210.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/210/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/210/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-211",
@@ -5385,7 +5717,9 @@
     "artworkUrl": "/images/pokemon/143.png",
     "cryUrl": "/audio/cries/143.ogg",
     "cardImageUrl": "/images/cards/A1-211.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/211/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/211/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-227",
@@ -5417,7 +5751,9 @@
     "artworkUrl": "/images/pokemon/1.png",
     "cryUrl": "/audio/cries/1.ogg",
     "cardImageUrl": "/images/cards/A1-227.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/227/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/227/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-228",
@@ -5449,7 +5785,9 @@
     "artworkUrl": "/images/pokemon/44.png",
     "cryUrl": "/audio/cries/44.ogg",
     "cardImageUrl": "/images/cards/A1-228.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/228/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/228/high.webp",
+    "preDexId": 43,
+    "evolvesFrom": "Myrapla"
   },
   {
     "id": "A1-229",
@@ -5481,7 +5819,9 @@
     "artworkUrl": "/images/pokemon/127.png",
     "cryUrl": "/audio/cries/127.ogg",
     "cardImageUrl": "/images/cards/A1-229.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/229/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/229/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-230",
@@ -5512,7 +5852,9 @@
     "artworkUrl": "/images/pokemon/4.png",
     "cryUrl": "/audio/cries/4.ogg",
     "cardImageUrl": "/images/cards/A1-230.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/230/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/230/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-231",
@@ -5543,7 +5885,9 @@
     "artworkUrl": "/images/pokemon/78.png",
     "cryUrl": "/audio/cries/78.ogg",
     "cardImageUrl": "/images/cards/A1-231.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/231/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/231/high.webp",
+    "preDexId": 77,
+    "evolvesFrom": "Ponita"
   },
   {
     "id": "A1-232",
@@ -5574,7 +5918,9 @@
     "artworkUrl": "/images/pokemon/7.png",
     "cryUrl": "/audio/cries/7.ogg",
     "cardImageUrl": "/images/cards/A1-232.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/232/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/232/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-233",
@@ -5608,7 +5954,9 @@
     "artworkUrl": "/images/pokemon/130.png",
     "cryUrl": "/audio/cries/130.ogg",
     "cardImageUrl": "/images/cards/A1-233.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/233/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/233/high.webp",
+    "preDexId": 129,
+    "evolvesFrom": "Karpador"
   },
   {
     "id": "A1-234",
@@ -5639,7 +5987,9 @@
     "artworkUrl": "/images/pokemon/131.png",
     "cryUrl": "/audio/cries/131.ogg",
     "cardImageUrl": "/images/cards/A1-234.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/234/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/234/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-235",
@@ -5671,7 +6021,9 @@
     "artworkUrl": "/images/pokemon/101.png",
     "cryUrl": "/audio/cries/101.ogg",
     "cardImageUrl": "/images/cards/A1-235.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/235/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/235/high.webp",
+    "preDexId": 100,
+    "evolvesFrom": "Voltobal"
   },
   {
     "id": "A1-236",
@@ -5704,7 +6056,9 @@
     "artworkUrl": "/images/pokemon/65.png",
     "cryUrl": "/audio/cries/65.ogg",
     "cardImageUrl": "/images/cards/A1-236.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/236/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/236/high.webp",
+    "preDexId": 64,
+    "evolvesFrom": "Kadabra"
   },
   {
     "id": "A1-237",
@@ -5736,7 +6090,9 @@
     "artworkUrl": "/images/pokemon/79.png",
     "cryUrl": "/audio/cries/79.ogg",
     "cardImageUrl": "/images/cards/A1-237.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/237/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/237/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-238",
@@ -5767,7 +6123,9 @@
     "artworkUrl": "/images/pokemon/50.png",
     "cryUrl": "/audio/cries/50.ogg",
     "cardImageUrl": "/images/cards/A1-238.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/238/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/238/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-239",
@@ -5798,7 +6156,9 @@
     "artworkUrl": "/images/pokemon/104.png",
     "cryUrl": "/audio/cries/104.ogg",
     "cardImageUrl": "/images/cards/A1-239.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/239/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/239/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-240",
@@ -5831,7 +6191,9 @@
     "artworkUrl": "/images/pokemon/31.png",
     "cryUrl": "/audio/cries/31.ogg",
     "cardImageUrl": "/images/cards/A1-240.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/240/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/240/high.webp",
+    "preDexId": 30,
+    "evolvesFrom": "Nidorina"
   },
   {
     "id": "A1-241",
@@ -5864,7 +6226,9 @@
     "artworkUrl": "/images/pokemon/34.png",
     "cryUrl": "/audio/cries/34.ogg",
     "cardImageUrl": "/images/cards/A1-241.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/241/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/241/high.webp",
+    "preDexId": 33,
+    "evolvesFrom": "Nidorino"
   },
   {
     "id": "A1-242",
@@ -5895,7 +6259,9 @@
     "artworkUrl": "/images/pokemon/42.png",
     "cryUrl": "/audio/cries/42.ogg",
     "cardImageUrl": "/images/cards/A1-242.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/242/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/242/high.webp",
+    "preDexId": 41,
+    "evolvesFrom": "Zubat"
   },
   {
     "id": "A1-243",
@@ -5926,7 +6292,9 @@
     "artworkUrl": "/images/pokemon/110.png",
     "cryUrl": "/audio/cries/110.ogg",
     "cardImageUrl": "/images/cards/A1-243.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/243/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/243/high.webp",
+    "preDexId": 109,
+    "evolvesFrom": "Smogon"
   },
   {
     "id": "A1-244",
@@ -5957,7 +6325,9 @@
     "artworkUrl": "/images/pokemon/149.png",
     "cryUrl": "/audio/cries/149.ogg",
     "cardImageUrl": "/images/cards/A1-244.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/244/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/244/high.webp",
+    "preDexId": 148,
+    "evolvesFrom": "Dragonir"
   },
   {
     "id": "A1-245",
@@ -5989,7 +6359,9 @@
     "artworkUrl": "/images/pokemon/18.png",
     "cryUrl": "/audio/cries/18.ogg",
     "cardImageUrl": "/images/cards/A1-245.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/245/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/245/high.webp",
+    "preDexId": 17,
+    "evolvesFrom": "Tauboga"
   },
   {
     "id": "A1-246",
@@ -6020,7 +6392,9 @@
     "artworkUrl": "/images/pokemon/52.png",
     "cryUrl": "/audio/cries/52.ogg",
     "cardImageUrl": "/images/cards/A1-246.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/246/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/246/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-247",
@@ -6051,7 +6425,9 @@
     "artworkUrl": "/images/pokemon/132.png",
     "cryUrl": "/audio/cries/132.ogg",
     "cardImageUrl": "/images/cards/A1-247.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/247/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/247/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-248",
@@ -6082,7 +6458,9 @@
     "artworkUrl": "/images/pokemon/133.png",
     "cryUrl": "/audio/cries/133.ogg",
     "cardImageUrl": "/images/cards/A1-248.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/248/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/248/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-249",
@@ -6113,7 +6491,9 @@
     "artworkUrl": "/images/pokemon/137.png",
     "cryUrl": "/audio/cries/137.ogg",
     "cardImageUrl": "/images/cards/A1-249.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/249/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/249/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-250",
@@ -6147,7 +6527,9 @@
     "artworkUrl": "/images/pokemon/143.png",
     "cryUrl": "/audio/cries/143.ogg",
     "cardImageUrl": "/images/cards/A1-250.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/250/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/250/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-251",
@@ -6191,7 +6573,9 @@
     "artworkUrl": "/images/pokemon/3.png",
     "cryUrl": "/audio/cries/3.ogg",
     "cardImageUrl": "/images/cards/A1-251.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/251/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/251/high.webp",
+    "preDexId": 2,
+    "evolvesFrom": "Bisaknosp"
   },
   {
     "id": "A1-252",
@@ -6222,7 +6606,9 @@
     "artworkUrl": "/images/pokemon/103.png",
     "cryUrl": "/audio/cries/103.ogg",
     "cardImageUrl": "/images/cards/A1-252.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/252/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/252/high.webp",
+    "preDexId": 102,
+    "evolvesFrom": "Owei"
   },
   {
     "id": "A1-253",
@@ -6266,7 +6652,9 @@
     "artworkUrl": "/images/pokemon/6.png",
     "cryUrl": "/audio/cries/6.ogg",
     "cardImageUrl": "/images/cards/A1-253.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/253/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/253/high.webp",
+    "preDexId": 5,
+    "evolvesFrom": "Glutexo"
   },
   {
     "id": "A1-254",
@@ -6299,7 +6687,9 @@
     "artworkUrl": "/images/pokemon/59.png",
     "cryUrl": "/audio/cries/59.ogg",
     "cardImageUrl": "/images/cards/A1-254.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/254/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/254/high.webp",
+    "preDexId": 58,
+    "evolvesFrom": "Fukano"
   },
   {
     "id": "A1-255",
@@ -6340,7 +6730,9 @@
     "artworkUrl": "/images/pokemon/146.png",
     "cryUrl": "/audio/cries/146.ogg",
     "cardImageUrl": "/images/cards/A1-255.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/255/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/255/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-256",
@@ -6382,7 +6774,9 @@
     "artworkUrl": "/images/pokemon/9.png",
     "cryUrl": "/audio/cries/9.ogg",
     "cardImageUrl": "/images/cards/A1-256.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/256/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/256/high.webp",
+    "preDexId": 8,
+    "evolvesFrom": "Schillok"
   },
   {
     "id": "A1-257",
@@ -6414,7 +6808,9 @@
     "artworkUrl": "/images/pokemon/121.png",
     "cryUrl": "/audio/cries/121.ogg",
     "cardImageUrl": "/images/cards/A1-257.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/257/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/257/high.webp",
+    "preDexId": 120,
+    "evolvesFrom": "Sterndu"
   },
   {
     "id": "A1-258",
@@ -6456,7 +6852,9 @@
     "artworkUrl": "/images/pokemon/144.png",
     "cryUrl": "/audio/cries/144.ogg",
     "cardImageUrl": "/images/cards/A1-258.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/258/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/258/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-259",
@@ -6488,7 +6886,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/A1-259.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/259/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/259/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-260",
@@ -6529,7 +6929,9 @@
     "artworkUrl": "/images/pokemon/145.png",
     "cryUrl": "/audio/cries/145.ogg",
     "cardImageUrl": "/images/cards/A1-260.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/260/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/260/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-261",
@@ -6562,7 +6964,9 @@
     "artworkUrl": "/images/pokemon/94.png",
     "cryUrl": "/audio/cries/94.ogg",
     "cardImageUrl": "/images/cards/A1-261.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/261/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/261/high.webp",
+    "preDexId": 93,
+    "evolvesFrom": "Alpollo"
   },
   {
     "id": "A1-262",
@@ -6605,7 +7009,9 @@
     "artworkUrl": "/images/pokemon/150.png",
     "cryUrl": "/audio/cries/150.ogg",
     "cardImageUrl": "/images/cards/A1-262.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/262/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/262/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-263",
@@ -6638,7 +7044,9 @@
     "artworkUrl": "/images/pokemon/68.png",
     "cryUrl": "/audio/cries/68.ogg",
     "cardImageUrl": "/images/cards/A1-263.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/263/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/263/high.webp",
+    "preDexId": 67,
+    "evolvesFrom": "Maschock"
   },
   {
     "id": "A1-264",
@@ -6670,7 +7078,9 @@
     "artworkUrl": "/images/pokemon/105.png",
     "cryUrl": "/audio/cries/105.ogg",
     "cardImageUrl": "/images/cards/A1-264.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/264/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/264/high.webp",
+    "preDexId": 104,
+    "evolvesFrom": "Tragosso"
   },
   {
     "id": "A1-265",
@@ -6703,7 +7113,9 @@
     "artworkUrl": "/images/pokemon/40.png",
     "cryUrl": "/audio/cries/40.ogg",
     "cardImageUrl": "/images/cards/A1-265.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/265/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/265/high.webp",
+    "preDexId": 39,
+    "evolvesFrom": "Pummeluff"
   },
   {
     "id": "A1-274",
@@ -6744,7 +7156,9 @@
     "artworkUrl": "/images/pokemon/146.png",
     "cryUrl": "/audio/cries/146.ogg",
     "cardImageUrl": "/images/cards/A1-274.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/274/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/274/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-275",
@@ -6786,7 +7200,9 @@
     "artworkUrl": "/images/pokemon/144.png",
     "cryUrl": "/audio/cries/144.ogg",
     "cardImageUrl": "/images/cards/A1-275.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/275/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/275/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-276",
@@ -6827,7 +7243,9 @@
     "artworkUrl": "/images/pokemon/145.png",
     "cryUrl": "/audio/cries/145.ogg",
     "cardImageUrl": "/images/cards/A1-276.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/276/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/276/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-277",
@@ -6860,7 +7278,9 @@
     "artworkUrl": "/images/pokemon/94.png",
     "cryUrl": "/audio/cries/94.ogg",
     "cardImageUrl": "/images/cards/A1-277.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/277/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/277/high.webp",
+    "preDexId": 93,
+    "evolvesFrom": "Alpollo"
   },
   {
     "id": "A1-278",
@@ -6893,7 +7313,9 @@
     "artworkUrl": "/images/pokemon/68.png",
     "cryUrl": "/audio/cries/68.ogg",
     "cardImageUrl": "/images/cards/A1-278.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/278/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/278/high.webp",
+    "preDexId": 67,
+    "evolvesFrom": "Maschock"
   },
   {
     "id": "A1-279",
@@ -6926,7 +7348,9 @@
     "artworkUrl": "/images/pokemon/40.png",
     "cryUrl": "/audio/cries/40.ogg",
     "cardImageUrl": "/images/cards/A1-279.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/279/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/279/high.webp",
+    "preDexId": 39,
+    "evolvesFrom": "Pummeluff"
   },
   {
     "id": "A1-280",
@@ -6970,7 +7394,9 @@
     "artworkUrl": "/images/pokemon/6.png",
     "cryUrl": "/audio/cries/6.ogg",
     "cardImageUrl": "/images/cards/A1-280.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/280/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/280/high.webp",
+    "preDexId": 5,
+    "evolvesFrom": "Glutexo"
   },
   {
     "id": "A1-281",
@@ -7002,7 +7428,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/A1-281.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/281/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/281/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-282",
@@ -7045,7 +7473,9 @@
     "artworkUrl": "/images/pokemon/150.png",
     "cryUrl": "/audio/cries/150.ogg",
     "cardImageUrl": "/images/cards/A1-282.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/282/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/282/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-283",
@@ -7076,7 +7506,9 @@
     "artworkUrl": "/images/pokemon/151.png",
     "cryUrl": "/audio/cries/151.ogg",
     "cardImageUrl": "/images/cards/A1-283.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/283/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/283/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-284",
@@ -7120,7 +7552,9 @@
     "artworkUrl": "/images/pokemon/6.png",
     "cryUrl": "/audio/cries/6.ogg",
     "cardImageUrl": "/images/cards/A1-284.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/284/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/284/high.webp",
+    "preDexId": 5,
+    "evolvesFrom": "Glutexo"
   },
   {
     "id": "A1-285",
@@ -7152,7 +7586,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/A1-285.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/285/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/285/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "A1-286",
@@ -7195,7 +7631,9 @@
     "artworkUrl": "/images/pokemon/150.png",
     "cryUrl": "/audio/cries/150.ogg",
     "cardImageUrl": "/images/cards/A1-286.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/286/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/A1/286/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-009",
@@ -7226,7 +7664,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/P-A-009.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/009/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/009/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-010",
@@ -7260,7 +7700,9 @@
     "artworkUrl": "/images/pokemon/150.png",
     "cryUrl": "/audio/cries/150.ogg",
     "cardImageUrl": "/images/cards/P-A-010.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/010/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/010/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-011",
@@ -7293,7 +7735,9 @@
     "artworkUrl": "/images/pokemon/113.png",
     "cryUrl": "/audio/cries/113.ogg",
     "cardImageUrl": "/images/cards/P-A-011.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/011/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/011/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-012",
@@ -7324,7 +7768,9 @@
     "artworkUrl": "/images/pokemon/52.png",
     "cryUrl": "/audio/cries/52.ogg",
     "cardImageUrl": "/images/cards/P-A-012.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/012/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/012/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-013",
@@ -7357,7 +7803,9 @@
     "artworkUrl": "/images/pokemon/12.png",
     "cryUrl": "/audio/cries/12.ogg",
     "cardImageUrl": "/images/cards/P-A-013.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/013/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/013/high.webp",
+    "preDexId": 11,
+    "evolvesFrom": "Safcon"
   },
   {
     "id": "P-A-014",
@@ -7390,7 +7838,9 @@
     "artworkUrl": "/images/pokemon/131.png",
     "cryUrl": "/audio/cries/131.ogg",
     "cardImageUrl": "/images/cards/P-A-014.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/014/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/014/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-015",
@@ -7421,7 +7871,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/P-A-015.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/015/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/015/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-016",
@@ -7452,7 +7904,9 @@
     "artworkUrl": "/images/pokemon/35.png",
     "cryUrl": "/audio/cries/35.ogg",
     "cardImageUrl": "/images/cards/P-A-016.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/016/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/016/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-017",
@@ -7483,7 +7937,9 @@
     "artworkUrl": "/images/pokemon/56.png",
     "cryUrl": "/audio/cries/56.ogg",
     "cardImageUrl": "/images/cards/P-A-017.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/017/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/017/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-018",
@@ -7517,7 +7973,9 @@
     "artworkUrl": "/images/pokemon/3.png",
     "cryUrl": "/audio/cries/3.ogg",
     "cardImageUrl": "/images/cards/P-A-018.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/018/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/018/high.webp",
+    "preDexId": 2,
+    "evolvesFrom": "Bisaknosp"
   },
   {
     "id": "P-A-020",
@@ -7548,7 +8006,9 @@
     "artworkUrl": "/images/pokemon/93.png",
     "cryUrl": "/audio/cries/93.ogg",
     "cardImageUrl": "/images/cards/P-A-020.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/020/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/020/high.webp",
+    "preDexId": 92,
+    "evolvesFrom": "Nebulak"
   },
   {
     "id": "P-A-021",
@@ -7581,7 +8041,9 @@
     "artworkUrl": "/images/pokemon/95.png",
     "cryUrl": "/audio/cries/95.ogg",
     "cardImageUrl": "/images/cards/P-A-021.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/021/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/021/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-022",
@@ -7612,7 +8074,9 @@
     "artworkUrl": "/images/pokemon/39.png",
     "cryUrl": "/audio/cries/39.ogg",
     "cardImageUrl": "/images/cards/P-A-022.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/022/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/022/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-023",
@@ -7644,7 +8108,9 @@
     "artworkUrl": "/images/pokemon/1.png",
     "cryUrl": "/audio/cries/1.ogg",
     "cardImageUrl": "/images/cards/P-A-023.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/023/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/023/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-024",
@@ -7675,7 +8141,9 @@
     "artworkUrl": "/images/pokemon/81.png",
     "cryUrl": "/audio/cries/81.ogg",
     "cardImageUrl": "/images/cards/P-A-024.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/024/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/024/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-025",
@@ -7716,7 +8184,9 @@
     "artworkUrl": "/images/pokemon/146.png",
     "cryUrl": "/audio/cries/146.ogg",
     "cardImageUrl": "/images/cards/P-A-025.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/025/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/025/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-026",
@@ -7747,7 +8217,9 @@
     "artworkUrl": "/images/pokemon/25.png",
     "cryUrl": "/audio/cries/25.ogg",
     "cardImageUrl": "/images/cards/P-A-026.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/026/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/026/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-029",
@@ -7780,7 +8252,9 @@
     "artworkUrl": "/images/pokemon/9.png",
     "cryUrl": "/audio/cries/9.ogg",
     "cardImageUrl": "/images/cards/P-A-029.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/029/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/029/high.webp",
+    "preDexId": 8,
+    "evolvesFrom": "Schillok"
   },
   {
     "id": "P-A-030",
@@ -7811,7 +8285,9 @@
     "artworkUrl": "/images/pokemon/133.png",
     "cryUrl": "/audio/cries/133.ogg",
     "cardImageUrl": "/images/cards/P-A-030.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/030/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/030/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-032",
@@ -7842,7 +8318,9 @@
     "artworkUrl": "/images/pokemon/4.png",
     "cryUrl": "/audio/cries/4.ogg",
     "cardImageUrl": "/images/cards/P-A-032.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/032/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/032/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-033",
@@ -7873,7 +8351,9 @@
     "artworkUrl": "/images/pokemon/7.png",
     "cryUrl": "/audio/cries/7.ogg",
     "cardImageUrl": "/images/cards/P-A-033.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/033/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/033/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-044",
@@ -7905,7 +8385,9 @@
     "artworkUrl": "/images/pokemon/26.png",
     "cryUrl": "/audio/cries/26.ogg",
     "cardImageUrl": "/images/cards/P-A-044.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/044/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/044/high.webp",
+    "preDexId": 25,
+    "evolvesFrom": "Pikachu"
   },
   {
     "id": "P-A-049",
@@ -7939,7 +8421,9 @@
     "artworkUrl": "/images/pokemon/143.png",
     "cryUrl": "/audio/cries/143.ogg",
     "cardImageUrl": "/images/cards/P-A-049.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/049/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/049/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-050",
@@ -7982,7 +8466,9 @@
     "artworkUrl": "/images/pokemon/150.png",
     "cryUrl": "/audio/cries/150.ogg",
     "cardImageUrl": "/images/cards/P-A-050.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/050/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/050/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-055",
@@ -8014,7 +8500,9 @@
     "artworkUrl": "/images/pokemon/68.png",
     "cryUrl": "/audio/cries/68.ogg",
     "cardImageUrl": "/images/cards/P-A-055.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/055/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/055/high.webp",
+    "preDexId": 67,
+    "evolvesFrom": "Maschock"
   },
   {
     "id": "P-A-056",
@@ -8045,7 +8533,9 @@
     "artworkUrl": "/images/pokemon/23.png",
     "cryUrl": "/audio/cries/23.ogg",
     "cardImageUrl": "/images/cards/P-A-056.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/056/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/056/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-060",
@@ -8076,7 +8566,9 @@
     "artworkUrl": "/images/pokemon/102.png",
     "cryUrl": "/audio/cries/102.ogg",
     "cardImageUrl": "/images/cards/P-A-060.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/060/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/060/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-062",
@@ -8107,7 +8599,9 @@
     "artworkUrl": "/images/pokemon/83.png",
     "cryUrl": "/audio/cries/83.ogg",
     "cardImageUrl": "/images/cards/P-A-062.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/062/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/062/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-069",
@@ -8140,7 +8634,9 @@
     "artworkUrl": "/images/pokemon/103.png",
     "cryUrl": "/audio/cries/103.ogg",
     "cardImageUrl": "/images/cards/P-A-069.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/069/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/069/high.webp",
+    "preDexId": 102,
+    "evolvesFrom": "Owei"
   },
   {
     "id": "P-A-070",
@@ -8173,7 +8669,9 @@
     "artworkUrl": "/images/pokemon/38.png",
     "cryUrl": "/audio/cries/38.ogg",
     "cardImageUrl": "/images/cards/P-A-070.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/070/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/070/high.webp",
+    "preDexId": 37,
+    "evolvesFrom": "Vulpix"
   },
   {
     "id": "P-A-072",
@@ -8204,7 +8702,9 @@
     "artworkUrl": "/images/pokemon/88.png",
     "cryUrl": "/audio/cries/88.ogg",
     "cardImageUrl": "/images/cards/P-A-072.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/072/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/072/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-086",
@@ -8235,7 +8735,9 @@
     "artworkUrl": "/images/pokemon/135.png",
     "cryUrl": "/audio/cries/135.ogg",
     "cardImageUrl": "/images/cards/P-A-086.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/086/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/086/high.webp",
+    "preDexId": 133,
+    "evolvesFrom": "Evoli"
   },
   {
     "id": "P-A-088",
@@ -8266,7 +8768,9 @@
     "artworkUrl": "/images/pokemon/148.png",
     "cryUrl": "/audio/cries/148.ogg",
     "cardImageUrl": "/images/cards/P-A-088.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/088/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/088/high.webp",
+    "preDexId": 147,
+    "evolvesFrom": "Dratini"
   },
   {
     "id": "P-A-092",
@@ -8297,7 +8801,9 @@
     "artworkUrl": "/images/pokemon/133.png",
     "cryUrl": "/audio/cries/133.ogg",
     "cardImageUrl": "/images/cards/P-A-092.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/092/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/092/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-094",
@@ -8328,7 +8834,9 @@
     "artworkUrl": "/images/pokemon/116.png",
     "cryUrl": "/audio/cries/116.ogg",
     "cardImageUrl": "/images/cards/P-A-094.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/094/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/094/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   },
   {
     "id": "P-A-097",
@@ -8359,6 +8867,65 @@
     "artworkUrl": "/images/pokemon/115.png",
     "cryUrl": "/audio/cries/115.ogg",
     "cardImageUrl": "/images/cards/P-A-097.webp",
-    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/097/high.webp"
+    "cdnCardUrl": "https://assets.tcgdex.net/de/tcgp/P-A/097/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
+  },
+  {
+    "id": "P-A-001",
+    "dexId": 0,
+    "name": "Trank",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 0,
+    "stage": "Trainer",
+    "isEx": false,
+    "attacks": [],
+    "trainerEffect": "Heilt 20 KP eines deiner Pokémon.",
+    "trainerType": "Item",
+    "artworkUrl": "/images/cards/P-A-001.webp",
+    "cryUrl": "",
+    "cardImageUrl": "/images/cards/P-A-001.webp",
+    "preDexId": null,
+    "evolvesFrom": null
+  },
+  {
+    "id": "P-A-005",
+    "dexId": 0,
+    "name": "Pokéball",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 0,
+    "stage": "Trainer",
+    "isEx": false,
+    "attacks": [],
+    "trainerEffect": "Zieht 1 Basis-Pokémon aus deinem Deck auf deine Hand.",
+    "trainerType": "Item",
+    "artworkUrl": "/images/cards/P-A-005.webp",
+    "cryUrl": "",
+    "cardImageUrl": "/images/cards/P-A-005.webp",
+    "preDexId": null,
+    "evolvesFrom": null
+  },
+  {
+    "id": "P-A-007",
+    "dexId": 0,
+    "name": "Forschung des Professors",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 0,
+    "stage": "Trainer",
+    "isEx": false,
+    "attacks": [],
+    "trainerEffect": "Ziehe 2 Karten aus deinem Deck.",
+    "trainerType": "Unterstützer",
+    "artworkUrl": "/images/cards/P-A-007.webp",
+    "cryUrl": "",
+    "cardImageUrl": "/images/cards/P-A-007.webp",
+    "preDexId": null,
+    "evolvesFrom": null
   }
 ]
