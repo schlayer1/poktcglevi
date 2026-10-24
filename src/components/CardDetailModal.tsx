@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card } from '../types/game';
-import { X, Volume2, Sparkles } from 'lucide-react';
+import { X, Volume2, Sparkles, Compass } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
+import { HoloCard } from './HoloCard';
 
 interface CardDetailModalProps {
   card: Card | null;
@@ -54,17 +55,15 @@ export const CardDetailModal: React.FC<CardDetailModalProps> = ({ card, onClose 
           </button>
         </div>
 
-        {/* TCG Pocket Card Image */}
-        <div className="relative w-full max-h-[62vh] aspect-[5/7] rounded-2xl overflow-hidden border border-slate-700 shadow-xl bg-slate-950">
-          <img
-            src={card.cardImageUrl}
-            alt={card.name}
-            className="w-full h-full object-contain"
-            onError={(e) => {
-              // Fallback to official artwork if scan missing
-              (e.target as HTMLImageElement).src = card.artworkUrl;
-            }}
-          />
+        {/* 3D Holographic Card Stage */}
+        <div className="relative w-full max-h-[62vh] aspect-[5/7] flex items-center justify-center">
+          <HoloCard card={card} interactive={true} className="w-full h-full" />
+        </div>
+
+        {/* Gyroscope / Drag Hint */}
+        <div className="flex items-center gap-1.5 text-[11px] font-bold text-amber-300/80 bg-slate-950/60 px-3 py-1 rounded-full border border-amber-400/30">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" />
+          <span>Wische mit dem Finger oder neige dein Tablet für 3D-Glanz!</span>
         </div>
 
         {/* Quick Didactic Summary */}

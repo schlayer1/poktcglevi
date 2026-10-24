@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Card } from '../types/game';
 import { CardView } from './CardView';
+import { HoloCard } from './HoloCard';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
 import confetti from 'canvas-confetti';
@@ -485,7 +486,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                           NEU! ⭐
                         </div>
                       )}
-                      <CardView card={card} size="active" />
+                      <HoloCard card={card} interactive={true} className="w-48 sm:w-56 aspect-[5/7]" />
                     </div>
                   ) : (
                     /* Facedown Official TCG Pocket Card Back */
