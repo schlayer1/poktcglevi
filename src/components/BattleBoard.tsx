@@ -239,11 +239,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     const effectiveHp = Math.max(0, currentHp - previewDmg);
     const hpPercent = (currentHp / maxHp) * 100;
     const effectiveHpPercent = (effectiveHp / maxHp) * 100;
-    const isTargetOfEnergy = selectedEnergy && isPlayer && isLeviTurn;
+    const isTargetOfEnergy =
+      selectedEnergy && ((isPlayer && isLeviTurn) || (!isPlayer && isPvP && !isLeviTurn));
     const isTargetOfEvo =
       selectedHandEvoIdx !== null &&
-      isPlayer &&
-      isLeviTurn &&
+      ((isPlayer && isLeviTurn) || (!isPlayer && isPvP && !isLeviTurn)) &&
       legalActions.evolvableHandIndices?.some(
         (e) => e.handIndex === selectedHandEvoIdx && e.targets.includes('active')
       );
@@ -347,45 +347,143 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       {/* 1. Dynamic Thematic Anime Arena Background */}
       <ArenaBackground arena={arena} />
 
-      {/* 2. Top Header (Trainer Info & Controls) */}
-      <div className="relative z-30 flex items-center justify-between px-3 pt-1">
-        {/* Opponent Info */}
-        <div className="flex items-center gap-3 bg-slate-900/85 px-4 py-2 rounded-2xl border-2 border-slate-700/80 backdrop-blur-md shadow-xl">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-sky-400 bg-slate-950 p-1 flex items-center justify-center shrink-0">
-            <img src={`/images/trainers/${p2.avatar}.png`} alt={p2.name} className="w-full h-full object-contain" />
+      {/* 2. Top Header (PvP Mode: Rotated for Papa; Solo Mode: Standard Info) */}
+      {isPvP ? (
+        <div className="relative z-30 rotate-180 flex items-center justify-between px-3 pb-1 pt-1 gap-2 bg-slate-950/70 rounded-3xl border border-slate-800 backdrop-blur-md">
+          {/* Papa Avatar & Points */}
+          <div className="flex items-center gap-3 bg-slate-900/90 px-3 py-1.5 rounded-2xl border border-slate-700 shadow-lg">
+            <div className="w-9 h-9 rounded-full border-2 border-sky-400 bg-slate-950 p-0.5 flex items-center justify-center shrink-0">
+              <img src={`/images/trainers/${p2.avatar}.png`} alt={p2.name} className="w-full h-full object-contain" />
+            </div>
+            <div>
+              <span className="font-black text-xs text-white block leading-tight">{p2.name}</span>
+              <span className="text-[9px] font-bold text-sky-300">{p2.deck.length} Karten</span>
+            </div>
+            {renderPoints(p2.points)}
           </div>
-          <div>
-            <span className="font-black text-sm sm:text-base text-white block leading-tight">{p2.name}</span>
-            <span className="text-[10px] sm:text-xs font-bold text-sky-300">{p2.deck.length} Karten im Deck</span>
-          </div>
-          {renderPoints(p2.points)}
-        </div>
 
-        {/* Right Corner Buttons */}
-        <div className="flex items-center gap-2">
-          {gymBadgeId && (
-            <GymBadge type={gymBadgeId} earned={storageService.loadProfile(allCards).badges.includes(gymBadgeId)} size="sm" />
-          )}
-          <button
-            onClick={toggleSound}
-            className="p-2.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
-            title="Musik umschalten"
-          >
-            {bgmMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-          </button>
-          <button
-            onClick={() => setShowSettings(true)}
-            className="p-2.5 rounded-full bg-slate-900/85 border border-slate-700 text-slate-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
-            title="Einstellungen"
-          >
-            <Settings className="w-5 h-5" />
-          </button>
+          {/* Papa Fanned Hand Cards */}
+          <div className="flex items-end justify-center -space-x-3 sm:-space-x-4 overflow-visible py-1 px-2 max-w-2xl">
+            {p2.hand.map((card, hIdx) => {
+              const isPlayable = !isLeviTurn && legalActions.playableHandIndices?.includes(hIdx);
+              const isEvolvable = !isLeviTurn && legalActions.evolvableHandIndices?.some((e) => e.handIndex === hIdx);
+
+              return (
+                <div
+                  key={hIdx}
+                  onClick={() => {
+                    if (!isLeviTurn) {
+                      if (isPlayable) {
+                        handleAction({ type: 'PLAY_BENCH', handIndex: hIdx });
+                      } else if (isEvolvable) {
+                        soundManager.playSfx('button');
+                        setSelectedHandEvoIdx(hIdx);
+                      } else {
+                        setInspectedCard(card);
+                      }
+                    }
+                  }}
+                  className={`relative group transform transition-all duration-300 cursor-pointer origin-bottom hover:-translate-y-6 hover:scale-110 hover:z-40 ${
+                    !isLeviTurn && (isPlayable || isEvolvable)
+                      ? 'ring-4 ring-sky-400 rounded-2xl animate-pulse shadow-[0_0_20px_#38bdf8]'
+                      : ''
+                  }`}
+                  style={{
+                    transform: `rotate(${(hIdx - (p2.hand.length - 1) / 2) * 4}deg)`
+                  }}
+                >
+                  <CardView
+                    card={card}
+                    size="hand"
+                    isSelectable={!isLeviTurn && (isPlayable || isEvolvable)}
+                    onInspect={() => setInspectedCard(card)}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Papa Energy Zone & Fertig Button */}
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="flex flex-col items-center gap-0.5">
+              <span className="text-[9px] font-black uppercase text-sky-300">Energie</span>
+              <div
+                onClick={() => {
+                  if (!isLeviTurn && p2.energyZone.length > 0 && !gameState.energyAttachedThisTurn) {
+                    soundManager.playSfx('button');
+                    setSelectedEnergy((prev) => !prev);
+                  }
+                }}
+                className={`p-0.5 rounded-full cursor-pointer transition-all ${
+                  !isLeviTurn && p2.energyZone.length > 0 && !gameState.energyAttachedThisTurn
+                    ? selectedEnergy
+                      ? 'ring-3 ring-white scale-110 shadow-[0_0_20px_rgba(255,255,255,0.9)] animate-bounce'
+                      : 'ring-3 ring-sky-400 scale-105 shadow-[0_0_15px_rgba(56,189,248,0.8)] animate-pulse'
+                    : 'opacity-40 grayscale'
+                }`}
+              >
+                <EnergyBadge type={p2.energyZone[0] || 'Wasser'} size="md" pulse={!isLeviTurn && p2.energyZone.length > 0} />
+              </div>
+            </div>
+
+            <button
+              disabled={isLeviTurn || gameState.turnPhase === 'promote_needed'}
+              onClick={() => {
+                if (!isLeviTurn && gameState.turnPhase !== 'promote_needed') {
+                  handleAction({ type: 'END_TURN' });
+                }
+              }}
+              className={`h-12 w-12 sm:h-14 sm:w-14 rounded-full font-black flex flex-col items-center justify-center border-2 border-white shadow-xl transition-all active:scale-90 ${
+                !isLeviTurn && gameState.turnPhase !== 'promote_needed'
+                  ? 'bg-gradient-to-tr from-sky-400 via-cyan-400 to-blue-500 text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.9)] animate-bounce cursor-pointer'
+                  : 'bg-slate-800 text-slate-500 border-slate-700 opacity-40 cursor-not-allowed'
+              }`}
+            >
+              <Check className="w-5 h-5 stroke-[3]" />
+              <span className="font-extrabold uppercase text-[8px]">Fertig</span>
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="relative z-30 flex items-center justify-between px-3 pt-1">
+          {/* Opponent Info */}
+          <div className="flex items-center gap-3 bg-slate-900/85 px-4 py-2 rounded-2xl border-2 border-slate-700/80 backdrop-blur-md shadow-xl">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-sky-400 bg-slate-950 p-1 flex items-center justify-center shrink-0">
+              <img src={`/images/trainers/${p2.avatar}.png`} alt={p2.name} className="w-full h-full object-contain" />
+            </div>
+            <div>
+              <span className="font-black text-sm sm:text-base text-white block leading-tight">{p2.name}</span>
+              <span className="text-[10px] sm:text-xs font-bold text-sky-300">{p2.deck.length} Karten im Deck</span>
+            </div>
+            {renderPoints(p2.points)}
+          </div>
+
+          {/* Right Corner Buttons */}
+          <div className="flex items-center gap-2">
+            {gymBadgeId && (
+              <GymBadge type={gymBadgeId} earned={storageService.loadProfile(allCards).badges.includes(gymBadgeId)} size="sm" />
+            )}
+            <button
+              onClick={toggleSound}
+              className="p-2.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
+              title="Musik umschalten"
+            >
+              {bgmMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+            </button>
+            <button
+              onClick={() => setShowSettings(true)}
+              className="p-2.5 rounded-full bg-slate-900/85 border border-slate-700 text-slate-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
+              title="Einstellungen"
+            >
+              <Settings className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 3. Main Battle Arena (Clear Spatial Layout: Opponent Left, Clash Center, Levi Right) */}
       <div className="relative z-20 flex-1 flex items-center justify-between px-4 sm:px-8 my-auto max-w-7xl mx-auto w-full">
-        {/* === OPPONENT ZONE (Left Side) === */}
+        {/* === OPPONENT / PAPA ZONE (Left Side) === */}
         <div className="flex items-center gap-4 sm:gap-6">
           {/* Opponent Bench (3 Vertical Mini-Slots on the Far Left) */}
           <div className="flex flex-col gap-2.5 bg-slate-950/40 p-2 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
@@ -394,10 +492,31 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             </span>
             {[0, 1, 2].map((idx) => {
               const benchMon = p2.bench[idx];
+              const isPromotableP2 = isPvP && !isLeviTurn && gameState.turnPhase === 'promote_needed' && idx < p2.bench.length;
+              const isTargetOfEnergyP2 = isPvP && !isLeviTurn && selectedEnergy && benchMon;
+              const isPlayableEmptySlotP2 = isPvP && !isLeviTurn && !benchMon && legalActions.playableHandIndices && legalActions.playableHandIndices.length > 0;
+
               return (
                 <div
                   key={idx}
-                  className="w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 border-slate-800 bg-slate-950/70 flex items-center justify-center overflow-hidden shadow"
+                  onClick={() => {
+                    if (isPvP && !isLeviTurn) {
+                      if (isPromotableP2) {
+                        handleAction({ type: 'PROMOTE', benchIndex: idx });
+                      } else if (isTargetOfEnergyP2) {
+                        handleAction({ type: 'ATTACH_ENERGY', target: idx });
+                      } else if (isPlayableEmptySlotP2 && legalActions.playableHandIndices) {
+                        handleAction({ type: 'PLAY_BENCH', handIndex: legalActions.playableHandIndices[0] });
+                      } else if (benchMon) {
+                        setInspectedCard(benchMon.card);
+                      }
+                    }
+                  }}
+                  className={`w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 flex items-center justify-center overflow-hidden shadow transition-all ${
+                    isPvP && !isLeviTurn && (isPromotableP2 || isTargetOfEnergyP2 || isPlayableEmptySlotP2)
+                      ? 'border-sky-400 bg-sky-400/20 shadow-[0_0_15px_rgba(56,189,248,0.7)] scale-105 animate-pulse cursor-pointer'
+                      : 'border-slate-800 bg-slate-950/70'
+                  }`}
                 >
                   {benchMon ? (
                     <img
@@ -421,6 +540,59 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               ? p1.active.card.attacks[selectedAttackIdx].damage +
                 (gameState.stage >= 2 && p2.active?.card.weakness?.type === p1.active.card.types[0] ? 20 : 0)
               : 0
+          )}
+
+          {/* Papa Attack Action Buttons (PvP Mode, rotated 180 for Papa) */}
+          {isPvP && p2.active && !isLeviTurn && !gameState.attackedThisTurn && gameState.turnNumber > 1 && (
+            <div className="flex flex-col gap-2.5 z-30 rotate-180 animate-in fade-in">
+              {p2.active.card.attacks.map((atk, idx) => {
+                const canUse = canPayCost(p2.active!.attachedEnergy, atk.cost);
+                const isSelected = selectedAttackIdx === idx;
+                const willDealWeakness =
+                  gameState.stage >= 2 && p1.active?.card.weakness?.type === p2.active!.card.types[0];
+
+                return (
+                  <button
+                    key={idx}
+                    disabled={!canUse}
+                    onClick={() => {
+                      if (!canUse) return;
+                      if (isSelected) {
+                        executePlayerAttack(idx, 1);
+                      } else {
+                        soundManager.playSfx('button');
+                        setSelectedAttackIdx(idx);
+                        soundManager.speakText(`${atk.name}! ${atk.damage} Schaden! Tippe noch einmal zum Angreifen!`);
+                      }
+                    }}
+                    className={`px-4 py-2.5 rounded-2xl border-2 flex items-center gap-3 transition-all active:scale-95 shadow-2xl cursor-pointer ${
+                      canUse
+                        ? isSelected
+                          ? 'bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 border-white text-white scale-110 shadow-[0_0_25px_rgba(56,189,248,0.9)] animate-bounce'
+                          : 'bg-gradient-to-r from-sky-500 to-blue-500 border-sky-300 text-slate-950 hover:scale-105 shadow-[0_0_15px_rgba(56,189,248,0.7)] animate-pulse'
+                        : 'bg-slate-900/60 border-slate-700 text-slate-500 opacity-40 cursor-not-allowed'
+                    }`}
+                  >
+                    <div className="flex items-center gap-0.5">
+                      {atk.cost.map((cType, cIdx) => (
+                        <EnergyBadge key={cIdx} type={cType} size="sm" />
+                      ))}
+                    </div>
+                    <div className="text-left">
+                      <span className="font-black text-xs sm:text-sm block leading-tight">{atk.name}</span>
+                      {willDealWeakness && (
+                        <span className="text-[9px] font-black text-blue-900 uppercase bg-sky-300 px-1 rounded">
+                          +20 Schwäche!
+                        </span>
+                      )}
+                    </div>
+                    <span className="bg-slate-950/80 text-sky-300 px-2 py-0.5 rounded-lg text-sm sm:text-base font-black">
+                      {atk.damage}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           )}
         </div>
 

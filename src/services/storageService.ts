@@ -17,6 +17,7 @@ export interface UserProfile {
   unlockedCards: Record<string, number>; // cardId -> count
   unopenedBoosters: number;
   badges: string[]; // ['rocko', 'misty', 'majorbob', 'erika', 'koga', 'sabrina', 'pyro', 'giovanni', 'gary']
+  allChaptersUnlocked?: boolean;
   customDecks: UserDeck[];
   activeDeckId: string;
   stats: {
@@ -55,6 +56,7 @@ export function getDefaultProfile(allCards: Card[]): UserProfile {
     unlockedCards: unlocked,
     unopenedBoosters: 2, // 2 initial reward packs to open!
     badges: [],
+    allChaptersUnlocked: false,
     customDecks: [],
     activeDeckId: 'deck_feuer',
     stats: {
@@ -182,6 +184,18 @@ class StorageService {
     if (!this.profile) return;
     allCards.forEach((c) => {
       this.profile!.unlockedCards[c.id] = 4; // 4 copies of every card!
+    });
+    this.saveProfile(this.profile);
+  }
+
+  public unlockAllChapters() {
+    if (!this.profile) return;
+    this.profile.allChaptersUnlocked = true;
+    const ALL_BADGES = ['rocko', 'misty', 'majorbob', 'erika', 'koga', 'sabrina', 'pyro', 'giovanni', 'gary'];
+    ALL_BADGES.forEach((b) => {
+      if (!this.profile!.badges.includes(b)) {
+        this.profile!.badges.push(b);
+      }
     });
     this.saveProfile(this.profile);
   }

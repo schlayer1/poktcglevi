@@ -5,7 +5,7 @@ import { EnergyBadge } from './EnergyBadge';
 import { ArenaType } from './ArenaBackground';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { ArrowLeft, Play, MapPin, Sparkles, Trophy } from 'lucide-react';
+import { ArrowLeft, Play, MapPin, Sparkles, Trophy, Lock } from 'lucide-react';
 
 interface GymNode {
   id: BadgeType;
@@ -50,16 +50,31 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
   const profile = storageService.loadProfile([]);
   const earnedBadges = profile.badges;
 
+  const isNodeUnlocked = (node: GymNode) => {
+    if (profile.allChaptersUnlocked) return true;
+    const idx = GYM_CAMPAIGN.findIndex((g) => g.id === node.id);
+    if (idx <= 0) return true; // Rocko is always unlocked
+    const prevGym = GYM_CAMPAIGN[idx - 1];
+    return earnedBadges.includes(prevGym.id);
+  };
+
   // Find current active gym node
   const [selectedGym, setSelectedGym] = useState<GymNode>(() => {
-    const nextUnbeaten = GYM_CAMPAIGN.find((g) => !earnedBadges.includes(g.id));
+    const nextUnbeaten = GYM_CAMPAIGN.find((g) => isNodeUnlocked(g) && !earnedBadges.includes(g.id));
     return nextUnbeaten || GYM_CAMPAIGN[0];
   });
 
   const handleNodeClick = (node: GymNode) => {
+    const unlocked = isNodeUnlocked(node);
     setSelectedGym(node);
     soundManager.playSfx('button');
-    soundManager.playVoice(`vs_${node.id}`, `${node.name} aus ${node.city} fordert dich heraus!`);
+    if (!unlocked) {
+      const idx = GYM_CAMPAIGN.findIndex((g) => g.id === node.id);
+      const prevGym = GYM_CAMPAIGN[idx - 1];
+      soundManager.speakText(`Gesperrt! Besiege zuerst ${prevGym.name}, um hier zu kämpfen!`);
+    } else {
+      soundManager.playVoice(`vs_${node.id}`, `${node.name} aus ${node.city} fordert dich heraus!`);
+    }
   };
 
   const isEarned = (id: BadgeType) => earnedBadges.includes(id);
@@ -114,6 +129,7 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
           {/* Gym Nodes on the Map */}
           {GYM_CAMPAIGN.map((node) => {
             const earned = isEarned(node.id);
+            const unlocked = isNodeUnlocked(node);
             const isSelected = selectedGym.id === node.id;
 
             return (
@@ -131,7 +147,9 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
                       ? 'border-white bg-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.9)] animate-bounce'
                       : earned
                       ? 'border-emerald-400 bg-slate-900 shadow-[0_0_12px_rgba(16,185,129,0.7)]'
-                      : 'border-slate-600 bg-slate-950 opacity-80'
+                      : unlocked
+                      ? 'border-amber-400/80 bg-slate-900 shadow-[0_0_12px_rgba(251,191,36,0.5)]'
+                      : 'border-slate-700 bg-slate-950 opacity-60 grayscale'
                   }`}
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-slate-950 p-0.5">
@@ -142,12 +160,16 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
                     />
                   </div>
 
-                  {/* Badge Marker if Earned */}
-                  {earned && (
+                  {/* Badge Marker if Earned or Lock if Locked */}
+                  {earned ? (
                     <div className="absolute -top-2 -right-2">
                       <GymBadge type={node.id} earned size="sm" />
                     </div>
-                  )}
+                  ) : !unlocked ? (
+                    <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-slate-900 border border-slate-600 flex items-center justify-center text-amber-400 shadow">
+                      <Lock className="w-3 h-3" />
+                    </div>
+                  ) : null}
                 </div>
 
                 {/* City & Name Tag */}
@@ -203,7 +225,9 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
 
         {/* Challenge Button */}
         <button
+          disabled={!isNodeUnlocked(selectedGym)}
           onClick={() => {
+            if (!isNodeUnlocked(selectedGym)) return;
             soundManager.playSfx('button');
             onSelectGym({
               opponentName: selectedGym.name,
@@ -213,10 +237,23 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
               badgeId: selectedGym.id
             });
           }}
-          className="py-3 px-6 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black text-sm sm:text-base shadow-xl flex items-center gap-2 transition-transform active:scale-95 animate-bounce"
+          className={`py-3 px-6 rounded-2xl font-black text-sm sm:text-base shadow-xl flex items-center gap-2 transition-transform active:scale-95 ${
+            isNodeUnlocked(selectedGym)
+              ? 'bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 animate-bounce cursor-pointer'
+              : 'bg-slate-800 border border-slate-700 text-slate-500 opacity-60 cursor-not-allowed'
+          }`}
         >
-          <Play className="w-5 h-5 fill-current" />
-          <span>ARENA BETRETEN! ⚡</span>
+          {isNodeUnlocked(selectedGym) ? (
+            <>
+              <Play className="w-5 h-5 fill-current" />
+              <span>ARENA BETRETEN! ⚡</span>
+            </>
+          ) : (
+            <>
+              <Lock className="w-5 h-5" />
+              <span>GESPERRT</span>
+            </>
+          )}
         </button>
       </div>
     </div>

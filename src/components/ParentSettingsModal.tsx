@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock } from 'lucide-react';
+import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock, Trophy } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 import { storageService, UserProfile } from '../services/storageService';
 import { Card } from '../types/game';
@@ -70,6 +70,13 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
         }
       };
       reader.readAsText(file);
+    }
+  };
+
+  const handleUnlockChapters = () => {
+    if (confirm('Möchtest du alle 8 Arenen und das Champ-Duell gegen Gary für Levi freischalten?')) {
+      storageService.unlockAllChapters();
+      alert('Alle Kapitel und Orden freigeschaltet! Levi kann nun jeden Arenaleiter herausfordern.');
     }
   };
 
@@ -245,21 +252,34 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
             </div>
 
             {/* 5. Special Options / Cheats */}
-            <div className="flex gap-2">
-              <button
-                onClick={handleUnlockAll}
-                className="flex-1 py-2 px-2.5 rounded-xl bg-purple-500/20 border border-purple-400/40 text-purple-300 text-xs font-bold flex items-center justify-center gap-1.5"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-                <span>Alle Karten freischalten</span>
-              </button>
+            <div className="space-y-2 bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+              <span className="font-bold text-sm block text-amber-300">Freischaltungen & Cheats</span>
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={handleUnlockChapters}
+                  className="w-full py-2.5 px-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-amber-300 text-xs font-black flex items-center justify-center gap-2 cursor-pointer shadow"
+                >
+                  <Trophy className="w-4 h-4 text-amber-400" />
+                  <span>Alle Kapitel & Arenaleiter freischalten</span>
+                </button>
 
-              <button
-                onClick={handleResetSave}
-                className="py-2 px-3 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs font-bold"
-              >
-                Zurücksetzen
-              </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleUnlockAll}
+                    className="flex-1 py-2 px-2.5 rounded-xl bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/40 text-purple-300 text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
+                    <span>Alle Karten freischalten</span>
+                  </button>
+
+                  <button
+                    onClick={handleResetSave}
+                    className="py-2 px-3 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 text-xs font-bold cursor-pointer"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
