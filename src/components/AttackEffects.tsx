@@ -36,9 +36,9 @@ export const AttackEffects: React.FC<AttackEffectsProps> = ({ animData, speed = 
 
     setPhase('projectile');
 
-    // In cinematic mode, announce the attack name via TTS
-    if (!isFast && animData.attackName) {
-      soundManager.speakText(`${animData.attackName}!`);
+    // In cinematic mode, cheer on successful player attacks
+    if (!isFast && animData.damage >= 60) {
+      soundManager.playVoice('cheer_attack');
     }
 
     // 2. Impact timing

@@ -163,23 +163,35 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
     if (card) {
       soundManager.playSfx('card_flip');
       soundManager.playCry(card.dexId);
-      soundManager.speakText(`${card.name}!`);
+
+      const isRare = card.isEx || card.stage === 'Rang 2' || card.hp >= 120;
 
       // Special presentation for Rare / EX cards
-      if (card.isEx || card.stage === 'Rang 2' || card.hp >= 120) {
+      if (isRare) {
         setIsRainbowActive(true);
-        soundManager.playSfx('rainbow_rare');
+        if (card.isEx) {
+          soundManager.playSfx('crown_rare');
+        } else {
+          soundManager.playSfx('star_rare');
+        }
         soundManager.playVoice('booster_reveal_rare', `Boah Levi! Ein seltenes ${card.name}!`);
         confetti({
-          particleCount: 120,
-          spread: 90,
+          particleCount: 140,
+          spread: 100,
           origin: { y: 0.5 },
           colors: ['#fbbf24', '#f43f5e', '#8b5cf6', '#06b6d4', '#10b981']
         });
 
+        // Read card details with studio voice after initial fanfares
+        setTimeout(() => {
+          soundManager.playCardVoice(card);
+        }, 1600);
+
         setTimeout(() => {
           setIsRainbowActive(false);
         }, 3200);
+      } else {
+        soundManager.playCardVoice(card);
       }
     }
 
@@ -491,23 +503,51 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                       <HoloCard card={card} interactive={true} className="w-48 sm:w-56 aspect-[5/7]" />
                     </div>
                   ) : (
-                    /* Facedown Official TCG Pocket Card Back */
-                    <div className="relative w-48 sm:w-56 aspect-[5/7] rounded-2xl overflow-hidden border-2 border-amber-300/80 shadow-[0_0_35px_rgba(251,191,36,0.6)] hover:scale-105 active:scale-95 transition-transform group">
-                      <img
-                        src="/images/cards/card_back.webp"
-                        alt="Verdeckte Karte"
-                        className="w-full h-full object-cover rounded-2xl pointer-events-none"
-                      />
-                      {/* Specular Shimmer */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent pointer-events-none group-hover:via-white/50 transition-all" />
-                      {/* Interactive Prompt Badge */}
-                      <div className="absolute bottom-4 left-3 right-3 bg-slate-950/90 py-1.5 px-3 rounded-full border border-amber-400 text-center shadow-lg animate-pulse">
-                        <span className="text-xs font-black uppercase text-amber-300 tracking-wider block">
-                          Tippen zum Aufdecken! ✂️
-                        </span>
-                        <span className="text-[10px] text-slate-300 font-bold">
-                          Karte {idx + 1} von {pulledCards.length}
-                        </span>
+                    /* Facedown Official TCG Pocket Card Back with Rare Teaser Aura */
+                    <div className="relative group">
+                      {(card.isEx || card.stage === 'Rang 2' || card.hp >= 120) && (
+                        <div
+                          className="absolute -inset-2.5 rounded-3xl blur-md opacity-85 animate-pulse pointer-events-none"
+                          style={{
+                            background: card.isEx
+                              ? 'conic-gradient(from 0deg, #fbbf24, #f43f5e, #8b5cf6, #06b6d4, #fbbf24)'
+                              : 'radial-gradient(circle, rgba(251,191,36,0.9) 0%, rgba(245,158,11,0.4) 70%, transparent 100%)'
+                          }}
+                        />
+                      )}
+                      <div className={`relative w-48 sm:w-56 aspect-[5/7] rounded-2xl overflow-hidden border-2 shadow-[0_0_35px_rgba(251,191,36,0.6)] hover:scale-105 active:scale-95 transition-transform ${
+                        card.isEx
+                          ? 'border-amber-300 shadow-[0_0_40px_rgba(251,191,36,0.95)]'
+                          : card.stage === 'Rang 2' || card.hp >= 120
+                            ? 'border-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.8)]'
+                            : 'border-amber-300/80'
+                      }`}>
+                        <img
+                          src="/images/cards/card_back.webp"
+                          alt="Verdeckte Karte"
+                          className="w-full h-full object-cover rounded-2xl pointer-events-none"
+                        />
+                        {/* Specular Shimmer */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent pointer-events-none group-hover:via-white/50 transition-all" />
+                        {/* Interactive Prompt Badge */}
+                        <div className="absolute bottom-4 left-3 right-3 bg-slate-950/90 py-1.5 px-3 rounded-full border border-amber-400 text-center shadow-lg animate-pulse">
+                          {card.isEx ? (
+                            <span className="text-[11px] font-black uppercase text-amber-300 tracking-wider block">
+                              👑 LEGENDÄRES EX-POKÉMON! 👑
+                            </span>
+                          ) : card.stage === 'Rang 2' || card.hp >= 120 ? (
+                            <span className="text-[11px] font-black uppercase text-amber-300 tracking-wider block">
+                              ✨ SELTENE HOLO-KARTE! ✨
+                            </span>
+                          ) : (
+                            <span className="text-xs font-black uppercase text-amber-300 tracking-wider block">
+                              Tippen zum Aufdecken! ✂️
+                            </span>
+                          )}
+                          <span className="text-[10px] text-slate-300 font-bold">
+                            Karte {idx + 1} von {pulledCards.length}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   )}

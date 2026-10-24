@@ -574,21 +574,48 @@ class SoundManager {
     }
   }
 
+  /**
+   * Safe speakText: Browser speechSynthesis is intentionally muted to guarantee
+   * 100% studio-quality audio across the app (no robotic voices for Levi).
+   */
   public speakText(text: string) {
     if (this.muted) return;
     this.stopVoice();
+    // Intentionally suppressed in favor of studio .m4a audio assets.
+    console.debug('[SoundManager] speakText suppressed to preserve studio quality:', text);
+  }
 
-    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = 'de-DE';
-      if (this.speechVoice) {
-        utter.voice = this.speechVoice;
-      }
-      utter.rate = 0.95;
-      utter.pitch = 1.15;
-      utter.volume = this.sfxVolume;
-      window.speechSynthesis.speak(utter);
+  /**
+   * Plays authentic studio voice for a specific card (intro, stats & attacks).
+   */
+  public playCardVoice(card: { id: string; dexId?: number; name?: string }) {
+    if (this.muted) return;
+    const cleanId = card.id.toLowerCase().replace(/-/g, '_');
+    const voiceKey = `card_${cleanId}`;
+
+    // Star Pokémon lore priority (e.g. card_glurak, card_pikachu, etc.)
+    const nameClean = card.name ? card.name.toLowerCase().replace(/[^a-z0-9]/g, '') : '';
+    const starLoreKey = `card_${nameClean}`;
+
+    if (this.voiceManifest[starLoreKey]?.file) {
+      this.playVoice(starLoreKey);
+      return;
     }
+
+    if (this.voiceManifest[voiceKey]?.file) {
+      this.playVoice(voiceKey);
+      return;
+    }
+
+    // Direct path fallback for card voice
+    const directPath = `/audio/voice/cards/${cleanId}.m4a`;
+    this.stopVoice();
+    const audio = new Audio(directPath);
+    audio.volume = this.sfxVolume;
+    this.currentVoiceAudio = audio;
+    audio.play().catch(() => {
+      this.playVoice('card_detail_intro');
+    });
   }
 
   public playVoice(key: string, fallbackText?: string) {
@@ -596,7 +623,6 @@ class SoundManager {
     this.stopVoice();
 
     const manifestEntry = this.voiceManifest[key];
-    const textToSpeak = fallbackText || manifestEntry?.text || '';
 
     if (manifestEntry?.file) {
       const audio = new Audio(manifestEntry.file);
@@ -604,15 +630,9 @@ class SoundManager {
       this.currentVoiceAudio = audio;
 
       audio.play().catch(() => {
-        if (textToSpeak) {
-          this.speakText(textToSpeak);
-        }
+        // Fallback suppressed to prevent robotic browser speech
       });
       return;
-    }
-
-    if (textToSpeak) {
-      this.speakText(textToSpeak);
     }
   }
 }

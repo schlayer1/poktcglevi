@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Users, Swords, BookOpen, Volume2, VolumeX, Wrench, PackageOpen } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 import { storageService } from '../services/storageService';
 import { PikachuCompanion } from './PikachuCompanion';
+import { HowToPlayModal } from './HowToPlayModal';
 
 interface MainMenuProps {
   onSelectSolo: () => void;
@@ -20,6 +21,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   onOpenBoosters
 }) => {
   const [bgmMuted, setBgmMuted] = React.useState(soundManager.isBgmMuted());
+  const [showRules, setShowRules] = useState<boolean>(false);
   const profile = storageService.loadProfile([]);
 
   useEffect(() => {
@@ -81,6 +83,17 @@ export const MainMenu: React.FC<MainMenuProps> = ({
               <span>Deckbau</span>
             </button>
           )}
+
+          <button
+            onClick={() => {
+              soundManager.playSfx('button');
+              setShowRules(true);
+            }}
+            className="px-3.5 py-2 rounded-2xl bg-gradient-to-r from-amber-400 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 border-2 border-white text-slate-950 font-black text-xs sm:text-sm shadow-lg flex items-center gap-1.5 transition-transform active:scale-95"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Spielregeln 📖</span>
+          </button>
 
           <button
             onClick={toggleSound}
@@ -164,6 +177,9 @@ export const MainMenu: React.FC<MainMenuProps> = ({
           emotion="happy"
         />
       </div>
+
+      {/* Interactive Audio Rulebook */}
+      {showRules && <HowToPlayModal onClose={() => setShowRules(false)} />}
     </div>
   );
 };

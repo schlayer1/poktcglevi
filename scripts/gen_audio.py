@@ -2,6 +2,7 @@
 """
 Generate high quality voice audio using Gemini TTS cascade
 (gemini-3.8-flash-lite-tts -> gemini-3.1-flash-tts-preview -> gemini-2.5-flash-preview-tts)
+with Apple Neural Voice HD fallback if daily API quota is reached.
 Audio is saved and transcoded to compact AAC M4A in public/audio/voice/
 and indexed in public/audio/voice/manifest.json.
 Respects API rate limits and precache budgets for offline PWA.
@@ -81,7 +82,40 @@ VOICE_TEXTS = {
     "booster_summary": "Tolle neue Karten für deine Sammlung!",
     "menu_welcome": "Hallo Levi! Was möchtest du heute spielen?",
     "deck_saved": "Super gemacht, Levi! Dein neues Zauber-Deck ist bereit!",
-    "deck_limit": "Dein Deck hat schon zwanzig Karten!"
+    "deck_limit": "Dein Deck hat schon zwanzig Karten!",
+
+    # Kategorie 6: Interaktives How-to-Play Regelbuch (7 Kapitel)
+    "rule_welcome": "Willkommen bei den Pokémon-Karten, Levi! Hier lernst du ganz einfach die Spielregeln.",
+    "rule_goal": "Ziel des Spiels: Besiege drei gegnerische Pokémon, um drei Siegespunkte zu sammeln und Meister zu werden!",
+    "rule_energy": "1. Energie anlegen: Jede Runde bekommst du eine neue Energie. Ziehe sie einfach auf dein Pokémon!",
+    "rule_bench": "2. Deine Bank: Bis zu drei Basis-Pokémon können sich auf deiner Bank bereitmachen.",
+    "rule_evolve": "3. Entwicklung: Lege ein passendes Entwicklungs-Pokémon auf dein Basis-Pokémon, um es viel stärker zu machen!",
+    "rule_attack": "4. Angreifen: Hat dein Pokémon genug Energie? Dann tippe auf die Attacke und greife den Gegner an!",
+    "rule_ko": "5. K.O. und Punkte: Wenn die Kraftpunkte des Gegners auf Null sinken, ist das Pokémon K.O. und du bekommst einen Siegespunkt!",
+    "rule_status": "6. Status-Effekte: Schlaf lässt dein Pokémon ausruhen, Gift zieht Kraftpunkte ab und Paralyse lässt es pausieren.",
+
+    # Kategorie 7: Karten-Detailansicht, Sammlung & Booster-Reveal
+    "card_detail_intro": "Hier siehst du alle Werte und Attacken deines Pokémon! Wische mit dem Finger für den 3D-Hologramm-Effekt!",
+    "album_locked": "Dieses Pokémon hast du noch nicht entdeckt! Öffne Booster-Packs, um es zu finden!",
+    "album_card_owned": "Tolle Karte für deine Sammlung!",
+    "booster_card_reveal": "Ein tolles neues Pokémon für dich!",
+
+    # Kategorie 8: Deckbau-Warnungen & Kampffeld-Cues
+    "deck_max_copies": "Du darfst höchstens zwei gleiche Karten in deinem Deck haben!",
+    "deck_no_more_copies": "Du hast keine weiteren Kopien dieser Karte!",
+    "prompt_attack_confirm": "Tippe noch einmal auf die Attacke zum Angreifen!",
+    "deck_info": "Das ist dein Kartenstapel! In jeder Runde ziehst du hier eine neue Karte.",
+    "prompt_evolve": "Entwicklung bereit! Ziehe die Karte auf dein Pokémon!",
+
+    # Kategorie 9: Beliebte Star-Pokémon für die Detailansicht
+    "card_glurak": "Glurak! Das legendäre Feuer-Pokémon mit gewaltigen Flammenflügeln und feurigem Atem!",
+    "card_pikachu": "Pikachu! Voller Elektro-Power und blitzschnellen Donner-Attacken!",
+    "card_turtok": "Turtok! Das gigantische Wasser-Pokémon mit zwei mächtigen Wasserkanonen!",
+    "card_bisaflor": "Bisaflor! Das uralte Pflanzen-Pokémon mit einer riesigen Blüte voller Naturkraft!",
+    "card_mewtu": "Mewtu! Das geheimnisvolle Psycho-Pokémon mit unendlicher geistiger Energie!",
+    "card_onix": "Onix! Die gigantische Felsenschlange von Arenaleiter Rocko!",
+    "card_gengar": "Gengar! Das schaurige Schatten-Geist-Pokémon mit verblüffenden Zauberkräften!",
+    "card_eevee": "Evoli! Das fröhliche und wandlungsfähige Pokémon mit vielen spannenden Entwicklungen!"
 }
 
 def write_audio_bytes_as_wav(raw_bytes, wav_path):
@@ -125,19 +159,13 @@ def transcode_to_m4a(wav_path, m4a_path):
 def generate_voice_file(key_name, text):
     m4a_path = os.path.join(VOICE_DIR, f"{key_name}.m4a")
     wav_path = os.path.join(VOICE_DIR, f"{key_name}.wav")
+    aiff_path = os.path.join(VOICE_DIR, f"{key_name}.aiff")
 
     # Already generated and converted?
     if os.path.exists(m4a_path) and os.path.getsize(m4a_path) > 1000:
-        print(f"Skipping {key_name} (m4a already exists: {os.path.getsize(m4a_path)} bytes)")
         return True
 
-    # Existing WAV needs transcoding?
-    if os.path.exists(wav_path) and os.path.getsize(wav_path) > 1000:
-        print(f"Transcoding existing {key_name}.wav to m4a...")
-        if transcode_to_m4a(wav_path, m4a_path):
-            print(f"-> Transcoded {key_name}.m4a ({os.path.getsize(m4a_path)} bytes)")
-            return True
-
+    # 1. Try Gemini TTS Cascade
     payload = {
         "contents": [{"parts": [{"text": text}]}],
         "generationConfig": {
@@ -168,20 +196,32 @@ def generate_voice_file(key_name, text):
                     if transcode_to_m4a(wav_path, m4a_path):
                         m4a_size = os.path.getsize(m4a_path) if os.path.exists(m4a_path) else 0
                         print(f"Generated {key_name}.m4a via {model_name} ({m4a_size} bytes)")
-                        time.sleep(1.8)
+                        time.sleep(2.0)
                         return True
         except urllib.error.HTTPError as e:
-            print(f"Model {model_name} returned HTTP {e.code} for {key_name}. Trying next model in cascade...")
-            time.sleep(1.0)
+            # If 429 quota reached, continue to next model or fallback
+            pass
         except Exception as e:
-            print(f"Model {model_name} error for {key_name}: {e}. Trying next model...")
-            time.sleep(1.0)
+            pass
 
-    print(f"Failed to generate {key_name} on all cascade models.")
+    # 2. HD Neural Voice Fallback
+    try:
+        cmd = ["say", "-v", "Anna (Premium)", "-r", "175", text, "-o", aiff_path]
+        subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if os.path.exists(aiff_path):
+            transcode_cmd = ["/usr/bin/afconvert", "-f", "m4af", "-d", "aac", "-b", "64000", aiff_path, m4a_path]
+            subprocess.run(transcode_cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            os.remove(aiff_path)
+            if os.path.exists(m4a_path) and os.path.getsize(m4a_path) > 500:
+                print(f"Generated {key_name}.m4a via HD Neural Voice ({os.path.getsize(m4a_path)} bytes)")
+                return True
+    except Exception as e:
+        print(f"Fallback generation error for {key_name}: {e}")
+
     return False
 
 def main():
-    print(f"Generating voice lines via Gemini TTS Cascade (Total: {len(VOICE_TEXTS)})...")
+    print(f"Generating voice lines (Total: {len(VOICE_TEXTS)})...")
     manifest = {}
     success_count = 0
 

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Card, PokemonType } from '../types/game';
 import { CardView } from './CardView';
 import { EnergyBadge } from './EnergyBadge';
+import { CardDetailModal } from './CardDetailModal';
 import { storageService, UserDeck } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { ArrowLeft, Wand2, Plus, Minus, Save, Play, Sparkles } from 'lucide-react';
+import { ArrowLeft, Wand2, Plus, Minus, Save, Play, Sparkles, Info } from 'lucide-react';
 
 interface DeckBuilderScreenProps {
   allCards: Card[];
@@ -19,6 +20,7 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
 }) => {
   const profile = storageService.loadProfile(allCards);
   const unlocked = profile.unlockedCards;
+  const [inspectedCard, setInspectedCard] = useState<Card | null>(null);
 
   const cardMap = React.useMemo(() => {
     const map: Record<string, Card> = {};
@@ -59,11 +61,11 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
     const currentCount = deckCardIds.filter((id) => id === card.id).length;
     const maxOwned = unlocked[card.id] || 0;
     if (currentCount >= 2) {
-      soundManager.speakText('Du darfst höchstens 2 gleiche Karten im Deck haben!');
+      soundManager.playVoice('deck_max_copies', 'Du darfst höchstens zwei gleiche Karten in deinem Deck haben!');
       return;
     }
     if (currentCount >= maxOwned) {
-      soundManager.speakText('Du hast keine weiteren Kopien dieser Karte!');
+      soundManager.playVoice('deck_no_more_copies', 'Du hast keine weiteren Kopien dieser Karte!');
       return;
     }
 
@@ -194,8 +196,18 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
             <div
               key={idx}
               onClick={() => handleRemoveCard(idx)}
-              className="relative shrink-0 w-20 aspect-[5/7] rounded-xl border-2 border-amber-400 bg-slate-950 p-1 flex flex-col items-center justify-between cursor-pointer hover:border-rose-400 hover:scale-105 transition-all shadow"
+              className="relative group shrink-0 w-20 aspect-[5/7] rounded-xl border-2 border-amber-400 bg-slate-950 p-1 flex flex-col items-center justify-between cursor-pointer hover:border-rose-400 hover:scale-105 transition-all shadow"
             >
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setInspectedCard(card);
+                }}
+                className="absolute -top-1.5 -right-1.5 z-20 w-5 h-5 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow hover:scale-110 active:scale-90"
+                title="Karte ansehen & vorlesen"
+              >
+                <Info className="w-3 h-3 stroke-[3]" />
+              </button>
               <span className="text-[9px] font-black text-white truncate w-full text-center">
                 {card.name}
               </span>
@@ -254,12 +266,22 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
               <div
                 key={card.id}
                 onClick={() => canAdd && handleAddCard(card)}
-                className={`relative aspect-[5/7] rounded-xl border-2 p-1 flex flex-col items-center justify-between cursor-pointer transition-all ${
+                className={`relative group aspect-[5/7] rounded-xl border-2 p-1 flex flex-col items-center justify-between cursor-pointer transition-all ${
                   canAdd
                     ? 'border-slate-700 bg-slate-900/90 hover:border-amber-400 hover:scale-105 shadow'
                     : 'border-slate-800 bg-slate-950/60 opacity-40 cursor-not-allowed'
                 }`}
               >
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setInspectedCard(card);
+                  }}
+                  className="absolute -top-1.5 -right-1.5 z-20 w-5 h-5 rounded-full bg-amber-400 text-slate-950 flex items-center justify-center shadow hover:scale-110 active:scale-90"
+                  title="Karte ansehen & vorlesen"
+                >
+                  <Info className="w-3 h-3 stroke-[3]" />
+                </button>
                 <span className="text-[9px] font-black text-white truncate w-full text-center">
                   {card.name}
                 </span>
@@ -293,6 +315,9 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
           <span>DECK SPEICHERN & KÄMPFEN! ⚡</span>
         </button>
       </div>
+
+      {/* Card Detail Modal */}
+      <CardDetailModal card={inspectedCard} onClose={() => setInspectedCard(null)} />
     </div>
   );
 };

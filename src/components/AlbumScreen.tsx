@@ -144,12 +144,10 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
               key={card.id}
               onClick={() => {
                 if (isOwned) {
-                  soundManager.playCry(card.dexId);
-                  soundManager.speakText(`${card.name}! Du besitzt diese Karte ${countOwned} Mal!`);
                   setInspectedCard(card);
                 } else {
                   soundManager.playSfx('button');
-                  soundManager.speakText(`Pokémon Nummer ${card.dexId}. Noch nicht entdeckt! Öffne Booster-Packs, um es zu finden!`);
+                  soundManager.playVoice('album_locked', 'Dieses Pokémon hast du noch nicht entdeckt! Öffne Booster-Packs, um es zu finden!');
                 }
               }}
               className={`relative aspect-[5/7] rounded-2xl border-2 flex flex-col items-center justify-between p-2 cursor-pointer transition-all duration-200 transform hover:scale-105 ${

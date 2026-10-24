@@ -6,6 +6,7 @@ import { EnergyBadge } from './EnergyBadge';
 import { PikachuCompanion } from './PikachuCompanion';
 import { CardDetailModal } from './CardDetailModal';
 import { VictoryModal } from './VictoryModal';
+import { HowToPlayModal } from './HowToPlayModal';
 import { ParentSettingsModal } from './ParentSettingsModal';
 import { ArenaBackground, ArenaType } from './ArenaBackground';
 import { AttackEffects, AttackAnimationData } from './AttackEffects';
@@ -15,7 +16,7 @@ import { CoinTossModal } from './CoinTossModal';
 import { StatusBadge } from './StatusBadge';
 import { storageService } from '../services/storageService';
 import { soundManager, BgmTrack } from '../services/soundManager';
-import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight, Film, Zap } from 'lucide-react';
+import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight, Film, Zap, BookOpen } from 'lucide-react';
 
 const TYPE_GLOWS: Record<string, { border: string; glow: string; ring: string }> = {
   Feuer: { border: 'border-orange-500', glow: 'rgba(249,115,22,0.85)', ring: 'from-amber-500/50 via-orange-600/40 to-red-950/90' },
@@ -56,6 +57,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   const [bgmMuted, setBgmMuted] = useState<boolean>(soundManager.isBgmMuted());
   const [turnBanner, setTurnBanner] = useState<'player' | 'opponent' | null>(null);
   const [showCoinModal, setShowCoinModal] = useState<boolean>(false);
+  const [showRules, setShowRules] = useState<boolean>(false);
 
   const p1 = gameState.players[0]; // Levi
   const p2 = gameState.players[1]; // Opponent (Gym Leader or Papa)
@@ -624,6 +626,18 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               <span className="text-base leading-none">🪙</span>
               <span className="hidden sm:inline">Münze</span>
             </button>
+            {/* Rules / How to play */}
+            <button
+              onClick={() => {
+                setShowRules(true);
+                soundManager.playSfx('click');
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-900/85 border border-amber-400/60 text-xs font-black text-amber-300 hover:bg-slate-800 shadow-lg transition-transform active:scale-95 cursor-pointer"
+              title="Spielregeln vorlesen"
+            >
+              <BookOpen className="w-4 h-4 text-amber-400" />
+              <span className="hidden sm:inline">Regeln</span>
+            </button>
             {/* Anim Speed Quick-Toggle */}
             <button
               onClick={() => {
@@ -759,7 +773,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       } else {
                         soundManager.playSfx('button');
                         setSelectedAttackIdx(idx);
-                        soundManager.speakText(`${atk.name}! ${atk.damage} Schaden! Tippe noch einmal zum Angreifen!`);
+                        soundManager.playVoice('prompt_attack_confirm', 'Tippe noch einmal auf die Attacke zum Angreifen!');
                       }
                     }}
                     className={`relative overflow-hidden px-5 py-3 rounded-full border-2 flex items-center justify-between gap-3.5 transition-all active:scale-95 shadow-2xl cursor-pointer ${
@@ -825,7 +839,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       } else {
                         soundManager.playSfx('button');
                         setSelectedAttackIdx(idx);
-                        soundManager.speakText(`${atk.name}! ${atk.damage} Schaden! Tippe noch einmal zum Angreifen!`);
+                        soundManager.playVoice('prompt_attack_confirm', 'Tippe noch einmal auf die Attacke zum Angreifen!');
                       }
                     }}
                     className={`relative overflow-hidden px-5 py-3 rounded-full border-2 flex items-center justify-between gap-3.5 transition-all active:scale-95 shadow-2xl cursor-pointer ${
@@ -969,7 +983,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
         <div
           className="relative w-12 h-16 sm:w-16 sm:h-22 rounded-xl overflow-hidden border-2 border-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.6)] shrink-0 hidden sm:flex flex-col items-center justify-end group cursor-pointer transition-transform hover:scale-105"
           onClick={() => {
-            soundManager.speakText(`Du hast noch ${p1.deck.length} Karten in deinem Deck!`);
+            soundManager.playVoice('deck_info', 'Das ist dein Kartenstapel! In jeder Runde ziehst du hier eine neue Karte!');
           }}
           title={`Dein Deck (${p1.deck.length} Karten)`}
         >
@@ -1001,7 +1015,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                   } else if (isEvolvable) {
                     soundManager.playSfx('button');
                     setSelectedHandEvoIdx(hIdx);
-                    soundManager.speakText(`Entwicklung für ${card.evolvesFrom}! Tippe auf das Pokémon!`);
+                    soundManager.playVoice('prompt_evolve', 'Entwicklung bereit! Ziehe die Karte auf dein Pokémon!');
                   } else if (isTrainerPlayable) {
                     handleAction({ type: 'PLAY_TRAINER', handIndex: hIdx, target: 'active' });
                   } else {
@@ -1098,6 +1112,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           onClose={() => setShowCoinModal(false)}
           title="Pikachu Glücksmünze"
         />
+      )}
+
+      {/* 5d. How To Play / Interactive Audio Rulebook */}
+      {showRules && (
+        <HowToPlayModal onClose={() => setShowRules(false)} />
       )}
 
       {/* 6. Victory / Defeat Modal */}

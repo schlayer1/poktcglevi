@@ -22,7 +22,7 @@ export const PikachuCompanion: React.FC<PikachuCompanionProps> = ({
     if (voiceKey) {
       soundManager.playVoice(voiceKey, promptText);
     } else {
-      soundManager.speakText(promptText);
+      soundManager.playVoice('cheer_super');
     }
   };
 

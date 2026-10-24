@@ -12,12 +12,18 @@ interface CardDetailModalProps {
 export const CardDetailModal: React.FC<CardDetailModalProps> = ({ card, onClose }) => {
   if (!card) return null;
 
+  React.useEffect(() => {
+    // Autoplay authentic cry and studio card presentation for Levi
+    const timer = setTimeout(() => {
+      soundManager.playCry(card.dexId);
+      soundManager.playCardVoice(card);
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [card]);
+
   const handleSpeak = () => {
     soundManager.playCry(card.dexId);
-    const attackText = card.attacks
-      .map((a) => `${a.name}: ${a.damage} Schaden`)
-      .join('. ');
-    soundManager.speakText(`${card.name}! ${card.hp} Kraftpunkte. Attacken: ${attackText}`);
+    soundManager.playCardVoice(card);
   };
 
   return (
