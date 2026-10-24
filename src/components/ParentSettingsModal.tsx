@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock, Trophy, RefreshCw } from 'lucide-react';
+import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock, Trophy, RefreshCw, Film, Zap } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 import { storageService, UserProfile } from '../services/storageService';
 import { Card } from '../types/game';
@@ -32,6 +32,7 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
   const [muted, setMuted] = useState(soundManager.isMuted());
   const [bgmMuted, setBgmMuted] = useState(soundManager.isBgmMuted());
   const [vol, setVol] = useState(soundManager.getVolume());
+  const [animSpeed, setAnimSpeed] = useState<'cinematic' | 'fast'>(storageService.getBattleAnimSpeed());
 
   const handleVerify = (e: React.FormEvent) => {
     e.preventDefault();
@@ -254,6 +255,52 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* 3b. Kampf-Animationen (Tempo & Sprachbegleitung) */}
+            <div className="space-y-2 bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-sm block text-amber-300">Kampf-Animationen</span>
+                <span className="text-[10px] text-slate-400">TCG Pocket Standard</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAnimSpeed('cinematic');
+                    storageService.setBattleAnimSpeed('cinematic');
+                  }}
+                  className={`py-2 px-3 rounded-xl border flex items-center justify-center gap-1.5 transition-all ${
+                    animSpeed === 'cinematic'
+                      ? 'bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 border-white shadow-md font-black'
+                      : 'bg-slate-900 text-slate-300 border-slate-700 font-bold'
+                  }`}
+                >
+                  <Film className="w-4 h-4 text-slate-950" />
+                  <span className="text-xs">Filmisch</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAnimSpeed('fast');
+                    storageService.setBattleAnimSpeed('fast');
+                  }}
+                  className={`py-2 px-3 rounded-xl border flex items-center justify-center gap-1.5 transition-all ${
+                    animSpeed === 'fast'
+                      ? 'bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 border-white shadow-md font-black'
+                      : 'bg-slate-900 text-slate-300 border-slate-700 font-bold'
+                  }`}
+                >
+                  <Zap className="w-4 h-4 text-slate-950" />
+                  <span className="text-xs">Schnell</span>
+                </button>
+              </div>
+              <p className="text-[10px] text-slate-300 leading-snug">
+                {animSpeed === 'cinematic'
+                  ? '🎬 Filmisch: Voller Kartensprung, Partikel-Explosionen, schwebende Schadenszahlen und liebevolle Attacken-Sprachausgabe für Levi.'
+                  : '⚡ Schnell: Rasanter Direkttreffer & Schadenszahl ohne Verzögerung für zügige Duelle.'}
+              </p>
             </div>
 
             {/* 4. Spielstand Export / Import */}

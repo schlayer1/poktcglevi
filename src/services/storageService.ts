@@ -188,6 +188,22 @@ class StorageService {
     this.saveProfile(this.profile);
   }
 
+  public getBattleAnimSpeed(): 'cinematic' | 'fast' {
+    return this.profile?.settings?.fastAnimations ? 'fast' : 'cinematic';
+  }
+
+  public setBattleAnimSpeed(speed: 'cinematic' | 'fast') {
+    if (!this.profile) return;
+    this.profile.settings.fastAnimations = speed === 'fast';
+    this.saveProfile(this.profile);
+  }
+
+  public updateSettings(partial: Partial<UserProfile['settings']>) {
+    if (!this.profile) return;
+    this.profile.settings = { ...this.profile.settings, ...partial };
+    this.saveProfile(this.profile);
+  }
+
   public unlockAllChapters() {
     if (!this.profile) return;
     this.profile.allChaptersUnlocked = true;

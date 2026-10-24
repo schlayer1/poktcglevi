@@ -47,7 +47,17 @@ class SoundManager {
     defeat: '/audio/sfx/tcgp_defeat.m4a',
     achievement: '/audio/sfx/tcgp_gold_achievement.m4a',
     shuffle: '/audio/sfx/tcgp_shuffle.m4a',
-    click: '/audio/sfx/tcgp_click.m4a'
+    click: '/audio/sfx/tcgp_click.m4a',
+    attack_hit: '/audio/sfx/tcgp_attack_hit.m4a',
+    attack_whoosh: '/audio/sfx/tcgp_attack_whoosh.m4a',
+    card_rotate: '/audio/sfx/tcgp_card_rotate.m4a',
+    star_rare: '/audio/sfx/tcgp_star_rare.m4a',
+    crown_rare: '/audio/sfx/tcgp_crown_rare.m4a',
+    card_shine: '/audio/sfx/tcgp_card_shine.m4a',
+    ok: '/audio/sfx/tcgp_ok.m4a',
+    select: '/audio/sfx/tcgp_select.m4a',
+    toast: '/audio/sfx/tcgp_toast.m4a',
+    transition: '/audio/sfx/tcgp_transition.m4a'
   };
 
   constructor() {
@@ -320,6 +330,7 @@ class SoundManager {
       | 'card_hover'
       | 'energy_attach'
       | 'attack_hit'
+      | 'attack_whoosh'
       | 'fire_attack'
       | 'water_attack'
       | 'electric_attack'
@@ -336,6 +347,14 @@ class SoundManager {
       | 'achievement'
       | 'shuffle'
       | 'click'
+      | 'card_rotate'
+      | 'star_rare'
+      | 'crown_rare'
+      | 'card_shine'
+      | 'ok'
+      | 'select'
+      | 'toast'
+      | 'transition'
   ) {
     if (this.muted) return;
 

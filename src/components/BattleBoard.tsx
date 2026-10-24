@@ -12,7 +12,7 @@ import { AttackEffects, AttackAnimationData } from './AttackEffects';
 import { GymBadge, BadgeType } from './GymBadge';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight } from 'lucide-react';
+import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight, Film, Zap } from 'lucide-react';
 
 const TYPE_GLOWS: Record<string, { border: string; glow: string; ring: string }> = {
   Feuer: { border: 'border-orange-500', glow: 'rgba(249,115,22,0.85)', ring: 'from-amber-500/50 via-orange-600/40 to-red-950/90' },
@@ -49,6 +49,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   const [inspectedCard, setInspectedCard] = useState<Card | null>(null);
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [animData, setAnimData] = useState<AttackAnimationData | null>(null);
+  const [animSpeed, setAnimSpeed] = useState<'cinematic' | 'fast'>(storageService.getBattleAnimSpeed());
   const [bgmMuted, setBgmMuted] = useState<boolean>(soundManager.isBgmMuted());
 
   const p1 = gameState.players[0]; // Levi
@@ -142,10 +143,10 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       } else {
         setGameState((prev) => reduceGameState(prev, { type: 'END_TURN' }));
       }
-    }, 1400);
+    }, animSpeed === 'fast' ? 700 : 1300);
 
     return () => clearTimeout(timer);
-  }, [gameState, isLeviTurn, animData]);
+  }, [gameState, isLeviTurn, animData, animSpeed]);
 
   // Attack Execution for active player
   const executePlayerAttack = (atkIdx: number, playerIndex: 0 | 1 = 0) => {
@@ -263,6 +264,16 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     const typeKey = card.types[0] || 'Farblos';
     const typeStyle = TYPE_GLOWS[typeKey] || TYPE_GLOWS['Farblos'];
 
+    const isAttacker = animData && ((animData.attackerSide === 'player' && isPlayer) || (animData.attackerSide === 'opponent' && !isPlayer));
+    const isDefender = animData && ((animData.attackerSide === 'player' && !isPlayer) || (animData.attackerSide === 'opponent' && isPlayer));
+
+    let motionClass = '';
+    if (isAttacker) {
+      motionClass = isPlayer ? '-translate-y-8 scale-108 z-40' : 'translate-y-8 scale-108 z-40';
+    } else if (isDefender) {
+      motionClass = 'animate-[shake_0.4s_ease-in-out] drop-shadow-[0_0_35px_rgba(239,68,68,1)]';
+    }
+
     return (
       <div
         onClick={() => {
@@ -279,7 +290,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
         }`}
       >
         {/* Pokémon Cutout Figure */}
-        <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 flex items-center justify-center z-20">
+        <div className={`relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 flex items-center justify-center z-20 transition-all duration-300 ${motionClass}`}>
           <img
             src={card.artworkUrl}
             alt={card.name}
@@ -287,6 +298,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               isPlayer ? 'scale-x-[-1]' : ''
             }`}
           />
+
+          {/* Red Flash Overlay when Hit */}
+          {isDefender && (
+            <div className="absolute inset-0 bg-red-600/40 rounded-full blur-md animate-ping pointer-events-none" />
+          )}
 
           {/* Attached Energy Spheres Badges */}
           {mon.attachedEnergy.length > 0 && (
@@ -483,6 +499,29 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             {gymBadgeId && (
               <GymBadge type={gymBadgeId} earned={storageService.loadProfile(allCards).badges.includes(gymBadgeId)} size="sm" />
             )}
+            {/* Anim Speed Quick-Toggle */}
+            <button
+              onClick={() => {
+                const next = animSpeed === 'cinematic' ? 'fast' : 'cinematic';
+                setAnimSpeed(next);
+                storageService.setBattleAnimSpeed(next);
+                soundManager.playSfx('click');
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-900/85 border border-slate-700 text-xs font-black shadow-lg transition-transform active:scale-95 cursor-pointer"
+              title={animSpeed === 'cinematic' ? 'Tempo: Filmisch (Klicken für Schnell)' : 'Tempo: Schnell (Klicken für Filmisch)'}
+            >
+              {animSpeed === 'cinematic' ? (
+                <>
+                  <Film className="w-4 h-4 text-amber-400" />
+                  <span className="hidden sm:inline text-amber-300">Filmisch</span>
+                </>
+              ) : (
+                <>
+                  <Zap className="w-4 h-4 text-emerald-400" />
+                  <span className="hidden sm:inline text-emerald-300">Schnell</span>
+                </>
+              )}
+            </button>
             <button
               onClick={toggleSound}
               className="p-2.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
@@ -900,7 +939,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       </div>
 
       {/* 5. Attack Visual Effects & Projectiles */}
-      <AttackEffects animData={animData} />
+      <AttackEffects animData={animData} speed={animSpeed} />
       <CardDetailModal card={inspectedCard} onClose={() => setInspectedCard(null)} />
 
       {/* 6. Victory / Defeat Modal */}
