@@ -85,11 +85,16 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({ onStart }) => {
       <div className="relative z-20 pb-4 sm:pb-8 w-full max-w-md">
         <button
           onClick={handlePlayClick}
-          className="w-full py-5 px-8 rounded-3xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 font-black text-2xl sm:text-3xl border-4 border-white shadow-[0_0_35px_rgba(251,191,36,0.9)] flex items-center justify-center gap-4 transition-transform active:scale-95 animate-bounce"
+          className="w-full py-5 px-8 rounded-3xl bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 font-black text-2xl sm:text-3xl border-4 border-white shadow-[0_0_35px_rgba(251,191,36,0.9)] flex items-center justify-center gap-4 transition-transform active:scale-95 animate-bounce cursor-pointer"
         >
           <Play className="w-8 h-8 sm:w-10 sm:h-10 fill-current" />
           <span>SPIELEN!</span>
         </button>
+      </div>
+
+      {/* Version Indicator */}
+      <div className="absolute bottom-2 right-3 text-[10px] font-mono text-slate-500/80 pointer-events-none">
+        v1.2.0 • Anime-Arenen
       </div>
     </div>
   );

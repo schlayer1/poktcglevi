@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock, Trophy } from 'lucide-react';
+import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock, Trophy, RefreshCw } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 import { storageService, UserProfile } from '../services/storageService';
 import { Card } from '../types/game';
@@ -84,6 +84,31 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
     if (confirm('Wirklich alle 255 Karten für Levi freischalten?')) {
       storageService.unlockAllCards(allCards);
       alert('Alle Karten freigeschaltet! Viel Spaß beim Sammeln & Deckbauen!');
+    }
+  };
+
+  const [updating, setUpdating] = useState(false);
+
+  const handleForceUpdate = async () => {
+    if (confirm('App-Cache jetzt aktualisieren? Levis Spielstand und gesammelte Karten bleiben 100% sicher erhalten!')) {
+      setUpdating(true);
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          for (const reg of regs) {
+            await reg.unregister();
+          }
+        }
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          for (const key of keys) {
+            await caches.delete(key);
+          }
+        }
+      } catch (err) {
+        console.error('Error clearing cache:', err);
+      }
+      window.location.reload();
     }
   };
 
@@ -280,6 +305,25 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* 6. PWA Cache & Update */}
+            <div className="space-y-2 bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-sm text-sky-300">App & Grafik-Aktualisierung</span>
+                <span className="text-[10px] text-slate-400 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-700">v1.2.0 • Anime-Arenen</span>
+              </div>
+              <p className="text-[11px] text-slate-300 leading-snug">
+                Lädt die neueste Version von Vercel. Levis gesammelte Karten und Spielstand bleiben zu 100% erhalten!
+              </p>
+              <button
+                onClick={handleForceUpdate}
+                disabled={updating}
+                className="w-full py-2.5 px-3 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/50 text-sky-300 text-xs font-black flex items-center justify-center gap-2 cursor-pointer shadow transition-all active:scale-95"
+              >
+                <RefreshCw className={`w-4 h-4 text-sky-400 ${updating ? 'animate-spin' : ''}`} />
+                <span>{updating ? 'Aktualisiere...' : 'App & Grafik-Cache jetzt aktualisieren'}</span>
+              </button>
             </div>
           </div>
         )}
