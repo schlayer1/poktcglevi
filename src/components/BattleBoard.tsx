@@ -107,7 +107,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     if (gameState.winner !== null) return;
 
     if (gameState.turnPhase === 'promote_needed') {
-      soundManager.playVoice('prompt_promote', 'Wähle ein neues Pokémon von deiner Bank!');
+      if (p1.active === null) {
+        soundManager.playVoice('prompt_promote', 'Wähle ein neues Pokémon von deiner Bank!');
+      } else {
+        soundManager.playVoice('opponent_turn', `${p2.name} wählt das nächste Pokémon.`);
+      }
       return;
     }
 
@@ -157,14 +161,27 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
 
   // AI Opponent in Solo Mode
   useEffect(() => {
-    if (gameState.gameMode !== 'solo' || isLeviTurn || gameState.winner !== null || animData !== null) {
+    if (gameState.gameMode !== 'solo' || gameState.winner !== null || animData !== null) {
+      return;
+    }
+
+    const isAiTurn = !isLeviTurn;
+    const isAiPromotionNeeded = gameState.turnPhase === 'promote_needed' && p2.active === null;
+
+    if (!isAiTurn && !isAiPromotionNeeded) {
       return;
     }
 
     const timer = setTimeout(() => {
       const aiMove = getAiAction(gameState);
       if (aiMove) {
-        if (aiMove.type === 'ATTACK') {
+        if (aiMove.type === 'PROMOTE') {
+          soundManager.playSfx('card_slide');
+          const promotedMon = p2.bench[aiMove.benchIndex];
+          if (promotedMon) {
+            soundManager.playVoice('opponent_turn', `${p2.name} schickt ${promotedMon.card.name} in den Kampf!`);
+          }
+        } else if (aiMove.type === 'ATTACK') {
           const atkCard = p2.active?.card;
           const attack = atkCard?.attacks[aiMove.attackIndex];
           if (atkCard && attack && p1.active) {
@@ -249,6 +266,8 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       setSelectedEnergy(false);
     } else if (action.type === 'PLAY_BENCH') {
       soundManager.playSfx('card_play');
+    } else if (action.type === 'PROMOTE') {
+      soundManager.playSfx('card_slide');
     } else if (action.type === 'EVOLVE') {
       soundManager.playSfx('victory');
       soundManager.playVoice('evolution_success', 'Entwicklung! Was für ein starkes Pokémon!');
@@ -306,7 +325,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             Pokémon K.O.!
           </span>
           <span className="text-[11px] font-bold text-rose-200/80 mt-1">
-            Wähle ein Pokémon von deiner Bank!
+            {isPlayer ? 'Wähle ein Pokémon von deiner Bank!' : `${p2.name} schickt das nächste Pokémon...`}
           </span>
         </div>
       );
@@ -657,7 +676,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             </span>
             {[0, 1, 2].map((idx) => {
               const benchMon = p2.bench[idx];
-              const isPromotableP2 = isPvP && !isLeviTurn && gameState.turnPhase === 'promote_needed' && idx < p2.bench.length;
+              const isPromotableP2 = isPvP && gameState.turnPhase === 'promote_needed' && p2.active === null && idx < p2.bench.length;
               const isTargetOfEnergyP2 = isPvP && !isLeviTurn && selectedEnergy && benchMon;
               const isPlayableEmptySlotP2 = isPvP && !isLeviTurn && !benchMon && legalActions.playableHandIndices && legalActions.playableHandIndices.length > 0;
 
@@ -665,20 +684,22 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                 <div
                   key={idx}
                   onClick={() => {
-                    if (isPvP && !isLeviTurn) {
+                    if (isPvP) {
                       if (isPromotableP2) {
                         handleAction({ type: 'PROMOTE', benchIndex: idx });
-                      } else if (isTargetOfEnergyP2) {
-                        handleAction({ type: 'ATTACH_ENERGY', target: idx });
-                      } else if (isPlayableEmptySlotP2 && legalActions.playableHandIndices) {
-                        handleAction({ type: 'PLAY_BENCH', handIndex: legalActions.playableHandIndices[0] });
-                      } else if (benchMon) {
-                        setInspectedCard(benchMon.card);
+                      } else if (!isLeviTurn) {
+                        if (isTargetOfEnergyP2) {
+                          handleAction({ type: 'ATTACH_ENERGY', target: idx });
+                        } else if (isPlayableEmptySlotP2 && legalActions.playableHandIndices) {
+                          handleAction({ type: 'PLAY_BENCH', handIndex: legalActions.playableHandIndices[0] });
+                        } else if (benchMon) {
+                          setInspectedCard(benchMon.card);
+                        }
                       }
                     }
                   }}
                   className={`relative w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 flex flex-col items-center justify-center overflow-hidden shadow transition-all ${
-                    isPvP && !isLeviTurn && (isPromotableP2 || isTargetOfEnergyP2 || isPlayableEmptySlotP2)
+                    isPvP && (isPromotableP2 || (!isLeviTurn && (isTargetOfEnergyP2 || isPlayableEmptySlotP2)))
                       ? 'border-sky-400 bg-sky-400/20 shadow-[0_0_18px_rgba(56,189,248,0.8)] scale-105 animate-pulse cursor-pointer'
                       : 'border-slate-800 bg-slate-950/80 hover:border-slate-700'
                   }`}
@@ -871,7 +892,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               const benchMon = p1.bench[idx];
               const isPromotable =
                 gameState.turnPhase === 'promote_needed' &&
-                activeIdx === 1 &&
+                p1.active === null &&
                 idx < p1.bench.length;
               const isTargetOfEnergy = selectedEnergy && isLeviTurn && benchMon;
               const isTargetOfEvo =

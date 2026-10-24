@@ -155,13 +155,17 @@ export function getLegalActions(state: GameState): LegalAction {
 
   // Promotion needed
   if (state.turnPhase === 'promote_needed') {
-    const inactivePlayerIndex = state.activePlayerIndex === 0 ? 1 : 0;
-    const playerNeedingPromotion = state.players[inactivePlayerIndex];
+    const playerNeedingPromotionIndex = state.players.findIndex((p) => p.active === null);
+    const targetIdx = playerNeedingPromotionIndex >= 0 ? playerNeedingPromotionIndex : (state.activePlayerIndex === 0 ? 1 : 0);
+    const playerNeedingPromotion = state.players[targetIdx];
     const promotableIndices = playerNeedingPromotion.bench.map((_, i) => i);
+    const isPlayerPromoting = targetIdx === 0;
     return {
       type: 'PROMOTE',
-      description: 'Wähle ein neues Pokémon von deiner Bank!',
-      voiceKey: 'prompt_promote',
+      description: isPlayerPromoting
+        ? 'Wähle ein neues Pokémon von deiner Bank!'
+        : `${playerNeedingPromotion.name} wählt das nächste Pokémon...`,
+      voiceKey: isPlayerPromoting ? 'prompt_promote' : 'opponent_turn',
       promotableBenchIndices: promotableIndices
     };
   }
@@ -577,7 +581,12 @@ export function reduceGameState(state: GameState, action: Action): GameState {
 
     case 'PROMOTE': {
       if (state.turnPhase !== 'promote_needed') return state;
-      const promotingPlayer = pOpponent;
+      const targetPlayerIndex = state.players.findIndex((p) => p.active === null);
+      if (targetPlayerIndex === -1) return state;
+
+      const p0 = { ...state.players[0] };
+      const p1 = { ...state.players[1] };
+      const promotingPlayer = targetPlayerIndex === 0 ? p0 : p1;
       const bIdx = action.benchIndex;
       if (!promotingPlayer.bench[bIdx]) return state;
 
@@ -588,7 +597,7 @@ export function reduceGameState(state: GameState, action: Action): GameState {
 
       log.push(`${promotingPlayer.name} schickt ${newActive.card.name} in den Kampf!`);
 
-      const nextPlayers: [PlayerState, PlayerState] = activeIdx === 0 ? [pActive, promotingPlayer] : [promotingPlayer, pActive];
+      const nextPlayers: [PlayerState, PlayerState] = [p0, p1];
 
       return endTurnTransition({
         ...state,
@@ -671,13 +680,10 @@ function endTurnTransition(state: GameState): GameState {
 export function getAiAction(state: GameState): Action | null {
   if (state.winner !== null) return null;
 
-  const aiIdx = state.activePlayerIndex;
-  const aiPlayer = state.players[aiIdx];
-  const opponent = state.players[aiIdx === 0 ? 1 : 0];
-
-  // 1. Promotion
+  // 1. Promotion (AI is player 1)
   if (state.turnPhase === 'promote_needed') {
-    if (aiPlayer.bench.length > 0) {
+    const aiPlayer = state.players[1];
+    if (aiPlayer.active === null && aiPlayer.bench.length > 0) {
       let bestIdx = 0;
       let maxHp = -1;
       aiPlayer.bench.forEach((b, i) => {
@@ -690,6 +696,10 @@ export function getAiAction(state: GameState): Action | null {
     }
     return null;
   }
+
+  const aiIdx = state.activePlayerIndex;
+  const aiPlayer = state.players[aiIdx];
+  const opponent = state.players[aiIdx === 0 ? 1 : 0];
 
   // 2. Play Trainer (Potion if damaged)
   if (state.stage >= 3) {

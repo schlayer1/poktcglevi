@@ -207,4 +207,60 @@ describe('Game Engine Level 1, 2 and 3', () => {
     // Heals 20 HP (30 -> 50)
     expect(state.players[0].active!.currentHp).toBe(50);
   });
+
+  it('correctly handles Knockout, AI Promotion, and Turn Transition without softlocking', () => {
+    const p1Deck = makeDeck(dummyGlumanda);
+    const p2Deck = makeDeck(dummySchiggy);
+
+    let state = createInitialGameState(p1Deck, p2Deck, {
+      p1Name: 'Levi',
+      p2Name: 'Rocko',
+      p1Avatar: 'levi',
+      p2Avatar: 'rocko',
+      ruleLevel: 1
+    });
+
+    // Ensure opponent (Player 2) has a benched Pokemon
+    state.players[1].bench = [
+      {
+        instanceId: 'bench_1',
+        card: dummyGlumanda,
+        currentHp: dummyGlumanda.hp,
+        maxHp: dummyGlumanda.hp,
+        attachedEnergy: [],
+        status: 'none',
+        canAttack: true
+      }
+    ];
+
+    // Levi's turn (turnNumber >= 2 allows attacking)
+    state.turnNumber = 2;
+    state.activePlayerIndex = 0;
+    state.players[0].active!.attachedEnergy = ['Feuer'];
+    // Opponent active has only 10 HP left
+    state.players[1].active!.currentHp = 10;
+
+    // Levi attacks with Glut (30 damage), knocking out opponent
+    state = reduceGameState(state, { type: 'ATTACK', attackIndex: 1 });
+
+    // Verify KO state
+    expect(state.players[0].points).toBe(1);
+    expect(state.players[1].active).toBeNull();
+    expect(state.turnPhase).toBe('promote_needed');
+
+    // AI must be able to generate a PROMOTE action even while activePlayerIndex === 0
+    const aiAction = getAiAction(state);
+    expect(aiAction).not.toBeNull();
+    expect(aiAction!.type).toBe('PROMOTE');
+
+    // Execute the AI promote
+    state = reduceGameState(state, aiAction!);
+
+    // Opponent active should now be Glumanda, bench empty, turn transitioned to Opponent
+    expect(state.players[1].active).not.toBeNull();
+    expect(state.players[1].active!.card.name).toBe('Glumanda');
+    expect(state.players[1].bench.length).toBe(0);
+    expect(state.turnPhase).toBe('main');
+    expect(state.activePlayerIndex).toBe(1); // Turn passed to Opponent
+  });
 });
