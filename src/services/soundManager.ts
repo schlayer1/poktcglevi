@@ -7,7 +7,18 @@
  * 5. Web Speech API (speechSynthesis) fallback in German
  */
 
-export type BgmTrack = 'title' | 'menu' | 'pack_menu' | 'pack_open' | 'battle' | 'victory' | null;
+export type BgmTrack =
+  | 'title'
+  | 'menu'
+  | 'pack_menu'
+  | 'pack_open'
+  | 'battle'
+  | 'battle_elite'
+  | 'battle_climax'
+  | 'battle_papa'
+  | 'battle_pinch'
+  | 'victory'
+  | null;
 
 class SoundManager {
   private ctx: AudioContext | null = null;
@@ -35,6 +46,10 @@ class SoundManager {
     pack_menu: '/audio/bgm/tcgp_pack_menu.m4a',
     pack_open: '/audio/bgm/tcgp_pack_opening_1.m4a',
     battle: '/audio/bgm/tcgp_battle.m4a',
+    battle_elite: '/audio/bgm/tcgp_battle_elite.m4a',
+    battle_climax: '/audio/bgm/tcgp_battle_climax.m4a',
+    battle_papa: '/audio/bgm/tcgp_battle_papa.m4a',
+    battle_pinch: '/audio/bgm/tcgp_battle_pinch.m4a',
     victory: '/audio/sfx/tcgp_victory.m4a'
   };
 
@@ -180,6 +195,14 @@ class SoundManager {
     }
 
     this.playSynthesizedBgm(track);
+  }
+
+  public setBgmPinch(isPinch: boolean) {
+    if (this.bgmAudio) {
+      try {
+        this.bgmAudio.playbackRate = isPinch ? 1.14 : 1.0;
+      } catch {}
+    }
   }
 
   public stopBgm() {

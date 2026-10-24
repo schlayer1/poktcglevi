@@ -14,7 +14,7 @@ import { TurnBanner } from './TurnBanner';
 import { CoinTossModal } from './CoinTossModal';
 import { StatusBadge } from './StatusBadge';
 import { storageService } from '../services/storageService';
-import { soundManager } from '../services/soundManager';
+import { soundManager, BgmTrack } from '../services/soundManager';
 import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight, Film, Zap } from 'lucide-react';
 
 const TYPE_GLOWS: Record<string, { border: string; glow: string; ring: string }> = {
@@ -65,13 +65,42 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
 
   const legalActions = getLegalActions(gameState);
 
-  // Play battle BGM when battle starts
+  // 3-Stufen BGM Logik basierend auf Arenaleiter
+  const getBattleTrack = (): BgmTrack => {
+    if (isPvP) return 'battle_papa';
+    if (gymBadgeId === 'gary') return 'battle_climax';
+    if (gymBadgeId && ['koga', 'sabrina', 'pyro', 'giovanni'].includes(gymBadgeId)) {
+      return 'battle_elite';
+    }
+    return 'battle';
+  };
+
+  // Play battle BGM based on Gym Leader tier
   useEffect(() => {
-    soundManager.playBgm('battle');
+    const track = getBattleTrack();
+    soundManager.playBgm(track);
     return () => {
       soundManager.stopBgm();
+      soundManager.setBgmPinch(false);
     };
-  }, []);
+  }, [gymBadgeId, isPvP]);
+
+  // TCG Pocket Climax-Pinch (Last Point Tension)
+  const isPinch = (p1.points === 2 || p2.points === 2) && gameState.winner === null;
+  const [pinchAnnounced, setPinchAnnounced] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isPinch) {
+      soundManager.setBgmPinch(true);
+      if (!pinchAnnounced) {
+        setPinchAnnounced(true);
+        soundManager.playSfx('star_rare');
+        soundManager.speakText('Achtung! Letzter Punkt zum Sieg! Jetzt geht es um alles!');
+      }
+    } else {
+      soundManager.setBgmPinch(false);
+    }
+  }, [isPinch, pinchAnnounced]);
 
   // Voice instructions
   useEffect(() => {
@@ -414,6 +443,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       {/* 1. Dynamic Thematic Anime Arena Background */}
       <ArenaBackground arena={arena} />
 
+      {/* Climax-Pinch Golden Edge Aura */}
+      {isPinch && (
+        <div className="absolute inset-0 pointer-events-none z-20 border-4 sm:border-8 border-amber-400/60 shadow-[inset_0_0_90px_rgba(245,158,11,0.6)] animate-pulse" />
+      )}
+
       {/* 2. Top Header (PvP Mode: Rotated for Papa; Solo Mode: Standard Info) */}
       {isPvP ? (
         <div className="relative z-30 rotate-180 flex items-center justify-between px-3 pb-1 pt-1 gap-2 bg-slate-950/70 rounded-3xl border border-slate-800 backdrop-blur-md">
@@ -532,6 +566,15 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             </div>
             {renderPoints(p2.points)}
           </div>
+
+          {/* Climax-Pinch Status Badge */}
+          {isPinch && (
+            <div className="flex items-center gap-1.5 bg-gradient-to-r from-amber-500 via-rose-500 to-amber-500 text-slate-950 font-black px-4 py-1.5 rounded-full border-2 border-white shadow-[0_0_25px_rgba(251,191,36,0.9)] animate-bounce z-40">
+              <span className="text-sm">🔥</span>
+              <span className="text-xs uppercase tracking-wider">LETZTER PUNKT!</span>
+              <span className="text-sm">🔥</span>
+            </div>
+          )}
 
           {/* Right Corner Buttons */}
           <div className="flex items-center gap-2">
