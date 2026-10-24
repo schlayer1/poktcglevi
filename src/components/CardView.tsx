@@ -65,7 +65,7 @@ export const CardView: React.FC<CardViewProps> = ({
 
   // Dimensions based on size
   const dimensionClasses = {
-    hand: 'w-24 sm:w-28 md:w-32 aspect-[5/7] text-xs',
+    hand: 'w-28 sm:w-32 md:w-36 aspect-[5/7] text-xs',
     bench: 'w-20 sm:w-24 md:w-28 aspect-[5/7] text-xs',
     active: 'w-36 sm:w-44 md:w-52 aspect-[5/7] text-sm',
     preview: 'w-64 sm:w-72 md:w-80 aspect-[5/7] text-base'
@@ -113,14 +113,16 @@ export const CardView: React.FC<CardViewProps> = ({
       {/* Card Header: Stage, Name, HP, Type */}
       <div className="relative z-10 px-2 pt-1.5 flex items-center justify-between gap-1">
         <div className="flex items-center gap-1 min-w-0">
-          <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-amber-300 truncate">
-            {card.stage}
-          </span>
+          {card.stage !== 'Basis' && (
+            <span className="text-[9px] font-black uppercase tracking-wider bg-amber-400 text-slate-950 px-1 rounded shrink-0">
+              {card.stage === 'Rang 1' ? 'R1' : card.stage === 'Rang 2' ? 'R2' : 'EVO'}
+            </span>
+          )}
           <span className="font-extrabold text-white truncate text-xs sm:text-sm drop-shadow">
             {card.name}
           </span>
           {card.isEx && (
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 text-[9px] font-black px-1 rounded-sm shadow">
+            <span className="bg-gradient-to-r from-amber-400 to-yellow-500 text-slate-950 text-[9px] font-black px-1 rounded-sm shadow shrink-0">
               EX
             </span>
           )}

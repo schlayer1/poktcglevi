@@ -12,7 +12,7 @@ import { AttackEffects, AttackAnimationData } from './AttackEffects';
 import { GymBadge, BadgeType } from './GymBadge';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { Check, Settings, Sparkles, Volume2, VolumeX, ArrowLeftRight, HeartHandshake } from 'lucide-react';
+import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles } from 'lucide-react';
 
 interface BattleBoardProps {
   initialState: GameState;
@@ -41,9 +41,10 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   const [bgmMuted, setBgmMuted] = useState<boolean>(soundManager.isBgmMuted());
 
   const p1 = gameState.players[0]; // Levi
-  const p2 = gameState.players[1]; // Opponent
+  const p2 = gameState.players[1]; // Opponent (Gym Leader or Papa)
   const activeIdx = gameState.activePlayerIndex;
   const isLeviTurn = activeIdx === 0;
+  const isPvP = gameState.gameMode === 'pvp';
 
   const legalActions = getLegalActions(gameState);
 
@@ -70,10 +71,10 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       } else {
         soundManager.playVoice(legalActions.voiceKey || 'turn_start', legalActions.description);
       }
-    } else if (gameState.gameMode === 'pvp') {
-      soundManager.playVoice('turn_papa', 'Papa ist am Zug!');
+    } else if (isPvP) {
+      soundManager.playVoice('turn_papa', `${p2.name} ist am Zug!`);
     }
-  }, [gameState.turnNumber, gameState.activePlayerIndex, gameState.turnPhase]);
+  }, [gameState.turnNumber, gameState.activePlayerIndex, gameState.turnPhase, isPvP]);
 
   // Record win/loss when match finishes
   useEffect(() => {
@@ -86,7 +87,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     }
   }, [gameState.winner, gymBadgeId]);
 
-  // AI Opponent
+  // AI Opponent in Solo Mode
   useEffect(() => {
     if (gameState.gameMode !== 'solo' || isLeviTurn || gameState.winner !== null || animData !== null) {
       return;
@@ -135,22 +136,25 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     return () => clearTimeout(timer);
   }, [gameState, isLeviTurn, animData]);
 
-  // Attack Execution
-  const executePlayerAttack = (atkIdx: number) => {
-    if (!p1.active || !p2.active || gameState.attackedThisTurn) return;
-    const attack = p1.active.card.attacks[atkIdx];
-    if (!attack || !canPayCost(p1.active.attachedEnergy, attack.cost)) return;
+  // Attack Execution for active player
+  const executePlayerAttack = (atkIdx: number, playerIndex: 0 | 1 = 0) => {
+    const attacker = gameState.players[playerIndex];
+    const defender = gameState.players[playerIndex === 0 ? 1 : 0];
+    if (!attacker.active || !defender.active || gameState.attackedThisTurn) return;
+
+    const attack = attacker.active.card.attacks[atkIdx];
+    if (!attack || !canPayCost(attacker.active.attachedEnergy, attack.cost)) return;
 
     let dmg = attack.damage;
-    if (gameState.stage >= 2 && p2.active.card.weakness?.type === p1.active.card.types[0]) {
+    if (gameState.stage >= 2 && defender.active.card.weakness?.type === attacker.active.card.types[0]) {
       dmg += 20;
     }
-    const willKo = dmg >= p2.active.currentHp;
+    const willKo = dmg >= defender.active.currentHp;
     setSelectedAttackIdx(null);
 
     setAnimData({
-      attackerSide: 'player',
-      type: p1.active.card.types[0] || 'Farblos',
+      attackerSide: playerIndex === 0 ? 'player' : 'opponent',
+      type: attacker.active.card.types[0] || 'Farblos',
       damage: dmg,
       attackName: attack.name,
       isKo: willKo,
@@ -210,7 +214,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     );
   };
 
-  // Helper: Render 3D Battle Pedestal
+  // Helper: Render 3D Battle Pedestal for Active Pokémon
   const renderActivePedestal = (
     mon: InPlayPokemon | null,
     isPlayer: boolean,
@@ -218,9 +222,12 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   ) => {
     if (!mon) {
       return (
-        <div className="w-56 h-36 rounded-[50%] border-3 border-dashed border-slate-700 bg-slate-900/40 flex items-center justify-center">
-          <span className="text-xs font-black text-rose-400 animate-pulse">
-            Pokémon K.O. – Ersatz nötig!
+        <div className="w-48 sm:w-60 h-40 sm:h-48 rounded-3xl border-3 border-dashed border-rose-400/60 bg-rose-950/30 flex flex-col items-center justify-center p-3 text-center shadow-lg backdrop-blur-sm animate-pulse">
+          <span className="text-sm font-black text-rose-300">
+            Pokémon K.O.!
+          </span>
+          <span className="text-[11px] font-bold text-rose-200/80 mt-1">
+            Wähle ein Pokémon von deiner Bank!
           </span>
         </div>
       );
@@ -252,59 +259,59 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             setInspectedCard(card);
           }
         }}
-        className={`relative flex flex-col items-center cursor-pointer transition-transform duration-300 ${
-          isTargetOfEnergy || isTargetOfEvo ? 'scale-105' : 'hover:scale-102'
+        className={`relative flex flex-col items-center cursor-pointer transition-all duration-300 ${
+          isTargetOfEnergy || isTargetOfEvo ? 'scale-108' : 'hover:scale-104'
         }`}
       >
         {/* Pokémon Cutout Figure */}
-        <div className="relative w-40 h-40 sm:w-52 sm:h-52 flex items-center justify-center z-20">
+        <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 flex items-center justify-center z-20">
           <img
             src={card.artworkUrl}
             alt={card.name}
-            className={`w-full h-full object-contain filter drop-shadow-[0_12px_16px_rgba(0,0,0,0.8)] transition-transform ${
+            className={`w-full h-full object-contain filter drop-shadow-[0_16px_20px_rgba(0,0,0,0.85)] transition-transform ${
               isPlayer ? 'scale-x-[-1]' : ''
             }`}
           />
 
-          {/* Attached Energy Spheres */}
+          {/* Attached Energy Spheres Badges */}
           {mon.attachedEnergy.length > 0 && (
-            <div className="absolute -bottom-2 flex items-center gap-1 bg-slate-950/80 px-2.5 py-1 rounded-full border border-amber-400/60 shadow-lg z-30">
+            <div className="absolute -bottom-1 flex items-center gap-1 bg-slate-950/85 px-3 py-1 rounded-full border-2 border-amber-400/80 shadow-xl z-30">
               {mon.attachedEnergy.map((eType, idx) => (
                 <EnergyBadge key={idx} type={eType} size="sm" />
               ))}
             </div>
           )}
 
-          {/* Evolution Pulse Highlight */}
+          {/* Evolution Highlight Ping */}
           {isTargetOfEvo && (
-            <div className="absolute inset-0 rounded-full border-4 border-amber-300 bg-amber-400/20 animate-ping pointer-events-none" />
+            <div className="absolute inset-0 rounded-full border-4 border-amber-300 bg-amber-400/25 animate-ping pointer-events-none" />
           )}
         </div>
 
-        {/* 3D Oval Pedestal Base */}
+        {/* 3D Oval Pedestal Base with Floor Cast Shadow */}
         <div
-          className={`relative -mt-6 w-48 sm:w-60 h-16 sm:h-20 rounded-[50%] border-3 bg-gradient-to-b from-amber-400/30 to-amber-950/60 flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.5)] z-10 ${
+          className={`relative -mt-8 w-52 sm:w-64 md:w-72 h-16 sm:h-20 rounded-[50%] border-3 bg-gradient-to-b from-amber-400/40 via-amber-700/30 to-amber-950/80 flex items-center justify-center shadow-[0_0_35px_rgba(251,191,36,0.6)] z-10 ${
             isTargetOfEnergy || isTargetOfEvo
-              ? 'border-white animate-pulse shadow-[0_0_40px_rgba(255,255,255,0.8)]'
-              : 'border-amber-400/70'
+              ? 'border-white animate-pulse shadow-[0_0_50px_rgba(255,255,255,0.9)]'
+              : 'border-amber-400/80'
           }`}
         >
-          <div className="w-[85%] h-[60%] rounded-[50%] border border-amber-300/40 bg-slate-950/60 flex items-center justify-center" />
+          <div className="w-[85%] h-[60%] rounded-[50%] border border-amber-300/40 bg-slate-950/70 flex items-center justify-center shadow-inner" />
         </div>
 
-        {/* HP Bar & Name */}
-        <div className="relative z-30 -mt-2 w-48 sm:w-56 bg-slate-900/90 border-2 border-slate-700 rounded-2xl p-2 shadow-xl flex flex-col gap-1 backdrop-blur-md">
-          <div className="flex items-center justify-between text-xs font-black">
+        {/* HP Bar & Name Plate */}
+        <div className="relative z-30 -mt-2 w-52 sm:w-60 bg-slate-900/95 border-2 border-slate-700 rounded-2xl p-2.5 shadow-2xl flex flex-col gap-1 backdrop-blur-md">
+          <div className="flex items-center justify-between text-xs sm:text-sm font-black">
             <span className="text-white drop-shadow truncate">{card.name}</span>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 shrink-0">
               <span
-                className={`text-sm ${
-                  effectiveHp === 0 ? 'text-rose-400 font-extrabold animate-pulse' : 'text-emerald-400'
+                className={`text-sm sm:text-base font-extrabold ${
+                  effectiveHp === 0 ? 'text-rose-400 animate-pulse' : 'text-emerald-400'
                 }`}
               >
                 {effectiveHp}
               </span>
-              <span className="text-[10px] text-slate-400">/ {maxHp} KP</span>
+              <span className="text-[10px] text-slate-400 font-bold">/ {maxHp} KP</span>
             </div>
           </div>
 
@@ -326,7 +333,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           </div>
 
           {previewDmg > 0 && effectiveHp === 0 && (
-            <div className="text-[10px] font-black text-rose-400 text-center animate-bounce">
+            <div className="text-[11px] font-black text-rose-400 text-center animate-bounce">
               ⚡ K.O.-Treffer!
             </div>
           )}
@@ -336,116 +343,61 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   };
 
   return (
-    <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col justify-between p-2 sm:p-4 select-none">
+    <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col justify-between p-2 sm:p-3 select-none">
+      {/* 1. Dynamic Thematic Anime Arena Background */}
       <ArenaBackground arena={arena} />
 
-      {/* Top Header */}
-      <div className="relative z-30 flex items-center justify-between px-2">
-        <div className="flex items-center gap-3 bg-slate-900/80 px-3.5 py-1.5 rounded-2xl border-2 border-slate-700/80 backdrop-blur-md shadow-lg">
-          <div className="w-10 h-10 rounded-full border-2 border-sky-400 bg-slate-950 p-1 flex items-center justify-center">
+      {/* 2. Top Header (Trainer Info & Controls) */}
+      <div className="relative z-30 flex items-center justify-between px-3 pt-1">
+        {/* Opponent Info */}
+        <div className="flex items-center gap-3 bg-slate-900/85 px-4 py-2 rounded-2xl border-2 border-slate-700/80 backdrop-blur-md shadow-xl">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-sky-400 bg-slate-950 p-1 flex items-center justify-center shrink-0">
             <img src={`/images/trainers/${p2.avatar}.png`} alt={p2.name} className="w-full h-full object-contain" />
           </div>
           <div>
-            <span className="font-black text-sm text-white block">{p2.name}</span>
-            <span className="text-[10px] font-bold text-sky-300">{p2.deck.length} Karten</span>
+            <span className="font-black text-sm sm:text-base text-white block leading-tight">{p2.name}</span>
+            <span className="text-[10px] sm:text-xs font-bold text-sky-300">{p2.deck.length} Karten im Deck</span>
           </div>
           {renderPoints(p2.points)}
         </div>
 
+        {/* Right Corner Buttons */}
         <div className="flex items-center gap-2">
           {gymBadgeId && (
             <GymBadge type={gymBadgeId} earned={storageService.loadProfile(allCards).badges.includes(gymBadgeId)} size="sm" />
           )}
           <button
             onClick={toggleSound}
-            className="p-2.5 rounded-full bg-slate-900/80 border border-slate-700 text-amber-300 hover:text-white shadow-lg"
+            className="p-2.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
+            title="Musik umschalten"
           >
             {bgmMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
           </button>
           <button
             onClick={() => setShowSettings(true)}
-            className="p-2.5 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white shadow-lg"
+            className="p-2.5 rounded-full bg-slate-900/85 border border-slate-700 text-slate-300 hover:text-white shadow-lg transition-transform active:scale-95 cursor-pointer"
+            title="Einstellungen"
           >
             <Settings className="w-5 h-5" />
           </button>
         </div>
       </div>
 
-      {/* Stadium Center Area */}
-      <div className="relative z-20 flex-1 flex items-center justify-center gap-8 sm:gap-16 my-auto">
-        {/* Opponent Active Pedestal & Bench */}
-        <div className="flex items-center gap-4">
-          {renderActivePedestal(
-            p2.active,
-            false,
-            selectedAttackIdx !== null && p1.active?.card.attacks[selectedAttackIdx]
-              ? p1.active.card.attacks[selectedAttackIdx].damage +
-                (gameState.stage >= 2 && p2.active?.card.weakness?.type === p1.active.card.types[0] ? 20 : 0)
-              : 0
-          )}
-
-          <div className="flex flex-col gap-2">
+      {/* 3. Main Battle Arena (Clear Spatial Layout: Opponent Left, Clash Center, Levi Right) */}
+      <div className="relative z-20 flex-1 flex items-center justify-between px-4 sm:px-8 my-auto max-w-7xl mx-auto w-full">
+        {/* === OPPONENT ZONE (Left Side) === */}
+        <div className="flex items-center gap-4 sm:gap-6">
+          {/* Opponent Bench (3 Vertical Mini-Slots on the Far Left) */}
+          <div className="flex flex-col gap-2.5 bg-slate-950/40 p-2 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
+            <span className="text-[9px] font-black uppercase tracking-wider text-slate-500 text-center">
+              Bank
+            </span>
             {[0, 1, 2].map((idx) => {
               const benchMon = p2.bench[idx];
               return (
                 <div
                   key={idx}
-                  className="w-14 sm:w-16 aspect-[5/7] rounded-xl border-2 border-dashed border-slate-800 bg-slate-950/40 flex items-center justify-center overflow-hidden"
-                >
-                  {benchMon && (
-                    <img
-                      src={benchMon.card.artworkUrl}
-                      alt={benchMon.card.name}
-                      className="w-full h-full object-contain filter drop-shadow p-1"
-                    />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="hidden sm:flex flex-col items-center justify-center text-amber-400 font-black text-2xl drop-shadow-[0_0_15px_#f59e0b]">
-          ⚡
-        </div>
-
-        {/* Levi Active Pedestal, Bench & Attack Buttons */}
-        <div className="flex items-center gap-4">
-          {/* Levi Bench */}
-          <div className="flex flex-col gap-2">
-            {[0, 1, 2].map((idx) => {
-              const benchMon = p1.bench[idx];
-              const isPromotable =
-                gameState.turnPhase === 'promote_needed' &&
-                activeIdx === 1 &&
-                idx < p1.bench.length;
-              const isTargetOfEnergy = selectedEnergy && isLeviTurn;
-              const isTargetOfEvo =
-                selectedHandEvoIdx !== null &&
-                isLeviTurn &&
-                legalActions.evolvableHandIndices?.some(
-                  (e) => e.handIndex === selectedHandEvoIdx && e.targets.includes(idx)
-                );
-
-              return (
-                <div
-                  key={idx}
-                  onClick={() => {
-                    if (isPromotable) {
-                      handleAction({ type: 'PROMOTE', benchIndex: idx });
-                    } else if (isTargetOfEnergy && benchMon) {
-                      handleAction({ type: 'ATTACH_ENERGY', target: idx });
-                    } else if (isTargetOfEvo && selectedHandEvoIdx !== null) {
-                      handleAction({ type: 'EVOLVE', handIndex: selectedHandEvoIdx, target: idx });
-                    } else if (benchMon) {
-                      setInspectedCard(benchMon.card);
-                    }
-                  }}
-                  className={`w-14 sm:w-16 aspect-[5/7] rounded-xl border-2 flex items-center justify-center overflow-hidden cursor-pointer transition-all ${
-                    isPromotable || isTargetOfEnergy || isTargetOfEvo
-                      ? 'border-amber-400 bg-amber-400/20 shadow-[0_0_15px_rgba(251,191,36,0.6)] scale-105 animate-pulse'
-                      : 'border-slate-800 bg-slate-950/40 hover:border-slate-600'
-                  }`}
+                  className="w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 border-slate-800 bg-slate-950/70 flex items-center justify-center overflow-hidden shadow"
                 >
                   {benchMon ? (
                     <img
@@ -454,18 +406,38 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       className="w-full h-full object-contain filter drop-shadow p-1"
                     />
                   ) : (
-                    <span className="text-[9px] text-slate-700 font-bold">Bank</span>
+                    <div className="w-2 h-2 rounded-full bg-slate-800" />
                   )}
                 </div>
               );
             })}
           </div>
 
-          {renderActivePedestal(p1.active, true, 0)}
+          {/* Opponent Active Pokémon Pedestal */}
+          {renderActivePedestal(
+            p2.active,
+            false,
+            selectedAttackIdx !== null && p1.active?.card.attacks[selectedAttackIdx]
+              ? p1.active.card.attacks[selectedAttackIdx].damage +
+                (gameState.stage >= 2 && p2.active?.card.weakness?.type === p1.active.card.types[0] ? 20 : 0)
+              : 0
+          )}
+        </div>
 
-          {/* Action Buttons (Attacks & Retreat) */}
+        {/* === CENTER CLASH FIELD (Vast Open Stadium Floor with Animated VS Emblem) === */}
+        <div className="hidden md:flex flex-col items-center justify-center pointer-events-none">
+          <div className="w-20 h-20 rounded-full border-3 border-amber-400/80 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.5)]">
+            <span className="text-amber-400 font-black text-2xl drop-shadow-[0_0_10px_#f59e0b]">
+              VS
+            </span>
+          </div>
+        </div>
+
+        {/* === LEVI ZONE (Right Side) === */}
+        <div className="flex items-center gap-4 sm:gap-6">
+          {/* Attack Action Buttons (Floating next to Levi's active Pokémon) */}
           {p1.active && isLeviTurn && !gameState.attackedThisTurn && gameState.turnNumber > 1 && (
-            <div className="flex flex-col gap-2 z-30 animate-in fade-in">
+            <div className="flex flex-col gap-2.5 z-30 animate-in fade-in">
               {p1.active.card.attacks.map((atk, idx) => {
                 const canUse = canPayCost(p1.active!.attachedEnergy, atk.cost);
                 const isSelected = selectedAttackIdx === idx;
@@ -479,14 +451,14 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                     onClick={() => {
                       if (!canUse) return;
                       if (isSelected) {
-                        executePlayerAttack(idx);
+                        executePlayerAttack(idx, 0);
                       } else {
                         soundManager.playSfx('button');
                         setSelectedAttackIdx(idx);
                         soundManager.speakText(`${atk.name}! ${atk.damage} Schaden! Tippe noch einmal zum Angreifen!`);
                       }
                     }}
-                    className={`px-4 py-2.5 rounded-2xl border-2 flex items-center gap-3 transition-all active:scale-95 shadow-xl ${
+                    className={`px-4 py-2.5 rounded-2xl border-2 flex items-center gap-3 transition-all active:scale-95 shadow-2xl cursor-pointer ${
                       canUse
                         ? isSelected
                           ? 'bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 border-white text-white scale-110 shadow-[0_0_25px_rgba(244,63,94,0.9)] animate-bounce'
@@ -525,7 +497,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       handleAction({ type: 'RETREAT', benchIndex: legalActions.retreatableBenchIndices[0] });
                     }
                   }}
-                  className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 text-xs font-bold flex items-center gap-1.5 shadow"
+                  className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 text-xs font-bold flex items-center gap-1.5 shadow cursor-pointer"
                 >
                   <ArrowLeftRight className="w-3.5 h-3.5 text-amber-400" />
                   <span>Rückzug ({p1.active.card.retreat} Energie)</span>
@@ -533,19 +505,85 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               )}
             </div>
           )}
+
+          {/* Levi Active Pokémon Pedestal */}
+          {renderActivePedestal(p1.active, true, 0)}
+
+          {/* Levi Bench (3 Vertical Slots on the Far Right) */}
+          <div className="flex flex-col gap-2.5 bg-slate-950/40 p-2 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
+            <span className="text-[9px] font-black uppercase tracking-wider text-amber-400 text-center">
+              Bank
+            </span>
+            {[0, 1, 2].map((idx) => {
+              const benchMon = p1.bench[idx];
+              const isPromotable =
+                gameState.turnPhase === 'promote_needed' &&
+                activeIdx === 1 &&
+                idx < p1.bench.length;
+              const isTargetOfEnergy = selectedEnergy && isLeviTurn && benchMon;
+              const isTargetOfEvo =
+                selectedHandEvoIdx !== null &&
+                isLeviTurn &&
+                legalActions.evolvableHandIndices?.some(
+                  (e) => e.handIndex === selectedHandEvoIdx && e.targets.includes(idx)
+                );
+              const isPlayableEmptySlot =
+                !benchMon &&
+                isLeviTurn &&
+                legalActions.playableHandIndices &&
+                legalActions.playableHandIndices.length > 0;
+
+              return (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    if (isPromotable) {
+                      handleAction({ type: 'PROMOTE', benchIndex: idx });
+                    } else if (isTargetOfEnergy && benchMon) {
+                      handleAction({ type: 'ATTACH_ENERGY', target: idx });
+                    } else if (isTargetOfEvo && selectedHandEvoIdx !== null) {
+                      handleAction({ type: 'EVOLVE', handIndex: selectedHandEvoIdx, target: idx });
+                    } else if (benchMon) {
+                      setInspectedCard(benchMon.card);
+                    } else if (isPlayableEmptySlot && legalActions.playableHandIndices) {
+                      handleAction({ type: 'PLAY_BENCH', handIndex: legalActions.playableHandIndices[0] });
+                    }
+                  }}
+                  className={`w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 flex flex-col items-center justify-center overflow-hidden cursor-pointer transition-all ${
+                    isPromotable || isTargetOfEnergy || isTargetOfEvo || isPlayableEmptySlot
+                      ? 'border-amber-400 bg-amber-400/20 shadow-[0_0_18px_rgba(251,191,36,0.7)] scale-105 animate-pulse'
+                      : 'border-slate-800 bg-slate-950/70 hover:border-slate-600'
+                  }`}
+                >
+                  {benchMon ? (
+                    <img
+                      src={benchMon.card.artworkUrl}
+                      alt={benchMon.card.name}
+                      className="w-full h-full object-contain filter drop-shadow p-1"
+                    />
+                  ) : (
+                    <span className="text-[10px] text-amber-300 font-extrabold text-center px-1 leading-tight">
+                      {isPlayableEmptySlot ? 'Hier tippen!' : '+'}
+                    </span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      {/* Bottom Bar: Fanned Hand & Controls */}
-      <div className="relative z-30 flex items-end justify-between px-2 pt-1 gap-2">
+      {/* 4. Bottom Controls & Hand Area */}
+      <div className="relative z-30 flex items-end justify-between px-3 pb-1 pt-1 gap-2">
+        {/* Pikachu Voice & Advice Companion */}
         <PikachuCompanion
           promptText={legalActions.description}
           voiceKey={legalActions.voiceKey}
           emotion={gameState.lastDamageEvent?.isKo ? 'happy' : 'idle'}
         />
 
-        {/* Fanned Hand Cards */}
-        <div className="flex items-end justify-center -space-x-4 sm:-space-x-6 overflow-visible py-2 px-4 max-w-2xl">
+        {/* Fanned Hand Cards (Spacious, Legible, Artworks Visible) */}
+        <div className="flex items-end justify-center -space-x-3 sm:-space-x-4 overflow-visible py-2 px-2 max-w-3xl">
           {p1.hand.map((card, hIdx) => {
             const isPlayableBasis = isLeviTurn && legalActions.playableHandIndices?.includes(hIdx);
             const isEvolvable =
@@ -571,13 +609,13 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                     setInspectedCard(card);
                   }
                 }}
-                className={`relative group transform transition-all duration-300 cursor-pointer origin-bottom hover:-translate-y-6 hover:scale-115 hover:z-40 ${
+                className={`relative group transform transition-all duration-300 cursor-pointer origin-bottom hover:-translate-y-8 hover:scale-115 hover:z-40 ${
                   isPlayableBasis || isEvolvable || isTrainerPlayable
                     ? 'ring-4 ring-amber-400 rounded-2xl animate-pulse shadow-[0_0_20px_#f59e0b]'
                     : ''
                 }`}
                 style={{
-                  transform: `rotate(${(hIdx - (p1.hand.length - 1) / 2) * 5}deg)`
+                  transform: `rotate(${(hIdx - (p1.hand.length - 1) / 2) * 4}deg)`
                 }}
               >
                 <CardView
@@ -591,8 +629,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           })}
         </div>
 
-        {/* Energy & Fertig Button */}
+        {/* Energy Zone & Fertig Button */}
         <div className="flex items-center gap-3 shrink-0">
+          {/* Energy Zone */}
           <div className="flex flex-col items-center gap-1">
             <span className="text-[10px] font-black uppercase text-amber-300">
               Energie
@@ -621,6 +660,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             </div>
           </div>
 
+          {/* Big "FERTIG" Button */}
           <button
             disabled={!isLeviTurn || gameState.turnPhase === 'promote_needed'}
             onClick={() => {
@@ -640,10 +680,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
         </div>
       </div>
 
+      {/* 5. Attack Visual Effects & Projectiles */}
       <AttackEffects animData={animData} />
       <CardDetailModal card={inspectedCard} onClose={() => setInspectedCard(null)} />
 
-      {/* Victory / Defeat Modal */}
+      {/* 6. Victory / Defeat Modal */}
       {gameState.winner !== null && (
         <VictoryModal
           winnerName={gameState.players[gameState.winner].name}
@@ -653,7 +694,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
         />
       )}
 
-      {/* Parent Settings Modal */}
+      {/* 7. Parent Settings Modal */}
       {showSettings && (
         <ParentSettingsModal
           allCards={allCards}

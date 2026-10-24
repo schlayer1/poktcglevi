@@ -36,10 +36,10 @@ export const GYM_CAMPAIGN: GymNode[] = [
   { id: 'misty', name: 'Misty', city: 'Azuria City', type: 'Wasser', avatar: 'misty', aceDexId: 120, deckId: 'deck_wasser', arena: 'misty', x: 55, y: 22 },
   { id: 'majorbob', name: 'Major Bob', city: 'Orania City', type: 'Elektro', avatar: 'majorbob', aceDexId: 26, deckId: 'deck_elektro', arena: 'majorbob', x: 55, y: 65 },
   { id: 'erika', name: 'Erika', city: 'Prismania City', type: 'Pflanze', avatar: 'erika', aceDexId: 44, deckId: 'deck_pflanze', arena: 'erika', x: 38, y: 48 },
-  { id: 'koga', name: 'Koga', city: 'Fuchsania City', type: 'Finsternis', avatar: 'koga', aceDexId: 110, deckId: 'deck_pflanze', arena: 'rocko', x: 48, y: 82 },
-  { id: 'sabrina', name: 'Sabrina', city: 'Saffronia City', type: 'Psycho', avatar: 'sabrina', aceDexId: 65, deckId: 'deck_elektro', arena: 'stadium', x: 55, y: 45 },
-  { id: 'pyro', name: 'Pyro', city: 'Zinnoberinsel', type: 'Feuer', avatar: 'pyro', aceDexId: 59, deckId: 'deck_feuer', arena: 'rocko', x: 22, y: 85 },
-  { id: 'giovanni', name: 'Giovanni', city: 'Vertania City', type: 'Kampf', avatar: 'giovanni', aceDexId: 112, deckId: 'deck_pflanze', arena: 'stadium', x: 20, y: 55 },
+  { id: 'koga', name: 'Koga', city: 'Fuchsania City', type: 'Finsternis', avatar: 'koga', aceDexId: 110, deckId: 'deck_pflanze', arena: 'koga', x: 48, y: 82 },
+  { id: 'sabrina', name: 'Sabrina', city: 'Saffronia City', type: 'Psycho', avatar: 'sabrina', aceDexId: 65, deckId: 'deck_elektro', arena: 'sabrina', x: 55, y: 45 },
+  { id: 'pyro', name: 'Pyro', city: 'Zinnoberinsel', type: 'Feuer', avatar: 'pyro', aceDexId: 59, deckId: 'deck_feuer', arena: 'pyro', x: 22, y: 85 },
+  { id: 'giovanni', name: 'Giovanni', city: 'Vertania City', type: 'Kampf', avatar: 'giovanni', aceDexId: 112, deckId: 'deck_pflanze', arena: 'giovanni', x: 20, y: 55 },
   { id: 'gary', name: 'Gary', city: 'Indigo Plateau', type: 'Farblos', avatar: 'gary', aceDexId: 9, deckId: 'deck_wasser', arena: 'gary', x: 10, y: 18 }
 ];
 
