@@ -12,7 +12,18 @@ import { AttackEffects, AttackAnimationData } from './AttackEffects';
 import { GymBadge, BadgeType } from './GymBadge';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles } from 'lucide-react';
+import { Check, Settings, Volume2, VolumeX, ArrowLeftRight, Sparkles, ArrowRight } from 'lucide-react';
+
+const TYPE_GLOWS: Record<string, { border: string; glow: string; ring: string }> = {
+  Feuer: { border: 'border-orange-500', glow: 'rgba(249,115,22,0.85)', ring: 'from-amber-500/50 via-orange-600/40 to-red-950/90' },
+  Wasser: { border: 'border-cyan-400', glow: 'rgba(6,182,212,0.85)', ring: 'from-sky-500/50 via-cyan-600/40 to-blue-950/90' },
+  Pflanze: { border: 'border-emerald-400', glow: 'rgba(16,185,129,0.85)', ring: 'from-emerald-500/50 via-green-600/40 to-emerald-950/90' },
+  Elektro: { border: 'border-yellow-400', glow: 'rgba(250,204,21,0.85)', ring: 'from-yellow-400/50 via-amber-500/40 to-yellow-950/90' },
+  Psycho: { border: 'border-purple-400', glow: 'rgba(192,132,252,0.85)', ring: 'from-purple-500/50 via-fuchsia-600/40 to-purple-950/90' },
+  Kampf: { border: 'border-amber-600', glow: 'rgba(217,119,6,0.85)', ring: 'from-amber-600/50 via-orange-700/40 to-amber-950/90' },
+  Finsternis: { border: 'border-indigo-400', glow: 'rgba(129,140,248,0.85)', ring: 'from-indigo-600/50 via-slate-700/40 to-slate-950/90' },
+  Farblos: { border: 'border-slate-300', glow: 'rgba(203,213,225,0.85)', ring: 'from-slate-400/50 via-slate-600/40 to-slate-950/90' }
+};
 
 interface BattleBoardProps {
   initialState: GameState;
@@ -194,22 +205,23 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     setBgmMuted(next);
   };
 
-  // Helper: Render Pokeball Score Stars
+  // Helper: Render Authentic TCG Pocket Pokeball Score Gauge
   const renderPoints = (points: number) => {
     return (
-      <div className="flex items-center gap-1.5 bg-slate-900/80 px-3 py-1 rounded-full border border-slate-700 shadow-md">
+      <div className="flex items-center gap-1.5 bg-slate-900/90 px-3 py-1.5 rounded-full border border-slate-700/80 shadow-md">
         {[1, 2, 3].map((pt) => (
           <div
             key={pt}
-            className={`w-7 h-7 rounded-full border-2 border-white flex items-center justify-center text-xs font-black transition-all ${
+            className={`w-6 h-6 rounded-full border-2 transition-all flex items-center justify-center ${
               pt <= points
-                ? 'bg-rose-500 text-white shadow-[0_0_10px_rgba(244,63,94,0.9)] scale-110'
-                : 'bg-slate-700 text-slate-500 opacity-40'
+                ? 'border-yellow-300 bg-gradient-to-tr from-amber-400 to-yellow-300 shadow-[0_0_12px_#fbbf24] scale-110'
+                : 'border-slate-700 bg-slate-800/80 opacity-40'
             }`}
           >
-            ★
+            <div className={`w-2 h-2 rounded-full ${pt <= points ? 'bg-white' : 'bg-slate-600'}`} />
           </div>
         ))}
+        <span className="text-xs font-black text-amber-300 ml-1">{points}/3</span>
       </div>
     );
   };
@@ -248,6 +260,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
         (e) => e.handIndex === selectedHandEvoIdx && e.targets.includes('active')
       );
 
+    const typeKey = card.types[0] || 'Farblos';
+    const typeStyle = TYPE_GLOWS[typeKey] || TYPE_GLOWS['Farblos'];
+
     return (
       <div
         onClick={() => {
@@ -268,14 +283,14 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           <img
             src={card.artworkUrl}
             alt={card.name}
-            className={`w-full h-full object-contain filter drop-shadow-[0_16px_20px_rgba(0,0,0,0.85)] transition-transform ${
+            className={`w-full h-full object-contain filter drop-shadow-[0_16px_22px_rgba(0,0,0,0.85)] transition-transform ${
               isPlayer ? 'scale-x-[-1]' : ''
             }`}
           />
 
           {/* Attached Energy Spheres Badges */}
           {mon.attachedEnergy.length > 0 && (
-            <div className="absolute -bottom-1 flex items-center gap-1 bg-slate-950/85 px-3 py-1 rounded-full border-2 border-amber-400/80 shadow-xl z-30">
+            <div className="absolute -bottom-1 flex items-center gap-1 bg-slate-950/90 px-3 py-1 rounded-full border-2 border-amber-400/80 shadow-xl z-30">
               {mon.attachedEnergy.map((eType, idx) => (
                 <EnergyBadge key={idx} type={eType} size="sm" />
               ))}
@@ -288,30 +303,34 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           )}
         </div>
 
-        {/* 3D Oval Pedestal Base with Floor Cast Shadow */}
+        {/* 3D Elemental Pedestal Base with TCG Pocket Stadium Ring */}
         <div
-          className={`relative -mt-8 w-52 sm:w-64 md:w-72 h-16 sm:h-20 rounded-[50%] border-3 bg-gradient-to-b from-amber-400/40 via-amber-700/30 to-amber-950/80 flex items-center justify-center shadow-[0_0_35px_rgba(251,191,36,0.6)] z-10 ${
+          style={{
+            boxShadow: `0 0 35px ${isTargetOfEnergy || isTargetOfEvo ? 'rgba(255,255,255,0.9)' : typeStyle.glow}`
+          }}
+          className={`relative -mt-8 w-52 sm:w-64 md:w-72 h-16 sm:h-20 rounded-[50%] border-3 bg-gradient-to-b ${typeStyle.ring} flex items-center justify-center z-10 transition-all ${
             isTargetOfEnergy || isTargetOfEvo
-              ? 'border-white animate-pulse shadow-[0_0_50px_rgba(255,255,255,0.9)]'
-              : 'border-amber-400/80'
+              ? 'border-white animate-pulse'
+              : typeStyle.border
           }`}
         >
-          <div className="w-[85%] h-[60%] rounded-[50%] border border-amber-300/40 bg-slate-950/70 flex items-center justify-center shadow-inner" />
+          <div className="w-[85%] h-[60%] rounded-[50%] border border-white/30 bg-slate-950/75 flex items-center justify-center shadow-inner" />
         </div>
 
-        {/* HP Bar & Name Plate */}
+        {/* TCG Pocket Sleek HP Bar & Name Plate */}
         <div className="relative z-30 -mt-2 w-52 sm:w-60 bg-slate-900/95 border-2 border-slate-700 rounded-2xl p-2.5 shadow-2xl flex flex-col gap-1 backdrop-blur-md">
           <div className="flex items-center justify-between text-xs sm:text-sm font-black">
             <span className="text-white drop-shadow truncate">{card.name}</span>
-            <div className="flex items-center gap-1 shrink-0">
+            <div className="flex items-center gap-1.5 shrink-0 bg-slate-950/90 px-2 py-0.5 rounded-full border border-slate-700">
+              <span className="text-[10px] uppercase font-black text-slate-400">KP</span>
               <span
-                className={`text-sm sm:text-base font-extrabold ${
+                className={`text-sm sm:text-base font-black ${
                   effectiveHp === 0 ? 'text-rose-400 animate-pulse' : 'text-emerald-400'
                 }`}
               >
                 {effectiveHp}
               </span>
-              <span className="text-[10px] text-slate-400 font-bold">/ {maxHp} KP</span>
+              <span className="text-[10px] text-slate-500 font-bold">/ {maxHp}</span>
             </div>
           </div>
 
@@ -433,14 +452,15 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                   handleAction({ type: 'END_TURN' });
                 }
               }}
-              className={`h-12 w-12 sm:h-14 sm:w-14 rounded-full font-black flex flex-col items-center justify-center border-2 border-white shadow-xl transition-all active:scale-90 ${
+              className={`relative overflow-hidden px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-black flex items-center gap-1.5 border-2 border-white shadow-xl transition-all active:scale-95 ${
                 !isLeviTurn && gameState.turnPhase !== 'promote_needed'
-                  ? 'bg-gradient-to-tr from-sky-400 via-cyan-400 to-blue-500 text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.9)] animate-bounce cursor-pointer'
+                  ? 'bg-gradient-to-r from-sky-400 via-cyan-400 to-blue-500 text-slate-950 shadow-[0_0_20px_rgba(56,189,248,0.9)] animate-bounce cursor-pointer'
                   : 'bg-slate-800 text-slate-500 border-slate-700 opacity-40 cursor-not-allowed'
               }`}
             >
-              <Check className="w-5 h-5 stroke-[3]" />
-              <span className="font-extrabold uppercase text-[8px]">Fertig</span>
+              <div className="absolute top-0 left-2 right-2 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-full pointer-events-none" />
+              <span className="font-black uppercase text-[10px] sm:text-xs">Zug beenden</span>
+              <ArrowRight className="w-4 h-4 stroke-[3]" />
             </button>
           </div>
         </div>
@@ -485,9 +505,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       <div className="relative z-20 flex-1 flex items-center justify-between px-4 sm:px-8 my-auto max-w-7xl mx-auto w-full">
         {/* === OPPONENT / PAPA ZONE (Left Side) === */}
         <div className="flex items-center gap-4 sm:gap-6">
-          {/* Opponent Bench (3 Vertical Mini-Slots on the Far Left) */}
-          <div className="flex flex-col gap-2.5 bg-slate-950/40 p-2 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
-            <span className="text-[9px] font-black uppercase tracking-wider text-slate-500 text-center">
+          {/* Opponent Bench (3 Stadium Slots) */}
+          <div className="flex flex-col gap-2 bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800/80 backdrop-blur-md shadow-xl">
+            <span className="text-[9px] font-black uppercase tracking-wider text-slate-400 text-center">
               Bank
             </span>
             {[0, 1, 2].map((idx) => {
@@ -512,20 +532,31 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       }
                     }
                   }}
-                  className={`w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 flex items-center justify-center overflow-hidden shadow transition-all ${
+                  className={`relative w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 flex flex-col items-center justify-center overflow-hidden shadow transition-all ${
                     isPvP && !isLeviTurn && (isPromotableP2 || isTargetOfEnergyP2 || isPlayableEmptySlotP2)
-                      ? 'border-sky-400 bg-sky-400/20 shadow-[0_0_15px_rgba(56,189,248,0.7)] scale-105 animate-pulse cursor-pointer'
-                      : 'border-slate-800 bg-slate-950/70'
+                      ? 'border-sky-400 bg-sky-400/20 shadow-[0_0_18px_rgba(56,189,248,0.8)] scale-105 animate-pulse cursor-pointer'
+                      : 'border-slate-800 bg-slate-950/80 hover:border-slate-700'
                   }`}
                 >
                   {benchMon ? (
-                    <img
-                      src={benchMon.card.artworkUrl}
-                      alt={benchMon.card.name}
-                      className="w-full h-full object-contain filter drop-shadow p-1"
-                    />
+                    <>
+                      <img
+                        src={benchMon.card.artworkUrl}
+                        alt={benchMon.card.name}
+                        className="w-full h-full object-contain filter drop-shadow p-1"
+                      />
+                      {benchMon.attachedEnergy.length > 0 && (
+                        <div className="absolute bottom-0.5 flex items-center gap-0.5 bg-slate-950/85 px-1 rounded-full border border-slate-700">
+                          {benchMon.attachedEnergy.map((e, eIdx) => (
+                            <EnergyBadge key={eIdx} type={e} size="sm" />
+                          ))}
+                        </div>
+                      )}
+                    </>
                   ) : (
-                    <div className="w-2 h-2 rounded-full bg-slate-800" />
+                    <span className="text-[10px] text-slate-600 font-bold">
+                      {isPlayableEmptySlotP2 ? 'Ablegen' : '+'}
+                    </span>
                   )}
                 </div>
               );
@@ -565,30 +596,31 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                         soundManager.speakText(`${atk.name}! ${atk.damage} Schaden! Tippe noch einmal zum Angreifen!`);
                       }
                     }}
-                    className={`px-4 py-2.5 rounded-2xl border-2 flex items-center gap-3 transition-all active:scale-95 shadow-2xl cursor-pointer ${
+                    className={`relative overflow-hidden px-5 py-3 rounded-full border-2 flex items-center justify-between gap-3.5 transition-all active:scale-95 shadow-2xl cursor-pointer ${
                       canUse
                         ? isSelected
-                          ? 'bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 border-white text-white scale-110 shadow-[0_0_25px_rgba(56,189,248,0.9)] animate-bounce'
-                          : 'bg-gradient-to-r from-sky-500 to-blue-500 border-sky-300 text-slate-950 hover:scale-105 shadow-[0_0_15px_rgba(56,189,248,0.7)] animate-pulse'
+                          ? 'bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 border-white text-white scale-110 shadow-[0_0_25px_rgba(56,189,248,0.95)] animate-bounce font-black'
+                          : 'bg-gradient-to-r from-sky-500 to-blue-500 border-sky-300 text-slate-950 hover:scale-105 shadow-[0_6px_20px_rgba(56,189,248,0.7)] font-black'
                         : 'bg-slate-900/60 border-slate-700 text-slate-500 opacity-40 cursor-not-allowed'
                     }`}
                   >
-                    <div className="flex items-center gap-0.5">
+                    <div className="absolute top-0 left-3 right-3 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-full pointer-events-none" />
+                    <div className="flex items-center gap-1 z-10">
                       {atk.cost.map((cType, cIdx) => (
                         <EnergyBadge key={cIdx} type={cType} size="sm" />
                       ))}
                     </div>
-                    <div className="text-left">
-                      <span className="font-black text-xs sm:text-sm block leading-tight">{atk.name}</span>
+                    <div className="flex flex-col text-left z-10 px-1">
+                      <span className="font-black text-xs sm:text-sm tracking-wide block leading-tight drop-shadow-xs">{atk.name}</span>
                       {willDealWeakness && (
-                        <span className="text-[9px] font-black text-blue-900 uppercase bg-sky-300 px-1 rounded">
-                          +20 Schwäche!
+                        <span className="text-[9px] font-black text-blue-900 uppercase bg-sky-300 px-1 rounded-full w-fit">
+                          +20 Schwäche! 💥
                         </span>
                       )}
                     </div>
-                    <span className="bg-slate-950/80 text-sky-300 px-2 py-0.5 rounded-lg text-sm sm:text-base font-black">
+                    <div className="bg-slate-950/85 text-sky-300 px-3 py-1 rounded-full text-base sm:text-lg font-black shadow-inner border border-sky-400/40 z-10">
                       {atk.damage}
-                    </span>
+                    </div>
                   </button>
                 );
               })}
@@ -630,32 +662,35 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                         soundManager.speakText(`${atk.name}! ${atk.damage} Schaden! Tippe noch einmal zum Angreifen!`);
                       }
                     }}
-                    className={`px-4 py-2.5 rounded-2xl border-2 flex items-center gap-3 transition-all active:scale-95 shadow-2xl cursor-pointer ${
+                    className={`relative overflow-hidden px-5 py-3 rounded-full border-2 flex items-center justify-between gap-3.5 transition-all active:scale-95 shadow-2xl cursor-pointer ${
                       canUse
                         ? isSelected
-                          ? 'bg-gradient-to-r from-rose-500 via-orange-500 to-amber-500 border-white text-white scale-110 shadow-[0_0_25px_rgba(244,63,94,0.9)] animate-bounce'
-                          : 'bg-gradient-to-r from-amber-500 to-orange-500 border-amber-300 text-slate-950 hover:scale-105 shadow-[0_0_15px_rgba(251,191,36,0.7)] animate-pulse'
-                        : 'bg-slate-900/60 border-slate-700 text-slate-500 opacity-40 cursor-not-allowed'
+                          ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 border-white text-slate-950 scale-110 shadow-[0_0_30px_rgba(251,191,36,0.95)] animate-bounce font-black'
+                          : 'bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 border-white/80 text-slate-950 hover:scale-105 shadow-[0_6px_20px_rgba(251,191,36,0.7)] font-black'
+                        : 'bg-slate-900/70 border-slate-700/80 text-slate-500 opacity-45 cursor-not-allowed'
                     }`}
                   >
-                    <div className="flex items-center gap-0.5">
+                    {/* Top Gloss Highlight Line (TCG Pocket aesthetic) */}
+                    <div className="absolute top-0 left-3 right-3 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-full pointer-events-none" />
+
+                    <div className="flex items-center gap-1 z-10">
                       {atk.cost.map((cType, cIdx) => (
                         <EnergyBadge key={cIdx} type={cType} size="sm" />
                       ))}
                     </div>
-                    <div className="text-left">
-                      <span className="font-black text-xs sm:text-sm block leading-tight">
+                    <div className="flex flex-col text-left z-10 px-1">
+                      <span className="font-black text-xs sm:text-sm tracking-wide block leading-tight drop-shadow-xs">
                         {atk.name}
                       </span>
                       {willDealWeakness && (
-                        <span className="text-[9px] font-black text-red-900 uppercase bg-amber-300 px-1 rounded">
-                          +20 Schwäche!
+                        <span className="text-[9px] font-black uppercase text-rose-950 bg-rose-300 px-1.5 py-0.2 rounded-full w-fit">
+                          +20 Schwäche! 💥
                         </span>
                       )}
                     </div>
-                    <span className="bg-slate-950/80 text-amber-300 px-2 py-0.5 rounded-lg text-sm sm:text-base font-black">
+                    <div className="bg-slate-950/85 text-amber-300 px-3 py-1 rounded-full text-base sm:text-lg font-black shadow-inner border border-amber-400/40 z-10">
                       {atk.damage}
-                    </span>
+                    </div>
                   </button>
                 );
               })}
@@ -669,8 +704,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       handleAction({ type: 'RETREAT', benchIndex: legalActions.retreatableBenchIndices[0] });
                     }
                   }}
-                  className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 text-xs font-bold flex items-center gap-1.5 shadow cursor-pointer"
+                  className="relative overflow-hidden px-4 py-2 rounded-full bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 border-2 border-slate-600 text-slate-200 text-xs font-black flex items-center justify-center gap-2 shadow-lg active:scale-95 cursor-pointer"
                 >
+                  <div className="absolute top-0 left-2 right-2 h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-full pointer-events-none" />
                   <ArrowLeftRight className="w-3.5 h-3.5 text-amber-400" />
                   <span>Rückzug ({p1.active.card.retreat} Energie)</span>
                 </button>
@@ -681,8 +717,8 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           {/* Levi Active Pokémon Pedestal */}
           {renderActivePedestal(p1.active, true, 0)}
 
-          {/* Levi Bench (3 Vertical Slots on the Far Right) */}
-          <div className="flex flex-col gap-2.5 bg-slate-950/40 p-2 rounded-2xl border border-slate-800/80 backdrop-blur-sm">
+          {/* Levi Bench (3 Stadium Slots) */}
+          <div className="flex flex-col gap-2 bg-slate-950/60 p-2.5 rounded-2xl border border-slate-800/80 backdrop-blur-md shadow-xl">
             <span className="text-[9px] font-black uppercase tracking-wider text-amber-400 text-center">
               Bank
             </span>
@@ -721,18 +757,27 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       handleAction({ type: 'PLAY_BENCH', handIndex: legalActions.playableHandIndices[0] });
                     }
                   }}
-                  className={`w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 flex flex-col items-center justify-center overflow-hidden cursor-pointer transition-all ${
+                  className={`relative w-14 sm:w-16 md:w-18 aspect-[5/7] rounded-xl border-2 flex flex-col items-center justify-center overflow-hidden cursor-pointer shadow-lg transition-all ${
                     isPromotable || isTargetOfEnergy || isTargetOfEvo || isPlayableEmptySlot
-                      ? 'border-amber-400 bg-amber-400/20 shadow-[0_0_18px_rgba(251,191,36,0.7)] scale-105 animate-pulse'
-                      : 'border-slate-800 bg-slate-950/70 hover:border-slate-600'
+                      ? 'border-amber-400 bg-amber-400/20 shadow-[0_0_18px_rgba(251,191,36,0.8)] scale-105 animate-pulse'
+                      : 'border-slate-800 bg-slate-950/80 hover:border-slate-700'
                   }`}
                 >
                   {benchMon ? (
-                    <img
-                      src={benchMon.card.artworkUrl}
-                      alt={benchMon.card.name}
-                      className="w-full h-full object-contain filter drop-shadow p-1"
-                    />
+                    <>
+                      <img
+                        src={benchMon.card.artworkUrl}
+                        alt={benchMon.card.name}
+                        className="w-full h-full object-contain filter drop-shadow p-1"
+                      />
+                      {benchMon.attachedEnergy.length > 0 && (
+                        <div className="absolute bottom-0.5 flex items-center gap-0.5 bg-slate-950/85 px-1 rounded-full border border-slate-700">
+                          {benchMon.attachedEnergy.map((e, eIdx) => (
+                            <EnergyBadge key={eIdx} type={e} size="sm" />
+                          ))}
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <span className="text-[10px] text-amber-300 font-extrabold text-center px-1 leading-tight">
                       {isPlayableEmptySlot ? 'Hier tippen!' : '+'}
@@ -832,7 +877,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             </div>
           </div>
 
-          {/* Big "FERTIG" Button */}
+          {/* TCG Pocket Glossy "ZUG BEENDEN" Pill Button */}
           <button
             disabled={!isLeviTurn || gameState.turnPhase === 'promote_needed'}
             onClick={() => {
@@ -840,14 +885,16 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                 handleAction({ type: 'END_TURN' });
               }
             }}
-            className={`h-16 w-16 sm:h-20 sm:w-20 rounded-full font-black flex flex-col items-center justify-center border-3 border-white shadow-2xl transition-all active:scale-90 ${
+            className={`relative overflow-hidden px-5 sm:px-7 py-3 sm:py-3.5 rounded-full font-black flex items-center gap-2 border-2 border-white shadow-2xl transition-all active:scale-95 ${
               isLeviTurn && gameState.turnPhase !== 'promote_needed'
-                ? 'bg-gradient-to-tr from-amber-400 via-yellow-400 to-amber-500 text-slate-950 shadow-[0_0_25px_rgba(251,191,36,0.9)] animate-bounce cursor-pointer'
+                ? 'bg-gradient-to-r from-emerald-500 via-green-400 to-teal-500 text-slate-950 shadow-[0_0_25px_rgba(16,185,129,0.85)] hover:scale-105 animate-pulse cursor-pointer'
                 : 'bg-slate-800 text-slate-500 border-slate-700 opacity-40 cursor-not-allowed'
             }`}
           >
-            <Check className="w-6 h-6 stroke-[3]" />
-            <span className="font-extrabold uppercase text-[10px]">Fertig</span>
+            {/* Top Gloss Highlight Line */}
+            <div className="absolute top-0 left-3 right-3 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-full pointer-events-none" />
+            <span className="font-black text-xs sm:text-sm uppercase tracking-wider drop-shadow-xs">ZUG BEENDEN</span>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[3]" />
           </button>
         </div>
       </div>
