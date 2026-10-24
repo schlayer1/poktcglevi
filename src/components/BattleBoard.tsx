@@ -1519,6 +1519,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           isLeviWinner={gameState.winner === 0}
           onPlayAgain={onExitMatch}
           onOpenBooster={onOpenBooster}
+          winningPokemon={gameState.players[gameState.winner].active?.card || null}
+          playerStars={gameState.players[0].points}
+          opponentStars={gameState.players[1].points}
         />
       )}
 

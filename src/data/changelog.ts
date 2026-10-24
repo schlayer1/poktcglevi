@@ -10,16 +10,44 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '1.5.1';
-export const APP_BUILD_NAME = 'Storage & Performance Clean';
+export const APP_VERSION = '1.6.0';
+export const APP_BUILD_NAME = 'TCG Pocket Animations & 3D Stage';
 export const APP_BUILD_TAG = `Build ${APP_VERSION} (24.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
   {
+    version: '1.6.0',
+    date: '24. Oktober 2026',
+    title: 'Authentische TCG Pocket Animationen & Mobile 3D-Bühne',
+    badge: 'Aktuell ✨',
+    features: [
+      {
+        icon: '🎴',
+        title: 'Zentrierte 3D-Kartenbühne beim Booster-Öffnen',
+        description: 'Kein horizontales Abschneiden von Karte 4 und 5 mehr auf dem iPhone! Die aktive Karte steht immer exakt zentriert mit riesigem Touch-Bereich, 3D-Stack-Tiefeneffekt und Wischgesten.'
+      },
+      {
+        icon: '✨',
+        title: 'Luminöse God-Rays & Sternenpartikel',
+        description: 'Seltene Ziehungen (EX, Rang 2, Holos) erstrahlen nun in epischen, mehrschichtigen Sunburst-Lichtstrahlen mit aufsteigendem Sternenstaub im Stil von Pokémon TCG Pocket.'
+      },
+      {
+        icon: '🏆',
+        title: 'TCG Pocket Siegerehrung & Sequentielle Sterne',
+        description: 'Vollwertiger Sieges-Screen mit goldenem 3D-Champion-Banner, rotierendem Sieges-Sunburst, Sieger-Pokémon-Spotlight und sequentiell mit Soundeffekt aufploppenden Sternen.'
+      },
+      {
+        icon: '📱',
+        title: 'Intelligente 5-Karten-Navigation',
+        description: '5 interaktive Status-Chips unter der Karte ermöglichen schnelles Vor- und Zurückspringen, Wischen mit dem Daumen sowie ein sauberes 2-Spalten-Sammelgrid nach der Enthüllung.'
+      }
+    ]
+  },
+  {
     version: '1.5.1',
     date: '24. Oktober 2026',
     title: 'Repository-Bereinigung & Vercel-Speicheroptimierung',
-    badge: 'Aktuell 🚀',
+    badge: 'Speed 🚀',
     features: [
       {
         icon: '⚡',
