@@ -1581,5 +1581,25 @@
     "file": "/audio/voice/cards/p_a_007.m4a",
     "text": "Trainerkarte: Forschung des Professors! Ziehe 2 Karten aus deinem Deck.",
     "voice": "de-DE-AmalaNeural"
+  },
+  "starter_bisasam": {
+    "file": "/audio/voice/starter_bisasam.m4a",
+    "text": "Bisasam! Ein treues Pflanzen-Pokémon für deine Abenteuer!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "starter_glumanda": {
+    "file": "/audio/voice/starter_glumanda.m4a",
+    "text": "Glumanda! Ein feuriger Begleiter voller Mut und Flammenkraft!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "starter_schiggy": {
+    "file": "/audio/voice/starter_schiggy.m4a",
+    "text": "Schiggy! Dein fröhliches Wasser-Pokémon mit starker Panzer-Abwehr!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "starter_pikachu": {
+    "file": "/audio/voice/starter_pikachu.m4a",
+    "text": "Pikachu! Voller Elektro-Power, blitzschnell und immer an deiner Seite!",
+    "voice": "de-DE-AmalaNeural"
   }
 }

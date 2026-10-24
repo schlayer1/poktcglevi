@@ -175,7 +175,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     }
 
     const timer = setTimeout(() => {
-      const aiMove = getAiAction(gameState);
+      const aiMove = getAiAction(gameState, storageService.getAiDifficulty());
       if (aiMove) {
         if (aiMove.type === 'PROMOTE') {
           soundManager.playSfx('card_slide');
@@ -287,6 +287,14 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
 
     setGameState((prev) => reduceGameState(prev, action));
   };
+
+  // Track match win/loss for stats and adaptive difficulty
+  useEffect(() => {
+    if (gameState.winner !== null) {
+      const isLeviWinner = gameState.winner === 0;
+      storageService.recordMatchResult(isLeviWinner, isLeviWinner ? 3 : p1.points);
+    }
+  }, [gameState.winner]);
 
   const toggleSound = () => {
     const next = soundManager.toggleBgmMute();
@@ -432,6 +440,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           <div className="flex items-center justify-between text-xs sm:text-sm font-black">
             <span className="text-white drop-shadow truncate">{card.name}</span>
             <div className="flex items-center gap-1.5 shrink-0 bg-slate-950/90 px-2 py-0.5 rounded-full border border-slate-700">
+              {mon.shieldBonus && mon.shieldBonus > 0 && isPlayer && (
+                <span className="text-[10px] bg-amber-400 text-slate-950 px-1.5 py-0.5 rounded-full font-black animate-pulse" title="Pikachu-Schutzschild (+20 KP)">
+                  🛡️ +{mon.shieldBonus}
+                </span>
+              )}
               <span className="text-[10px] uppercase font-black text-slate-400">KP</span>
               <span
                 className={`text-sm sm:text-base font-black ${
@@ -1137,8 +1150,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
           onResetMatch={onExitMatch}
           ruleLevel={gameState.stage}
           onSetRuleLevel={(lvl) => setGameState((prev) => ({ ...prev, stage: lvl }))}
-          aiDifficulty="leicht"
-          onSetAiDifficulty={() => {}}
+          aiDifficulty={storageService.getAiDifficulty()}
+          onSetAiDifficulty={(d) => {
+            storageService.setAiDifficulty(d);
+            setGameState((prev) => ({ ...prev, difficulty: d }));
+          }}
         />
       )}
     </div>

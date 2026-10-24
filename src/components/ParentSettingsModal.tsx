@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock, Trophy, RefreshCw, Film, Zap } from 'lucide-react';
+import { X, Volume2, VolumeX, ShieldCheck, RotateCcw, Download, Upload, Sparkles, Clock, Trophy, RefreshCw, Film, Zap, History, ChevronDown, ChevronUp } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 import { storageService, UserProfile } from '../services/storageService';
 import { Card } from '../types/game';
+import { CHANGELOG_DATA, APP_BUILD_TAG } from '../data/changelog';
 
 interface ParentSettingsModalProps {
   allCards: Card[];
@@ -239,7 +240,12 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
 
             {/* 3. KI Stärke */}
             <div className="space-y-2 bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
-              <span className="font-bold text-sm block">Gegnerstärke</span>
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-sm block">Gegnerstärke</span>
+                <span className="text-[10px] text-amber-300 font-bold">
+                  {aiDifficulty === 'leicht' ? '🛡️ Schutzschild aktiv' : ''}
+                </span>
+              </div>
               <div className="grid grid-cols-3 gap-2">
                 {(['leicht', 'normal', 'schlau'] as const).map((d) => (
                   <button
@@ -255,6 +261,13 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                   </button>
                 ))}
               </div>
+              <p className="text-[11px] text-slate-300 leading-snug">
+                {aiDifficulty === 'leicht'
+                  ? '🌟 Kindgerecht: Levis Pokémon erhalten einen +20 KP Schutzschild, die KI greift behutsam an und gibt Levi Zeit zum Entwickeln.'
+                  : aiDifficulty === 'normal'
+                  ? '⚖️ Standard: Ausgeglichene Partien für erfahrene Trainer.'
+                  : '🔥 Herausforderung: Volle Aggression und schnelle K.O.-Kombos der KI.'}
+              </p>
             </div>
 
             {/* 3b. Kampf-Animationen (Tempo & Sprachbegleitung) */}
@@ -358,7 +371,9 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
             <div className="space-y-2 bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-sm text-sky-300">App & Grafik-Aktualisierung</span>
-                <span className="text-[10px] text-slate-400 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-700">v1.2.0 • Anime-Arenen</span>
+                <span className="text-[10px] text-amber-300 font-mono bg-slate-900 px-2 py-0.5 rounded border border-slate-700">
+                  {APP_BUILD_TAG}
+                </span>
               </div>
               <p className="text-[11px] text-slate-300 leading-snug">
                 Lädt die neueste Version von Vercel. Levis gesammelte Karten und Spielstand bleiben zu 100% erhalten!
@@ -371,6 +386,41 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                 <RefreshCw className={`w-4 h-4 text-sky-400 ${updating ? 'animate-spin' : ''}`} />
                 <span>{updating ? 'Aktualisiere...' : 'App & Grafik-Cache jetzt aktualisieren'}</span>
               </button>
+            </div>
+
+            {/* 7. Versionsverlauf & Changelog */}
+            <div className="space-y-3 bg-slate-800/80 p-3.5 rounded-2xl border border-slate-700">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <History className="w-4 h-4 text-amber-400" />
+                  <span className="font-bold text-sm text-white">Versionsverlauf & Changelog</span>
+                </div>
+                <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950 px-2 py-0.5 rounded-full border border-emerald-500/40">
+                  {CHANGELOG_DATA.length} Releases
+                </span>
+              </div>
+
+              <div className="space-y-3 max-h-56 overflow-y-auto pr-1">
+                {CHANGELOG_DATA.map((entry) => (
+                  <div key={entry.version} className="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 text-xs">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-black text-amber-400">
+                        v{entry.version} {entry.badge ? `(${entry.badge})` : ''}
+                      </span>
+                      <span className="text-[10px] text-slate-400">{entry.date}</span>
+                    </div>
+                    <span className="text-slate-200 font-bold block mb-1.5">{entry.title}</span>
+                    <ul className="space-y-1">
+                      {entry.features.map((f, i) => (
+                        <li key={i} className="text-[11px] text-slate-300 flex items-start gap-1.5">
+                          <span className="shrink-0">{f.icon}</span>
+                          <span><strong className="text-white">{f.title}:</strong> {f.description}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}

@@ -110,7 +110,9 @@ export const App: React.FC = () => {
       p1Avatar: 'levi',
       p2Avatar: config.opponentAvatar,
       gameMode: config.mode,
-      ruleLevel: profile.ruleLevel
+      ruleLevel: profile.ruleLevel,
+      difficulty: storageService.getAiDifficulty(),
+      lossStreak: storageService.getLossStreak()
     });
 
     setCurrentMatch(initial);

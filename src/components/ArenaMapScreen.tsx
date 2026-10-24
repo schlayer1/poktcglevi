@@ -5,10 +5,11 @@ import { EnergyBadge } from './EnergyBadge';
 import { ArenaType } from './ArenaBackground';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { ArrowLeft, Play, MapPin, Sparkles, Trophy, Lock } from 'lucide-react';
+import { ArrowLeft, Play, MapPin, Sparkles, Trophy, Lock, Swords, Compass } from 'lucide-react';
 
 interface GymNode {
   id: BadgeType;
+  order: number;
   name: string;
   city: string;
   type: PokemonType;
@@ -16,8 +17,8 @@ interface GymNode {
   aceDexId: number;
   deckId: string;
   arena: ArenaType;
-  x: number; // percentage on map
-  y: number; // percentage on map
+  x: number; // percentage on map (0-100)
+  y: number; // percentage on map (0-100)
 }
 
 interface ArenaMapScreenProps {
@@ -32,15 +33,15 @@ interface ArenaMapScreenProps {
 }
 
 export const GYM_CAMPAIGN: GymNode[] = [
-  { id: 'rocko', name: 'Rocko', city: 'Marmoria City', type: 'Kampf', avatar: 'rocko', aceDexId: 95, deckId: 'deck_pflanze', arena: 'rocko', x: 20, y: 30 },
-  { id: 'misty', name: 'Misty', city: 'Azuria City', type: 'Wasser', avatar: 'misty', aceDexId: 120, deckId: 'deck_wasser', arena: 'misty', x: 55, y: 22 },
-  { id: 'majorbob', name: 'Major Bob', city: 'Orania City', type: 'Elektro', avatar: 'majorbob', aceDexId: 26, deckId: 'deck_elektro', arena: 'majorbob', x: 55, y: 65 },
-  { id: 'erika', name: 'Erika', city: 'Prismania City', type: 'Pflanze', avatar: 'erika', aceDexId: 44, deckId: 'deck_pflanze', arena: 'erika', x: 38, y: 48 },
-  { id: 'koga', name: 'Koga', city: 'Fuchsania City', type: 'Finsternis', avatar: 'koga', aceDexId: 110, deckId: 'deck_pflanze', arena: 'koga', x: 48, y: 82 },
-  { id: 'sabrina', name: 'Sabrina', city: 'Saffronia City', type: 'Psycho', avatar: 'sabrina', aceDexId: 65, deckId: 'deck_elektro', arena: 'sabrina', x: 55, y: 45 },
-  { id: 'pyro', name: 'Pyro', city: 'Zinnoberinsel', type: 'Feuer', avatar: 'pyro', aceDexId: 59, deckId: 'deck_feuer', arena: 'pyro', x: 22, y: 85 },
-  { id: 'giovanni', name: 'Giovanni', city: 'Vertania City', type: 'Kampf', avatar: 'giovanni', aceDexId: 112, deckId: 'deck_pflanze', arena: 'giovanni', x: 20, y: 55 },
-  { id: 'gary', name: 'Gary', city: 'Indigo Plateau', type: 'Farblos', avatar: 'gary', aceDexId: 9, deckId: 'deck_wasser', arena: 'gary', x: 10, y: 18 }
+  { id: 'rocko', order: 1, name: 'Rocko', city: 'Marmoria City', type: 'Kampf', avatar: 'rocko', aceDexId: 95, deckId: 'deck_pflanze', arena: 'rocko', x: 23, y: 26 },
+  { id: 'misty', order: 2, name: 'Misty', city: 'Azuria City', type: 'Wasser', avatar: 'misty', aceDexId: 120, deckId: 'deck_wasser', arena: 'misty', x: 72, y: 20 },
+  { id: 'majorbob', order: 3, name: 'Major Bob', city: 'Orania City', type: 'Elektro', avatar: 'majorbob', aceDexId: 26, deckId: 'deck_elektro', arena: 'majorbob', x: 66, y: 64 },
+  { id: 'erika', order: 4, name: 'Erika', city: 'Prismania City', type: 'Pflanze', avatar: 'erika', aceDexId: 44, deckId: 'deck_pflanze', arena: 'erika', x: 40, y: 44 },
+  { id: 'koga', order: 5, name: 'Koga', city: 'Fuchsania City', type: 'Finsternis', avatar: 'koga', aceDexId: 110, deckId: 'deck_pflanze', arena: 'koga', x: 50, y: 80 },
+  { id: 'sabrina', order: 6, name: 'Sabrina', city: 'Saffronia City', type: 'Psycho', avatar: 'sabrina', aceDexId: 65, deckId: 'deck_elektro', arena: 'sabrina', x: 57, y: 44 },
+  { id: 'pyro', order: 7, name: 'Pyro', city: 'Zinnoberinsel', type: 'Feuer', avatar: 'pyro', aceDexId: 59, deckId: 'deck_feuer', arena: 'pyro', x: 18, y: 86 },
+  { id: 'giovanni', order: 8, name: 'Giovanni', city: 'Vertania City', type: 'Kampf', avatar: 'giovanni', aceDexId: 112, deckId: 'deck_pflanze', arena: 'giovanni', x: 18, y: 52 },
+  { id: 'gary', order: 9, name: 'Gary', city: 'Indigo Plateau', type: 'Farblos', avatar: 'gary', aceDexId: 9, deckId: 'deck_wasser', arena: 'gary', x: 10, y: 12 }
 ];
 
 export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
@@ -81,122 +82,177 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
 
   const isEarned = (id: BadgeType) => earnedBadges.includes(id);
 
-  return (
-    <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col justify-between p-3 sm:p-5 select-none">
-      {/* Background Anime Kanto Map Canvas */}
-      <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/40 via-sky-950/50 to-slate-950 pointer-events-none" />
+  // SVG route path between nodes in order
+  const routePoints = GYM_CAMPAIGN.map((g) => `${g.x}%,${g.y}%`).join(' ');
 
-      {/* Header Bar */}
-      <div className="relative z-20 flex items-center justify-between bg-slate-900/90 p-3 rounded-2xl border border-slate-700 shadow-xl">
+  return (
+    <div className="relative w-full h-screen bg-slate-950 overflow-hidden flex flex-col justify-between p-3 sm:p-5 select-none font-sans">
+      {/* 1. Fullscreen Illustrated Anime Kanto Region Map Background */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/map/kanto_anime_region_map.webp"
+          alt="Kanto Anime Region"
+          className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.08]"
+        />
+        {/* Soft Vignette and Edge Shadow for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-slate-950/70 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(2,6,23,0.7)_90%)] pointer-events-none" />
+      </div>
+
+      {/* 2. Top Header Bar */}
+      <div className="relative z-20 flex items-center justify-between bg-slate-900/90 backdrop-blur-md p-3 rounded-2xl border border-amber-400/50 shadow-2xl">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-black text-xs sm:text-sm border border-slate-600 transition-transform active:scale-95"
+          className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-black text-xs sm:text-sm border border-slate-600 transition-transform active:scale-95 cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4 text-amber-400" />
           <span>Zurück</span>
         </button>
 
-        <div className="flex items-center gap-2">
-          <MapPin className="w-5 h-5 text-amber-400" />
-          <h1 className="text-base sm:text-xl font-black text-white">
-            Kanto Arena-Reise
+        <div className="flex items-center gap-2 bg-slate-950/70 px-4 py-1.5 rounded-xl border border-amber-400/30">
+          <Compass className="w-5 h-5 text-amber-400 animate-spin" />
+          <h1 className="text-sm sm:text-lg font-black text-amber-300 drop-shadow">
+            Kanto Arena-Reise (8 Orden & Champ Gary)
           </h1>
         </div>
 
-        {/* Badges Bar Summary */}
-        <div className="flex items-center gap-1.5 bg-slate-950 px-3 py-1 rounded-xl border border-slate-800">
+        {/* Badges Progress Pill */}
+        <div className="flex items-center gap-2 bg-slate-950/80 px-3.5 py-1.5 rounded-xl border border-amber-400/50 shadow-md">
           <Trophy className="w-4 h-4 text-amber-400" />
-          <span className="font-black text-xs text-amber-300">
+          <span className="text-xs sm:text-sm font-black text-white">
             {earnedBadges.length} / 8 Orden
           </span>
         </div>
       </div>
 
-      {/* Center: Interactive Kanto Map Area */}
-      <div className="relative z-10 flex-1 my-2 bg-slate-900/60 rounded-3xl border-2 border-slate-800 overflow-hidden flex items-center justify-center p-4">
-        {/* Simplified Vector Map Illustration of Kanto */}
-        <div className="relative w-full max-w-4xl h-full max-h-[500px]">
-          {/* Routes connecting cities */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none">
-            <polyline
-              points="20%,55% 20%,30% 55%,22% 55%,45% 38%,48% 55%,65% 48%,82% 22%,85% 10%,18%"
-              fill="none"
-              stroke="#fbbf24"
-              strokeWidth="3"
-              strokeDasharray="6,6"
-              opacity="0.4"
-            />
-          </svg>
+      {/* 3. Center: Interactive Map Stage with Connected Waypoints */}
+      <div className="relative z-10 flex-1 my-2 rounded-3xl overflow-hidden border-2 border-amber-400/30 shadow-inner">
+        {/* Animated Golden Route Connections SVG */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
+          {/* Base Glow */}
+          <polyline
+            points={routePoints}
+            fill="none"
+            stroke="#fbbf24"
+            strokeWidth="5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0.3"
+          />
+          {/* Animated Dashed Pulse Line */}
+          <polyline
+            points={routePoints}
+            fill="none"
+            stroke="#fef08a"
+            strokeWidth="3.5"
+            strokeDasharray="8,8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="animate-pulse"
+          />
+        </svg>
 
-          {/* Gym Nodes on the Map */}
-          {GYM_CAMPAIGN.map((node) => {
-            const earned = isEarned(node.id);
-            const unlocked = isNodeUnlocked(node);
-            const isSelected = selectedGym.id === node.id;
+        {/* 9 Gym Nodes across the Kanto landscape */}
+        {GYM_CAMPAIGN.map((node) => {
+          const earned = isEarned(node.id);
+          const unlocked = isNodeUnlocked(node);
+          const isSelected = selectedGym.id === node.id;
 
-            return (
+          return (
+            <div
+              key={node.id}
+              onClick={() => handleNodeClick(node)}
+              style={{ left: `${node.x}%`, top: `${node.y}%` }}
+              className={`absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 transform ${
+                isSelected ? 'scale-125 z-30' : 'hover:scale-115 z-20'
+              }`}
+            >
+              {/* Pulsing Active Pin Ring */}
+              {isSelected && (
+                <div className="absolute -inset-2 rounded-full border-2 border-amber-400 animate-ping pointer-events-none" />
+              )}
+
               <div
-                key={node.id}
-                onClick={() => handleNodeClick(node)}
-                style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 transform ${
-                  isSelected ? 'scale-125 z-30' : 'hover:scale-110 z-20'
+                className={`relative p-1 rounded-full border-3 flex items-center justify-center shadow-2xl transition-all ${
+                  isSelected
+                    ? 'border-white bg-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.95)]'
+                    : earned
+                    ? 'border-emerald-400 bg-slate-900 shadow-[0_0_15px_rgba(16,185,129,0.8)]'
+                    : unlocked
+                    ? 'border-amber-400/90 bg-slate-900/95 shadow-[0_0_15px_rgba(251,191,36,0.6)]'
+                    : 'border-slate-700 bg-slate-950/90 opacity-60 grayscale'
                 }`}
               >
-                <div
-                  className={`relative p-1 rounded-full border-3 flex items-center justify-center shadow-2xl ${
-                    isSelected
-                      ? 'border-white bg-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.9)] animate-bounce'
-                      : earned
-                      ? 'border-emerald-400 bg-slate-900 shadow-[0_0_12px_rgba(16,185,129,0.7)]'
-                      : unlocked
-                      ? 'border-amber-400/80 bg-slate-900 shadow-[0_0_12px_rgba(251,191,36,0.5)]'
-                      : 'border-slate-700 bg-slate-950 opacity-60 grayscale'
-                  }`}
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-slate-950 p-0.5">
-                    <img
-                      src={`/images/trainers/${node.avatar}.png`}
-                      alt={node.name}
-                      className="w-full h-full object-contain"
-                    />
+                {/* Gym Order Badge Pill */}
+                <div className="absolute -top-2 -left-2 z-30 w-5 h-5 rounded-full bg-slate-950 border border-amber-400 flex items-center justify-center text-[10px] font-black text-amber-300 shadow">
+                  {node.order}
+                </div>
+
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-slate-950 p-0.5">
+                  <img
+                    src={`/images/trainers/${node.avatar}.png`}
+                    alt={node.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+
+                {/* Badge Marker if Earned or Lock if Locked */}
+                {earned ? (
+                  <div className="absolute -bottom-1.5 -right-1.5 z-30 animate-bounce">
+                    <GymBadge type={node.id} earned size="sm" />
                   </div>
-
-                  {/* Badge Marker if Earned or Lock if Locked */}
-                  {earned ? (
-                    <div className="absolute -top-2 -right-2">
-                      <GymBadge type={node.id} earned size="sm" />
-                    </div>
-                  ) : !unlocked ? (
-                    <div className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-slate-900 border border-slate-600 flex items-center justify-center text-amber-400 shadow">
-                      <Lock className="w-3 h-3" />
-                    </div>
-                  ) : null}
-                </div>
-
-                {/* City & Name Tag */}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap bg-slate-950/90 px-2 py-0.5 rounded-lg border border-slate-700 text-[10px] font-black text-white shadow">
-                  {node.name}
-                </div>
+                ) : !unlocked ? (
+                  <div className="absolute -bottom-1 -right-1 z-30 w-5 h-5 rounded-full bg-slate-900 border border-slate-600 flex items-center justify-center text-amber-400 shadow">
+                    <Lock className="w-3 h-3" />
+                  </div>
+                ) : null}
               </div>
-            );
-          })}
-        </div>
+
+              {/* City & Name Tag */}
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 mt-1.5 whitespace-nowrap px-2.5 py-0.5 rounded-lg border text-[11px] font-black shadow-xl transition-all ${
+                  isSelected
+                    ? 'bg-amber-400 text-slate-950 border-white scale-105'
+                    : earned
+                    ? 'bg-slate-950/90 text-emerald-300 border-emerald-500/60'
+                    : 'bg-slate-950/90 text-white border-slate-700'
+                }`}
+              >
+                {node.name}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      {/* Bottom Selected Gym Preview Bar */}
-      <div className="relative z-20 bg-slate-900/90 p-3 sm:p-4 rounded-3xl border-2 border-amber-400/80 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <div className="w-14 h-14 rounded-full border-2 border-amber-400 bg-slate-950 p-1 flex items-center justify-center shadow">
+      {/* 4. Bottom Selected Arena Preview & Challenge Banner */}
+      <div className="relative z-20 bg-slate-900/95 backdrop-blur-md p-3 sm:p-4 rounded-3xl border-2 border-amber-400/80 shadow-[0_0_30px_rgba(0,0,0,0.8)] flex flex-wrap items-center justify-between gap-3">
+        {/* Left: Arena Battlefield Thumbnail Preview */}
+        <div className="flex items-center gap-3.5">
+          <div className="relative w-24 sm:w-32 aspect-video rounded-2xl overflow-hidden border-2 border-amber-400 shadow-xl shrink-0 group">
+            <img
+              src={`/images/arenas/${selectedGym.arena}.webp`}
+              alt={selectedGym.city}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-1">
+              <span className="text-[9px] font-black text-amber-300 truncate">
+                Arena {selectedGym.order}
+              </span>
+            </div>
+          </div>
+
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-amber-400 bg-slate-950 p-1 flex items-center justify-center shadow shrink-0">
             <img
               src={`/images/trainers/${selectedGym.avatar}.png`}
               alt={selectedGym.name}
               className="w-full h-full object-contain"
             />
           </div>
+
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg sm:text-xl font-black text-white">
+              <h2 className="text-base sm:text-xl font-black text-white">
                 {selectedGym.name}
               </h2>
               <EnergyBadge type={selectedGym.type} size="sm" />
@@ -207,17 +263,17 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
               )}
             </div>
             <span className="text-xs text-amber-300 font-bold block">
-              {selectedGym.city}
+              {selectedGym.city} • {selectedGym.type}-Typ
             </span>
           </div>
         </div>
 
-        {/* Badge Preview */}
+        {/* Center: Badge Preview */}
         <div className="flex items-center gap-3">
           <GymBadge type={selectedGym.id} earned={isEarned(selectedGym.id)} size="md" />
-          <div className="text-left hidden sm:block">
+          <div className="text-left hidden md:block">
             <span className="text-[10px] uppercase font-black text-slate-400 block">
-              Orden der Arena
+              Offizieller Arenapreis
             </span>
             <span className="text-xs font-black text-white">
               {GYM_CAMPAIGN.find((g) => g.id === selectedGym.id)?.name}-Orden
@@ -225,7 +281,7 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
           </div>
         </div>
 
-        {/* Challenge Button */}
+        {/* Right: Action Challenge Button */}
         <button
           disabled={!isNodeUnlocked(selectedGym)}
           onClick={() => {
@@ -239,21 +295,21 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
               badgeId: selectedGym.id
             });
           }}
-          className={`py-3 px-6 rounded-2xl font-black text-sm sm:text-base shadow-xl flex items-center gap-2 transition-transform active:scale-95 ${
+          className={`py-3.5 px-7 rounded-2xl font-black text-sm sm:text-base shadow-2xl flex items-center gap-2.5 transition-transform active:scale-95 ${
             isNodeUnlocked(selectedGym)
-              ? 'bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 animate-bounce cursor-pointer'
+              ? 'bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 border-2 border-white shadow-[0_0_25px_rgba(251,191,36,0.85)] animate-bounce cursor-pointer'
               : 'bg-slate-800 border border-slate-700 text-slate-500 opacity-60 cursor-not-allowed'
           }`}
         >
           {isNodeUnlocked(selectedGym) ? (
             <>
-              <Play className="w-5 h-5 fill-current" />
+              <Swords className="w-5 h-5 fill-current" />
               <span>ARENA BETRETEN! ⚡</span>
             </>
           ) : (
             <>
               <Lock className="w-5 h-5" />
-              <span>GESPERRT</span>
+              <span>GESPERRT 🔒</span>
             </>
           )}
         </button>

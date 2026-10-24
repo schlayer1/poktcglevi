@@ -65,7 +65,8 @@ export function setupInitialPlayer(
   id: string,
   name: string,
   avatar: string,
-  rawDeck: Card[]
+  rawDeck: Card[],
+  shieldBonus: number = 0
 ): PlayerState {
   let deck = shuffleDeck(rawDeck);
   let hand: Card[] = [];
@@ -89,11 +90,12 @@ export function setupInitialPlayer(
   const active: InPlayPokemon = {
     instanceId: createInstanceId(activeCard.id),
     card: activeCard,
-    currentHp: activeCard.hp,
-    maxHp: activeCard.hp,
+    currentHp: activeCard.hp + shieldBonus,
+    maxHp: activeCard.hp + shieldBonus,
     attachedEnergy: [],
     status: 'none',
-    canAttack: true
+    canAttack: true,
+    shieldBonus: shieldBonus > 0 ? shieldBonus : undefined
   };
 
   return {
@@ -120,14 +122,20 @@ export function createInitialGameState(
     p2Avatar: string;
     gameMode?: 'solo' | 'pvp';
     ruleLevel?: 1 | 2 | 3;
+    difficulty?: 'leicht' | 'normal' | 'schlau';
+    lossStreak?: number;
   }
 ): GameState {
-  const p1 = setupInitialPlayer('p1', options.p1Name, options.p1Avatar, p1Deck);
-  const p2 = setupInitialPlayer('p2', options.p2Name, options.p2Avatar, p2Deck);
+  const diff = options.difficulty || 'leicht';
+  const p1Shield = diff === 'leicht' ? 20 : 0;
+  const p1 = setupInitialPlayer('p1', options.p1Name, options.p1Avatar, p1Deck, p1Shield);
+  const p2 = setupInitialPlayer('p2', options.p2Name, options.p2Avatar, p2Deck, 0);
 
   return {
     gameMode: options.gameMode || 'solo',
     stage: options.ruleLevel || 1,
+    difficulty: diff,
+    lossStreak: options.lossStreak || 0,
     turnNumber: 1,
     activePlayerIndex: 0,
     players: [p1, p2],
@@ -347,15 +355,17 @@ export function reduceGameState(state: GameState, action: Action): GameState {
       const card = pActive.hand[action.handIndex];
       if (!card || card.stage !== 'Basis') return state;
 
+      const shieldBonus = (activeIdx === 0 && (state.difficulty || 'leicht') === 'leicht') ? 20 : 0;
       const newHand = pActive.hand.filter((_, i) => i !== action.handIndex);
       const newBenchItem: InPlayPokemon = {
         instanceId: createInstanceId(card.id),
         card,
-        currentHp: card.hp,
-        maxHp: card.hp,
+        currentHp: card.hp + shieldBonus,
+        maxHp: card.hp + shieldBonus,
         attachedEnergy: [],
         status: 'none',
-        canAttack: false
+        canAttack: false,
+        shieldBonus: shieldBonus > 0 ? shieldBonus : undefined
       };
 
       pActive.hand = newHand;
@@ -372,31 +382,36 @@ export function reduceGameState(state: GameState, action: Action): GameState {
       if (!card || (card.stage !== 'Rang 1' && card.stage !== 'Rang 2')) return state;
 
       const newHand = pActive.hand.filter((_, i) => i !== action.handIndex);
+      const shieldBonus = (activeIdx === 0 && (state.difficulty || 'leicht') === 'leicht') ? 20 : 0;
 
       if (action.target === 'active') {
         if (!pActive.active) return state;
+        const shield = pActive.active.shieldBonus || shieldBonus;
         const prevHp = pActive.active.card.hp;
         const hpDiff = card.hp - prevHp;
         pActive.active = {
           ...pActive.active,
           card,
-          maxHp: card.hp,
+          maxHp: card.hp + shield,
           currentHp: pActive.active.currentHp + hpDiff,
-          status: 'none' // Evolution cures status conditions!
+          status: 'none', // Evolution cures status conditions!
+          shieldBonus: shield > 0 ? shield : undefined
         };
         log.push(`✨ ${pActive.name} entwickelt ${card.evolvesFrom} zu ${card.name}!`);
       } else {
         const bIdx = action.target;
         if (!pActive.bench[bIdx]) return state;
+        const shield = pActive.bench[bIdx].shieldBonus || shieldBonus;
         const prevHp = pActive.bench[bIdx].card.hp;
         const hpDiff = card.hp - prevHp;
         const newBench = [...pActive.bench];
         newBench[bIdx] = {
           ...newBench[bIdx],
           card,
-          maxHp: card.hp,
+          maxHp: card.hp + shield,
           currentHp: newBench[bIdx].currentHp + hpDiff,
-          status: 'none'
+          status: 'none',
+          shieldBonus: shield > 0 ? shield : undefined
         };
         pActive.bench = newBench;
         log.push(`✨ ${pActive.name} entwickelt ${card.evolvesFrom} auf der Bank zu ${card.name}!`);
@@ -677,8 +692,14 @@ function endTurnTransition(state: GameState): GameState {
   };
 }
 
-export function getAiAction(state: GameState): Action | null {
+export function getAiAction(
+  state: GameState,
+  overrideDifficulty?: 'leicht' | 'normal' | 'schlau'
+): Action | null {
   if (state.winner !== null) return null;
+
+  const difficulty = overrideDifficulty || state.difficulty || 'leicht';
+  const lossStreak = state.lossStreak || 0;
 
   // 1. Promotion (AI is player 1)
   if (state.turnPhase === 'promote_needed') {
@@ -704,8 +725,12 @@ export function getAiAction(state: GameState): Action | null {
   // 2. Play Trainer (Potion if damaged)
   if (state.stage >= 3) {
     const potionIdx = aiPlayer.hand.findIndex((c) => c.name === 'Trank');
-    if (potionIdx !== -1 && aiPlayer.active && aiPlayer.active.currentHp < aiPlayer.active.maxHp - 20) {
-      return { type: 'PLAY_TRAINER', handIndex: potionIdx, target: 'active' };
+    if (potionIdx !== -1 && aiPlayer.active) {
+      // In 'leicht', only heal if deeply wounded (< 35% HP)
+      const healThreshold = difficulty === 'leicht' ? aiPlayer.active.maxHp * 0.35 : aiPlayer.active.maxHp - 20;
+      if (aiPlayer.active.currentHp <= healThreshold) {
+        return { type: 'PLAY_TRAINER', handIndex: potionIdx, target: 'active' };
+      }
     }
   }
 
@@ -718,7 +743,10 @@ export function getAiAction(state: GameState): Action | null {
         c.evolvesFrom === aiPlayer.active.card.name.replace('-ex', '').trim()
     );
     if (evoHandIdx !== -1) {
-      return { type: 'EVOLVE', handIndex: evoHandIdx, target: 'active' };
+      // In 'leicht', give 30% chance to hold back evolution to give Levi time to evolve first
+      if (difficulty !== 'leicht' || Math.random() > 0.3) {
+        return { type: 'EVOLVE', handIndex: evoHandIdx, target: 'active' };
+      }
     }
   }
 
@@ -740,24 +768,55 @@ export function getAiAction(state: GameState): Action | null {
   if (!state.attackedThisTurn && aiPlayer.active && opponent.active) {
     const isTurn1 = state.turnNumber === 1 && aiIdx === 0;
     if (!isTurn1) {
+      // Adaptive Comfort Bonus (Trost-Bonus):
+      // If Levi had recent losses, AI occasionally pauses to "charge energy", giving Levi an opening
+      if (difficulty === 'leicht' && lossStreak > 0 && Math.random() < 0.4) {
+        return { type: 'END_TURN' };
+      }
+
+      // In 'leicht', give a 25% chance to give Levi breathing room if Levi is still at 0 points
+      if (difficulty === 'leicht' && opponent.points === 0 && Math.random() < 0.25) {
+        return { type: 'END_TURN' };
+      }
+
       const active = aiPlayer.active;
       let bestAttackIdx = -1;
       let maxDmg = -1;
 
+      const payableAttacks: { idx: number; atk: typeof active.card.attacks[0] }[] = [];
       active.card.attacks.forEach((atk, idx) => {
         if (canPayCost(active.attachedEnergy, atk.cost)) {
-          if (opponent.active && atk.damage >= opponent.active.currentHp) {
-            bestAttackIdx = idx;
-            maxDmg = 9999;
-          } else if (atk.damage > maxDmg) {
-            maxDmg = atk.damage;
-            bestAttackIdx = idx;
-          }
+          payableAttacks.push({ idx, atk });
         }
       });
 
-      if (bestAttackIdx !== -1) {
-        return { type: 'ATTACK', attackIndex: bestAttackIdx };
+      if (payableAttacks.length > 0) {
+        if (difficulty === 'leicht') {
+          // Kindgerechte KI: Avoid ruthless instant KO if Levi is vulnerable and a softer attack is available
+          const isLethal = (dmg: number) => opponent.active && dmg >= opponent.active.currentHp;
+          const nonLethal = payableAttacks.filter((p) => !isLethal(p.atk.damage));
+
+          if (opponent.active && opponent.active.currentHp <= 40 && nonLethal.length > 0) {
+            bestAttackIdx = nonLethal[0].idx;
+          } else {
+            bestAttackIdx = payableAttacks[0].idx;
+          }
+        } else {
+          // Normal & Schlau: Pick highest damage or lethal KO
+          payableAttacks.forEach(({ idx, atk }) => {
+            if (opponent.active && atk.damage >= opponent.active.currentHp) {
+              bestAttackIdx = idx;
+              maxDmg = 9999;
+            } else if (atk.damage > maxDmg) {
+              maxDmg = atk.damage;
+              bestAttackIdx = idx;
+            }
+          });
+        }
+
+        if (bestAttackIdx !== -1) {
+          return { type: 'ATTACK', attackIndex: bestAttackIdx };
+        }
       }
     }
   }

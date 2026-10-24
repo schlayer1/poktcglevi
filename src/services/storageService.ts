@@ -14,6 +14,8 @@ export interface UserProfile {
   avatar: string;
   ruleLevel: 1 | 2 | 3; // 1 = Mini-Kampf, 2 = Profi (Evo/Weakness), 3 = Meister (Trainers/Status)
   aiDifficulty: 'leicht' | 'normal' | 'schlau';
+  favoriteStarter?: 'pikachu' | 'bisasam' | 'glumanda' | 'schiggy';
+  lossStreak?: number;
   unlockedCards: Record<string, number>; // cardId -> count
   unopenedBoosters: number;
   badges: string[]; // ['rocko', 'misty', 'majorbob', 'erika', 'koga', 'sabrina', 'pyro', 'giovanni', 'gary']
@@ -53,6 +55,8 @@ export function getDefaultProfile(allCards: Card[]): UserProfile {
     avatar: 'levi',
     ruleLevel: 1,
     aiDifficulty: 'leicht',
+    favoriteStarter: 'pikachu',
+    lossStreak: 0,
     unlockedCards: unlocked,
     unopenedBoosters: 2, // 2 initial reward packs to open!
     badges: [],
@@ -111,10 +115,15 @@ class StorageService {
     this.saveProfile(this.profile);
   }
 
-  public recordMatchResult(won: boolean, kos: number) {
+  public recordMatchResult(won: boolean, kos: number = 0) {
     if (!this.profile) return;
     this.profile.stats.matchesPlayed += 1;
-    if (won) this.profile.stats.matchesWon += 1;
+    if (won) {
+      this.profile.stats.matchesWon += 1;
+      this.profile.lossStreak = 0;
+    } else {
+      this.profile.lossStreak = (this.profile.lossStreak || 0) + 1;
+    }
     this.profile.stats.kosDealt += kos;
     // Always reward 1 booster pack after every match!
     this.profile.unopenedBoosters += 1;
@@ -213,6 +222,30 @@ class StorageService {
         this.profile!.badges.push(b);
       }
     });
+    this.saveProfile(this.profile);
+  }
+
+  public getFavoriteStarter(): 'pikachu' | 'bisasam' | 'glumanda' | 'schiggy' {
+    return this.profile?.favoriteStarter || 'pikachu';
+  }
+
+  public setFavoriteStarter(starter: 'pikachu' | 'bisasam' | 'glumanda' | 'schiggy') {
+    if (!this.profile) return;
+    this.profile.favoriteStarter = starter;
+    this.saveProfile(this.profile);
+  }
+
+  public getLossStreak(): number {
+    return this.profile?.lossStreak || 0;
+  }
+
+  public getAiDifficulty(): 'leicht' | 'normal' | 'schlau' {
+    return this.profile?.aiDifficulty || 'leicht';
+  }
+
+  public setAiDifficulty(d: 'leicht' | 'normal' | 'schlau') {
+    if (!this.profile) return;
+    this.profile.aiDifficulty = d;
     this.saveProfile(this.profile);
   }
 

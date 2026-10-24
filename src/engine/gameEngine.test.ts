@@ -140,8 +140,38 @@ describe('Game Engine Level 1, 2 and 3', () => {
     });
 
     expect(state.players[0].active!.card.name).toBe('Glutexo');
+    // In 'leicht' mode, Levi's Pokémon preserves the +20 KP Pikachu-Schutzschild
+    expect(state.players[0].active!.maxHp).toBe(110);
+    expect(state.players[0].active!.currentHp).toBe(110);
+    expect(state.players[0].active!.shieldBonus).toBe(20);
+  });
+
+  it('correctly uses base HP in Rule Level 2 when difficulty is normal', () => {
+    const p1Deck = makeDeck(dummyGlumanda);
+    const p2Deck = makeDeck(dummySchiggy);
+
+    let state = createInitialGameState(p1Deck, p2Deck, {
+      p1Name: 'Levi',
+      p2Name: 'Papa',
+      p1Avatar: 'levi',
+      p2Avatar: 'papa',
+      ruleLevel: 2,
+      difficulty: 'normal'
+    });
+
+    state.players[0].hand.push(dummyGlutexo);
+    const glutexoHandIdx = state.players[0].hand.length - 1;
+
+    state = reduceGameState(state, {
+      type: 'EVOLVE',
+      handIndex: glutexoHandIdx,
+      target: 'active'
+    });
+
+    expect(state.players[0].active!.card.name).toBe('Glutexo');
     expect(state.players[0].active!.maxHp).toBe(90);
     expect(state.players[0].active!.currentHp).toBe(90);
+    expect(state.players[0].active!.shieldBonus).toBeUndefined();
   });
 
   it('correctly executes Retreat in Rule Level 2', () => {

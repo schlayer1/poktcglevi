@@ -54,6 +54,7 @@ export interface InPlayPokemon {
   attachedEnergy: PokemonType[];
   status: StatusCondition;
   canAttack: boolean;
+  shieldBonus?: number;
 }
 
 export interface PlayerState {
@@ -90,6 +91,8 @@ export interface GameState {
     isKo: boolean;
     isSuperEffective?: boolean;
   };
+  difficulty?: 'leicht' | 'normal' | 'schlau';
+  lossStreak?: number;
 }
 
 export type Action =
