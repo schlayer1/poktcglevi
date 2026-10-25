@@ -520,7 +520,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
               );
             })}
 
-            {/* THE CURRENT ACTIVE CARD (100% CENTERED) */}
+            {/* THE CURRENT ACTIVE CARD (100% CENTERED WITH 3D ROTATION) */}
             {(() => {
               const currentCard = pulledCards[currentRevealIdx];
               const isRevealed = revealedIndices.includes(currentRevealIdx);
@@ -529,17 +529,34 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
 
               return (
                 <div
+                  style={{ perspective: '1200px' }}
                   onClick={() => {
                     if (!isRevealed) {
                       handleRevealCard(currentRevealIdx);
                     }
                   }}
-                  className={`relative z-20 transition-all duration-400 transform ${
+                  className={`relative z-20 w-48 xs:w-54 sm:w-64 aspect-[5/7] flex items-center justify-center transition-all duration-300 ${
                     !isRevealed ? 'cursor-pointer active:scale-95 hover:scale-102' : ''
                   }`}
                 >
-                  {isRevealed ? (
-                    <div className="relative animate-in zoom-in-95 duration-300">
+                  {/* The 3D Flipping Card Body */}
+                  <div
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      transform: isRevealed ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                      transition: 'transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
+                    className="relative w-full h-full"
+                  >
+                    {/* FRONT FACE (Initially facing away at 180deg) */}
+                    <div
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)'
+                      }}
+                      className="absolute inset-0 w-full h-full flex items-center justify-center"
+                    >
                       {isNew && (
                         <div className="absolute -top-3.5 -right-3.5 z-30 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-slate-950 font-black text-xs px-3.5 py-1 rounded-full shadow-2xl border-2 border-white animate-bounce">
                           NEU! ⭐
@@ -548,12 +565,19 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                       <HoloCard
                         card={currentCard}
                         interactive={true}
-                        className="w-48 xs:w-54 sm:w-64 aspect-[5/7] shadow-[0_0_50px_rgba(251,191,36,0.6)]"
+                        className="w-full h-full shadow-[0_0_50px_rgba(251,191,36,0.6)]"
                       />
                     </div>
-                  ) : (
-                    /* Facedown Card with Authentic TCG Pocket Shimmer & Rare Teaser Aura */
-                    <div className="relative group">
+
+                    {/* BACK FACE (Initially facing front at 0deg) */}
+                    <div
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'rotateY(0deg)'
+                      }}
+                      className="absolute inset-0 w-full h-full"
+                    >
                       {isRare && (
                         <div
                           className="absolute -inset-3.5 rounded-3xl blur-lg opacity-90 animate-pulse pointer-events-none"
@@ -565,7 +589,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                         />
                       )}
                       <div
-                        className={`relative w-48 xs:w-54 sm:w-64 aspect-[5/7] rounded-2xl overflow-hidden border-3 shadow-2xl transition-all ${
+                        className={`relative w-full h-full rounded-2xl overflow-hidden border-3 shadow-2xl transition-all ${
                           currentCard.isEx
                             ? 'border-amber-300 shadow-[0_0_45px_rgba(251,191,36,0.95)]'
                             : isRare
@@ -602,7 +626,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                         </div>
                       </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             })()}
@@ -644,7 +668,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
             )}
           </div>
 
-          {/* 5 Interactive Card Chips Navigation */}
+          {/* 5 Interactive Card Chips Navigation (Enhanced 48px touch targets for mobile) */}
           <div className="flex items-center justify-center gap-2 sm:gap-3 w-full max-w-sm px-2">
             {pulledCards.map((_, i) => {
               const isRev = revealedIndices.includes(i);
@@ -658,17 +682,17 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                   }}
                   className={`flex items-center justify-center transition-all cursor-pointer ${
                     isCur
-                      ? 'w-10 sm:w-12 h-9 sm:h-10 rounded-xl bg-amber-400 text-slate-950 font-black shadow-[0_0_15px_#fbbf24] border-2 border-white scale-110'
+                      ? 'w-11 sm:w-13 h-11 sm:h-12 rounded-2xl bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-950 font-black shadow-[0_0_20px_#fbbf24] border-2 border-white scale-110'
                       : isRev
-                      ? 'w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-slate-800 text-amber-300 font-bold border border-amber-400/50 hover:bg-slate-700'
-                      : 'w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-slate-900/80 text-slate-500 font-bold border border-slate-700 hover:border-slate-500'
+                      ? 'w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-slate-800 text-amber-300 font-bold border border-amber-400/60 hover:bg-slate-700'
+                      : 'w-10 sm:w-11 h-10 sm:h-11 rounded-2xl bg-slate-900/90 text-slate-400 font-bold border border-slate-700 hover:border-slate-500'
                   }`}
                   title={`Karte ${i + 1}`}
                 >
                   {isRev ? (
-                    <span className="text-xs">✓ {i + 1}</span>
+                    <span className="text-xs sm:text-sm font-black">✓ {i + 1}</span>
                   ) : (
-                    <span className="text-xs">{i + 1}</span>
+                    <span className="text-xs sm:text-sm font-black">{i + 1}</span>
                   )}
                 </button>
               );

@@ -10,16 +10,54 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '1.6.0';
-export const APP_BUILD_NAME = 'TCG Pocket Animations & 3D Stage';
-export const APP_BUILD_TAG = `Build ${APP_VERSION} (24.10.) • ${APP_BUILD_NAME}`;
+export const APP_VERSION = '1.7.0';
+export const APP_BUILD_NAME = 'Gameplay Balance & VS Mode Fix';
+export const APP_BUILD_TAG = `Build ${APP_VERSION} (25.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
+  {
+    version: '1.7.0',
+    date: '25. Oktober 2026',
+    title: 'Gameplay-Balance, VS-Modus Fix & 3D Booster-Flip',
+    badge: 'Aktuell ✨',
+    features: [
+      {
+        icon: '🎴',
+        title: 'Echter 3D-Karten-Flip (rotateY 180°)',
+        description: 'Beim Antippen dreht sich die Karte jetzt filmisch und flüssig im Raum um die eigene Achse (CSS 3D-Flip) mit vergrößerten 48px-Touchzielen für alle 5 Karten.'
+      },
+      {
+        icon: '⚔️',
+        title: 'VS-Modus Schadensberechnung korrigiert',
+        description: 'Papas Attackenvorschau wurde symmetrisch entkoppelt: Papas eigenes Pokémon verliert keine KP mehr bei der Attackenauswahl, sondern ausschließlich das anvisierte Pokémon des Gegners.'
+      },
+      {
+        icon: '🔄',
+        title: 'Tisch-iPad Dynamische Pokémon-Drehung',
+        description: 'Im 2-Spieler-Modus am iPad dreht sich das aktive Pokémon und die Werteanzeige automatisch zu Papa um (180°), wenn Papa an der Reihe ist.'
+      },
+      {
+        icon: '⚡',
+        title: 'Intelligente, bedarfsgerechte Energiezone',
+        description: 'Keine toten Runden mehr: Befindet sich Pikachu im Spiel, generiert die Energiezone gezielt die benötigte Elektro-Energie statt fremder Typen.'
+      },
+      {
+        icon: '🧬',
+        title: 'Mewtu & EX-Varianten im Sammelalbum',
+        description: 'Slot #150 im 151er Kanto-Binder aggregiert jetzt alle gezogenen Mewtu- und Mewtu-ex-Karten und zeigt die glänzende EX-Version samt Stückzahl an.'
+      },
+      {
+        icon: '🎙️',
+        title: 'Audio-Rebalancing & BGM-Ducking',
+        description: 'Musik und Toneffekte wurden harmonisch eingepegelt; sobald deutsche Sprachausgabe ertönt, senkt sich die Musik sanft um 75% ab.'
+      }
+    ]
+  },
   {
     version: '1.6.0',
     date: '24. Oktober 2026',
     title: 'Authentische TCG Pocket Animationen & Mobile 3D-Bühne',
-    badge: 'Aktuell ✨',
+    badge: 'Stabil 🌟',
     features: [
       {
         icon: '🎴',

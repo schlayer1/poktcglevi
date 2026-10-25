@@ -61,6 +61,74 @@ export function getDeckPrimaryType(deck: Card[]): PokemonType {
   return bestType;
 }
 
+export function generateNextTurnEnergy(player: PlayerState): PokemonType {
+  // 1. Check active Pokémon: does it need specific energy for an attack?
+  if (player.active) {
+    const active = player.active;
+    const attached = [...active.attachedEnergy];
+    for (const atk of active.card.attacks) {
+      const specificCost = atk.cost.filter((c) => c !== 'Farblos');
+      const tempAttached = [...attached];
+      const missingTypes: PokemonType[] = [];
+      for (const req of specificCost) {
+        const foundIdx = tempAttached.indexOf(req);
+        if (foundIdx !== -1) {
+          tempAttached.splice(foundIdx, 1);
+        } else {
+          missingTypes.push(req);
+        }
+      }
+      if (missingTypes.length > 0) {
+        return missingTypes[0];
+      }
+      // If specific costs are met, but colorless cost is still needed, provide primary type of this Pokémon
+      if (attached.length < atk.cost.length && active.card.types[0] && active.card.types[0] !== 'Farblos') {
+        return active.card.types[0];
+      }
+    }
+  }
+
+  // 2. Check bench Pokémon: does any bench Pokémon need specific energy?
+  for (const benchMon of player.bench) {
+    const attached = [...benchMon.attachedEnergy];
+    for (const atk of benchMon.card.attacks) {
+      const specificCost = atk.cost.filter((c) => c !== 'Farblos');
+      const tempAttached = [...attached];
+      for (const req of specificCost) {
+        const foundIdx = tempAttached.indexOf(req);
+        if (foundIdx !== -1) {
+          tempAttached.splice(foundIdx, 1);
+        } else {
+          return req;
+        }
+      }
+    }
+  }
+
+  // 3. Check hand Pokémon
+  const handPokemonTypes: PokemonType[] = [];
+  for (const c of player.hand) {
+    for (const t of c.types) {
+      if (t !== 'Farblos' && !handPokemonTypes.includes(t)) {
+        handPokemonTypes.push(t);
+      }
+    }
+  }
+  if (handPokemonTypes.length > 0) {
+    return handPokemonTypes[0];
+  }
+
+  // 4. Primary type from all cards in deck & board
+  const allCardsInDeckAndPlay: Card[] = [
+    ...(player.active ? [player.active.card] : []),
+    ...player.bench.map((b) => b.card),
+    ...player.hand,
+    ...player.deck
+  ];
+
+  return getDeckPrimaryType(allCardsInDeckAndPlay);
+}
+
 export function setupInitialPlayer(
   id: string,
   name: string,
@@ -129,6 +197,7 @@ export function createInitialGameState(
   const diff = options.difficulty || 'leicht';
   const p1Shield = diff === 'leicht' ? 20 : 0;
   const p1 = setupInitialPlayer('p1', options.p1Name, options.p1Avatar, p1Deck, p1Shield);
+  p1.energyZone = [generateNextTurnEnergy(p1)];
   const p2 = setupInitialPlayer('p2', options.p2Name, options.p2Avatar, p2Deck, 0);
 
   return {
@@ -669,7 +738,7 @@ function endTurnTransition(state: GameState): GameState {
   }
 
   // Energy generation
-  const energyType = getDeckPrimaryType(nextPlayer.deck.concat(nextPlayer.hand));
+  const energyType = generateNextTurnEnergy(nextPlayer);
   nextPlayer.energyZone = [energyType];
 
   log.push(`Zug ${currentTurn}: ${nextPlayer.name} ist dran.`);

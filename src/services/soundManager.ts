@@ -25,8 +25,10 @@ class SoundManager {
   private voiceManifest: Record<string, { file: string | null; text: string }> = {};
   private muted: boolean = false;
   private bgmMuted: boolean = false;
-  private sfxVolume: number = 0.9;
-  private bgmVolume: number = 0.35;
+  private sfxVolume: number = 0.45;
+  private bgmVolume: number = 0.22;
+  private voiceVolume: number = 1.0;
+  private isDucking: boolean = false;
   private currentVoiceAudio: HTMLAudioElement | null = null;
   private speechVoice: SpeechSynthesisVoice | null = null;
 
@@ -132,12 +134,7 @@ class SoundManager {
 
   public toggleBgmMute(): boolean {
     this.bgmMuted = !this.bgmMuted;
-    if (this.bgmAudio) {
-      this.bgmAudio.volume = this.bgmMuted || this.muted ? 0 : this.bgmVolume;
-    }
-    if (this.bgmGainNode && this.ctx) {
-      this.bgmGainNode.gain.setValueAtTime(this.bgmMuted || this.muted ? 0 : this.bgmVolume, this.ctx.currentTime);
-    }
+    this.updateBgmVolume();
     return this.bgmMuted;
   }
 
@@ -146,18 +143,44 @@ class SoundManager {
   }
 
   public setVolume(vol: number) {
-    this.sfxVolume = Math.max(0, Math.min(1, vol));
-    this.bgmVolume = Math.max(0, Math.min(1, vol * 0.45));
-    if (this.bgmAudio) {
-      this.bgmAudio.volume = this.bgmMuted || this.muted ? 0 : this.bgmVolume;
-    }
-    if (this.bgmGainNode && this.ctx && !this.bgmMuted && !this.muted) {
-      this.bgmGainNode.gain.setValueAtTime(this.bgmVolume, this.ctx.currentTime);
-    }
+    this.sfxVolume = Math.max(0, Math.min(1, vol * 0.5));
+    this.bgmVolume = Math.max(0, Math.min(1, vol * 0.25));
+    this.voiceVolume = Math.max(0, Math.min(1, vol));
+    this.updateBgmVolume();
   }
 
   public getVolume(): number {
-    return this.sfxVolume;
+    return this.voiceVolume;
+  }
+
+  public startDucking() {
+    this.isDucking = true;
+    this.updateBgmVolume();
+  }
+
+  public stopDucking() {
+    if (!this.isDucking) return;
+    this.isDucking = false;
+    this.updateBgmVolume();
+  }
+
+  private updateBgmVolume() {
+    const targetVol = this.bgmMuted || this.muted
+      ? 0
+      : this.isDucking
+      ? Math.max(0.04, this.bgmVolume * 0.25)
+      : this.bgmVolume;
+
+    if (this.bgmAudio) {
+      this.bgmAudio.volume = targetVol;
+    }
+    if (this.bgmGainNode && this.ctx) {
+      try {
+        this.bgmGainNode.gain.cancelScheduledValues(this.ctx.currentTime);
+        this.bgmGainNode.gain.setValueAtTime(this.bgmGainNode.gain.value, this.ctx.currentTime);
+        this.bgmGainNode.gain.linearRampToValueAtTime(targetVol, this.ctx.currentTime + 0.15);
+      } catch {}
+    }
   }
 
   // =========================================================================
@@ -176,7 +199,11 @@ class SoundManager {
       try {
         const audio = new Audio(audioSrc);
         audio.loop = true;
-        audio.volume = this.bgmMuted ? 0 : this.bgmVolume;
+        audio.volume = this.bgmMuted || this.muted
+          ? 0
+          : this.isDucking
+          ? Math.max(0.04, this.bgmVolume * 0.25)
+          : this.bgmVolume;
         this.bgmAudio = audio;
 
         const playPromise = audio.play();
@@ -566,9 +593,12 @@ class SoundManager {
   // --- Speech Output ---
   public stopVoice() {
     if (this.currentVoiceAudio) {
-      this.currentVoiceAudio.pause();
+      try {
+        this.currentVoiceAudio.pause();
+      } catch {}
       this.currentVoiceAudio = null;
     }
+    this.stopDucking();
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
     }
@@ -611,9 +641,17 @@ class SoundManager {
     const directPath = `/audio/voice/cards/${cleanId}.m4a`;
     this.stopVoice();
     const audio = new Audio(directPath);
-    audio.volume = this.sfxVolume;
+    audio.volume = this.voiceVolume;
     this.currentVoiceAudio = audio;
+    this.startDucking();
+    audio.addEventListener('ended', () => this.stopDucking(), { once: true });
+    audio.addEventListener('error', () => {
+      this.stopDucking();
+      this.playVoice('card_detail_intro');
+    }, { once: true });
+
     audio.play().catch(() => {
+      this.stopDucking();
       this.playVoice('card_detail_intro');
     });
   }
@@ -626,10 +664,14 @@ class SoundManager {
 
     if (manifestEntry?.file) {
       const audio = new Audio(manifestEntry.file);
-      audio.volume = this.sfxVolume;
+      audio.volume = this.voiceVolume;
       this.currentVoiceAudio = audio;
+      this.startDucking();
+      audio.addEventListener('ended', () => this.stopDucking(), { once: true });
+      audio.addEventListener('error', () => this.stopDucking(), { once: true });
 
       audio.play().catch(() => {
+        this.stopDucking();
         // Fallback suppressed to prevent robotic browser speech
       });
       return;

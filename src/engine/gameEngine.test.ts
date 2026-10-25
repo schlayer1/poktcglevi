@@ -293,4 +293,51 @@ describe('Game Engine Level 1, 2 and 3', () => {
     expect(state.turnPhase).toBe('main');
     expect(state.activePlayerIndex).toBe(1); // Turn passed to Opponent
   });
+
+  it('guarantees required energy type for Pikachu even if deck is predominantly Fire', () => {
+    const dummyPikachu: Card = {
+      id: 'A1-094',
+      dexId: 25,
+      name: 'Pikachu',
+      types: ['Elektro'],
+      hp: 60,
+      stage: 'Basis',
+      isEx: false,
+      attacks: [{ name: 'Donnerschock', cost: ['Elektro'], damage: 20 }],
+      retreat: 1,
+      weakness: { type: 'Kampf', value: '+20' },
+      artworkUrl: '/images/pokemon/25.webp',
+      cryUrl: '/audio/cries/25.ogg',
+      cardImageUrl: '/images/cards/A1-094.webp'
+    };
+
+    // Deck has 1 Pikachu and 19 Glumanda (Feuer)
+    const mixedDeck: Card[] = [dummyPikachu, ...makeDeck(dummyGlumanda).slice(0, 19)];
+    const p2Deck = makeDeck(dummySchiggy);
+
+    const state = createInitialGameState(mixedDeck, p2Deck, {
+      p1Name: 'Levi',
+      p2Name: 'Papa',
+      p1Avatar: 'levi',
+      p2Avatar: 'papa'
+    });
+
+    // Make sure Pikachu is active
+    state.players[0].active = {
+      instanceId: 'pika_1',
+      card: dummyPikachu,
+      currentHp: 60,
+      maxHp: 60,
+      attachedEnergy: [],
+      status: 'none',
+      canAttack: true
+    };
+
+    // Advance turn to next round
+    const nextTurn = reduceGameState(state, { type: 'END_TURN' });
+    const backToLevi = reduceGameState(nextTurn, { type: 'END_TURN' });
+
+    // Levi's energyZone MUST be Elektro so Pikachu can attack!
+    expect(backToLevi.players[0].energyZone[0]).toBe('Elektro');
+  });
 });

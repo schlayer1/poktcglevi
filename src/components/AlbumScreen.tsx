@@ -28,24 +28,62 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
   const profile = storageService.loadProfile(allCards);
   const unlockedMap = profile.unlockedCards;
 
-  // Filter out duplicate card entries for the 151 dex binder (pick first card per dexId)
-  const dexMap: Record<number, Card> = {};
+  // Group all card variants by dexId (e.g. dexId 150 has normal Mewtu, Mewtu-ex, etc.)
+  const dexVariantsMap: Record<number, Card[]> = {};
   allCards.forEach((c) => {
-    if (c.dexId >= 1 && c.dexId <= 151 && !dexMap[c.dexId]) {
-      dexMap[c.dexId] = c;
+    if (c.dexId >= 1 && c.dexId <= 151) {
+      if (!dexVariantsMap[c.dexId]) dexVariantsMap[c.dexId] = [];
+      dexVariantsMap[c.dexId].push(c);
     }
   });
 
-  const kantoDexList = Object.values(dexMap).sort((a, b) => a.dexId - b.dexId);
-  const totalOwnedCount = kantoDexList.filter((c) => (unlockedMap[c.id] || 0) > 0).length;
+  interface DexSlotItem {
+    dexId: number;
+    displayCard: Card;
+    totalCount: number;
+    isOwned: boolean;
+    variants: Card[];
+  }
+
+  const kantoDexSlots: DexSlotItem[] = Object.entries(dexVariantsMap)
+    .map(([dexIdStr, variants]) => {
+      const dexId = Number(dexIdStr);
+      const totalCount = variants.reduce((sum, v) => sum + (unlockedMap[v.id] || 0), 0);
+      const isOwned = totalCount > 0;
+
+      // Choose the best card to display:
+      // 1. If owned, pick the highest rarity/ex owned variant!
+      // 2. Otherwise default to the first base variant
+      let displayCard = variants[0];
+      if (isOwned) {
+        const ownedVariants = variants.filter((v) => (unlockedMap[v.id] || 0) > 0);
+        ownedVariants.sort((a, b) => {
+          if (a.isEx && !b.isEx) return -1;
+          if (!a.isEx && b.isEx) return 1;
+          return b.hp - a.hp;
+        });
+        displayCard = ownedVariants[0];
+      }
+
+      return {
+        dexId,
+        displayCard,
+        totalCount,
+        isOwned,
+        variants
+      };
+    })
+    .sort((a, b) => a.dexId - b.dexId);
+
+  const totalOwnedCount = kantoDexSlots.filter((s) => s.isOwned).length;
   const progressPercent = Math.round((totalOwnedCount / 151) * 100);
 
   // Apply filter
-  const filteredList = kantoDexList.filter((c) => {
+  const filteredList = kantoDexSlots.filter((slot) => {
     if (selectedType === 'all') return true;
-    if (selectedType === 'ex') return c.isEx;
-    if (selectedType === 'missing') return (unlockedMap[c.id] || 0) === 0;
-    return c.types.includes(selectedType as PokemonType);
+    if (selectedType === 'ex') return slot.variants.some((v) => v.isEx && (unlockedMap[v.id] || 0) > 0);
+    if (selectedType === 'missing') return !slot.isOwned;
+    return slot.displayCard.types.includes(selectedType as PokemonType);
   });
 
   return (
@@ -135,9 +173,10 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
 
       {/* Center: 151 Binder Grid */}
       <div className="relative z-10 flex-1 overflow-y-auto pr-1 py-2 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-        {filteredList.map((card) => {
-          const countOwned = unlockedMap[card.id] || 0;
-          const isOwned = countOwned > 0;
+        {filteredList.map((slot) => {
+          const card = slot.displayCard;
+          const countOwned = slot.totalCount;
+          const isOwned = slot.isOwned;
 
           return (
             <div

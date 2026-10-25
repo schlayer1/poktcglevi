@@ -324,17 +324,47 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     );
   };
 
+  // Helper: Symmetric damage preview calculation for active Pokémon
+  const getPreviewDamage = (targetSide: 'levi' | 'opponent'): number => {
+    if (selectedAttackIdx === null) return 0;
+
+    if (targetSide === 'opponent') {
+      // Levi is attacking opponent / Papa
+      if (!isLeviTurn || !p1.active || !p2.active) return 0;
+      const atk = p1.active.card.attacks[selectedAttackIdx];
+      if (!atk) return 0;
+      let dmg = atk.damage;
+      if (gameState.stage >= 2 && p2.active.card.weakness?.type === p1.active.card.types[0]) {
+        dmg += 20;
+      }
+      return dmg;
+    } else {
+      // Papa is attacking Levi in PvP mode
+      if (isLeviTurn || !isPvP || !p2.active || !p1.active) return 0;
+      const atk = p2.active.card.attacks[selectedAttackIdx];
+      if (!atk) return 0;
+      let dmg = atk.damage;
+      if (gameState.stage >= 2 && p1.active.card.weakness?.type === p2.active.card.types[0]) {
+        dmg += 20;
+      }
+      return dmg;
+    }
+  };
+
   // Helper: Render 3D Battle Pedestal for Active Pokémon
   const renderActivePedestal = (
     mon: InPlayPokemon | null,
     isPlayer: boolean,
     previewDmg: number = 0,
-    isCompact: boolean = false
+    isCompact: boolean = false,
+    tabletopInvert: boolean = false
   ) => {
     const compact = isCompact || isMobileLandscape;
+    const isTabletopPapa = tabletopInvert && isPvP && !isPlayer;
+    const rotateClass = isTabletopPapa ? 'rotate-180' : '';
     if (!mon) {
       return (
-        <div className={`rounded-3xl border-3 border-dashed border-rose-400/60 bg-rose-950/30 flex flex-col items-center justify-center text-center shadow-lg backdrop-blur-sm animate-pulse ${
+        <div className={`rounded-3xl border-3 border-dashed border-rose-400/60 bg-rose-950/30 flex flex-col items-center justify-center text-center shadow-lg backdrop-blur-sm animate-pulse ${rotateClass} ${
           compact ? 'w-28 xs:w-36 h-24 xs:h-30 p-2' : 'w-48 sm:w-60 h-40 sm:h-48 p-3'
         }`}>
           <span className={`${compact ? 'text-xs' : 'text-sm'} font-black text-rose-300`}>
@@ -386,7 +416,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             setInspectedCard(card);
           }
         }}
-        className={`relative flex flex-col items-center cursor-pointer transition-all duration-300 ${
+        className={`relative flex flex-col items-center cursor-pointer transition-all duration-300 ${rotateClass} ${
           isTargetOfEnergy || isTargetOfEvo ? 'scale-105' : 'hover:scale-102'
         }`}
       >
@@ -606,10 +636,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               {renderActivePedestal(
                 p2.active,
                 false,
-                selectedAttackIdx !== null && p1.active?.card.attacks[selectedAttackIdx]
-                  ? p1.active.card.attacks[selectedAttackIdx].damage +
-                    (gameState.stage >= 2 && p2.active?.card.weakness?.type === p1.active.card.types[0] ? 20 : 0)
-                  : 0,
+                getPreviewDamage('opponent'),
                 true
               )}
             </div>
@@ -635,7 +662,12 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             <div className="flex items-center justify-between gap-2 w-full px-1">
               {/* Levi Active Pedestal */}
               <div className="flex-1 flex justify-center">
-                {renderActivePedestal(p1.active, true, 0, true)}
+                {renderActivePedestal(
+                  p1.active,
+                  true,
+                  getPreviewDamage('levi'),
+                  true
+                )}
               </div>
 
               {/* Levi Bench Row */}
@@ -1140,10 +1172,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               {renderActivePedestal(
                 p2.active,
                 false,
-                selectedAttackIdx !== null && p1.active?.card.attacks[selectedAttackIdx]
-                  ? p1.active.card.attacks[selectedAttackIdx].damage +
-                    (gameState.stage >= 2 && p2.active?.card.weakness?.type === p1.active.card.types[0] ? 20 : 0)
-                  : 0
+                getPreviewDamage('opponent'),
+                false,
+                isPvP
               )}
 
               {/* Papa Attack Action Buttons (PvP Mode, rotated 180 for Papa) */}
@@ -1287,7 +1318,13 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
               )}
 
               {/* Levi Active Pokémon Pedestal */}
-              {renderActivePedestal(p1.active, true, 0)}
+              {renderActivePedestal(
+                p1.active,
+                true,
+                getPreviewDamage('levi'),
+                false,
+                false
+              )}
 
               {/* Levi Bench (3 Stadium Slots) */}
               <div className="flex flex-col gap-1.5 sm:gap-2 bg-slate-950/60 p-2 sm:p-2.5 rounded-2xl border border-slate-800/80 backdrop-blur-md shadow-xl">
