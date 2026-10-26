@@ -220,16 +220,9 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
         soundManager.playCardVoice(card);
       }
     }
-
-    if (nextRevealed.length === pulledCards.length) {
-      setTimeout(() => {
-        setPhase('summary');
-        soundManager.playSfx('achievement');
-        soundManager.playVoice('booster_summary', 'Tolle neue Karten für deine Sammlung!');
-      }, 1400);
-    } else {
-      setCurrentRevealIdx(idx + 1);
-    }
+    // Note: Do NOT auto-advance here!
+    // The card stays flipped on screen so Levi can admire it,
+    // and can click "NÄCHSTE KARTE" or tap to proceed to the next card.
   };
 
   const profile = storageService.loadProfile(allCards);
@@ -237,9 +230,44 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-between p-safe select-none overflow-hidden font-sans">
-      {/* Dynamic Background Atmosphere */}
-      <div className={`absolute inset-0 bg-gradient-to-b ${activePack.accentBg} pointer-events-none transition-all duration-700`} />
-      <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+      {/* 1. Fullscreen Illustrated Anime Stadium / Card Stage Backdrop */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="/images/arenas/stadium.webp"
+          alt="Booster Stage Backdrop"
+          className="w-full h-full object-cover object-center filter brightness-[0.52] contrast-[1.18]"
+        />
+        {/* Soft Vignette and Cinematic Pack-Themed Lighting */}
+        <div className={`absolute inset-0 bg-gradient-to-b ${activePack.accentBg} mix-blend-color-dodge opacity-60 transition-all duration-700`} />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-slate-950/85" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(2,6,23,0.85)_85%)]" />
+
+        {/* Themed Elemental Energy Glow Orbs according to active Pack */}
+        {activePack.id === 'glurak' && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/15 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl" />
+          </>
+        )}
+        {activePack.id === 'pikachu' && (
+          <>
+            <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-yellow-400/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-amber-300/15 rounded-full blur-3xl" />
+          </>
+        )}
+        {activePack.id === 'mewtu' && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl" />
+          </>
+        )}
+        {activePack.id === 'mew' && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-teal-500/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-pink-500/15 rounded-full blur-3xl" />
+          </>
+        )}
+      </div>
 
       {/* AUTHENTIC TCG POCKET GOD RAYS & PARTICLE BURST OVERLAY */}
       {isRainbowActive && <GodRaysOverlay variant="rainbow" showShockwave={true} />}
@@ -473,13 +501,13 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
       )}
 
       {/* ========================================================================= */}
-      {/* 4. PHASE: 1-BY-1 CARD REVEAL CEREMONY (3D CENTERED STAGE)                 */}
+      {/* 4. PHASE: 1-BY-1 CARD REVEAL CEREMONY (3D CENTERED STAGE + LEFT FAN)      */}
       {/* ========================================================================= */}
       {phase === 'revealing' && pulledCards[currentRevealIdx] && (
         <div
           onTouchStart={handleStageTouchStart}
           onTouchEnd={handleStageTouchEnd}
-          className="relative z-30 flex flex-col items-center justify-between my-auto max-w-xl w-full px-4 gap-3.5 sm:gap-5 min-h-[58dvh]"
+          className="relative z-30 flex flex-col items-center justify-between my-auto max-w-5xl w-full px-2 sm:px-4 gap-3 sm:gap-4 min-h-[58dvh]"
         >
           {/* Header Info */}
           <div className="text-center space-y-1">
@@ -491,13 +519,84 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
             </h3>
             <p className="text-xs sm:text-sm font-bold text-slate-300">
               {revealedIndices.includes(currentRevealIdx)
-                ? 'Wische oder tippe unten für die nächste Karte!'
+                ? (currentRevealIdx < pulledCards.length - 1
+                    ? 'Tippe auf „NÄCHSTE KARTE“, um fortzufahren! ➔'
+                    : 'Alle 5 Karten aufgedeckt! Tippe auf „ALLE 5 KARTEN ANSEHEN“! ⭐')
                 : 'Tippe auf die Karte oder den Button zum Umdrehen! ✂️'}
             </p>
           </div>
 
-          {/* Centered 3D Card Stage with Stack Effect (Always 100% Centered) */}
-          <div className="relative flex items-center justify-center min-h-[340px] xs:min-h-[380px] sm:min-h-[420px] w-full">
+          {/* Main Stage: Left Card Fan + Center Active 3D Card */}
+          <div className="relative w-full flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-8 my-auto">
+            {/* 1. LEFT: INTERACTIVE CARD FAN (Reiht aufgedeckte Karten als Fächer auf) */}
+            <div className="w-full md:w-80 flex flex-col items-center justify-center order-2 md:order-1">
+              <div className="w-full max-w-xs md:max-w-none flex items-center justify-between px-3 py-1.5 mb-1 bg-slate-900/70 backdrop-blur-md rounded-2xl border border-amber-400/30 shadow-md">
+                <span className="text-[11px] sm:text-xs font-black uppercase text-amber-300 tracking-wider flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  Kartenfächer ({revealedIndices.length} / {pulledCards.length})
+                </span>
+                <span className="text-[10px] text-slate-400 font-bold">
+                  {revealedIndices.length === pulledCards.length ? 'Komplett! 🎉' : 'Wächst mit'}
+                </span>
+              </div>
+
+              {revealedIndices.length === 0 ? (
+                <div className="w-full max-w-xs md:max-w-none h-28 md:h-64 rounded-2xl border-2 border-dashed border-amber-400/30 bg-slate-950/40 flex flex-col items-center justify-center text-center p-3">
+                  <PackageOpen className="w-7 h-7 md:w-9 md:h-9 text-amber-400/40 animate-pulse mb-1" />
+                  <span className="text-[11px] md:text-xs text-slate-400 font-bold">
+                    Deckst du Karten auf,<br />reihen sie sich hier als Fächer auf!
+                  </span>
+                </div>
+              ) : (
+                <div className="relative w-full max-w-xs md:max-w-none h-32 sm:h-36 md:h-72 flex items-center justify-center overflow-visible">
+                  {revealedIndices.map((revIdx, i) => {
+                    const card = pulledCards[revIdx];
+                    const totalRev = revealedIndices.length;
+                    const mid = (totalRev - 1) / 2;
+                    // Angles for fan: -18deg to +18deg
+                    const rot = totalRev === 1 ? 0 : (i - mid) * (totalRev > 3 ? 8 : 11);
+                    const translateX = totalRev === 1 ? 0 : (i - mid) * (totalRev > 3 ? 24 : 32);
+                    const translateY = Math.abs(i - mid) * 5;
+                    const isSelected = revIdx === currentRevealIdx;
+
+                    return (
+                      <div
+                        key={card.id + i}
+                        onClick={() => {
+                          soundManager.playSfx('click');
+                          setCurrentRevealIdx(revIdx);
+                        }}
+                        style={{
+                          transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rot}deg)`,
+                          zIndex: isSelected ? 30 : 10 + i,
+                          transition: 'all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                        }}
+                        className={`absolute w-20 sm:w-24 md:w-28 aspect-[5/7] rounded-xl overflow-hidden cursor-pointer shadow-xl transition-all hover:scale-115 hover:z-40 ${
+                          isSelected
+                            ? 'border-2 border-amber-300 ring-4 ring-amber-400/70 shadow-[0_0_25px_rgba(251,191,36,0.95)] -translate-y-3'
+                            : 'border-2 border-white/60 hover:border-amber-300'
+                        }`}
+                        title={`${card.name} (Karte ${revIdx + 1})`}
+                      >
+                        <img
+                          src={card.artworkUrl}
+                          alt={card.name}
+                          className="w-full h-full object-cover rounded-xl pointer-events-none"
+                        />
+                        <div className="absolute bottom-0 inset-x-0 bg-slate-950/85 px-1 py-0.5 text-center">
+                          <span className="text-[9px] font-black text-amber-300 truncate block">
+                            {card.name}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* 2. CENTER: ACTIVE CARD STAGE (100% CENTERED WITH 3D ROTATION) */}
+            <div className="relative flex items-center justify-center min-h-[300px] xs:min-h-[340px] sm:min-h-[380px] w-full max-w-sm order-1 md:order-2">
             {/* Background Deck Stack: remaining unrevealed cards peek out behind */}
             {pulledCards.map((_, i) => {
               if (i <= currentRevealIdx) return null;
@@ -630,6 +729,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                 </div>
               );
             })()}
+            </div>
           </div>
 
           {/* Child-Friendly Tactile Action Button */}

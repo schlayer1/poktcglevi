@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, PokemonType } from '../types/game';
 import { EnergyBadge } from './EnergyBadge';
-import { Users, User, Play, Sparkles } from 'lucide-react';
+import { Users, User, Play, Sparkles, ArrowLeft, ShieldCheck } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 
 export interface DeckInfo {
@@ -24,12 +24,16 @@ interface DeckSelectionModalProps {
     opponentName: string;
     opponentAvatar: string;
   }) => void;
+  onBack?: () => void;
+  onOpenSettings?: () => void;
 }
 
 export const DeckSelectionModal: React.FC<DeckSelectionModalProps> = ({
   decks,
   allCards,
-  onStartMatch
+  onStartMatch,
+  onBack,
+  onOpenSettings
 }) => {
   const [mode, setMode] = useState<'solo' | 'pvp'>('solo');
   const [selectedP1Deck, setSelectedP1Deck] = useState<string>(decks[0]?.id || 'deck_feuer');
@@ -80,8 +84,51 @@ export const DeckSelectionModal: React.FC<DeckSelectionModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-40 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-safe select-none overflow-y-auto">
-      <div className="relative max-w-4xl w-full max-h-[92dvh] bg-slate-900 border-2 border-amber-400 rounded-3xl p-3.5 sm:p-6 shadow-2xl flex flex-col gap-4 sm:gap-5 my-auto overflow-y-auto">
+    <div className="fixed inset-0 z-40 bg-slate-950 flex items-center justify-center p-3 sm:p-safe select-none overflow-y-auto">
+      {/* Dynamic Arena Backdrop */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src={mode === 'pvp' ? '/images/arenas/papa.webp' : '/images/arenas/stadium.webp'}
+          alt="Arena Backdrop"
+          className="w-full h-full object-cover object-center filter brightness-[0.65] contrast-[1.1] transition-all duration-700"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-slate-950/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(2,6,23,0.8)_85%)]" />
+      </div>
+
+      <div className="relative z-10 max-w-4xl w-full max-h-[92dvh] bg-slate-900/95 backdrop-blur-md border-3 border-amber-400 rounded-3xl p-3.5 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col gap-4 sm:gap-5 my-auto overflow-y-auto">
+        {/* Navigation Bar inside modal */}
+        {(onBack || onOpenSettings) && (
+          <div className="flex items-center justify-between w-full">
+            {onBack ? (
+              <button
+                onClick={() => {
+                  soundManager.playSfx('button');
+                  onBack();
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-black text-xs sm:text-sm shadow transition-transform active:scale-95 cursor-pointer"
+              >
+                <ArrowLeft className="w-4 h-4 text-amber-400" />
+                <span>Zurück</span>
+              </button>
+            ) : <div />}
+
+            {onOpenSettings && (
+              <button
+                onClick={() => {
+                  soundManager.playSfx('button');
+                  onOpenSettings();
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 font-black text-xs sm:text-sm shadow transition-transform active:scale-95 cursor-pointer"
+                title="Elternmodus"
+              >
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="hidden xs:inline">Eltern</span>
+              </button>
+            )}
+          </div>
+        )}
+
         {/* Title */}
         <div className="text-center space-y-1">
           <div className="inline-flex items-center gap-2 bg-amber-400/20 px-3 py-1 rounded-full border border-amber-400/40">

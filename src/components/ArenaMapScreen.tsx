@@ -5,7 +5,7 @@ import { EnergyBadge } from './EnergyBadge';
 import { ArenaType } from './ArenaBackground';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { ArrowLeft, Play, MapPin, Sparkles, Trophy, Lock, Swords, Compass } from 'lucide-react';
+import { ArrowLeft, Play, MapPin, Sparkles, Trophy, Lock, Swords, Compass, ShieldCheck } from 'lucide-react';
 
 interface GymNode {
   id: BadgeType;
@@ -30,6 +30,7 @@ interface ArenaMapScreenProps {
     arena: ArenaType;
     badgeId: BadgeType;
   }) => void;
+  onOpenSettings?: () => void;
 }
 
 export const GYM_CAMPAIGN: GymNode[] = [
@@ -46,7 +47,8 @@ export const GYM_CAMPAIGN: GymNode[] = [
 
 export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
   onBack,
-  onSelectGym
+  onSelectGym,
+  onOpenSettings
 }) => {
   const profile = storageService.loadProfile([]);
   const earnedBadges = profile.badges;
@@ -116,12 +118,27 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
           </h1>
         </div>
 
-        {/* Badges Progress Pill */}
-        <div className="flex items-center gap-1.5 bg-slate-950/80 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl border border-amber-400/50 shadow-md shrink-0">
-          <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
-          <span className="text-xs sm:text-sm font-black text-white">
-            {earnedBadges.length} / 8 Orden
-          </span>
+        {/* Badges Progress Pill & Eltern */}
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 bg-slate-950/80 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl border border-amber-400/50 shadow-md">
+            <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
+            <span className="text-xs sm:text-sm font-black text-white">
+              {earnedBadges.length} / 8 Orden
+            </span>
+          </div>
+
+          {onOpenSettings && (
+            <button
+              onClick={() => {
+                soundManager.playSfx('button');
+                onOpenSettings();
+              }}
+              className="p-1 sm:px-2.5 sm:py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white transition-transform active:scale-95 cursor-pointer shrink-0"
+              title="Elternmodus"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            </button>
+          )}
         </div>
       </div>
 

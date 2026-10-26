@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Users, Swords, BookOpen, Volume2, VolumeX, Wrench, PackageOpen } from 'lucide-react';
+import { Users, Swords, BookOpen, Volume2, VolumeX, Wrench, PackageOpen, ShieldCheck } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 import { storageService } from '../services/storageService';
 import { PikachuCompanion } from './PikachuCompanion';
@@ -11,6 +11,7 @@ interface MainMenuProps {
   onSelectAlbum: () => void;
   onOpenDeckBuilder?: () => void;
   onOpenBoosters?: () => void;
+  onOpenSettings?: () => void;
 }
 
 export const MainMenu: React.FC<MainMenuProps> = ({
@@ -18,7 +19,8 @@ export const MainMenu: React.FC<MainMenuProps> = ({
   onSelectPvP,
   onSelectAlbum,
   onOpenDeckBuilder,
-  onOpenBoosters
+  onOpenBoosters,
+  onOpenSettings
 }) => {
   const [bgmMuted, setBgmMuted] = React.useState(soundManager.isBgmMuted());
   const [showRules, setShowRules] = useState<boolean>(false);
@@ -38,9 +40,20 @@ export const MainMenu: React.FC<MainMenuProps> = ({
 
   return (
     <div className="relative w-full h-full h-dvh bg-slate-950 overflow-hidden flex flex-col justify-between p-safe select-none">
-      {/* Background Atmosphere */}
-      <div className="absolute inset-0 bg-gradient-to-b from-indigo-950/70 via-slate-900 to-slate-950 pointer-events-none" />
-      <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+      {/* 1. Fullscreen Illustrated Anime Stadium Backdrop */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="/images/arenas/stadium.webp"
+          alt="Pokémon Liga Stadion"
+          className="w-full h-full object-cover object-center filter brightness-[0.70] contrast-[1.12]"
+        />
+        {/* Soft Vignette and Edge Shadows */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/70 to-slate-950/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(2,6,23,0.75)_85%)]" />
+        {/* Ambient Stadium Lighting */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl" />
+      </div>
 
       {/* Header Bar */}
       <div className="relative z-20 flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
@@ -56,7 +69,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
           </div>
         </div>
 
-        {/* Quick action buttons: Deck Builder & Booster Opening */}
+        {/* Quick action buttons: Deck Builder, Booster, Eltern, Regeln, Sound */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           {onOpenBoosters && hasBoosters && (
             <button
@@ -77,10 +90,24 @@ export const MainMenu: React.FC<MainMenuProps> = ({
                 soundManager.playSfx('button');
                 onOpenDeckBuilder();
               }}
-              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-extrabold text-xs sm:text-sm shadow flex items-center gap-1.5 transition-transform active:scale-95 cursor-pointer"
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-600 text-white font-extrabold text-xs sm:text-sm shadow flex items-center gap-1.5 transition-transform active:scale-95 cursor-pointer backdrop-blur-sm"
             >
               <Wrench className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
               <span>Deckbau</span>
+            </button>
+          )}
+
+          {onOpenSettings && (
+            <button
+              onClick={() => {
+                soundManager.playSfx('button');
+                onOpenSettings();
+              }}
+              className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border-2 border-slate-700 hover:border-emerald-500/60 text-slate-200 font-extrabold text-xs sm:text-sm shadow flex items-center gap-1.5 transition-transform active:scale-95 cursor-pointer backdrop-blur-sm"
+              title="Elternmodus & Spieleinstellungen"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
+              <span className="hidden xs:inline">Eltern</span>
             </button>
           )}
 

@@ -5,18 +5,20 @@ import { CardDetailModal } from './CardDetailModal';
 import { EnergyBadge } from './EnergyBadge';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { ArrowLeft, BookOpen, Sparkles, Filter, PackageOpen } from 'lucide-react';
+import { ArrowLeft, BookOpen, Sparkles, Filter, PackageOpen, ShieldCheck } from 'lucide-react';
 
 interface AlbumScreenProps {
   allCards: Card[];
   onBack: () => void;
   onOpenBooster: () => void;
+  onOpenSettings?: () => void;
 }
 
 export const AlbumScreen: React.FC<AlbumScreenProps> = ({
   allCards,
   onBack,
-  onOpenBooster
+  onOpenBooster,
+  onOpenSettings
 }) => {
   const [selectedType, setSelectedType] = useState<string>('all');
   const [inspectedCard, setInspectedCard] = useState<Card | null>(null);
@@ -89,10 +91,19 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
   return (
     <div className="relative w-full h-full h-dvh bg-slate-950 overflow-hidden flex flex-col justify-between p-safe select-none">
       {/* Background Atmosphere */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-950/40 via-slate-900 to-slate-950 pointer-events-none" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="/images/arenas/stadium.webp"
+          alt="Archiv Backdrop"
+          className="w-full h-full object-cover object-center filter brightness-[0.45] contrast-[1.2]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-950/80 via-slate-900/90 to-slate-950/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(2,6,23,0.85)_85%)]" />
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+      </div>
 
       {/* Header Bar */}
-      <div className="relative z-20 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 bg-slate-900/80 p-2.5 sm:p-4 rounded-3xl border border-slate-700 shadow-xl">
+      <div className="relative z-20 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3 bg-slate-900/85 backdrop-blur-md p-2.5 sm:p-4 rounded-3xl border border-slate-700 shadow-xl">
         <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-start">
           <button
             onClick={onBack}
@@ -110,9 +121,9 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
           </div>
         </div>
 
-        {/* Progress Bar & Booster Button */}
-        <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-end">
-          <div className="flex items-center gap-2 bg-slate-950 px-2.5 py-1 rounded-2xl border border-slate-800">
+        {/* Progress Bar & Booster Button & Eltern */}
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
+          <div className="flex items-center gap-2 bg-slate-950/80 px-2.5 py-1 rounded-2xl border border-slate-800">
             <span className="text-[11px] sm:text-xs font-black text-amber-300">
               {totalOwnedCount} / 151
             </span>
@@ -132,6 +143,19 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
             >
               <PackageOpen className="w-3.5 h-3.5" />
               <span>{profile.unopenedBoosters} Booster!</span>
+            </button>
+          )}
+
+          {onOpenSettings && (
+            <button
+              onClick={() => {
+                soundManager.playSfx('button');
+                onOpenSettings();
+              }}
+              className="p-2 sm:px-2.5 sm:py-1.5 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white transition-transform active:scale-95 cursor-pointer shrink-0"
+              title="Elternmodus"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
             </button>
           )}
         </div>

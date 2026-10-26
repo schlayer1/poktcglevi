@@ -8,22 +8,40 @@ import { CHANGELOG_DATA, APP_BUILD_TAG } from '../data/changelog';
 interface ParentSettingsModalProps {
   allCards: Card[];
   onClose: () => void;
-  onResetMatch: () => void;
-  ruleLevel: 1 | 2 | 3;
-  onSetRuleLevel: (lvl: 1 | 2 | 3) => void;
-  aiDifficulty: 'leicht' | 'normal' | 'schlau';
-  onSetAiDifficulty: (d: 'leicht' | 'normal' | 'schlau') => void;
+  onResetMatch?: () => void;
+  ruleLevel?: 1 | 2 | 3;
+  onSetRuleLevel?: (lvl: 1 | 2 | 3) => void;
+  aiDifficulty?: 'leicht' | 'normal' | 'schlau';
+  onSetAiDifficulty?: (d: 'leicht' | 'normal' | 'schlau') => void;
 }
 
 export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
   allCards,
   onClose,
   onResetMatch,
-  ruleLevel,
+  ruleLevel: propRuleLevel,
   onSetRuleLevel,
-  aiDifficulty,
+  aiDifficulty: propAiDifficulty,
   onSetAiDifficulty
 }) => {
+  const [currentRuleLevel, setCurrentRuleLevel] = useState<1 | 2 | 3>(
+    propRuleLevel ?? storageService.getRuleLevel()
+  );
+  const [currentAiDifficulty, setCurrentAiDifficulty] = useState<'leicht' | 'normal' | 'schlau'>(
+    propAiDifficulty ?? storageService.getAiDifficulty()
+  );
+
+  const handleUpdateRuleLevel = (lvl: 1 | 2 | 3) => {
+    setCurrentRuleLevel(lvl);
+    storageService.setRuleLevel(lvl);
+    if (onSetRuleLevel) onSetRuleLevel(lvl);
+  };
+
+  const handleUpdateAiDifficulty = (d: 'leicht' | 'normal' | 'schlau') => {
+    setCurrentAiDifficulty(d);
+    storageService.setAiDifficulty(d);
+    if (onSetAiDifficulty) onSetAiDifficulty(d);
+  };
   const [unlocked, setUnlocked] = useState(false);
   const [num1] = useState(Math.floor(Math.random() * 4) + 4);
   const [num2] = useState(Math.floor(Math.random() * 4) + 3);
@@ -129,19 +147,22 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative max-w-md w-full bg-slate-900 border-2 border-slate-700 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col gap-4 sm:gap-5 text-white my-auto max-h-[92dvh] overflow-y-auto"
+        className="relative max-w-md w-full my-auto overflow-visible p-2 sm:p-3"
       >
+        {/* Overlapping 3D Close Button in front layer */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white"
+          className="absolute -top-2 -right-2 sm:-top-3.5 sm:-right-3.5 z-50 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-tr from-rose-600 to-rose-400 hover:from-rose-500 hover:to-rose-300 text-white border-2 border-white shadow-[0_6px_20px_rgba(0,0,0,0.6)] flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+          title="Schließen"
         >
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6 stroke-[3]" />
         </button>
 
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="w-6 h-6 text-amber-400" />
-          <h2 className="text-xl font-black text-amber-300">Eltern-Einstellungen</h2>
-        </div>
+        <div className="w-full bg-slate-900 border-2 border-slate-700 rounded-3xl p-4 sm:p-6 shadow-2xl flex flex-col gap-4 sm:gap-5 text-white max-h-[90dvh] overflow-y-auto">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-6 h-6 text-amber-400" />
+            <h2 className="text-xl font-black text-amber-300">Eltern-Einstellungen</h2>
+          </div>
 
         {!unlocked ? (
           <form onSubmit={handleVerify} className="space-y-4">
@@ -191,9 +212,9 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                 ].map((s) => (
                   <button
                     key={s.lvl}
-                    onClick={() => onSetRuleLevel(s.lvl as 1 | 2 | 3)}
+                    onClick={() => handleUpdateRuleLevel(s.lvl as 1 | 2 | 3)}
                     className={`py-2 px-2 rounded-xl text-center border transition-all ${
-                      ruleLevel === s.lvl
+                      currentRuleLevel === s.lvl
                         ? 'bg-amber-400 text-slate-950 border-white shadow-md font-black'
                         : 'bg-slate-900 text-slate-300 border-slate-700 font-bold'
                     }`}
@@ -243,16 +264,16 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
               <div className="flex items-center justify-between">
                 <span className="font-bold text-sm block">Gegnerstärke</span>
                 <span className="text-[10px] text-amber-300 font-bold">
-                  {aiDifficulty === 'leicht' ? '🛡️ Schutzschild aktiv' : ''}
+                  {currentAiDifficulty === 'leicht' ? '🛡️ Schutzschild aktiv' : ''}
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-2">
                 {(['leicht', 'normal', 'schlau'] as const).map((d) => (
                   <button
                     key={d}
-                    onClick={() => onSetAiDifficulty(d)}
+                    onClick={() => handleUpdateAiDifficulty(d)}
                     className={`py-1.5 px-2 rounded-xl text-xs capitalize font-bold border ${
-                      aiDifficulty === d
+                      currentAiDifficulty === d
                         ? 'bg-amber-400 text-slate-950 border-white shadow'
                         : 'bg-slate-900 text-slate-400 border-slate-700'
                     }`}
@@ -262,9 +283,9 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                 ))}
               </div>
               <p className="text-[11px] text-slate-300 leading-snug">
-                {aiDifficulty === 'leicht'
+                {currentAiDifficulty === 'leicht'
                   ? '🌟 Kindgerecht: Levis Pokémon erhalten einen +20 KP Schutzschild, die KI greift behutsam an und gibt Levi Zeit zum Entwickeln.'
-                  : aiDifficulty === 'normal'
+                  : currentAiDifficulty === 'normal'
                   ? '⚖️ Standard: Ausgeglichene Partien für erfahrene Trainer.'
                   : '🔥 Herausforderung: Volle Aggression und schnelle K.O.-Kombos der KI.'}
               </p>
@@ -424,6 +445,7 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
             </div>
           </div>
         )}
+        </div>
       </div>
     </div>
   );

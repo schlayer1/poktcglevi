@@ -10,16 +10,48 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '1.7.0';
-export const APP_BUILD_NAME = 'Gameplay Balance & VS Mode Fix';
-export const APP_BUILD_TAG = `Build ${APP_VERSION} (25.10.) • ${APP_BUILD_NAME}`;
+export const APP_VERSION = '1.8.0';
+export const APP_BUILD_NAME = 'UI-Hintergründe, 3D-Kartenfächer & Globaler Elternmodus';
+export const APP_BUILD_TAG = `Build ${APP_VERSION} (26.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
+  {
+    version: '1.8.0',
+    date: '26. Oktober 2026',
+    title: 'UI-Hintergründe, 3D-Kartenfächer & Globaler Elternmodus',
+    badge: 'Neu ✨',
+    features: [
+      {
+        icon: '🏟️',
+        title: 'Pokémon-Liga Stadion & Arena-Hintergründe',
+        description: 'Atmosphärische, hochauflösende Hintergründe für Spielmodusauswahl (Stadion mit Flutlichtern), Deckauswahl (Stadion/Papa-Arena), Booster-Öffnen, Sammelalbum und Deckbau.'
+      },
+      {
+        icon: '🎴',
+        title: '3D-Kartenfächer beim Boosterpack-Öffnen',
+        description: 'Jede aufgedeckte Karte dreht sich filmisch um, bleibt sichtbar stehen und reiht sich links in einen interaktiven Kartenfächer ein, der mit jeder aufgedeckten Karte wächst.'
+      },
+      {
+        icon: '🛡️',
+        title: 'Global erreichbarer Elternmodus',
+        description: 'Einstellungen, Regelstufen (1–3), KI-Schwierigkeit und Spielstand-Verwaltung können nun von jedem Bildschirm aus (Hauptmenü, Deckauswahl, Album, Deckbau, Kampffeld) aufgerufen werden.'
+      },
+      {
+        icon: '✨',
+        title: 'Plastischer 3D-Schließen-Button (Ebenen-Design)',
+        description: 'Der Schließen-Button der Karten-Detailansicht schwebt nun frei und unbeschnitten in der vorderen 3D-Ebene über dem Rahmen, während die Karte plastisch dahinter liegt.'
+      },
+      {
+        icon: '🔙',
+        title: 'Zurück-Navigation in der Deckauswahl',
+        description: 'In der Deck- und Gegnerauswahl kann nun jederzeit per Klick auf „Zurück“ zum Hauptmenü zurückgekehrt werden.'
+      }
+    ]
+  },
   {
     version: '1.7.0',
     date: '25. Oktober 2026',
     title: 'Gameplay-Balance, VS-Modus Fix & 3D Booster-Flip',
-    badge: 'Aktuell ✨',
     features: [
       {
         icon: '🎴',

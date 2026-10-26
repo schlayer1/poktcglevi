@@ -249,6 +249,16 @@ class StorageService {
     this.saveProfile(this.profile);
   }
 
+  public getRuleLevel(): 1 | 2 | 3 {
+    return this.profile?.ruleLevel || 1;
+  }
+
+  public setRuleLevel(lvl: 1 | 2 | 3) {
+    if (!this.profile) return;
+    this.profile.ruleLevel = lvl;
+    this.saveProfile(this.profile);
+  }
+
   public resetSavegame(allCards: Card[]) {
     localStorage.removeItem(STORAGE_KEY);
     this.profile = getDefaultProfile(allCards);

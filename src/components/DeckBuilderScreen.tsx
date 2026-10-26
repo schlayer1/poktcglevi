@@ -5,18 +5,20 @@ import { EnergyBadge } from './EnergyBadge';
 import { CardDetailModal } from './CardDetailModal';
 import { storageService, UserDeck } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
-import { ArrowLeft, Wand2, Plus, Minus, Save, Play, Sparkles, Info } from 'lucide-react';
+import { ArrowLeft, Wand2, Plus, Minus, Save, Play, Sparkles, Info, ShieldCheck } from 'lucide-react';
 
 interface DeckBuilderScreenProps {
   allCards: Card[];
   onBack: () => void;
   onPlayWithDeck: (deckCards: Card[]) => void;
+  onOpenSettings?: () => void;
 }
 
 export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
   allCards,
   onBack,
-  onPlayWithDeck
+  onPlayWithDeck,
+  onOpenSettings
 }) => {
   const profile = storageService.loadProfile(allCards);
   const unlocked = profile.unlockedCards;
@@ -142,8 +144,20 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
 
   return (
     <div className="relative w-full h-full h-dvh bg-slate-950 overflow-hidden flex flex-col justify-between p-safe select-none">
+      {/* Background Atmosphere */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <img
+          src="/images/arenas/stadium.webp"
+          alt="Deckbau Backdrop"
+          className="w-full h-full object-cover object-center filter brightness-[0.45] contrast-[1.2]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-950/70 via-slate-900/90 to-slate-950/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(2,6,23,0.85)_85%)]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
+      </div>
+
       {/* Top Header */}
-      <div className="relative z-20 flex items-center justify-between bg-slate-900/90 p-2 sm:p-3 rounded-2xl border border-slate-700 shadow-xl flex-wrap sm:flex-nowrap gap-2">
+      <div className="relative z-20 flex items-center justify-between bg-slate-900/90 backdrop-blur-md p-2 sm:p-3 rounded-2xl border border-slate-700 shadow-xl flex-wrap sm:flex-nowrap gap-2">
         <button
           onClick={onBack}
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-black text-xs sm:text-sm border border-slate-600 transition-transform active:scale-95 cursor-pointer shrink-0"
@@ -171,7 +185,7 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
           </div>
         </div>
 
-        {/* Magic Auto-Build Buttons */}
+        {/* Magic Auto-Build Buttons & Eltern */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           {(['Feuer', 'Wasser', 'Pflanze', 'Elektro'] as PokemonType[]).map((t) => (
             <button
@@ -183,6 +197,19 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
               <EnergyBadge type={t} size="sm" />
             </button>
           ))}
+
+          {onOpenSettings && (
+            <button
+              onClick={() => {
+                soundManager.playSfx('button');
+                onOpenSettings();
+              }}
+              className="p-1.5 sm:px-2 sm:py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white transition-transform active:scale-95 cursor-pointer shrink-0"
+              title="Elternmodus"
+            >
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+            </button>
+          )}
         </div>
       </div>
 

@@ -10,6 +10,7 @@ import { DeckBuilderScreen } from './components/DeckBuilderScreen';
 import { VsIntro } from './components/VsIntro';
 import { BattleBoard } from './components/BattleBoard';
 import { DeckSelectionModal, DeckInfo } from './components/DeckSelectionModal';
+import { ParentSettingsModal } from './components/ParentSettingsModal';
 import { ArenaType } from './components/ArenaBackground';
 import { BadgeType } from './components/GymBadge';
 import { storageService } from './services/storageService';
@@ -46,6 +47,7 @@ export const App: React.FC = () => {
 
   const [pendingMatchConfig, setPendingMatchConfig] = useState<MatchConfig | null>(null);
   const [currentMatch, setCurrentMatch] = useState<GameState | null>(null);
+  const [showParentSettings, setShowParentSettings] = useState<boolean>(false);
 
   // Load cards and decks
   useEffect(() => {
@@ -119,145 +121,170 @@ export const App: React.FC = () => {
     setScreen('vs_intro');
   };
 
-  if (screen === 'loading') {
-    return (
-      <div className="w-full h-screen bg-slate-950 flex flex-col items-center justify-center gap-5 p-4 text-white select-none">
-        <div className="relative w-28 h-28 rounded-full border-4 border-slate-900 bg-gradient-to-b from-rose-600 via-rose-600 to-white shadow-2xl flex items-center justify-center animate-spin">
-          <div className="absolute w-full h-3 bg-slate-900" />
-          <div className="w-9 h-9 rounded-full bg-white border-4 border-slate-900 flex items-center justify-center shadow">
-            <div className="w-3.5 h-3.5 rounded-full bg-slate-200 border-2 border-slate-900" />
+  const renderScreen = () => {
+    if (screen === 'loading') {
+      return (
+        <div className="w-full h-screen bg-slate-950 flex flex-col items-center justify-center gap-5 p-4 text-white select-none">
+          <div className="relative w-28 h-28 rounded-full border-4 border-slate-900 bg-gradient-to-b from-rose-600 via-rose-600 to-white shadow-2xl flex items-center justify-center animate-spin">
+            <div className="absolute w-full h-3 bg-slate-900" />
+            <div className="w-9 h-9 rounded-full bg-white border-4 border-slate-900 flex items-center justify-center shadow">
+              <div className="w-3.5 h-3.5 rounded-full bg-slate-200 border-2 border-slate-900" />
+            </div>
+          </div>
+
+          <div className="space-y-2 text-center">
+            <h2 className="text-2xl font-black text-amber-300 drop-shadow">
+              Pokémon-Karten laden...
+            </h2>
+            <div className="w-64 h-3 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+              <div
+                className="h-full bg-gradient-to-r from-amber-400 to-yellow-300 transition-all duration-300"
+                style={{ width: `${loadProgress}%` }}
+              />
+            </div>
+            <span className="text-xs text-slate-400 font-bold">{loadProgress}% geladen</span>
           </div>
         </div>
+      );
+    }
 
-        <div className="space-y-2 text-center">
-          <h2 className="text-2xl font-black text-amber-300 drop-shadow">
-            Pokémon-Karten laden...
-          </h2>
-          <div className="w-64 h-3 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
-            <div
-              className="h-full bg-gradient-to-r from-amber-400 to-yellow-300 transition-all duration-300"
-              style={{ width: `${loadProgress}%` }}
-            />
-          </div>
-          <span className="text-xs text-slate-400 font-bold">{loadProgress}% geladen</span>
-        </div>
-      </div>
-    );
-  }
+    if (screen === 'title') {
+      return <TitleScreen onStart={() => setScreen('menu')} />;
+    }
 
-  if (screen === 'title') {
-    return <TitleScreen onStart={() => setScreen('menu')} />;
-  }
+    if (screen === 'menu') {
+      return (
+        <MainMenu
+          onSelectSolo={() => setScreen('arena_map')}
+          onSelectPvP={() => setScreen('pvp_select')}
+          onSelectAlbum={() => setScreen('album')}
+          onOpenDeckBuilder={() => setScreen('deck_builder')}
+          onOpenBoosters={() => setScreen('booster_opening')}
+          onOpenSettings={() => setShowParentSettings(true)}
+        />
+      );
+    }
 
-  if (screen === 'menu') {
-    return (
-      <MainMenu
-        onSelectSolo={() => setScreen('arena_map')}
-        onSelectPvP={() => setScreen('pvp_select')}
-        onSelectAlbum={() => setScreen('album')}
-        onOpenDeckBuilder={() => setScreen('deck_builder')}
-        onOpenBoosters={() => setScreen('booster_opening')}
-      />
-    );
-  }
+    if (screen === 'arena_map') {
+      return (
+        <ArenaMapScreen
+          onBack={() => setScreen('menu')}
+          onOpenSettings={() => setShowParentSettings(true)}
+          onSelectGym={(gym) => {
+            const profile = storageService.loadProfile(allCardsList);
+            handleStartMatch({
+              mode: 'solo',
+              p1DeckId: profile.activeDeckId || 'deck_feuer',
+              p2DeckId: gym.opponentDeckId,
+              opponentName: gym.opponentName,
+              opponentAvatar: gym.opponentAvatar,
+              arena: gym.arena,
+              gymBadgeId: gym.badgeId
+            });
+          }}
+        />
+      );
+    }
 
-  if (screen === 'arena_map') {
-    return (
-      <ArenaMapScreen
-        onBack={() => setScreen('menu')}
-        onSelectGym={(gym) => {
-          const profile = storageService.loadProfile(allCardsList);
-          handleStartMatch({
-            mode: 'solo',
-            p1DeckId: profile.activeDeckId || 'deck_feuer',
-            p2DeckId: gym.opponentDeckId,
-            opponentName: gym.opponentName,
-            opponentAvatar: gym.opponentAvatar,
-            arena: gym.arena,
-            gymBadgeId: gym.badgeId
-          });
-        }}
-      />
-    );
-  }
+    if (screen === 'album') {
+      return (
+        <AlbumScreen
+          allCards={allCardsList}
+          onBack={() => setScreen('menu')}
+          onOpenBooster={() => setScreen('booster_opening')}
+          onOpenSettings={() => setShowParentSettings(true)}
+        />
+      );
+    }
 
-  if (screen === 'album') {
-    return (
-      <AlbumScreen
-        allCards={allCardsList}
-        onBack={() => setScreen('menu')}
-        onOpenBooster={() => setScreen('booster_opening')}
-      />
-    );
-  }
+    if (screen === 'deck_builder') {
+      return (
+        <DeckBuilderScreen
+          allCards={allCardsList}
+          onBack={() => setScreen('menu')}
+          onOpenSettings={() => setShowParentSettings(true)}
+          onPlayWithDeck={(deckCards) => {
+            setScreen('arena_map');
+          }}
+        />
+      );
+    }
 
-  if (screen === 'deck_builder') {
-    return (
-      <DeckBuilderScreen
-        allCards={allCardsList}
-        onBack={() => setScreen('menu')}
-        onPlayWithDeck={(deckCards) => {
-          setScreen('arena_map');
-        }}
-      />
-    );
-  }
+    if (screen === 'booster_opening') {
+      return (
+        <BoosterOpeningScreen
+          allCards={allCardsList}
+          onFinish={() => setScreen('album')}
+        />
+      );
+    }
 
-  if (screen === 'booster_opening') {
-    return (
-      <BoosterOpeningScreen
-        allCards={allCardsList}
-        onFinish={() => setScreen('album')}
-      />
-    );
-  }
+    if (screen === 'pvp_select') {
+      return (
+        <DeckSelectionModal
+          decks={decks}
+          allCards={cardsMap}
+          onBack={() => setScreen('menu')}
+          onOpenSettings={() => setShowParentSettings(true)}
+          onStartMatch={(cfg) => {
+            handleStartMatch({
+              ...cfg,
+              arena: 'papa'
+            });
+          }}
+        />
+      );
+    }
 
-  if (screen === 'pvp_select') {
-    return (
-      <DeckSelectionModal
-        decks={decks}
-        allCards={cardsMap}
-        onStartMatch={(cfg) => {
-          handleStartMatch({
-            ...cfg,
-            arena: 'papa'
-          });
-        }}
-      />
-    );
-  }
+    if (screen === 'vs_intro' && pendingMatchConfig) {
+      return (
+        <VsIntro
+          p1Name="Levi"
+          p1Avatar="levi"
+          p2Name={pendingMatchConfig.opponentName}
+          p2Avatar={pendingMatchConfig.opponentAvatar}
+          onFinish={() => setScreen('battle')}
+        />
+      );
+    }
 
-  if (screen === 'vs_intro' && pendingMatchConfig) {
-    return (
-      <VsIntro
-        p1Name="Levi"
-        p1Avatar="levi"
-        p2Name={pendingMatchConfig.opponentName}
-        p2Avatar={pendingMatchConfig.opponentAvatar}
-        onFinish={() => setScreen('battle')}
-      />
-    );
-  }
+    if (screen === 'battle' && currentMatch && pendingMatchConfig) {
+      return (
+        <BattleBoard
+          initialState={currentMatch}
+          arena={pendingMatchConfig.arena}
+          gymBadgeId={pendingMatchConfig.gymBadgeId}
+          allCards={allCardsList}
+          onExitMatch={() => {
+            soundManager.stopBgm();
+            soundManager.playBgm('menu');
+            setScreen('menu');
+          }}
+          onOpenBooster={() => {
+            soundManager.stopBgm();
+            setScreen('booster_opening');
+          }}
+        />
+      );
+    }
 
-  if (screen === 'battle' && currentMatch && pendingMatchConfig) {
-    return (
-      <BattleBoard
-        initialState={currentMatch}
-        arena={pendingMatchConfig.arena}
-        gymBadgeId={pendingMatchConfig.gymBadgeId}
-        allCards={allCardsList}
-        onExitMatch={() => {
-          soundManager.stopBgm();
-          soundManager.playBgm('menu');
-          setScreen('menu');
-        }}
-        onOpenBooster={() => {
-          soundManager.stopBgm();
-          setScreen('booster_opening');
-        }}
-      />
-    );
-  }
+    return null;
+  };
 
-  return null;
+  return (
+    <>
+      {renderScreen()}
+
+      {showParentSettings && (
+        <ParentSettingsModal
+          allCards={allCardsList}
+          onClose={() => setShowParentSettings(false)}
+          ruleLevel={storageService.getRuleLevel()}
+          onSetRuleLevel={(lvl) => storageService.setRuleLevel(lvl)}
+          aiDifficulty={storageService.getAiDifficulty()}
+          onSetAiDifficulty={(d) => storageService.setAiDifficulty(d)}
+        />
+      )}
+    </>
+  );
 };
