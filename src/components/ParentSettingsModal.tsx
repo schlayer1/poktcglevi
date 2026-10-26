@@ -224,6 +224,13 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                   </button>
                 ))}
               </div>
+              <p className="text-[11px] text-slate-300 leading-snug pt-1">
+                {currentRuleLevel === 1
+                  ? '🌟 Stufe 1 (Mini-Kampf, ab 5 Jahre): Nur Basis-Pokémon & direkte Attacken. Keine Entwicklungen, keine Typenschwächen, keine Trainer-Karten. Ideal für Levi zum einfachen Einstieg und Zählenlernen!'
+                  : currentRuleLevel === 2
+                  ? '⚡ Stufe 2 (Profi-Duell): Authentisches TCG Pocket! Entwicklungen (Glutexo, Glurak), Typenschwächen (+20 Schaden gegen schwache Typen) und Pokémon-Rückzug auf die Bank sind aktiv.'
+                  : '👑 Stufe 3 (Meister-Liga): Vollständiges Kartenspiel! Zusätzlich mit taktischen Trainer- und Itemkarten (Trank zum Heilen, Pokéball zum Suchen, Professor) für maximale strategische Tiefe.'}
+              </p>
             </div>
 
             {/* 2. Audio & Musik */}
@@ -442,6 +449,13 @@ export const ParentSettingsModal: React.FC<ParentSettingsModalProps> = ({
                   </div>
                 ))}
               </div>
+              <p className="text-[11px] text-slate-300 leading-snug pt-1">
+                {currentRuleLevel === 1
+                  ? '🌟 Stufe 1 (Mini-Kampf, ab 5 Jahre): Nur Basis-Pokémon & direkte Attacken. Keine Entwicklungen, keine Typenschwächen, keine Trainer-Karten. Ideal für Levi zum einfachen Einstieg und Zählenlernen!'
+                  : currentRuleLevel === 2
+                  ? '⚡ Stufe 2 (Profi-Duell): Authentisches TCG Pocket! Entwicklungen (Glutexo, Glurak), Typenschwächen (+20 Schaden gegen schwache Typen) und Pokémon-Rückzug auf die Bank sind aktiv.'
+                  : '👑 Stufe 3 (Meister-Liga): Vollständiges Kartenspiel! Zusätzlich mit taktischen Trainer- und Itemkarten (Trank zum Heilen, Pokéball zum Suchen, Professor) für maximale strategische Tiefe.'}
+              </p>
             </div>
           </div>
         )}

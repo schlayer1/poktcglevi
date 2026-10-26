@@ -160,6 +160,23 @@ export const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ onClose }) => {
         '⚡ PARALYSE: Ein elektrischer Schock! Das Pokémon muss eine Runde pausieren und kann danach wieder kämpfen.',
         'Tippe im Kampf auf die Status-Plakette am Pokémon, um dir die Erklärung vorlesen zu lassen!'
       ]
+    },
+    {
+      id: 8,
+      title: 'Die 3 Regelstufen',
+      subtitle: 'Passend für jedes Alter einstellbar',
+      voiceKey: 'rule_levels',
+      icon: <Sparkles className="w-12 h-12 text-amber-300 stroke-[2.5]" />,
+      bgGradient: 'from-amber-950/80 via-slate-900 to-slate-950',
+      borderColor: 'border-amber-400',
+      accentColor: 'text-amber-300',
+      badge: '⚙️ REGELSTUFEN IM ÜBERBLICK',
+      content: [
+        '🌟 STUFE 1 (Mini-Kampf): Perfekt ab 5 Jahre! Nur Basis-Pokémon & einfache Attacken. Ohne Entwicklungen, Typenschwächen oder komplizierte Texte.',
+        '⚡ STUFE 2 (Profi-Duell): Echtes TCG Pocket! Glumanda entwickelt sich zu Glutexo & Glurak, Typenschwächen machen +20 Bonusschaden und Rückzug auf die Bank ist aktiv.',
+        '👑 STUFE 3 (Meister-Liga): Volles Kartenspiel! Zusätzlich mit Trainer- und Itemkarten (Trank heilt 20 KP, Pokéball sucht Karten) für maximale Strategie.',
+        'Tipp: Du kannst die Regelstufe jederzeit im Elternmodus (Schaltfläche „Eltern“) anpassen!'
+      ]
     }
   ];
 
