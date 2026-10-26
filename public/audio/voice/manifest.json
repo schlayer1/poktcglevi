@@ -1601,5 +1601,9 @@
     "file": "/audio/voice/starter_pikachu.m4a",
     "text": "Pikachu! Voller Elektro-Power, blitzschnell und immer an deiner Seite!",
     "voice": "de-DE-AmalaNeural"
+  },
+  "rule_levels": {
+    "file": "/audio/voice/rule_levels.m4a",
+    "text": "Die drei Regelstufen: Stufe 1 ist der Mini-Kampf für Einsteiger ab fünf Jahren mit reinen Basis-Karten ohne Entwicklungen. Stufe 2 ist das Profi-Duell mit Entwicklungen, Typenschwächen und Pokémon-Rückzug. Und Stufe 3 ist die Meister-Liga mit allen Trainer- und Item-Karten für volle Taktik!"
   }
 }
