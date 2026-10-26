@@ -8,6 +8,7 @@ import { CardDetailModal } from './CardDetailModal';
 import { VictoryModal } from './VictoryModal';
 import { HowToPlayModal } from './HowToPlayModal';
 import { ParentSettingsModal } from './ParentSettingsModal';
+import { StarterSelectionModal } from './StarterSelectionModal';
 import { ArenaBackground, ArenaType } from './ArenaBackground';
 import { AttackEffects, AttackAnimationData } from './AttackEffects';
 import { GymBadge, BadgeType } from './GymBadge';
@@ -67,6 +68,93 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
   const isPvP = gameState.gameMode === 'pvp';
   const { isMobilePortrait, isMobileLandscape } = useResponsiveLayout();
 
+  // Starter selection phase before match begins (Turn 1 Setup)
+  const [starterStep, setStarterStep] = useState<'p1' | 'p2' | 'done'>('p1');
+
+  const p1InitialCards = React.useMemo(() => {
+    if (!initialState.players[0].active) return [];
+    return [initialState.players[0].active.card, ...initialState.players[0].hand];
+  }, [initialState]);
+
+  const p1BasisCards = React.useMemo(() => {
+    return p1InitialCards.filter((c) => c.stage === 'Basis');
+  }, [p1InitialCards]);
+
+  const p2InitialCards = React.useMemo(() => {
+    if (!initialState.players[1].active) return [];
+    return [initialState.players[1].active.card, ...initialState.players[1].hand];
+  }, [initialState]);
+
+  const p2BasisCards = React.useMemo(() => {
+    return p2InitialCards.filter((c) => c.stage === 'Basis');
+  }, [p2InitialCards]);
+
+  const handleP1StarterChosen = (chosenCard: Card) => {
+    const allCards = p1InitialCards;
+    const chosenIdx = allCards.findIndex((c) => c.id === chosenCard.id);
+    const newHand = allCards.filter((_, idx) => idx !== chosenIdx);
+
+    const shieldBonus = p1.active?.shieldBonus || 0;
+    const newActive: InPlayPokemon = {
+      instanceId: `p1_active_${Date.now()}`,
+      card: chosenCard,
+      currentHp: chosenCard.hp + shieldBonus,
+      maxHp: chosenCard.hp + shieldBonus,
+      attachedEnergy: [],
+      status: 'none',
+      canAttack: true,
+      shieldBonus
+    };
+
+    setGameState((prev) => ({
+      ...prev,
+      players: [
+        {
+          ...prev.players[0],
+          active: newActive,
+          hand: newHand
+        },
+        prev.players[1]
+      ]
+    }));
+
+    if (isPvP && p2BasisCards.length > 0) {
+      setStarterStep('p2');
+    } else {
+      setStarterStep('done');
+    }
+  };
+
+  const handleP2StarterChosen = (chosenCard: Card) => {
+    const allCards = p2InitialCards;
+    const chosenIdx = allCards.findIndex((c) => c.id === chosenCard.id);
+    const newHand = allCards.filter((_, idx) => idx !== chosenIdx);
+
+    const newActive: InPlayPokemon = {
+      instanceId: `p2_active_${Date.now()}`,
+      card: chosenCard,
+      currentHp: chosenCard.hp,
+      maxHp: chosenCard.hp,
+      attachedEnergy: [],
+      status: 'none',
+      canAttack: true
+    };
+
+    setGameState((prev) => ({
+      ...prev,
+      players: [
+        prev.players[0],
+        {
+          ...prev.players[1],
+          active: newActive,
+          hand: newHand
+        }
+      ]
+    }));
+
+    setStarterStep('done');
+  };
+
   const legalActions = getLegalActions(gameState);
 
   // 3-Stufen BGM Logik basierend auf Arenaleiter
@@ -108,6 +196,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
 
   // Voice instructions
   useEffect(() => {
+    if (starterStep !== 'done') return;
     if (gameState.winner !== null) return;
 
     if (gameState.turnPhase === 'promote_needed') {
@@ -130,10 +219,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     } else {
       soundManager.playVoice('opponent_turn', 'Der Gegner ist am Zug.');
     }
-  }, [gameState.turnNumber, gameState.activePlayerIndex, gameState.turnPhase, isPvP]);
+  }, [gameState.turnNumber, gameState.activePlayerIndex, gameState.turnPhase, isPvP, starterStep]);
 
   // TCG Pocket Turn Banner Trigger
   useEffect(() => {
+    if (starterStep !== 'done') return;
     if (gameState.winner !== null || gameState.turnPhase === 'promote_needed') return;
 
     const side = isLeviTurn ? 'player' : 'opponent';
@@ -150,7 +240,7 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     }, 1100);
 
     return () => clearTimeout(timer);
-  }, [gameState.turnNumber, gameState.activePlayerIndex]);
+  }, [gameState.turnNumber, gameState.activePlayerIndex, starterStep]);
 
   // Record win/loss when match finishes
   useEffect(() => {
@@ -1537,6 +1627,28 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       />
 
       {/* 5c. 3D Pikachu Coin Toss Modal */}
+      {/* 0. Starter Selection Modal (Turn 1 Active Pokémon Choice) */}
+      {starterStep === 'p1' && p1BasisCards.length > 0 && p1.active && (
+        <StarterSelectionModal
+          playerName={p1.name}
+          playerAvatar={p1.avatar}
+          basisCards={p1BasisCards}
+          currentActiveCard={p1.active.card}
+          arena={arena}
+          onConfirm={handleP1StarterChosen}
+        />
+      )}
+      {starterStep === 'p2' && isPvP && p2BasisCards.length > 0 && p2.active && (
+        <StarterSelectionModal
+          playerName={p2.name}
+          playerAvatar={p2.avatar}
+          basisCards={p2BasisCards}
+          currentActiveCard={p2.active.card}
+          arena={arena}
+          onConfirm={handleP2StarterChosen}
+        />
+      )}
+
       {showCoinModal && (
         <CoinTossModal
           onClose={() => setShowCoinModal(false)}

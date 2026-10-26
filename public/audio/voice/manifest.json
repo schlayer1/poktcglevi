@@ -1605,5 +1605,17 @@
   "rule_levels": {
     "file": "/audio/voice/rule_levels.m4a",
     "text": "Die drei Regelstufen: Stufe 1 ist der Mini-Kampf für Einsteiger ab fünf Jahren mit reinen Basis-Karten ohne Entwicklungen. Stufe 2 ist das Profi-Duell mit Entwicklungen, Typenschwächen und Pokémon-Rückzug. Und Stufe 3 ist die Meister-Liga mit allen Trainer- und Item-Karten für volle Taktik!"
+  },
+  "prompt_choose_active": {
+    "file": "/audio/voice/prompt_choose_active.m4a",
+    "text": "Wähle dein Start-Pokémon für den Kampf!"
+  },
+  "prompt_choose_active_papa": {
+    "file": "/audio/voice/prompt_choose_active_papa.m4a",
+    "text": "Papa, wähle dein Start-Pokémon für den Kampf!"
+  },
+  "starter_selected": {
+    "file": "/audio/voice/starter_selected.m4a",
+    "text": "Gute Wahl! Auf in den Kampf!"
   }
 }

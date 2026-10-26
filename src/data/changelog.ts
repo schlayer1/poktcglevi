@@ -42,6 +42,11 @@ export const CHANGELOG_DATA: ChangelogEntry[] = [
         description: 'Der Schließen-Button der Karten-Detailansicht schwebt nun frei und unbeschnitten in der vorderen 3D-Ebene über dem Rahmen, während die Karte plastisch dahinter liegt.'
       },
       {
+        icon: '⚡',
+        title: 'Freie Start-Pokémon-Wahl zu Duellbeginn',
+        description: 'Vor Kampfbeginn kann das aktive Start-Pokémon nun frei aus allen gezogenen Basis-Karten ausgewählt werden – inklusive passendem Arena-Auswahlbildschirm, Ruf-Audio und Amala-Vertonung!'
+      },
+      {
         icon: '🔙',
         title: 'Zurück-Navigation in der Deckauswahl',
         description: 'In der Deck- und Gegnerauswahl kann nun jederzeit per Klick auf „Zurück“ zum Hauptmenü zurückgekehrt werden.'
