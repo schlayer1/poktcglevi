@@ -116,7 +116,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
     const profile = storageService.loadProfile(allCards);
     const existingIds = new Set(Object.keys(profile.unlockedCards));
 
-    const cards = storageService.generateBoosterCards(allCards);
+    const cards = storageService.generateBoosterCards(allCards, activePack.id);
     setPulledCards(cards);
 
     const newlyDiscovered = new Set<string>();

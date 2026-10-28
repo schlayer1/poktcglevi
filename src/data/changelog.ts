@@ -10,16 +10,148 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '1.8.0';
-export const APP_BUILD_NAME = 'UI-Hintergründe, 3D-Kartenfächer & Globaler Elternmodus';
-export const APP_BUILD_TAG = `Build ${APP_VERSION} (26.10.) • ${APP_BUILD_NAME}`;
+export const APP_VERSION = '2.2.0';
+export const APP_BUILD_NAME = 'Die Große Erweiterung: Kanto-Liga, Thematische Booster, Trainingscamp & Die Johto-Reise';
+export const APP_BUILD_TAG = `Build ${APP_VERSION} (28.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
+  {
+    version: '2.2.0',
+    date: '28. Oktober 2026',
+    title: 'Die Große Johto-Reise & Ausrüstungs-Tools (Phase 4)',
+    badge: 'Mega-Update 🌟',
+    features: [
+      {
+        icon: '🚂',
+        title: 'Vollständige 2. Regionenkarte: Johto',
+        description: 'Schalte nach dem Liga-Sieg die Reise nach Johto frei mit 8 neuen Arenaleitern (Falk, Kai, Bianka, Jens, Hartwig, Jasmin, Norbert, Sandra) auf einer hochauflösenden Anime-Karte!'
+      },
+      {
+        icon: '✨',
+        title: '12 neue Gen-2 Pokémon-Karten & Pichu',
+        description: 'Endivie, Feurigel, Karnimani, Togepi, Ampharos, Marill, Psiana, Nachtara, Stahlos, Scherox, Lugia und Ho-Oh – inklusive offizieller Artworks und Anime-Rufe!'
+      },
+      {
+        icon: '🥊',
+        title: 'Neue Ausrüstungskarten (Pokémon-Tools)',
+        description: 'Muskelband (+10 Schaden), Wundersames Amulett (+20 KP) und EP-Teiler (+1 Energie) können im Duell direkt an Pokémon angelegt werden mit sichtbarem Ausrüstungs-Abzeichen!'
+      },
+      {
+        icon: '🏛️',
+        title: 'Kanto-Finale & Indigo-Plateau Liga-Halle',
+        description: 'Stelle dich Lorelei, Bruno, Agathe, Siegfried und Champ Gary in 4 thematischen Thronsälen und gewinne den goldenen 3D-Champion-Pokal und die geheime Pichu-Karte!'
+      },
+      {
+        icon: '🔬',
+        title: 'Thematische Booster & Forschungs-Quests',
+        description: 'Wähle gezielt Glurak-, Pikachu- oder Mewtu-Packs und erfülle Professor Eichs Forschungsaufgaben für kostenlose Belohnungs-Booster.'
+      },
+      {
+        icon: '🏕️',
+        title: 'Trainingslager mit Ruf-Quiz & Poké-Memo',
+        description: 'Trainiere spielerisch Pokémon-Rufe und Typen-Vorteile im Quiz und spiele Poké-Memo mit deinen eigenen gesammelten Karten!'
+      }
+    ]
+  },
+  {
+    version: '2.1.0',
+    date: '28. Oktober 2026',
+    title: 'Das Pokémon Trainingscamp: Ruf- & Typen-Quiz & Poké-Memo',
+    badge: 'Neu ✨',
+    features: [
+      {
+        icon: '🎓',
+        title: 'Professor Eichs Ruf- & Typen-Quiz',
+        description: '5 spannende Quizrunden mit echten Pokémon-Rufen zum Anhören, Entwicklungs-Rätseln und Typen-Schwächen – inklusive Sound-Wiederholungsbutton!'
+      },
+      {
+        icon: '🃏',
+        title: 'Poké-Memo mit eigenen Karten',
+        description: 'Ein farbenfrohes 12-Karten-Suchspiel mit 3D-Karten-Flips, das gezielt Pokémon aus Levis eigenem Sammelalbum verwendet und beim Treffer den jeweiligen Pokémon-Ruf abspielt.'
+      },
+      {
+        icon: '🏕️',
+        title: 'Trainingscamp-Zentrum im Hauptmenü',
+        description: 'Direkt über den neuen Button „Camp 🏕️“ erreichbar – ideal für spielerische Pausen zwischen packenden Kartenduellen.'
+      },
+      {
+        icon: '🎁',
+        title: 'Extra Booster-Packs als Belohnung',
+        description: 'Wer das Quiz besteht oder alle Pärchen im Memo findet, schaltet sofort 1 kostenloses Booster-Pack für seine Sammlung frei.'
+      },
+      {
+        icon: '🎙️',
+        title: 'Neue Amala-Stimmen für Trainingscamp',
+        description: 'Amala begleitet das Quiz und das Memo mit motivierendem Feedback bei Treffern, Pärchen und Siegen.'
+      }
+    ]
+  },
+  {
+    version: '2.0.0',
+    date: '28. Oktober 2026',
+    title: 'Thematische Booster-Packs & Professor Eichs Forschungs-Quests',
+    badge: 'Stabil 🌟',
+    features: [
+      {
+        icon: '🎴',
+        title: 'Authentische Thematische Booster-Packs',
+        description: 'Vor dem Aufreißen wählt Levi sein Wunsch-Pack (Glurak-, Pikachu-, Mewtu- oder Mew-Pack). Jedes Pack besitzt echte Typ-Wahrscheinlichkeiten (z. B. Glurak-Pack mit Feuer, Pflanze & Kampf).'
+      },
+      {
+        icon: '🔬',
+        title: 'Professor Eichs Forschungs-Labor',
+        description: 'Direkt aus dem Hauptmenü und Sammelalbum erreichbar: Levi erfüllt wechselnde Forschungsaufgaben (z. B. Angriffe, Entwicklungen, Duelle mit Papa).'
+      },
+      {
+        icon: '🎁',
+        title: 'Kostenlose Belohnungs-Booster',
+        description: 'Jede gelöste Forschungs-Aufgabe schenkt Levi sofort 1 frisches Booster-Pack zum Aufreißen – inklusive Konfetti-Feuerwerk und Amala-Belohnungssound!'
+      },
+      {
+        icon: '🎙️',
+        title: 'Neue Amala-Laborstimmen',
+        description: 'Professor Eich und Amala begrüßen Levi persönlich im Labor und feiern jede bestandene Forschungsaufgabe.'
+      }
+    ]
+  },
+  {
+    version: '1.9.0',
+    date: '28. Oktober 2026',
+    title: 'Top Vier Indigo Plateau, Kanto-Liga Finale & Pichu-Sonderkarte',
+    badge: 'Stabil 🌟',
+    features: [
+      {
+        icon: '🏛️',
+        title: 'Indigo Plateau Liga-Halle & Top Vier',
+        description: 'Vier prächtige Meisterschafts-Säle für Eis-Meisterin Lorelei (Lapras & Arktos), Faustkämpfer Bruno (Machomei), Geist-Meisterin Agathe (Gengar) und Drachen-Gebieter Siegfried (Dragoran).'
+      },
+      {
+        icon: '🗺️',
+        title: 'Stationen 9 bis 13 auf der Kanto-Reisekarte',
+        description: 'Auf der Anime-Weltkarte führt die Siegesstraße nun lückenlos über die Stationen 9–13 direkt ins Indigo Plateau.'
+      },
+      {
+        icon: '👑',
+        title: 'Kanto-Champion Krönungs-Zeremonie',
+        description: 'Besiegt Levi Champ Gary, erwartet ihn eine spektakuläre Siegerehrung mit goldenem 3D-Pokal, Amala-Laudatio von Prof. Eich, 2 Meister-Packs und Aufnahme in die Liga-Ruhmeshalle.'
+      },
+      {
+        icon: '⚡',
+        title: '🌟 Erstes Johto-Pokémon: Pichu-Sonderkarte',
+        description: 'Als geheime Meister-Belohnung schenkt Professor Eich Levi die erste Gen-2-Sonderkarte: das entzückende Baby-Pokémon Pichu im glänzenden TCG-Pocket-Art-Design inklusive Amala-Audio!'
+      },
+      {
+        icon: '🏆',
+        title: 'Champion-Status auf Titelbildschirm & Hauptmenü',
+        description: 'Levis errungener Champion-Titel und der strahlende Gold-Pokal schmücken stolz Titelbildschirm, Hauptmenü und Sammelalbum.'
+      }
+    ]
+  },
   {
     version: '1.8.0',
     date: '26. Oktober 2026',
     title: 'UI-Hintergründe, 3D-Kartenfächer & Globaler Elternmodus',
-    badge: 'Neu ✨',
+    badge: 'Stabil 🌟',
     features: [
       {
         icon: '🏟️',

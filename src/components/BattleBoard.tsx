@@ -6,6 +6,7 @@ import { EnergyBadge } from './EnergyBadge';
 import { PikachuCompanion } from './PikachuCompanion';
 import { CardDetailModal } from './CardDetailModal';
 import { VictoryModal } from './VictoryModal';
+import { ChampionCeremonyModal } from './ChampionCeremonyModal';
 import { HowToPlayModal } from './HowToPlayModal';
 import { ParentSettingsModal } from './ParentSettingsModal';
 import { StarterSelectionModal } from './StarterSelectionModal';
@@ -247,11 +248,24 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     if (gameState.winner !== null) {
       const isLeviWinner = gameState.winner === 0;
       storageService.recordMatchResult(isLeviWinner, p1.points);
+      if (isLeviWinner) {
+        storageService.trackQuestProgress('win_match', 1);
+      }
+      if (gameState.gameMode === 'pvp') {
+        storageService.trackQuestProgress('play_vs_papa', 1);
+      }
       if (isLeviWinner && gymBadgeId) {
-        storageService.awardBadge(gymBadgeId);
+        if (gymBadgeId === 'gary') {
+          const deckName = 'Levis Sieger-Deck';
+          const acePokemon = p1.active?.card?.name || 'Pikachu';
+          const cardIds = p1.deck.map((c) => c.id);
+          storageService.recordChampionVictory(deckName, acePokemon, cardIds);
+        } else {
+          storageService.awardBadge(gymBadgeId);
+        }
       }
     }
-  }, [gameState.winner, gymBadgeId]);
+  }, [gameState.winner, gymBadgeId, gameState.gameMode]);
 
   // AI Opponent in Solo Mode
   useEffect(() => {
@@ -349,6 +363,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
             soundManager.playVoice('pokemon_ko', 'Oh nein, dein Pokémon ist kampfunfähig!');
           }
         }
+        if (isLeviTurn) {
+          storageService.trackQuestProgress('starter_attack', 1);
+        }
         setGameState((prev) => reduceGameState(prev, { type: 'ATTACK', attackIndex: atkIdx }));
       }
     });
@@ -358,6 +375,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
     if (action.type === 'ATTACH_ENERGY') {
       soundManager.playSfx('energy_attach');
       setSelectedEnergy(false);
+      if (isLeviTurn) {
+        storageService.trackQuestProgress('attach_energy', 1);
+      }
     } else if (action.type === 'PLAY_BENCH') {
       soundManager.playSfx('card_play');
     } else if (action.type === 'PROMOTE') {
@@ -366,6 +386,9 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
       soundManager.playSfx('victory');
       soundManager.playVoice('evolution_success', 'Entwicklung! Was für ein starkes Pokémon!');
       setSelectedHandEvoIdx(null);
+      if (isLeviTurn) {
+        storageService.trackQuestProgress('evolve', 1);
+      }
     } else if (action.type === 'RETREAT') {
       soundManager.playSfx('card_play');
     } else if (action.type === 'PLAY_TRAINER') {
@@ -577,6 +600,14 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                   🛡️ +{mon.shieldBonus}
                 </span>
               )}
+              {mon.tool && (
+                <span
+                  className="text-[9px] bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 px-1.5 py-0.2 rounded-full font-black flex items-center gap-0.5 shadow-sm border border-amber-300"
+                  title={`Ausrüstung: ${mon.tool.name}`}
+                >
+                  {mon.tool.name === 'Muskelband' ? '🥊 +10' : mon.tool.name === 'Wundersames Amulett' ? '✨ +20 KP' : '🔋 EP'}
+                </span>
+              )}
               <span className="text-[9px] uppercase font-black text-slate-400">KP</span>
               <span
                 className={`${compact ? 'text-xs' : 'text-sm sm:text-base'} font-black ${
@@ -704,6 +735,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                       {benchMon ? (
                         <>
                           <img src={benchMon.card.artworkUrl} alt={benchMon.card.name} className="w-full h-full object-contain p-0.5" />
+                          {benchMon.tool && (
+                            <div className="absolute top-0 right-0 bg-amber-400 text-slate-950 text-[7px] font-black rounded-full px-0.5 shadow">
+                              {benchMon.tool.name === 'Muskelband' ? '🥊' : benchMon.tool.name === 'Wundersames Amulett' ? '✨' : '🔋'}
+                            </div>
+                          )}
                           {benchMon.attachedEnergy.length > 0 && (
                             <div className="absolute bottom-0 flex items-center bg-slate-950/85 px-0.5 rounded-full">
                               {benchMon.attachedEnergy.map((e, ei) => (
@@ -808,6 +844,16 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                         {benchMon ? (
                           <>
                             <img src={benchMon.card.artworkUrl} alt={benchMon.card.name} className="w-full h-full object-contain p-0.5" />
+                          {benchMon.tool && (
+                            <div className="absolute top-0 right-0 bg-amber-400 text-slate-950 text-[7px] font-black rounded-full px-0.5 shadow">
+                              {benchMon.tool.name === 'Muskelband' ? '🥊' : benchMon.tool.name === 'Wundersames Amulett' ? '✨' : '🔋'}
+                            </div>
+                          )}
+                            {benchMon.tool && (
+                              <div className="absolute top-0 right-0 bg-amber-400 text-slate-950 text-[7px] font-black rounded-full px-0.5 shadow">
+                                {benchMon.tool.name === 'Muskelband' ? '🥊' : benchMon.tool.name === 'Wundersames Amulett' ? '✨' : '🔋'}
+                              </div>
+                            )}
                             {benchMon.attachedEnergy.length > 0 && (
                               <div className="absolute bottom-0 flex items-center bg-slate-950/85 px-0.5 rounded-full">
                                 {benchMon.attachedEnergy.map((e, ei) => (
@@ -1240,6 +1286,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                             alt={benchMon.card.name}
                             className="w-full h-full object-contain filter drop-shadow p-1"
                           />
+                          {benchMon.tool && (
+                            <div className="absolute top-0.5 right-0.5 bg-amber-400 text-slate-950 text-[8px] font-black rounded-full px-1 shadow border border-white/60">
+                              {benchMon.tool.name === 'Muskelband' ? '🥊' : benchMon.tool.name === 'Wundersames Amulett' ? '✨' : '🔋'}
+                            </div>
+                          )}
                           {benchMon.attachedEnergy.length > 0 && (
                             <div className="absolute bottom-0.5 flex items-center gap-0.5 bg-slate-950/85 px-1 rounded-full border border-slate-700">
                               {benchMon.attachedEnergy.map((e, eIdx) => (
@@ -1469,6 +1520,11 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
                             alt={benchMon.card.name}
                             className="w-full h-full object-contain filter drop-shadow p-1"
                           />
+                          {benchMon.tool && (
+                            <div className="absolute top-0.5 right-0.5 bg-amber-400 text-slate-950 text-[8px] font-black rounded-full px-1 shadow border border-white/60">
+                              {benchMon.tool.name === 'Muskelband' ? '🥊' : benchMon.tool.name === 'Wundersames Amulett' ? '✨' : '🔋'}
+                            </div>
+                          )}
                           {benchMon.attachedEnergy.length > 0 && (
                             <div className="absolute bottom-0.5 flex items-center gap-0.5 bg-slate-950/85 px-1 rounded-full border border-slate-700">
                               {benchMon.attachedEnergy.map((e, eIdx) => (
@@ -1661,17 +1717,26 @@ export const BattleBoard: React.FC<BattleBoardProps> = ({
         <HowToPlayModal onClose={() => setShowRules(false)} />
       )}
 
-      {/* 6. Victory / Defeat Modal */}
+      {/* 6. Victory / Defeat Modal or Grand Champion Ceremony */}
       {gameState.winner !== null && (
-        <VictoryModal
-          winnerName={gameState.players[gameState.winner].name}
-          isLeviWinner={gameState.winner === 0}
-          onPlayAgain={onExitMatch}
-          onOpenBooster={onOpenBooster}
-          winningPokemon={gameState.players[gameState.winner].active?.card || null}
-          playerStars={gameState.players[0].points}
-          opponentStars={gameState.players[1].points}
-        />
+        gameState.winner === 0 && gymBadgeId === 'gary' ? (
+          <ChampionCeremonyModal
+            winnerName={gameState.players[0].name}
+            winningPokemon={gameState.players[0].active?.card || null}
+            onOpenBoosters={onOpenBooster || onExitMatch}
+            onContinue={onExitMatch}
+          />
+        ) : (
+          <VictoryModal
+            winnerName={gameState.players[gameState.winner].name}
+            isLeviWinner={gameState.winner === 0}
+            onPlayAgain={onExitMatch}
+            onOpenBooster={onOpenBooster}
+            winningPokemon={gameState.players[gameState.winner].active?.card || null}
+            playerStars={gameState.players[0].points}
+            opponentStars={gameState.players[1].points}
+          />
+        )
       )}
 
       {/* 7. Parent Settings Modal */}

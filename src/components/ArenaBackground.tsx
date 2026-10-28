@@ -9,7 +9,19 @@ export type ArenaType =
   | 'sabrina'
   | 'pyro'
   | 'giovanni'
+  | 'lorelei'
+  | 'bruno'
+  | 'agathe'
+  | 'siegfried'
   | 'gary'
+  | 'falk'
+  | 'kai'
+  | 'bianka'
+  | 'jens'
+  | 'hartwig'
+  | 'jasmin'
+  | 'norbert'
+  | 'sandra'
   | 'papa'
   | 'stadium';
 
@@ -18,13 +30,39 @@ interface ArenaBackgroundProps {
   className?: string;
 }
 
+const ARENA_BACKDROP_MAP: Record<ArenaType, string> = {
+  rocko: '/images/arenas/rocko.webp',
+  misty: '/images/arenas/misty.webp',
+  majorbob: '/images/arenas/majorbob.webp',
+  erika: '/images/arenas/erika.webp',
+  koga: '/images/arenas/koga.webp',
+  sabrina: '/images/arenas/sabrina.webp',
+  pyro: '/images/arenas/pyro.webp',
+  giovanni: '/images/arenas/giovanni.webp',
+  lorelei: '/images/arenas/misty.webp',
+  bruno: '/images/arenas/rocko.webp',
+  agathe: '/images/arenas/koga.webp',
+  siegfried: '/images/arenas/pyro.webp',
+  gary: '/images/arenas/gary.webp',
+  falk: '/images/arenas/stadium.webp',
+  kai: '/images/arenas/erika.webp',
+  bianka: '/images/arenas/stadium.webp',
+  jens: '/images/arenas/koga.webp',
+  hartwig: '/images/arenas/rocko.webp',
+  jasmin: '/images/arenas/majorbob.webp',
+  norbert: '/images/arenas/misty.webp',
+  sandra: '/images/arenas/pyro.webp',
+  papa: '/images/arenas/papa.webp',
+  stadium: '/images/arenas/stadium.webp'
+};
+
 export const ArenaBackground: React.FC<ArenaBackgroundProps> = ({
   arena,
   className = ''
 }) => {
   // Normalize arena key
   const arenaKey: ArenaType = arena || 'rocko';
-  const imageSrc = `/images/arenas/${arenaKey}.webp`;
+  const imageSrc = ARENA_BACKDROP_MAP[arenaKey] || '/images/arenas/stadium.webp';
 
   return (
     <div className={`absolute inset-0 overflow-hidden pointer-events-none select-none ${className}`}>
@@ -40,6 +78,36 @@ export const ArenaBackground: React.FC<ArenaBackgroundProps> = ({
       <div className="absolute inset-0 bg-radial from-transparent via-black/20 to-black/70 pointer-events-none" />
 
       {/* 3. Thematic Arena Lighting & Atmosphere Overlays */}
+      {arenaKey === 'lorelei' && (
+        <>
+          <div className="absolute inset-0 bg-cyan-600/15 mix-blend-color" />
+          <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-cyan-400/25 to-transparent blur-3xl animate-pulse" />
+          <div className="absolute bottom-10 left-10 w-80 h-80 bg-sky-300/20 rounded-full blur-3xl" />
+        </>
+      )}
+
+      {arenaKey === 'bruno' && (
+        <>
+          <div className="absolute top-10 left-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-orange-950/50 to-transparent blur-xl" />
+        </>
+      )}
+
+      {arenaKey === 'agathe' && (
+        <>
+          <div className="absolute inset-0 bg-purple-950/30 mix-blend-multiply" />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-10 right-10 w-72 h-72 bg-fuchsia-600/15 rounded-full blur-3xl" />
+        </>
+      )}
+
+      {arenaKey === 'siegfried' && (
+        <>
+          <div className="absolute inset-0 bg-red-950/25 mix-blend-color-burn" />
+          <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-rose-600/25 via-amber-600/15 to-transparent blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 left-1/3 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl" />
+        </>
+      )}
       {arenaKey === 'rocko' && (
         <>
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl" />

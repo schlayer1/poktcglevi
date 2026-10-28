@@ -4,6 +4,7 @@ import { createInitialGameState } from './engine/gameEngine';
 import { TitleScreen } from './components/TitleScreen';
 import { MainMenu } from './components/MainMenu';
 import { ArenaMapScreen } from './components/ArenaMapScreen';
+import { IndigoPlateauScreen } from './components/IndigoPlateauScreen';
 import { AlbumScreen } from './components/AlbumScreen';
 import { BoosterOpeningScreen } from './components/BoosterOpeningScreen';
 import { DeckBuilderScreen } from './components/DeckBuilderScreen';
@@ -21,6 +22,7 @@ type AppScreen =
   | 'title'
   | 'menu'
   | 'arena_map'
+  | 'league_hall'
   | 'album'
   | 'deck_builder'
   | 'booster_opening'
@@ -155,6 +157,7 @@ export const App: React.FC = () => {
     if (screen === 'menu') {
       return (
         <MainMenu
+          allCards={allCardsList}
           onSelectSolo={() => setScreen('arena_map')}
           onSelectPvP={() => setScreen('pvp_select')}
           onSelectAlbum={() => setScreen('album')}
@@ -170,6 +173,7 @@ export const App: React.FC = () => {
         <ArenaMapScreen
           onBack={() => setScreen('menu')}
           onOpenSettings={() => setShowParentSettings(true)}
+          onOpenLeagueHall={() => setScreen('league_hall')}
           onSelectGym={(gym) => {
             const profile = storageService.loadProfile(allCardsList);
             handleStartMatch({
@@ -180,6 +184,27 @@ export const App: React.FC = () => {
               opponentAvatar: gym.opponentAvatar,
               arena: gym.arena,
               gymBadgeId: gym.badgeId
+            });
+          }}
+        />
+      );
+    }
+
+    if (screen === 'league_hall') {
+      return (
+        <IndigoPlateauScreen
+          onBack={() => setScreen('arena_map')}
+          onOpenSettings={() => setShowParentSettings(true)}
+          onSelectBattle={(battle) => {
+            const profile = storageService.loadProfile(allCardsList);
+            handleStartMatch({
+              mode: 'solo',
+              p1DeckId: profile.activeDeckId || 'deck_feuer',
+              p2DeckId: battle.opponentDeckId,
+              opponentName: battle.opponentName,
+              opponentAvatar: battle.opponentAvatar,
+              arena: battle.arena,
+              gymBadgeId: battle.badgeId
             });
           }}
         />

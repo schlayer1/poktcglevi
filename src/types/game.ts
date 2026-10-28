@@ -55,6 +55,7 @@ export interface InPlayPokemon {
   status: StatusCondition;
   canAttack: boolean;
   shieldBonus?: number;
+  tool?: Card;
 }
 
 export interface PlayerState {

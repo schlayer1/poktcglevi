@@ -31,40 +31,62 @@ interface ArenaMapScreenProps {
     badgeId: BadgeType;
   }) => void;
   onOpenSettings?: () => void;
+  onOpenLeagueHall?: () => void;
 }
 
 export const GYM_CAMPAIGN: GymNode[] = [
-  { id: 'rocko', order: 1, name: 'Rocko', city: 'Marmoria City', type: 'Kampf', avatar: 'rocko', aceDexId: 95, deckId: 'deck_pflanze', arena: 'rocko', x: 23, y: 26 },
+  { id: 'rocko', order: 1, name: 'Rocko', city: 'Marmoria City', type: 'Kampf', avatar: 'rocko', aceDexId: 95, deckId: 'deck_bruno', arena: 'rocko', x: 23, y: 26 },
   { id: 'misty', order: 2, name: 'Misty', city: 'Azuria City', type: 'Wasser', avatar: 'misty', aceDexId: 120, deckId: 'deck_wasser', arena: 'misty', x: 72, y: 20 },
   { id: 'majorbob', order: 3, name: 'Major Bob', city: 'Orania City', type: 'Elektro', avatar: 'majorbob', aceDexId: 26, deckId: 'deck_elektro', arena: 'majorbob', x: 66, y: 64 },
   { id: 'erika', order: 4, name: 'Erika', city: 'Prismania City', type: 'Pflanze', avatar: 'erika', aceDexId: 44, deckId: 'deck_pflanze', arena: 'erika', x: 40, y: 44 },
-  { id: 'koga', order: 5, name: 'Koga', city: 'Fuchsania City', type: 'Finsternis', avatar: 'koga', aceDexId: 110, deckId: 'deck_pflanze', arena: 'koga', x: 50, y: 80 },
-  { id: 'sabrina', order: 6, name: 'Sabrina', city: 'Saffronia City', type: 'Psycho', avatar: 'sabrina', aceDexId: 65, deckId: 'deck_elektro', arena: 'sabrina', x: 57, y: 44 },
+  { id: 'koga', order: 5, name: 'Koga', city: 'Fuchsania City', type: 'Finsternis', avatar: 'koga', aceDexId: 110, deckId: 'deck_agathe', arena: 'koga', x: 50, y: 80 },
+  { id: 'sabrina', order: 6, name: 'Sabrina', city: 'Saffronia City', type: 'Psycho', avatar: 'sabrina', aceDexId: 65, deckId: 'deck_agathe', arena: 'sabrina', x: 57, y: 44 },
   { id: 'pyro', order: 7, name: 'Pyro', city: 'Zinnoberinsel', type: 'Feuer', avatar: 'pyro', aceDexId: 59, deckId: 'deck_feuer', arena: 'pyro', x: 18, y: 86 },
-  { id: 'giovanni', order: 8, name: 'Giovanni', city: 'Vertania City', type: 'Kampf', avatar: 'giovanni', aceDexId: 112, deckId: 'deck_pflanze', arena: 'giovanni', x: 18, y: 52 },
-  { id: 'gary', order: 9, name: 'Gary', city: 'Indigo Plateau', type: 'Farblos', avatar: 'gary', aceDexId: 9, deckId: 'deck_wasser', arena: 'gary', x: 10, y: 12 }
+  { id: 'giovanni', order: 8, name: 'Giovanni', city: 'Vertania City', type: 'Kampf', avatar: 'giovanni', aceDexId: 112, deckId: 'deck_bruno', arena: 'giovanni', x: 18, y: 52 },
+  { id: 'lorelei', order: 9, name: 'Lorelei', city: 'Top Vier: Eishalle', type: 'Wasser', avatar: 'lorelei', aceDexId: 131, deckId: 'deck_lorelei', arena: 'lorelei', x: 14, y: 38 },
+  { id: 'bruno', order: 10, name: 'Bruno', city: 'Top Vier: Kampfsaal', type: 'Kampf', avatar: 'bruno', aceDexId: 68, deckId: 'deck_bruno', arena: 'bruno', x: 12, y: 29 },
+  { id: 'agathe', order: 11, name: 'Agathe', city: 'Top Vier: Geistergruft', type: 'Psycho', avatar: 'agathe', aceDexId: 94, deckId: 'deck_agathe', arena: 'agathe', x: 15, y: 21 },
+  { id: 'siegfried', order: 12, name: 'Siegfried', city: 'Top Vier: Drachenschrein', type: 'Drache', avatar: 'siegfried', aceDexId: 149, deckId: 'deck_siegfried', arena: 'siegfried', x: 11, y: 15 },
+  { id: 'gary', order: 13, name: 'Champ Gary', city: 'Indigo Plateau Finale', type: 'Wasser', avatar: 'gary', aceDexId: 9, deckId: 'deck_gary_champion', arena: 'gary', x: 8, y: 8 }
+];
+
+export const JOHTO_CAMPAIGN: GymNode[] = [
+  { id: 'falk', order: 1, name: 'Falk', city: 'Viola City', type: 'Farblos', avatar: 'falk', aceDexId: 187, deckId: 'deck_falk', arena: 'falk', x: 58, y: 44 },
+  { id: 'kai', order: 2, name: 'Kai', city: 'Azalea City', type: 'Pflanze', avatar: 'kai', aceDexId: 212, deckId: 'deck_kai', arena: 'kai', x: 48, y: 76 },
+  { id: 'bianka', order: 3, name: 'Bianka', city: 'Dukatia City', type: 'Farblos', avatar: 'bianka', aceDexId: 175, deckId: 'deck_bianka', arena: 'bianka', x: 26, y: 64 },
+  { id: 'jens', order: 4, name: 'Jens', city: 'Teak City', type: 'Psycho', avatar: 'jens', aceDexId: 122, deckId: 'deck_jens', arena: 'jens', x: 42, y: 32 },
+  { id: 'hartwig', order: 5, name: 'Hartwig', city: 'Anemonia City', type: 'Kampf', avatar: 'hartwig', aceDexId: 145, deckId: 'deck_hartwig', arena: 'hartwig', x: 10, y: 55 },
+  { id: 'jasmin', order: 6, name: 'Jasmin', city: 'Oliviana City', type: 'Metall', avatar: 'jasmin', aceDexId: 208, deckId: 'deck_jasmin', arena: 'jasmin', x: 20, y: 42 },
+  { id: 'norbert', order: 7, name: 'Norbert', city: 'Mahagonia City', type: 'Wasser', avatar: 'norbert', aceDexId: 65, deckId: 'deck_norbert', arena: 'norbert', x: 68, y: 28 },
+  { id: 'sandra', order: 8, name: 'Sandra', city: 'Ebenholz City', type: 'Drache', avatar: 'sandra', aceDexId: 185, deckId: 'deck_sandra', arena: 'sandra', x: 82, y: 36 }
 ];
 
 export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
   onBack,
   onSelectGym,
-  onOpenSettings
+  onOpenSettings,
+  onOpenLeagueHall
 }) => {
   const profile = storageService.loadProfile([]);
-  const earnedBadges = profile.badges;
+  const earnedBadges = profile.badges || [];
+  const [region, setRegion] = useState<'kanto' | 'johto'>('kanto');
+
+  const isJohtoUnlocked = profile.isChampion || profile.allChaptersUnlocked || earnedBadges.includes('gary');
+  const campaign = region === 'kanto' ? GYM_CAMPAIGN : JOHTO_CAMPAIGN;
 
   const isNodeUnlocked = (node: GymNode) => {
     if (profile.allChaptersUnlocked) return true;
-    const idx = GYM_CAMPAIGN.findIndex((g) => g.id === node.id);
-    if (idx <= 0) return true; // Rocko is always unlocked
-    const prevGym = GYM_CAMPAIGN[idx - 1];
+    const currentList = region === 'kanto' ? GYM_CAMPAIGN : JOHTO_CAMPAIGN;
+    const idx = currentList.findIndex((g) => g.id === node.id);
+    if (idx <= 0) return true;
+    const prevGym = currentList[idx - 1];
     return earnedBadges.includes(prevGym.id);
   };
 
   // Find current active gym node
   const [selectedGym, setSelectedGym] = useState<GymNode>(() => {
-    const nextUnbeaten = GYM_CAMPAIGN.find((g) => isNodeUnlocked(g) && !earnedBadges.includes(g.id));
-    return nextUnbeaten || GYM_CAMPAIGN[0];
+    const nextUnbeaten = campaign.find((g) => isNodeUnlocked(g) && !earnedBadges.includes(g.id));
+    return nextUnbeaten || campaign[0];
   });
 
   useEffect(() => {
@@ -85,16 +107,17 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
   const isEarned = (id: BadgeType) => earnedBadges.includes(id);
 
   // SVG route path between nodes in order
-  const routePoints = GYM_CAMPAIGN.map((g) => `${g.x}%,${g.y}%`).join(' ');
+  const routePoints = campaign.map((g) => `${g.x}%,${g.y}%`).join(' ');
+  const mapImage = region === 'kanto' ? '/images/map/kanto_anime_region_map.webp' : '/images/map/johto_anime_region_map.webp';
 
   return (
     <div className="relative w-full h-full h-dvh bg-slate-950 overflow-hidden flex flex-col justify-between p-safe select-none font-sans">
-      {/* 1. Fullscreen Illustrated Anime Kanto Region Map Background */}
+      {/* 1. Fullscreen Illustrated Anime Region Map Background */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/map/kanto_anime_region_map.webp"
-          alt="Kanto Anime Region"
-          className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.08]"
+          src={mapImage}
+          alt={`${region} Region`}
+          className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.08] transition-all duration-700"
         />
         {/* Soft Vignette and Edge Shadow for contrast */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-slate-950/70 pointer-events-none" />
@@ -111,19 +134,70 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
           <span>Zurück</span>
         </button>
 
-        <div className="flex items-center gap-1.5 sm:gap-2 bg-slate-950/70 px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-xl border border-amber-400/30 truncate">
-          <Compass className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 animate-spin shrink-0" />
-          <h1 className="text-xs sm:text-base md:text-lg font-black text-amber-300 drop-shadow truncate">
-            Kanto Arena-Reise (8 Orden & Champ Gary)
-          </h1>
+        {/* Region Switcher: Kanto ↔ Johto */}
+        <div className="flex items-center gap-1 bg-slate-950/90 p-1 rounded-xl border border-slate-700 shadow-inner">
+          <button
+            onClick={() => {
+              soundManager.playSfx('button');
+              setRegion('kanto');
+              setSelectedGym(GYM_CAMPAIGN[0]);
+            }}
+            className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-black transition-all cursor-pointer ${
+              region === 'kanto'
+                ? 'bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            🗼 Kanto
+          </button>
+
+          <button
+            onClick={() => {
+              if (!isJohtoUnlocked) {
+                soundManager.playVoice('gym_locked', 'Die Johto-Reise ist noch verschlossen! Werde zuerst Kanto-Champion!');
+                return;
+              }
+              soundManager.playSfx('button');
+              setRegion('johto');
+              setSelectedGym(JOHTO_CAMPAIGN[0]);
+            }}
+            className={`flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-lg text-xs font-black transition-all ${
+              region === 'johto'
+                ? 'bg-gradient-to-r from-sky-400 to-indigo-400 text-slate-950 shadow-md'
+                : isJohtoUnlocked
+                ? 'text-slate-300 hover:text-white cursor-pointer'
+                : 'text-slate-600 cursor-not-allowed opacity-60'
+            }`}
+            title={isJohtoUnlocked ? 'Nach Johto reisen' : 'Besiege zuerst Champ Gary'}
+          >
+            <span>🚂 Johto</span>
+            {!isJohtoUnlocked && <Lock className="w-3 h-3 text-slate-500" />}
+          </button>
         </div>
 
         {/* Badges Progress Pill & Eltern */}
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {region === 'kanto' && onOpenLeagueHall && (
+            <button
+              onClick={() => {
+                soundManager.playSfx('button');
+                onOpenLeagueHall();
+              }}
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-300 active:scale-95 text-slate-950 font-black text-xs shadow-[0_0_15px_rgba(251,191,36,0.6)] border border-white/60 transition-all cursor-pointer animate-pulse"
+              title="Indigo Plateau Liga-Halle betreten"
+            >
+              <Trophy className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">Zur Liga-Halle</span>
+              <span className="md:hidden">Liga</span>
+            </button>
+          )}
+
           <div className="flex items-center gap-1.5 bg-slate-950/80 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-xl border border-amber-400/50 shadow-md">
             <Trophy className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
             <span className="text-xs sm:text-sm font-black text-white">
-              {earnedBadges.length} / 8 Orden
+              {region === 'kanto'
+                ? `${earnedBadges.filter((b) => ['rocko', 'misty', 'majorbob', 'erika', 'koga', 'sabrina', 'pyro', 'giovanni'].includes(b)).length} / 8 Kanto`
+                : `${earnedBadges.filter((b) => ['falk', 'kai', 'bianka', 'jens', 'hartwig', 'jasmin', 'norbert', 'sandra'].includes(b)).length} / 8 Johto`}
             </span>
           </div>
 
@@ -169,8 +243,8 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
           />
         </svg>
 
-        {/* 9 Gym Nodes across the Kanto landscape */}
-        {GYM_CAMPAIGN.map((node) => {
+        {/* Gym Nodes across the region landscape */}
+        {campaign.map((node) => {
           const earned = isEarned(node.id);
           const unlocked = isNodeUnlocked(node);
           const isSelected = selectedGym.id === node.id;
@@ -293,7 +367,7 @@ export const ArenaMapScreen: React.FC<ArenaMapScreenProps> = ({
               Offizieller Arenapreis
             </span>
             <span className="text-xs font-black text-white">
-              {GYM_CAMPAIGN.find((g) => g.id === selectedGym.id)?.name}-Orden
+              {campaign.find((g) => g.id === selectedGym.id)?.name || selectedGym.name}-Orden
             </span>
           </div>
         </div>

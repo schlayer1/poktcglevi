@@ -64,6 +64,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({ onStart }) => {
   const [bgmMuted, setBgmMuted] = useState(soundManager.isBgmMuted());
   const [activeStarterKey, setActiveStarterKey] = useState<StarterKey>(() => storageService.getFavoriteStarter());
   const [showChangelog, setShowChangelog] = useState<boolean>(false);
+  const profile = storageService.loadProfile([]);
 
   useEffect(() => {
     soundManager.playBgm('title');
@@ -142,6 +143,16 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({ onStart }) => {
 
       {/* Center: Title Logo & Dynamic Starters Showcase */}
       <div className="relative z-10 flex flex-col items-center text-center gap-4 max-w-2xl">
+        {profile.isChampion && (
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-gradient-to-r from-amber-500/30 via-yellow-400/40 to-amber-500/30 border-2 border-amber-300 shadow-[0_0_20px_rgba(251,191,36,0.7)] backdrop-blur-md animate-pulse">
+            <span className="text-base">👑</span>
+            <span className="text-xs sm:text-sm font-black text-amber-300 uppercase tracking-widest drop-shadow">
+              KANTO LIGA-CHAMPION LEVI
+            </span>
+            <span className="text-base">🏆</span>
+          </div>
+        )}
+
         {/* Pokémon TCG Golden Tag */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-950/80 border-2 border-amber-400/70 shadow-[0_0_20px_rgba(251,191,36,0.5)] backdrop-blur-sm">
           <Sparkles className="w-4 h-4 text-yellow-300 animate-pulse" />

@@ -558,6 +558,37 @@ export function reduceGameState(state: GameState, action: Action): GameState {
         pActive.hand = [...pActive.hand, ...drawn];
         log.push(`📚 Forschung des Professors zieht 2 neue Karten!`);
       }
+      // 4. Ausrüstung: Muskelband (+10 Schaden)
+      else if (card.name === 'Muskelband') {
+        const target = action.target === 'active' || action.target === undefined ? pActive.active : pActive.bench[action.target];
+        if (target) {
+          target.tool = card;
+          log.push(`🥊 ${pActive.name} legt Muskelband an ${target.card.name} an (+10 Schaden)!`);
+        }
+      }
+      // 5. Ausrüstung: Wundersames Amulett (+20 KP)
+      else if (card.name === 'Wundersames Amulett') {
+        const target = action.target === 'active' || action.target === undefined ? pActive.active : pActive.bench[action.target];
+        if (target) {
+          target.tool = card;
+          target.maxHp += 20;
+          target.currentHp += 20;
+          log.push(`✨ ${pActive.name} legt Wundersames Amulett an ${target.card.name} an (+20 KP)!`);
+        }
+      }
+      // 6. Ausrüstung: EP-Teiler (+1 Energie)
+      else if (card.name === 'EP-Teiler') {
+        const target = action.target === 'active' || action.target === undefined ? pActive.active : pActive.bench[action.target];
+        if (target) {
+          target.tool = card;
+          if (pActive.energyZone.length > 0) {
+            target.attachedEnergy.push(pActive.energyZone[0]);
+          } else {
+            target.attachedEnergy.push('Farblos');
+          }
+          log.push(`🔋 ${pActive.name} legt EP-Teiler an ${target.card.name} an (+1 Energie)!`);
+        }
+      }
 
       const nextPlayers: [PlayerState, PlayerState] = activeIdx === 0 ? [pActive, pOpponent] : [pOpponent, pActive];
       return {
@@ -578,6 +609,12 @@ export function reduceGameState(state: GameState, action: Action): GameState {
 
       let dmg = attack.damage;
       let isSuperEffective = false;
+
+      // Tool bonus: Muskelband (+10 Schaden)
+      if (activeMon.tool?.name === 'Muskelband') {
+        dmg += 10;
+        log.push(`🥊 Muskelband verstärkt den Angriff um +10 Schaden!`);
+      }
 
       // Weakness Check (Rule Level >= 2)
       if (state.stage >= 2 && pOpponent.active.card.weakness) {

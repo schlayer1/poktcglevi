@@ -3,6 +3,7 @@ import { Card, PokemonType } from '../types/game';
 import { CardView } from './CardView';
 import { CardDetailModal } from './CardDetailModal';
 import { EnergyBadge } from './EnergyBadge';
+import { ResearchQuestsModal } from './ResearchQuestsModal';
 import { storageService } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
 import { ArrowLeft, BookOpen, Sparkles, Filter, PackageOpen, ShieldCheck } from 'lucide-react';
@@ -22,6 +23,7 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
 }) => {
   const [selectedType, setSelectedType] = useState<string>('all');
   const [inspectedCard, setInspectedCard] = useState<Card | null>(null);
+  const [showQuests, setShowQuests] = useState<boolean>(false);
 
   useEffect(() => {
     soundManager.playBgm('menu');
@@ -30,10 +32,10 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
   const profile = storageService.loadProfile(allCards);
   const unlockedMap = profile.unlockedCards;
 
-  // Group all card variants by dexId (e.g. dexId 150 has normal Mewtu, Mewtu-ex, etc.)
+  // Group all card variants by dexId (e.g. dexId 150 has normal Mewtu, Mewtu-ex, dexId 172 is Pichu, etc.)
   const dexVariantsMap: Record<number, Card[]> = {};
   allCards.forEach((c) => {
-    if (c.dexId >= 1 && c.dexId <= 151) {
+    if (c.dexId >= 1) {
       if (!dexVariantsMap[c.dexId]) dexVariantsMap[c.dexId] = [];
       dexVariantsMap[c.dexId].push(c);
     }
@@ -78,7 +80,8 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
     .sort((a, b) => a.dexId - b.dexId);
 
   const totalOwnedCount = kantoDexSlots.filter((s) => s.isOwned).length;
-  const progressPercent = Math.round((totalOwnedCount / 151) * 100);
+  const totalSlots = kantoDexSlots.length;
+  const progressPercent = Math.round((totalOwnedCount / totalSlots) * 100);
 
   // Apply filter
   const filteredList = kantoDexSlots.filter((slot) => {
@@ -118,6 +121,11 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
             <h1 className="text-base sm:text-xl font-black text-white">
               Levis Sammelalbum
             </h1>
+            {profile.isChampion && (
+              <span className="hidden md:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-500/20 to-yellow-400/20 border border-amber-400/60 text-[11px] font-black text-amber-300 shadow">
+                🏆 Kanto-Champ
+              </span>
+            )}
           </div>
         </div>
 
@@ -125,7 +133,7 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
         <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
           <div className="flex items-center gap-2 bg-slate-950/80 px-2.5 py-1 rounded-2xl border border-slate-800">
             <span className="text-[11px] sm:text-xs font-black text-amber-300">
-              {totalOwnedCount} / 151
+              {totalOwnedCount} / {totalSlots}
             </span>
             <div className="w-20 sm:w-36 h-2 sm:h-2.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
               <div
@@ -135,6 +143,23 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
             </div>
             <span className="text-[9px] sm:text-[10px] font-bold text-slate-400">{progressPercent}%</span>
           </div>
+
+          {/* Professor Eich Research Quests */}
+          <button
+            onClick={() => {
+              soundManager.playSfx('button');
+              setShowQuests(true);
+            }}
+            className="p-2 sm:px-2.5 sm:py-1.5 rounded-2xl bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-400/60 text-emerald-300 hover:text-white transition-transform active:scale-95 cursor-pointer shrink-0 relative"
+            title="Professor Eichs Forschungs-Aufgaben"
+          >
+            <span className="text-sm">🔬</span>
+            {storageService.getClaimableQuestCount() > 0 && (
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-amber-400 text-slate-950 font-black text-[9px] flex items-center justify-center animate-bounce">
+                !
+              </span>
+            )}
+          </button>
 
           {profile.unopenedBoosters > 0 && (
             <button
@@ -164,13 +189,15 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
       {/* Filter Tabs Bar */}
       <div className="relative z-10 flex items-center gap-1.5 overflow-x-auto py-1.5 px-1 scrollbar-none touch-pan-x">
         {[
-          { id: 'all', label: 'Alle (151)' },
+          { id: 'all', label: `Alle (${totalSlots})` },
           { id: 'Feuer', label: 'Feuer 🔥' },
           { id: 'Wasser', label: 'Wasser 💧' },
           { id: 'Pflanze', label: 'Pflanze 🍃' },
           { id: 'Elektro', label: 'Elektro ⚡' },
           { id: 'Psycho', label: 'Psycho 🔮' },
           { id: 'Kampf', label: 'Kampf 🥊' },
+          { id: 'Finsternis', label: 'Finsternis 🌙' },
+          { id: 'Metall', label: 'Metall ⚙️' },
           { id: 'Farblos', label: 'Farblos ⭐' },
           { id: 'ex', label: 'Nur EX ✨' },
           { id: 'missing', label: 'Noch gesucht ❓' }
@@ -268,6 +295,14 @@ export const AlbumScreen: React.FC<AlbumScreenProps> = ({
         card={inspectedCard}
         onClose={() => setInspectedCard(null)}
       />
+
+      {/* Professor Eich Research Quests Modal */}
+      {showQuests && (
+        <ResearchQuestsModal
+          onClose={() => setShowQuests(false)}
+          onOpenBoosters={onOpenBooster}
+        />
+      )}
     </div>
   );
 };

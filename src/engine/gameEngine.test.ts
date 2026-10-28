@@ -340,4 +340,101 @@ describe('Game Engine Level 1, 2 and 3', () => {
     // Levi's energyZone MUST be Elektro so Pikachu can attack!
     expect(backToLevi.players[0].energyZone[0]).toBe('Elektro');
   });
+
+  it('correctly equips Tool cards: Muskelband adds +10 attack damage, Amulett adds +20 KP', () => {
+    const dummyMuskelband: Card = {
+      id: 'TOOL-001',
+      dexId: 0,
+      name: 'Muskelband',
+      types: [],
+      hp: 0,
+      stage: 'Trainer',
+      isEx: false,
+      attacks: [],
+      retreat: 0,
+      trainerType: 'Item',
+      artworkUrl: '/images/cards/TOOL-001.webp',
+      cryUrl: '',
+      cardImageUrl: '/images/cards/TOOL-001.webp'
+    };
+
+    const dummyAmulett: Card = {
+      id: 'TOOL-002',
+      dexId: 0,
+      name: 'Wundersames Amulett',
+      types: [],
+      hp: 0,
+      stage: 'Trainer',
+      isEx: false,
+      attacks: [],
+      retreat: 0,
+      trainerType: 'Item',
+      artworkUrl: '/images/cards/TOOL-002.webp',
+      cryUrl: '',
+      cardImageUrl: '/images/cards/TOOL-002.webp'
+    };
+
+    const p1Deck = makeDeck(dummyGlumanda);
+    const p2Deck = makeDeck(dummySchiggy);
+
+    const state = createInitialGameState(p1Deck, p2Deck, {
+      p1Name: 'Levi',
+      p2Name: 'Papa',
+      p1Avatar: 'levi',
+      p2Avatar: 'papa',
+      ruleLevel: 3
+    });
+
+    state.players[0].active = {
+      instanceId: 'active_glumanda',
+      card: dummyGlumanda,
+      currentHp: 60,
+      maxHp: 60,
+      attachedEnergy: ['Feuer'],
+      status: 'none',
+      canAttack: true
+    };
+    state.players[1].active = {
+      instanceId: 'active_schiggy',
+      card: dummySchiggy,
+      currentHp: 60,
+      maxHp: 60,
+      attachedEnergy: [],
+      status: 'none',
+      canAttack: true
+    };
+
+    // Put Muskelband in hand
+    state.players[0].hand = [dummyMuskelband];
+    state.turnNumber = 2; // Allow attack
+
+    // Play Muskelband on active
+    const stateWithTool = reduceGameState(state, {
+      type: 'PLAY_TRAINER',
+      handIndex: 0,
+      target: 'active'
+    });
+
+    expect(stateWithTool.players[0].active?.tool?.name).toBe('Muskelband');
+
+    // Attack with Glut (base 30 + 10 Muskelband = 40 damage)
+    const afterAttack = reduceGameState(stateWithTool, {
+      type: 'ATTACK',
+      attackIndex: 1
+    });
+
+    expect(afterAttack.players[1].active?.currentHp).toBe(20); // 60 - 40 = 20
+
+    // Test Wundersames Amulett
+    state.players[0].hand = [dummyAmulett];
+    const stateWithAmulett = reduceGameState(state, {
+      type: 'PLAY_TRAINER',
+      handIndex: 0,
+      target: 'active'
+    });
+
+    expect(stateWithAmulett.players[0].active?.maxHp).toBe(80);
+    expect(stateWithAmulett.players[0].active?.currentHp).toBe(80);
+    expect(stateWithAmulett.players[0].active?.tool?.name).toBe('Wundersames Amulett');
+  });
 });

@@ -139,6 +139,7 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
     const owned = (unlocked[c.id] || 0) > 0;
     if (!owned) return false;
     if (selectedTypeFilter === 'all') return true;
+    if (selectedTypeFilter === 'Trainer') return c.stage === 'Trainer';
     return c.types.includes(selectedTypeFilter as PokemonType);
   });
 
@@ -267,7 +268,7 @@ export const DeckBuilderScreen: React.FC<DeckBuilderScreenProps> = ({
         {/* Filters */}
         <div className="flex items-center gap-1.5 overflow-x-auto py-0.5 scrollbar-none">
           <span className="text-[10px] font-black uppercase text-slate-400 mr-1">Filter:</span>
-          {['all', 'Feuer', 'Wasser', 'Pflanze', 'Elektro', 'Farblos'].map((t) => (
+          {['all', 'Feuer', 'Wasser', 'Pflanze', 'Elektro', 'Psycho', 'Kampf', 'Finsternis', 'Metall', 'Farblos', 'Trainer'].map((t) => (
             <button
               key={t}
               onClick={() => setSelectedTypeFilter(t)}

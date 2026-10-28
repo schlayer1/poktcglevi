@@ -165,6 +165,13 @@ export const CardView: React.FC<CardViewProps> = ({
             ))}
           </div>
         )}
+
+        {/* Attached Tool Badge Overlaid at top-right of artwork */}
+        {inPlay && inPlay.tool && (
+          <div className="absolute top-1 right-1.5 flex items-center gap-1 bg-amber-400 text-slate-950 font-black text-[9px] px-1.5 py-0.5 rounded-md shadow-lg z-20 border border-white/60">
+            <span>{inPlay.tool.name === 'Muskelband' ? '🥊 Muskelband' : inPlay.tool.name === 'Wundersames Amulett' ? '✨ Amulett' : '🔋 EP-Teiler'}</span>
+          </div>
+        )}
       </div>
 
       {/* Attacks Section */}

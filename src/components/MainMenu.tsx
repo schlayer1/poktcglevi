@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Users, Swords, BookOpen, Volume2, VolumeX, Wrench, PackageOpen, ShieldCheck } from 'lucide-react';
 import { soundManager } from '../services/soundManager';
 import { storageService } from '../services/storageService';
+import { Card } from '../types/game';
 import { PikachuCompanion } from './PikachuCompanion';
 import { HowToPlayModal } from './HowToPlayModal';
+import { ResearchQuestsModal } from './ResearchQuestsModal';
+import { TrainingCampModal } from './TrainingCampModal';
 
 interface MainMenuProps {
+  allCards?: Card[];
   onSelectSolo: () => void;
   onSelectPvP: () => void;
   onSelectAlbum: () => void;
@@ -15,6 +19,7 @@ interface MainMenuProps {
 }
 
 export const MainMenu: React.FC<MainMenuProps> = ({
+  allCards = [],
   onSelectSolo,
   onSelectPvP,
   onSelectAlbum,
@@ -24,7 +29,10 @@ export const MainMenu: React.FC<MainMenuProps> = ({
 }) => {
   const [bgmMuted, setBgmMuted] = React.useState(soundManager.isBgmMuted());
   const [showRules, setShowRules] = useState<boolean>(false);
+  const [showQuests, setShowQuests] = useState<boolean>(false);
+  const [showCamp, setShowCamp] = useState<boolean>(false);
   const profile = storageService.loadProfile([]);
+  const claimableQuestsCount = storageService.getClaimableQuestCount();
 
   useEffect(() => {
     soundManager.playBgm('menu');
@@ -58,19 +66,60 @@ export const MainMenu: React.FC<MainMenuProps> = ({
       {/* Header Bar */}
       <div className="relative z-20 flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
         <div className="flex items-center gap-2.5">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-amber-400 bg-slate-900 p-0.5 sm:p-1 flex items-center justify-center shadow-lg shrink-0">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-amber-400 bg-slate-900 p-0.5 sm:p-1 flex items-center justify-center shadow-lg shrink-0 relative">
             <img src="/images/trainers/levi.png" alt="Levi" className="w-full h-full object-contain" />
+            {profile.isChampion && (
+              <span className="absolute -top-1.5 -right-1.5 text-sm animate-bounce" title="Kanto Liga-Champion!">👑</span>
+            )}
           </div>
           <div>
-            <span className="text-[10px] sm:text-xs font-bold text-amber-300 uppercase tracking-widest block">
-              Pokémontrainer
-            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-[10px] sm:text-xs font-bold text-amber-300 uppercase tracking-widest block">
+                {profile.isChampion ? 'Liga-Champion' : 'Pokémontrainer'}
+              </span>
+              {profile.isChampion && (
+                <span className="text-[10px] font-black bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 px-1.5 py-0.5 rounded-full shadow">
+                  CHAMP 🏆
+                </span>
+              )}
+            </div>
             <span className="text-lg sm:text-xl font-black text-white drop-shadow">Levi</span>
           </div>
         </div>
 
-        {/* Quick action buttons: Deck Builder, Booster, Eltern, Regeln, Sound */}
+        {/* Quick action buttons: Deck Builder, Booster, Forschung, Camp, Eltern, Regeln, Sound */}
         <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Trainingscamp Button */}
+          <button
+            onClick={() => {
+              soundManager.playSfx('button');
+              setShowCamp(true);
+            }}
+            className="px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-300 border-2 border-white text-slate-950 font-black text-xs sm:text-sm shadow-[0_0_15px_rgba(251,191,36,0.6)] flex items-center gap-1.5 transition-transform active:scale-95 cursor-pointer"
+            title="Trainingscamp (Quiz & Memo)"
+          >
+            <span className="text-sm">🏕️</span>
+            <span className="hidden xs:inline">Camp</span>
+          </button>
+
+          {/* Professor Eich Research Quests */}
+          <button
+            onClick={() => {
+              soundManager.playSfx('button');
+              setShowQuests(true);
+            }}
+            className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 border-2 border-white text-white font-black text-xs sm:text-sm shadow-[0_0_15px_rgba(16,185,129,0.4)] flex items-center gap-1.5 transition-transform active:scale-95 cursor-pointer relative"
+            title="Professor Eichs Forschungs-Aufgaben"
+          >
+            <span className="text-sm">🔬</span>
+            <span className="hidden xs:inline">Forschung</span>
+            {claimableQuestsCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-amber-400 text-slate-950 font-black text-[10px] flex items-center justify-center animate-bounce border border-white shadow">
+                {claimableQuestsCount}
+              </span>
+            )}
+          </button>
+
           {onOpenBoosters && hasBoosters && (
             <button
               onClick={() => {
@@ -150,7 +199,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({
               Allein kämpfen
             </h2>
             <p className="text-[11px] sm:text-xs md:text-sm text-slate-300 font-bold">
-              Kanto Arena-Reise (8 Orden)
+              {profile.isChampion ? '🏆 Kanto-Liga & Arenen' : 'Kanto Arena-Reise & Liga'}
             </p>
           </div>
         </div>
@@ -208,6 +257,23 @@ export const MainMenu: React.FC<MainMenuProps> = ({
 
       {/* Interactive Audio Rulebook */}
       {showRules && <HowToPlayModal onClose={() => setShowRules(false)} />}
+
+      {/* Professor Eich Research Quests Modal */}
+      {showQuests && (
+        <ResearchQuestsModal
+          onClose={() => setShowQuests(false)}
+          onOpenBoosters={onOpenBoosters}
+        />
+      )}
+
+      {/* Trainingscamp Modal (Quiz & Memo) */}
+      {showCamp && (
+        <TrainingCampModal
+          allCards={allCards}
+          onClose={() => setShowCamp(false)}
+          onOpenBoosters={onOpenBoosters}
+        />
+      )}
     </div>
   );
 };

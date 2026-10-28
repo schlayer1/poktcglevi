@@ -8927,5 +8927,464 @@
     "cardImageUrl": "/images/cards/P-A-007.webp",
     "preDexId": null,
     "evolvesFrom": null
+  },
+  {
+    "id": "A4-171",
+    "dexId": 172,
+    "name": "Pichu",
+    "types": [
+      "Elektro"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Funkelwurf",
+        "cost": [
+          "Elektro"
+        ],
+        "damage": 20,
+        "effect": "Lade ein Pokémon auf deiner Bank mit Energie auf."
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 0,
+    "rarity": "Sonderkarte ★",
+    "artworkUrl": "/images/pokemon/172.webp",
+    "cryUrl": "/audio/cries/172.ogg",
+    "cardImageUrl": "/images/cards/A4-171.webp",
+    "cdnCardUrl": "https://assets.tcgdex.net/en/tcgp/A4/171/high.webp",
+    "preDexId": null,
+    "evolvesFrom": null
+  },
+  {
+    "id": "J1-152",
+    "dexId": 152,
+    "name": "Endivie",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/152.webp",
+    "cryUrl": "/audio/cries/152.ogg",
+    "cardImageUrl": "/images/cards/J1-152.webp"
+  },
+  {
+    "id": "J1-155",
+    "dexId": 155,
+    "name": "Feurigel",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Glut",
+        "cost": [
+          "Feuer"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/155.webp",
+    "cryUrl": "/audio/cries/155.ogg",
+    "cardImageUrl": "/images/cards/J1-155.webp"
+  },
+  {
+    "id": "J1-158",
+    "dexId": 158,
+    "name": "Karnimani",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/158.webp",
+    "cryUrl": "/audio/cries/158.ogg",
+    "cardImageUrl": "/images/cards/J1-158.webp"
+  },
+  {
+    "id": "J1-175",
+    "dexId": 175,
+    "name": "Togepi",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Metronom",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Deux Diamant",
+    "artworkUrl": "/images/pokemon/175.webp",
+    "cryUrl": "/audio/cries/175.ogg",
+    "cardImageUrl": "/images/cards/J1-175.webp"
+  },
+  {
+    "id": "J1-181",
+    "dexId": 181,
+    "name": "Ampharos",
+    "types": [
+      "Elektro"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Donnerschlag",
+        "cost": [
+          "Elektro",
+          "Elektro"
+        ],
+        "damage": 70,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Trois Diamant",
+    "artworkUrl": "/images/pokemon/181.webp",
+    "cryUrl": "/audio/cries/181.ogg",
+    "cardImageUrl": "/images/cards/J1-181.webp",
+    "evolvesFrom": "Waaty"
+  },
+  {
+    "id": "J1-183",
+    "dexId": 183,
+    "name": "Marill",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubbstrahl",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/183.webp",
+    "cryUrl": "/audio/cries/183.ogg",
+    "cardImageUrl": "/images/cards/J1-183.webp"
+  },
+  {
+    "id": "J1-196",
+    "dexId": 196,
+    "name": "Psiana",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Psychokinese",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Trois Diamant",
+    "artworkUrl": "/images/pokemon/196.webp",
+    "cryUrl": "/audio/cries/196.ogg",
+    "cardImageUrl": "/images/cards/J1-196.webp",
+    "evolvesFrom": "Evoli"
+  },
+  {
+    "id": "J1-197",
+    "dexId": 197,
+    "name": "Nachtara",
+    "types": [
+      "Finsternis"
+    ],
+    "hp": 100,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Finsteraura",
+        "cost": [
+          "Finsternis",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Trois Diamant",
+    "artworkUrl": "/images/pokemon/197.webp",
+    "cryUrl": "/audio/cries/197.ogg",
+    "cardImageUrl": "/images/cards/J1-197.webp",
+    "evolvesFrom": "Evoli"
+  },
+  {
+    "id": "J1-208",
+    "dexId": 208,
+    "name": "Stahlos",
+    "types": [
+      "Metall"
+    ],
+    "hp": 140,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Eisenschweif",
+        "cost": [
+          "Metall",
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 70,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamant",
+    "artworkUrl": "/images/pokemon/208.webp",
+    "cryUrl": "/audio/cries/208.ogg",
+    "cardImageUrl": "/images/cards/J1-208.webp",
+    "evolvesFrom": "Onix"
+  },
+  {
+    "id": "J1-212",
+    "dexId": 212,
+    "name": "Scherox",
+    "types": [
+      "Metall"
+    ],
+    "hp": 120,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Patronenhieb",
+        "cost": [
+          "Metall",
+          "Farblos"
+        ],
+        "damage": 60,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Trois Diamant",
+    "artworkUrl": "/images/pokemon/212.webp",
+    "cryUrl": "/audio/cries/212.ogg",
+    "cardImageUrl": "/images/cards/J1-212.webp",
+    "evolvesFrom": "Sichlor"
+  },
+  {
+    "id": "J1-249",
+    "dexId": 249,
+    "name": "Lugia-ex",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 150,
+    "stage": "Basis",
+    "isEx": true,
+    "attacks": [
+      {
+        "name": "Luftstoß",
+        "cost": [
+          "Farblos",
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Ex ★",
+    "artworkUrl": "/images/pokemon/249.webp",
+    "cryUrl": "/audio/cries/249.ogg",
+    "cardImageUrl": "/images/cards/J1-249.webp"
+  },
+  {
+    "id": "J1-250",
+    "dexId": 250,
+    "name": "Ho-Oh-ex",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 150,
+    "stage": "Basis",
+    "isEx": true,
+    "attacks": [
+      {
+        "name": "Läuterfeuer",
+        "cost": [
+          "Feuer",
+          "Feuer",
+          "Farblos"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Ex ★",
+    "artworkUrl": "/images/pokemon/250.webp",
+    "cryUrl": "/audio/cries/250.ogg",
+    "cardImageUrl": "/images/cards/J1-250.webp"
+  },
+  {
+    "id": "TOOL-001",
+    "dexId": 0,
+    "name": "Muskelband",
+    "types": [],
+    "hp": 0,
+    "stage": "Trainer",
+    "isEx": false,
+    "attacks": [],
+    "retreat": 0,
+    "rarity": "Item",
+    "artworkUrl": "/images/cards/TOOL-001.webp",
+    "cryUrl": "",
+    "cardImageUrl": "/images/cards/TOOL-001.webp",
+    "trainerType": "Ausrüstung",
+    "trainerEffect": "Attacken dieses Pokémon fügen +10 Schaden zu."
+  },
+  {
+    "id": "TOOL-002",
+    "dexId": 0,
+    "name": "Wundersames Amulett",
+    "types": [],
+    "hp": 0,
+    "stage": "Trainer",
+    "isEx": false,
+    "attacks": [],
+    "retreat": 0,
+    "rarity": "Item",
+    "artworkUrl": "/images/cards/TOOL-002.webp",
+    "cryUrl": "",
+    "cardImageUrl": "/images/cards/TOOL-002.webp",
+    "trainerType": "Ausrüstung",
+    "trainerEffect": "Dieses Pokémon erhält +20 maximale Kraftpunkte."
+  },
+  {
+    "id": "TOOL-003",
+    "dexId": 0,
+    "name": "EP-Teiler",
+    "types": [],
+    "hp": 0,
+    "stage": "Trainer",
+    "isEx": false,
+    "attacks": [],
+    "retreat": 0,
+    "rarity": "Item",
+    "artworkUrl": "/images/cards/TOOL-003.webp",
+    "cryUrl": "",
+    "cardImageUrl": "/images/cards/TOOL-003.webp",
+    "trainerType": "Ausrüstung",
+    "trainerEffect": "Lädt das angelegte Pokémon mit zusätzlicher Energie auf."
   }
 ]

@@ -1617,5 +1617,30 @@
   "starter_selected": {
     "file": "/audio/voice/starter_selected.m4a",
     "text": "Gute Wahl! Auf in den Kampf!"
-  }
+  },
+  "vs_lorelei": "Lorelei aus der Top Vier fordert dich heraus! Hüte dich vor ihren eisigen Attacken!",
+  "vs_bruno": "Bruno aus der Top Vier tritt an! Seine Kampf-Pokémon haben gewaltige Muskelkraft!",
+  "vs_agathe": "Agathe aus der Top Vier fordert dich heraus! Lass dich von ihren Geistern nicht erschrecken!",
+  "vs_siegfried": "Drachen-Meister Siegfried fordert dich heraus! Nur die besten Trainer bestehen gegen seine Drachen!",
+  "vs_gary_champ": "Champion Gary erwartet dich zum großen Finale! Zeig ihm, was in dir und deinen Pokémon steckt!",
+  "champion_victory": "Unglaublich, Levi! Du hast die Pokémon-Liga gewonnen und bist der neue Champ von Kanto!",
+  "pichu_gift": "Eine riesige Überraschung! Professor Eich schenkt dir ein ganz besonderes Baby-Pokémon aus der Johto-Region: Pichu!",
+  "card_A4-171": "Pichu! Das süße Elektro-Maus-Baby und die Vorentwicklung von Pikachu!",
+  "quest_complete": "Großartig geforscht, Levi! Du hast die Forschungs-Aufgabe gemeistert! Hier ist dein neuer Belohnungs-Booster!",
+  "quest_eich_welcome": "Hallo Levi! Hier im Pokémon-Labor erforschen wir gemeinsam neue Karten! Hilf mir bei meinen Forschungs-Aufgaben!",
+  "quiz_welcome": "Willkommen zu Professor Eichs Pokémon-Quiz! Hör gut zu und zeig mir, wie gut du die Pokémon kennst!",
+  "quiz_correct": "Richtig geraten! Tolle Leistung!",
+  "quiz_wrong": "Oh, fast! Versuch es bei der nächsten Frage noch einmal!",
+  "quiz_victory": "Spitze, Levi! Du hast das Quiz bestanden! Hier ist dein Belohnungs-Booster!",
+  "memo_welcome": "Willkommen beim Poké-Memo! Finde alle passenden Pokémon-Pärchen!",
+  "memo_pair": "Ein Treffer! Du hast ein Pärchen gefunden!",
+  "memo_victory": "Klasse Gedächtnis, Levi! Du hast alle Pärchen gefunden! Hier ist dein neuer Booster-Pack!",
+  "vs_falk": "Arenaleiter Falk aus Viola City fordert dich heraus! Seine Flug-Pokémon beherrschen die Lüfte!",
+  "vs_kai": "Arenaleiter Kai aus Azalea City tritt an! Er ist ein wahrer Käfer-Experte!",
+  "vs_bianka": "Arenaleiterin Bianka aus Dukatia City fordert dich heraus! Pass auf ihr Miltank auf!",
+  "vs_jens": "Arenaleiter Jens aus Teak City fordert dich heraus! Seine Geister-Pokémon verblüffen jeden Trainer!",
+  "vs_hartwig": "Arenaleiter Hartwig aus Anemonia City tritt an! Er trainiert Tag und Nacht unter tosenden Wasserfällen!",
+  "vs_jasmin": "Arenaleiterin Jasmin aus Oliviana City fordert dich heraus! Ihr Stahlos hat eine eiserne Abwehr!",
+  "vs_norbert": "Arenaleiter Norbert aus Mahagonia City tritt an! Seine Eis-Pokémon frieren jeden Angriff ein!",
+  "vs_sandra": "Arenaleiterin Sandra aus Ebenholz City fordert dich heraus! Sie beherrscht mächtige Drachen!"
 }
