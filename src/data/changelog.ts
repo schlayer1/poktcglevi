@@ -10,11 +10,39 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '2.2.0';
-export const APP_BUILD_NAME = 'Die Große Erweiterung: Kanto-Liga, Thematische Booster, Trainingscamp & Die Johto-Reise';
-export const APP_BUILD_TAG = `Build ${APP_VERSION} (28.10.) • ${APP_BUILD_NAME}`;
+export const APP_VERSION = '2.2.1';
+export const APP_BUILD_NAME = 'Blitzschnelle Sprachausgabe, Universal-Rufe & Vollständige Vorlesefunktion';
+export const APP_BUILD_TAG = `Build ${APP_VERSION} (30.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
+  {
+    version: '2.2.1',
+    date: '30. Oktober 2026',
+    title: 'Blitzschnelle Sprachausgabe & Barrierefreie Vorlesefunktion',
+    badge: 'Audio-Turbo ⚡',
+    features: [
+      {
+        icon: '⚡',
+        title: 'Latenzfreie Audio-Engine & In-Memory Preloading',
+        description: 'Pokémon-Rufe und Sprachausgaben starten nun in unter 30 Millisekunden direkt aus dem Speicher, ganz ohne Pufferpausen.'
+      },
+      {
+        icon: '🎓',
+        title: 'Vollständige Vorlesefunktion bei Professor Eich',
+        description: 'Im Ruf- & Typen-Quiz werden nun alle Fragen automatisch laut und verständlich vorgelesen. Auch im Forschungs-Labor können Aufgaben jederzeit per Knopfdruck oder Antippen angehört werden.'
+      },
+      {
+        icon: '🔊',
+        title: '164 universelle Pokémon-Rufe (AAC / M4A)',
+        description: 'Alle Rufe wurden in das universelle AAC-Format konvertiert – für glasklaren, fehlerfreien Sound auf Android, iPad, iPhone und PC.'
+      },
+      {
+        icon: '🎙️',
+        title: '16 neue Amala-Kartenstimmen',
+        description: 'Alle neuen Johto-Pokémon (Endivie, Feurigel, Karnimani, Lugia-ex uvm.), Pichu und Ausrüstungen besitzen nun ihre offizielle deutsche Amala-Sprachausgabe.'
+      }
+    ]
+  },
   {
     version: '2.2.0',
     date: '28. Oktober 2026',

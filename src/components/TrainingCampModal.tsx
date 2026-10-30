@@ -18,6 +18,14 @@ export const TrainingCampModal: React.FC<TrainingCampModalProps> = ({
 }) => {
   const [activeMinigame, setActiveMinigame] = useState<'quiz' | 'memo' | null>(null);
 
+  React.useEffect(() => {
+    soundManager.playSfx('ok');
+    soundManager.playVoice(
+      'camp_welcome',
+      'Willkommen im Pokémon-Trainingscamp! Wähle ein Spiel: Das Ruf-Quiz mit Professor Eich oder das Poké-Memo!'
+    );
+  }, []);
+
   if (activeMinigame === 'quiz') {
     return (
       <QuizMinigameModal
@@ -84,9 +92,22 @@ export const TrainingCampModal: React.FC<TrainingCampModalProps> = ({
               <div className="w-12 h-12 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-2xl shadow font-black group-hover:scale-110 transition-transform">
                 🎓
               </div>
-              <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 uppercase tracking-wider">
-                Audio-Rätsel
-              </span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    soundManager.speakText('Ruf- und Typen-Quiz! Erkenne Pokémon an ihren Rufen und teste dein Typen-Wissen mit Professor Eich!');
+                  }}
+                  className="p-1 rounded-full bg-slate-800 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-slate-700 active:scale-90 shadow"
+                  title="Vorlesen"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                </button>
+                <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-amber-400/20 border border-amber-400/40 text-amber-300 uppercase tracking-wider">
+                  Audio-Rätsel
+                </span>
+              </div>
             </div>
 
             <div>
@@ -118,9 +139,22 @@ export const TrainingCampModal: React.FC<TrainingCampModalProps> = ({
               <div className="w-12 h-12 rounded-xl bg-sky-400 text-slate-950 flex items-center justify-center text-2xl shadow font-black group-hover:scale-110 transition-transform">
                 🃏
               </div>
-              <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-sky-400/20 border border-sky-400/40 text-sky-300 uppercase tracking-wider">
-                Suchspiel
-              </span>
+              <div className="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    soundManager.speakText('Poké-Memo! Finde passende Pärchen deiner eigenen Pokémon-Karten und trainiere dein Gedächtnis!');
+                  }}
+                  className="p-1 rounded-full bg-slate-800 hover:bg-sky-400 hover:text-slate-950 text-sky-300 border border-slate-700 active:scale-90 shadow"
+                  title="Vorlesen"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                </button>
+                <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-sky-400/20 border border-sky-400/40 text-sky-300 uppercase tracking-wider">
+                  Suchspiel
+                </span>
+              </div>
             </div>
 
             <div>

@@ -1642,5 +1642,100 @@
   "vs_hartwig": "Arenaleiter Hartwig aus Anemonia City tritt an! Er trainiert Tag und Nacht unter tosenden Wasserfällen!",
   "vs_jasmin": "Arenaleiterin Jasmin aus Oliviana City fordert dich heraus! Ihr Stahlos hat eine eiserne Abwehr!",
   "vs_norbert": "Arenaleiter Norbert aus Mahagonia City tritt an! Seine Eis-Pokémon frieren jeden Angriff ein!",
-  "vs_sandra": "Arenaleiterin Sandra aus Ebenholz City fordert dich heraus! Sie beherrscht mächtige Drachen!"
+  "vs_sandra": "Arenaleiterin Sandra aus Ebenholz City fordert dich heraus! Sie beherrscht mächtige Drachen!",
+  "camp_welcome": {
+    "file": "/audio/voice/camp_welcome.m4a",
+    "text": "Willkommen im Pokémon-Trainingscamp! Wähle ein Spiel: Das Ruf-Quiz mit Professor Eich oder das Poké-Memo!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "quiz_q1_intro": {
+    "file": "/audio/voice/quiz_q1_intro.m4a",
+    "text": "Frage 1: Hör gut hin! Welches Pokémon macht diesen Ruf?",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "quiz_q4_intro": {
+    "file": "/audio/voice/quiz_q4_intro.m4a",
+    "text": "Frage 4: Zweites Ruf-Rätsel! Zu welchem Pokémon gehört dieser Ruf?",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_a4_171": {
+    "file": "/audio/voice/cards/a4_171.m4a",
+    "text": "Pichu! Das süße Elektro-Baby-Pokémon mit 50 Kraftpunkten. Attacke: Funkelwurf mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_152": {
+    "file": "/audio/voice/cards/j1_152.m4a",
+    "text": "Endivie! Pflanzen-Pokémon mit 60 Kraftpunkten. Attacke: Rasierblatt mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_155": {
+    "file": "/audio/voice/cards/j1_155.m4a",
+    "text": "Feurigel! Feuer-Pokémon mit 60 Kraftpunkten. Attacke: Glut mit 30 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_158": {
+    "file": "/audio/voice/cards/j1_158.m4a",
+    "text": "Karnimani! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Aquaknarre mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_175": {
+    "file": "/audio/voice/cards/j1_175.m4a",
+    "text": "Togepi! Feenhaftes Pokémon mit 50 Kraftpunkten. Attacke: Metronom mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_181": {
+    "file": "/audio/voice/cards/j1_181.m4a",
+    "text": "Ampharos! Elektro-Pokémon mit 130 Kraftpunkten. Attacke: Donnerschlag mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_183": {
+    "file": "/audio/voice/cards/j1_183.m4a",
+    "text": "Marill! Wasser-Pokémon mit 60 Kraftpunkten. Attacke: Blubbstrahl mit 20 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_196": {
+    "file": "/audio/voice/cards/j1_196.m4a",
+    "text": "Psiana! Psycho-Pokémon mit 90 Kraftpunkten. Attacke: Psychokinese mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_197": {
+    "file": "/audio/voice/cards/j1_197.m4a",
+    "text": "Nachtara! Finsternis-Pokémon mit 100 Kraftpunkten. Attacke: Finsteraura mit 50 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_208": {
+    "file": "/audio/voice/cards/j1_208.m4a",
+    "text": "Stahlos! Gewaltiges Metall-Pokémon mit 140 Kraftpunkten. Attacke: Eisenschweif mit 70 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_212": {
+    "file": "/audio/voice/cards/j1_212.m4a",
+    "text": "Scherox! Blitzschnelles Metall-Pokémon mit 120 Kraftpunkten. Attacke: Patronenhieb mit 60 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_249": {
+    "file": "/audio/voice/cards/j1_249.m4a",
+    "text": "Lugia EX! Legendäres Pokémon mit 150 Kraftpunkten. Attacke: Luftstoß mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_j1_250": {
+    "file": "/audio/voice/cards/j1_250.m4a",
+    "text": "Ho-Oh EX! Legendäres Feuer-Pokémon mit 150 Kraftpunkten. Attacke: Läuterfeuer mit 90 Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_tool_001": {
+    "file": "/audio/voice/cards/tool_001.m4a",
+    "text": "Muskelband! Ausrüstungskarte. Verstärkt Attacken deines Pokémon um 10 zusätzlichen Schaden!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_tool_002": {
+    "file": "/audio/voice/cards/tool_002.m4a",
+    "text": "Wundersames Amulett! Ausrüstungskarte. Schenkt deinem Pokémon 20 extra Kraftpunkte!",
+    "voice": "de-DE-AmalaNeural"
+  },
+  "card_tool_003": {
+    "file": "/audio/voice/cards/tool_003.m4a",
+    "text": "EP-Teiler! Ausrüstungskarte. Lädt dein Pokémon mit zusätzlicher Energie auf!",
+    "voice": "de-DE-AmalaNeural"
+  }
 }

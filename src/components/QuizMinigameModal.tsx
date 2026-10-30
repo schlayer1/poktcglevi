@@ -35,14 +35,31 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
   const [isAnswerChecked, setIsAnswerChecked] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
   const [isFinished, setIsFinished] = useState<boolean>(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState<boolean>(false);
+
+  const playQuestionAudio = React.useCallback((q: Question, qIndex: number) => {
+    setIsPlayingAudio(true);
+    if (q.type === 'cry' && q.targetDexId) {
+      const introKey = qIndex === 0 ? 'quiz_q1_intro' : 'quiz_q4_intro';
+      const introFallback = qIndex === 0 ? 'Frage 1: Hör gut hin! Welches Pokémon macht diesen Ruf?' : 'Frage 4: Zweites Ruf-Rätsel! Zu welchem Pokémon gehört dieser Ruf?';
+
+      soundManager.playVoice(introKey, introFallback, () => {
+        setTimeout(() => {
+          soundManager.playCry(q.targetDexId!, () => {
+            setIsPlayingAudio(false);
+          });
+        }, 150);
+      });
+    } else {
+      const textToRead = `Frage ${qIndex + 1}: ${q.prompt} ${q.subPrompt || ''}`;
+      soundManager.speakText(textToRead, () => {
+        setIsPlayingAudio(false);
+      });
+    }
+  }, []);
 
   // Generate 5 questions on mount
   useEffect(() => {
-    soundManager.playVoice(
-      'quiz_welcome',
-      'Willkommen zu Professor Eichs Pokémon-Quiz! Hör gut zu und zeig mir, wie gut du die Pokémon kennst!'
-    );
-
     const generated: Question[] = [];
     const basisCards = allCards.filter((c) => c.stage === 'Basis' && !c.isEx);
     const evoCards = allCards.filter((c) => c.evolvesFrom && c.stage !== 'Basis');
@@ -149,20 +166,27 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
       options: legendOptions
     });
 
+    // Preload both cry audio clips into memory for instant zero-latency playback!
+    soundManager.preloadCry(cryCandidate.dexId);
+    soundManager.preloadCry(cryCandidate2.dexId);
+
     setQuestions(generated);
-  }, [allCards]);
+
+    // Welcome speech by Eich, immediately followed by Question 1 once finished
+    soundManager.playVoice(
+      'quiz_welcome',
+      'Willkommen zu Professor Eichs Pokémon-Quiz! Hör gut zu und zeig mir, wie gut du die Pokémon kennst!',
+      () => {
+        setTimeout(() => {
+          if (generated[0]) {
+            playQuestionAudio(generated[0], 0);
+          }
+        }, 350);
+      }
+    );
+  }, [allCards, playQuestionAudio]);
 
   const currentQ = questions[currentQIdx];
-
-  // Play cry automatically when a cry question appears
-  useEffect(() => {
-    if (currentQ && currentQ.type === 'cry' && currentQ.targetDexId) {
-      const timer = setTimeout(() => {
-        soundManager.playCry(currentQ.targetDexId!);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [currentQIdx, currentQ]);
 
   const handleSelectOption = (idx: number) => {
     if (isAnswerChecked) return;
@@ -182,9 +206,13 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
 
   const handleNext = () => {
     if (currentQIdx < questions.length - 1) {
-      setCurrentQIdx((prev) => prev + 1);
+      const nextIdx = currentQIdx + 1;
+      setCurrentQIdx(nextIdx);
       setSelectedOptIdx(null);
       setIsAnswerChecked(false);
+      setTimeout(() => {
+        playQuestionAudio(questions[nextIdx], nextIdx);
+      }, 300);
     } else {
       // Finished!
       setIsFinished(true);
@@ -249,8 +277,8 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
               </div>
             </div>
 
-            {/* Question Card Banner */}
-            <div className="bg-slate-950/80 rounded-2xl border-2 border-slate-700 p-4 text-center space-y-2 shadow-inner">
+            {/* Question Card Banner with Voice Button */}
+            <div className="bg-slate-950/80 rounded-2xl border-2 border-slate-700 p-4 text-center space-y-2.5 shadow-inner">
               <h3 className="text-base sm:text-lg font-black text-white leading-snug">
                 {currentQ.prompt}
               </h3>
@@ -260,21 +288,28 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
                 </p>
               )}
 
-              {/* Sound replay button for cry questions */}
-              {currentQ.type === 'cry' && currentQ.targetDexId && (
-                <div className="pt-2">
-                  <button
-                    onClick={() => soundManager.playCry(currentQ.targetDexId!)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-black text-xs shadow-md transition-transform active:scale-95 cursor-pointer animate-pulse"
-                  >
-                    <Volume2 className="w-4 h-4" />
-                    <span>Ruf noch einmal anhören! 🔊</span>
-                  </button>
-                </div>
-              )}
+              {/* Sound replay button for ALL questions (Crucial for Levi who cannot read yet) */}
+              <div className="pt-1">
+                <button
+                  onClick={() => playQuestionAudio(currentQ, currentQIdx)}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-black shadow-md transition-all active:scale-95 cursor-pointer ${
+                    isPlayingAudio
+                      ? 'bg-amber-300 text-slate-950 scale-105 shadow-[0_0_20px_rgba(251,191,36,0.9)] animate-pulse'
+                      : 'bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950'
+                  }`}
+                  title="Frage vorlesen"
+                >
+                  <Volume2 className={`w-4 h-4 ${isPlayingAudio ? 'animate-bounce' : ''}`} />
+                  <span>
+                    {isPlayingAudio
+                      ? (currentQ.type === 'cry' ? 'Spielt Ruf ab... 🔊' : 'Liest Frage vor... 🔊')
+                      : (currentQ.type === 'cry' ? 'Ruf & Frage noch einmal anhören! 🔊' : 'Frage vorlesen! 🔊')}
+                  </span>
+                </button>
+              </div>
             </div>
 
-            {/* 3 Answer Options */}
+            {/* 3 Answer Options with Voice Preview */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {currentQ.options.map((opt, idx) => {
                 const isSelected = selectedOptIdx === idx;
@@ -297,6 +332,19 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
                     onClick={() => handleSelectOption(idx)}
                     className={`relative rounded-2xl border-2 p-3 flex flex-col items-center justify-between text-center gap-2 transition-all cursor-pointer ${optBorder} active:scale-95`}
                   >
+                    {/* Speaker Icon to hear card name */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        soundManager.speakText(opt.card.name);
+                      }}
+                      className="absolute top-2 left-2 z-20 p-1.5 rounded-full bg-slate-900/90 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-slate-700 shadow active:scale-90 transition-colors"
+                      title={`${opt.card.name} vorlesen`}
+                    >
+                      <Volume2 className="w-3.5 h-3.5" />
+                    </button>
+
                     <div className="w-20 h-20 rounded-xl bg-slate-900 border border-slate-700 p-1 flex items-center justify-center overflow-hidden shrink-0 shadow-inner">
                       <img
                         src={opt.card.artworkUrl}

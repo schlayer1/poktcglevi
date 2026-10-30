@@ -35,6 +35,7 @@ class SoundManager {
   // Authentic TCG Pocket Audio Elements
   private bgmAudio: HTMLAudioElement | null = null;
   private sfxAudioCache: Map<string, HTMLAudioElement> = new Map();
+  private audioPool: Map<string, HTMLAudioElement> = new Map();
 
   // BGM scheduler state (synthesizer fallback)
   private currentTrack: BgmTrack = null;
@@ -580,14 +581,77 @@ class SoundManager {
     } catch {}
   }
 
-  // --- Pokémon Cry playback ---
-  public playCry(dexId: number) {
-    if (this.muted) return;
+  // --- Helper: Get or create pooled HTMLAudioElement ---
+  private getOrCreateAudio(src: string): HTMLAudioElement {
+    let audio = this.audioPool.get(src);
+    if (!audio) {
+      audio = new Audio(src);
+      audio.preload = 'auto';
+      this.audioPool.set(src, audio);
+    }
+    return audio;
+  }
+
+  /**
+   * Pre-loads an audio file in memory so playback starts in < 20ms without network latency.
+   */
+  public preloadAudio(src: string) {
+    if (typeof window === 'undefined') return;
     try {
-      const audio = new Audio(`/audio/cries/${dexId}.ogg`);
-      audio.volume = this.sfxVolume * 0.65;
-      audio.play().catch(() => {});
+      this.getOrCreateAudio(src);
     } catch {}
+  }
+
+  public preloadCry(dexId: number) {
+    if (!dexId) return;
+    this.preloadAudio(`/audio/cries/${dexId}.m4a`);
+  }
+
+  public preloadCardVoice(card: { id: string; name?: string }) {
+    if (!card || !card.id) return;
+    const cleanId = card.id.toLowerCase().replace(/-/g, '_');
+    const voiceKey = `card_${cleanId}`;
+    const manifestFile = this.voiceManifest[voiceKey]?.file;
+    if (manifestFile) {
+      this.preloadAudio(manifestFile);
+    } else {
+      this.preloadAudio(`/audio/voice/cards/${cleanId}.m4a`);
+    }
+  }
+
+  // --- Pokémon Cry playback (Native AAC .m4a with .ogg fallback) ---
+  public playCry(dexId: number, onEnded?: () => void) {
+    if (this.muted || !dexId) {
+      if (onEnded) onEnded();
+      return;
+    }
+
+    const m4aSrc = `/audio/cries/${dexId}.m4a`;
+    const oggSrc = `/audio/cries/${dexId}.ogg`;
+
+    const audio = this.getOrCreateAudio(m4aSrc);
+    audio.volume = Math.min(1.0, this.sfxVolume * 1.15); // clear, audible volume for young children
+    audio.currentTime = 0;
+
+    if (onEnded) {
+      audio.addEventListener('ended', onEnded, { once: true });
+    }
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback to ogg if m4a fails
+        const fallbackAudio = this.getOrCreateAudio(oggSrc);
+        fallbackAudio.volume = Math.min(1.0, this.sfxVolume * 1.15);
+        fallbackAudio.currentTime = 0;
+        if (onEnded) {
+          fallbackAudio.addEventListener('ended', onEnded, { once: true });
+        }
+        fallbackAudio.play().catch(() => {
+          if (onEnded) onEnded();
+        });
+      });
+    }
   }
 
   // --- Speech Output ---
@@ -595,6 +659,7 @@ class SoundManager {
     if (this.currentVoiceAudio) {
       try {
         this.currentVoiceAudio.pause();
+        this.currentVoiceAudio.currentTime = 0;
       } catch {}
       this.currentVoiceAudio = null;
     }
@@ -605,76 +670,167 @@ class SoundManager {
   }
 
   /**
-   * Safe speakText: Browser speechSynthesis is intentionally muted to guarantee
-   * 100% studio-quality audio across the app (no robotic voices for Levi).
+   * Reads any text aloud in warm German speech.
+   * Essential for Levi since he cannot read written text yet.
    */
-  public speakText(text: string) {
-    if (this.muted) return;
+  public speakText(text: string, onEnded?: () => void) {
+    if (this.muted || !text.trim()) {
+      if (onEnded) onEnded();
+      return;
+    }
+
     this.stopVoice();
-    // Intentionally suppressed in favor of studio .m4a audio assets.
-    console.debug('[SoundManager] speakText suppressed to preserve studio quality:', text);
+
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      this.startDucking();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'de-DE';
+      if (this.speechVoice) {
+        utterance.voice = this.speechVoice;
+      }
+      utterance.volume = this.voiceVolume;
+      utterance.rate = 0.92; // Slightly calmer tempo for children
+      utterance.pitch = 1.05; // Friendly, warm tone
+
+      utterance.onend = () => {
+        this.stopDucking();
+        if (onEnded) onEnded();
+      };
+      utterance.onerror = () => {
+        this.stopDucking();
+        if (onEnded) onEnded();
+      };
+
+      window.speechSynthesis.speak(utterance);
+    } else {
+      if (onEnded) onEnded();
+    }
   }
 
   /**
    * Plays authentic studio voice for a specific card (intro, stats & attacks).
+   * If pre-recorded studio file is not found, dynamically speaks card stats aloud!
    */
-  public playCardVoice(card: { id: string; dexId?: number; name?: string }) {
-    if (this.muted) return;
+  public playCardVoice(card: { id: string; dexId?: number; name?: string; types?: string[]; hp?: number; attacks?: { name: string; damage: number }[]; stage?: string; trainerEffect?: string }, onEnded?: () => void) {
+    if (this.muted) {
+      if (onEnded) onEnded();
+      return;
+    }
+
     const cleanId = card.id.toLowerCase().replace(/-/g, '_');
     const voiceKey = `card_${cleanId}`;
 
-    // Star Pokémon lore priority (e.g. card_glurak, card_pikachu, etc.)
+    // 1. Star Pokémon lore priority (e.g. card_glurak, card_pikachu, etc.)
     const nameClean = card.name ? card.name.toLowerCase().replace(/[^a-z0-9]/g, '') : '';
     const starLoreKey = `card_${nameClean}`;
 
     if (this.voiceManifest[starLoreKey]?.file) {
-      this.playVoice(starLoreKey);
+      this.playVoice(starLoreKey, undefined, onEnded);
       return;
     }
 
+    // 2. Exact card key in manifest
     if (this.voiceManifest[voiceKey]?.file) {
-      this.playVoice(voiceKey);
+      this.playVoice(voiceKey, undefined, onEnded);
       return;
     }
 
-    // Direct path fallback for card voice
+    // 3. Direct path fallback for card voice
     const directPath = `/audio/voice/cards/${cleanId}.m4a`;
     this.stopVoice();
-    const audio = new Audio(directPath);
+
+    const audio = this.getOrCreateAudio(directPath);
     audio.volume = this.voiceVolume;
+    audio.currentTime = 0;
     this.currentVoiceAudio = audio;
     this.startDucking();
-    audio.addEventListener('ended', () => this.stopDucking(), { once: true });
+
+    audio.addEventListener('ended', () => {
+      this.stopDucking();
+      if (onEnded) onEnded();
+    }, { once: true });
+
     audio.addEventListener('error', () => {
       this.stopDucking();
-      this.playVoice('card_detail_intro');
+      // Dynamically read card aloud so Levi always hears what the card is!
+      this.fallbackSpeakCard(card, onEnded);
     }, { once: true });
 
     audio.play().catch(() => {
       this.stopDucking();
-      this.playVoice('card_detail_intro');
+      this.fallbackSpeakCard(card, onEnded);
     });
   }
 
-  public playVoice(key: string, fallbackText?: string) {
-    if (this.muted) return;
+  private fallbackSpeakCard(card: { name?: string; types?: string[]; hp?: number; attacks?: { name: string; damage: number }[]; trainerEffect?: string; stage?: string }, onEnded?: () => void) {
+    if (!card.name) {
+      if (onEnded) onEnded();
+      return;
+    }
+    let text = `${card.name}! `;
+    if (card.stage === 'Trainer') {
+      text += `Trainerkarte. ${card.trainerEffect || ''}`;
+    } else {
+      if (card.types && card.types.length > 0) {
+        text += `${card.types.join(' und ')}-Pokémon mit ${card.hp || 60} Kraftpunkten. `;
+      }
+      if (card.attacks && card.attacks.length > 0) {
+        text += `Attacke: ${card.attacks[0].name}`;
+        if (card.attacks[0].damage > 0) {
+          text += ` mit ${card.attacks[0].damage} Schaden!`;
+        }
+      }
+    }
+    this.speakText(text, onEnded);
+  }
+
+  public playVoice(key: string, fallbackText?: string, onEnded?: () => void) {
+    if (this.muted) {
+      if (onEnded) onEnded();
+      return;
+    }
+
     this.stopVoice();
 
     const manifestEntry = this.voiceManifest[key];
 
     if (manifestEntry?.file) {
-      const audio = new Audio(manifestEntry.file);
+      const audio = this.getOrCreateAudio(manifestEntry.file);
       audio.volume = this.voiceVolume;
+      audio.currentTime = 0;
       this.currentVoiceAudio = audio;
       this.startDucking();
-      audio.addEventListener('ended', () => this.stopDucking(), { once: true });
-      audio.addEventListener('error', () => this.stopDucking(), { once: true });
+
+      audio.addEventListener('ended', () => {
+        this.stopDucking();
+        if (onEnded) onEnded();
+      }, { once: true });
+
+      audio.addEventListener('error', () => {
+        this.stopDucking();
+        if (fallbackText) {
+          this.speakText(fallbackText, onEnded);
+        } else if (onEnded) {
+          onEnded();
+        }
+      }, { once: true });
 
       audio.play().catch(() => {
         this.stopDucking();
-        // Fallback suppressed to prevent robotic browser speech
+        if (fallbackText) {
+          this.speakText(fallbackText, onEnded);
+        } else if (onEnded) {
+          onEnded();
+        }
       });
       return;
+    }
+
+    // If no pre-recorded audio file exists, speak fallbackText aloud for Levi!
+    if (fallbackText) {
+      this.speakText(fallbackText, onEnded);
+    } else if (onEnded) {
+      onEnded();
     }
   }
 }

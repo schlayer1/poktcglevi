@@ -11,19 +11,37 @@ interface CardDetailModalProps {
 
 export const CardDetailModal: React.FC<CardDetailModalProps> = ({ card, onClose }) => {
   if (!card) return null;
+  const [isSpeaking, setIsSpeaking] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    // Autoplay authentic cry and studio card presentation for Levi
+    // Autoplay authentic cry first, then smoothly introduce card details for Levi
+    let isCancelled = false;
+    setIsSpeaking(true);
+
     const timer = setTimeout(() => {
-      soundManager.playCry(card.dexId);
-      soundManager.playCardVoice(card);
-    }, 250);
-    return () => clearTimeout(timer);
+      soundManager.playCry(card.dexId, () => {
+        if (!isCancelled) {
+          setTimeout(() => {
+            soundManager.playCardVoice(card, () => {
+              if (!isCancelled) setIsSpeaking(false);
+            });
+          }, 200);
+        }
+      });
+    }, 200);
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(timer);
+      soundManager.stopVoice();
+    };
   }, [card]);
 
   const handleSpeak = () => {
-    soundManager.playCry(card.dexId);
-    soundManager.playCardVoice(card);
+    setIsSpeaking(true);
+    soundManager.playCardVoice(card, () => {
+      setIsSpeaking(false);
+    });
   };
 
   return (
@@ -57,10 +75,14 @@ export const CardDetailModal: React.FC<CardDetailModalProps> = ({ card, onClose 
 
             <button
               onClick={handleSpeak}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-xs shadow active:scale-95 transition-transform cursor-pointer"
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full font-bold text-xs shadow transition-all active:scale-95 cursor-pointer ${
+                isSpeaking
+                  ? 'bg-amber-300 text-slate-950 scale-105 shadow-[0_0_15px_rgba(251,191,36,0.8)] animate-pulse'
+                  : 'bg-amber-400 hover:bg-amber-300 text-slate-950'
+              }`}
             >
-              <Volume2 className="w-4 h-4" />
-              <span>Vorlesen</span>
+              <Volume2 className={`w-4 h-4 ${isSpeaking ? 'animate-bounce' : ''}`} />
+              <span>{isSpeaking ? 'Liest vor...' : 'Vorlesen'}</span>
             </button>
           </div>
 

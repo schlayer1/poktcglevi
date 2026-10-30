@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import { Sparkles, Trophy, CheckCircle2, Gift, X, PackageOpen, ArrowRight } from 'lucide-react';
+import { Sparkles, Trophy, CheckCircle2, Gift, X, PackageOpen, ArrowRight, Volume2 } from 'lucide-react';
 import { storageService, ResearchQuest } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
 
@@ -23,6 +23,11 @@ export const ResearchQuestsModal: React.FC<ResearchQuestsModalProps> = ({
       'Hallo Levi! Hier im Pokémon-Labor erforschen wir gemeinsam neue Karten! Hilf mir bei meinen Forschungs-Aufgaben!'
     );
   }, []);
+
+  const speakQuest = (q: ResearchQuest) => {
+    soundManager.playSfx('button');
+    soundManager.speakText(`Aufgabe: ${q.title}! ${q.description}. Fortschritt: ${q.progress} von ${q.target}.`);
+  };
 
   const handleClaim = (questId: string) => {
     const success = storageService.claimQuestReward(questId);
@@ -83,9 +88,18 @@ export const ResearchQuestsModal: React.FC<ResearchQuestsModalProps> = ({
                   </span>
                 )}
               </div>
-              <h2 className="text-lg sm:text-2xl font-black text-white">
-                Professor Eichs Aufgaben
-              </h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg sm:text-2xl font-black text-white">
+                  Professor Eichs Aufgaben
+                </h2>
+                <button
+                  onClick={() => soundManager.playVoice('quest_eich_welcome', 'Hallo Levi! Hier im Pokémon-Labor erforschen wir gemeinsam neue Karten! Hilf mir bei meinen Forschungs-Aufgaben!')}
+                  className="p-1 rounded-full bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-300 border border-emerald-400/50 shadow active:scale-90 transition-transform cursor-pointer"
+                  title="Begrüßung vorlesen"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                </button>
+              </div>
               <p className="text-[11px] sm:text-xs text-slate-300">
                 Erfülle Aufgaben im Duell & verdiene neue Booster-Packs!
               </p>
@@ -109,7 +123,8 @@ export const ResearchQuestsModal: React.FC<ResearchQuestsModalProps> = ({
             return (
               <div
                 key={quest.id}
-                className={`relative rounded-2xl border-2 p-3 sm:p-4 transition-all flex flex-col gap-2.5 overflow-hidden ${
+                onClick={() => speakQuest(quest)}
+                className={`relative rounded-2xl border-2 p-3 sm:p-4 transition-all flex flex-col gap-2.5 overflow-hidden cursor-pointer ${
                   quest.isClaimed
                     ? 'bg-slate-950/60 border-slate-800 opacity-60'
                     : isCompleted
@@ -123,9 +138,21 @@ export const ResearchQuestsModal: React.FC<ResearchQuestsModalProps> = ({
                       {quest.icon}
                     </div>
                     <div>
-                      <h3 className="font-black text-sm sm:text-base text-white">
-                        {quest.title}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-black text-sm sm:text-base text-white">
+                          {quest.title}
+                        </h3>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            speakQuest(quest);
+                          }}
+                          className="p-1 rounded-full bg-slate-800 hover:bg-emerald-400 hover:text-slate-950 text-emerald-300 border border-slate-700 active:scale-90 transition-colors shadow"
+                          title="Aufgabe vorlesen"
+                        >
+                          <Volume2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                       <p className="text-xs text-slate-300 font-medium leading-snug">
                         {quest.description}
                       </p>

@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti';
 import { Card } from '../types/game';
 import { soundManager } from '../services/soundManager';
 import { storageService } from '../services/storageService';
-import { Sparkles, Trophy, X, RotateCcw, CheckCircle2, PackageOpen } from 'lucide-react';
+import { Sparkles, Trophy, X, RotateCcw, CheckCircle2, PackageOpen, Volume2 } from 'lucide-react';
 import { EnergyBadge } from './EnergyBadge';
 
 interface MemoMinigameModalProps {
@@ -108,8 +108,11 @@ export const MemoMinigameModal: React.FC<MemoMinigameModalProps> = ({
         // MATCH!
         setTimeout(() => {
           soundManager.playSfx('star_rare');
-          soundManager.playVoice('memo_pair', 'Ein Treffer! Du hast ein Pärchen gefunden!');
-          soundManager.playCry(firstCard.dexId);
+          soundManager.playVoice('memo_pair', 'Ein Treffer! Du hast ein Pärchen gefunden!', () => {
+            setTimeout(() => {
+              soundManager.playCry(firstCard.dexId);
+            }, 150);
+          });
 
           const matchedDeck = [...deck];
           matchedDeck[firstIdx].isMatched = true;
@@ -172,9 +175,18 @@ export const MemoMinigameModal: React.FC<MemoMinigameModalProps> = ({
               <span className="text-[10px] font-black uppercase text-sky-400 tracking-wider block">
                 Professor Eichs Trainingscamp
               </span>
-              <h2 className="text-base sm:text-xl font-black text-white">
-                Poké-Memo • Karten-Suchspiel
-              </h2>
+              <div className="flex items-center gap-2">
+                <h2 className="text-base sm:text-xl font-black text-white">
+                  Poké-Memo • Karten-Suchspiel
+                </h2>
+                <button
+                  onClick={() => soundManager.playVoice('memo_welcome', 'Willkommen beim Poké-Memo! Finde alle passenden Pokémon-Pärchen!')}
+                  className="p-1 rounded-full bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 border border-sky-400/50 shadow active:scale-90 transition-transform cursor-pointer"
+                  title="Anleitung vorlesen"
+                >
+                  <Volume2 className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
           </div>
 
