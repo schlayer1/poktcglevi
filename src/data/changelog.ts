@@ -11,7 +11,7 @@ export interface ChangelogEntry {
 }
 
 export const APP_VERSION = '2.2.2';
-export const APP_BUILD_NAME = 'Poké-Memo mit 4 Schwierigkeitsstufen & FireTab 11 Display-Optimierung';
+export const APP_BUILD_NAME = 'Poké-Memo mit 3 Schwierigkeitsstufen & FireTab 11 Display-Optimierung';
 export const APP_BUILD_TAG = `Build ${APP_VERSION} (30.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
@@ -23,8 +23,8 @@ export const CHANGELOG_DATA: ChangelogEntry[] = [
     features: [
       {
         icon: '🎚️',
-        title: '4 flexible Schwierigkeitsstufen im Poké-Memo',
-        description: 'Wähle zwischen Leicht (4 Pärchen / 8 Karten), Mittel (6 Pärchen / 12 Karten), Schwer (8 Pärchen / 16 Karten) und Profi (10 Pärchen / 20 Karten) – meistere den Profi-Modus für 2 Gratis-Booster!'
+        title: '3 knackige Schwierigkeitsstufen im Poké-Memo',
+        description: 'Wähle zwischen Mittel (6 Pärchen / 12 Karten), Schwer (8 Pärchen / 16 Karten) und Profi (10 Pärchen / 20 Karten) – meistere den Profi-Modus für 2 Gratis-Booster!'
       },
       {
         icon: '📱',

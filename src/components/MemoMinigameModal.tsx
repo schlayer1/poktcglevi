@@ -12,7 +12,7 @@ interface MemoMinigameModalProps {
   onOpenBoosters?: () => void;
 }
 
-export type MemoDifficulty = 'easy' | 'medium' | 'hard' | 'pro';
+export type MemoDifficulty = 'medium' | 'hard' | 'pro';
 
 interface DifficultyConfig {
   id: MemoDifficulty;
@@ -30,20 +30,6 @@ interface DifficultyConfig {
 }
 
 const MEMO_DIFFICULTIES: Record<MemoDifficulty, DifficultyConfig> = {
-  easy: {
-    id: 'easy',
-    pairs: 4,
-    label: 'Leicht',
-    badge: '4 🌱',
-    cols: 'grid-cols-4',
-    maxW: 'max-w-xl',
-    cardMaxH: 'max-h-[30dvh]',
-    artSize: 'w-16 h-16 sm:w-22 sm:h-22',
-    nameSize: 'text-xs sm:text-sm',
-    hpSize: 'text-[11px] sm:text-xs',
-    boosters: 1,
-    voiceDesc: 'Schwierigkeit Leicht: Finde vier Pärchen!'
-  },
   medium: {
     id: 'medium',
     pairs: 6,
@@ -283,7 +269,7 @@ export const MemoMinigameModal: React.FC<MemoMinigameModalProps> = ({
 
           {/* Difficulty Selector Tabs */}
           <div className="flex items-center gap-1 bg-slate-950/90 p-1 rounded-xl border border-slate-700/80 shadow-inner">
-            {(['easy', 'medium', 'hard', 'pro'] as MemoDifficulty[]).map((d) => {
+            {(['medium', 'hard', 'pro'] as MemoDifficulty[]).map((d) => {
               const active = difficulty === d;
               const c = MEMO_DIFFICULTIES[d];
               return (
