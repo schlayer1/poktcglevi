@@ -10,11 +10,34 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '2.2.1';
-export const APP_BUILD_NAME = 'Blitzschnelle Sprachausgabe, Universal-Rufe & Vollständige Vorlesefunktion';
+export const APP_VERSION = '2.2.2';
+export const APP_BUILD_NAME = 'Poké-Memo mit 4 Schwierigkeitsstufen & FireTab 11 Display-Optimierung';
 export const APP_BUILD_TAG = `Build ${APP_VERSION} (30.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
+  {
+    version: '2.2.2',
+    date: '30. Oktober 2026',
+    title: 'Poké-Memo Schwierigkeitsstufen & Display-Optimierung',
+    badge: 'Memo-Upgrade 🃏',
+    features: [
+      {
+        icon: '🎚️',
+        title: '4 flexible Schwierigkeitsstufen im Poké-Memo',
+        description: 'Wähle zwischen Leicht (4 Pärchen / 8 Karten), Mittel (6 Pärchen / 12 Karten), Schwer (8 Pärchen / 16 Karten) und Profi (10 Pärchen / 20 Karten) – meistere den Profi-Modus für 2 Gratis-Booster!'
+      },
+      {
+        icon: '📱',
+        title: 'Maßgeschneidert für Amazon Fire Max 11 & Tablets',
+        description: 'Dynamisches 4- und 5-Spalten-Raster mit automatischer dVH-Höhenanpassung: Alle Karten passen im Querformat ohne vertikales Scrollen komplett auf Levis Tablet-Bildschirm.'
+      },
+      {
+        icon: '🗣️',
+        title: 'Vollständige Sprachausgabe & Audio-Begleitung',
+        description: 'Jeder Stufenwechsel wird laut und verständlich vorgelesen. Ein neuer Lautsprecher-Button liest den aktuellen Spielstand vor, und bei jedem Treffer erklingt der echte Pokémon-Ruf!'
+      }
+    ]
+  },
   {
     version: '2.2.1',
     date: '30. Oktober 2026',
