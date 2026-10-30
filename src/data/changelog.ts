@@ -10,11 +10,39 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '2.2.2';
-export const APP_BUILD_NAME = 'Poké-Memo mit 3 Schwierigkeitsstufen & FireTab 11 Display-Optimierung';
+export const APP_VERSION = '2.2.3';
+export const APP_BUILD_NAME = '8 TCG Pocket Boosterpacks mit Turtok, Bisaflor, Lugia & Ho-Oh';
 export const APP_BUILD_TAG = `Build ${APP_VERSION} (30.10.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
+  {
+    version: '2.2.3',
+    date: '30. Oktober 2026',
+    title: '8 TCG Pocket Boosterpacks & Thematische Erweiterungen',
+    badge: 'Booster-Upgrade ✨',
+    features: [
+      {
+        icon: '🌊',
+        title: 'Turtok- & Bisaflor-Packs (Kanto-Ikonen)',
+        description: 'Vervollständige das legendäre Starter-Trio neben Glurak! Turtok bringt Wasser- und Eis-Power, Bisaflor birgt Natur-, Gift- und Psycho-Kräfte.'
+      },
+      {
+        icon: '🦅',
+        title: 'Lugia- & Ho-Oh-Packs (Wisdom of Sea and Sky)',
+        description: 'Die legendären Johto-Schutzpatrone ziehen ein! Ziehe Lugia-ex aus dem silbernen Ozean-Sturm-Pack und Ho-Oh-ex aus dem goldenen Regenbogen-Pack.'
+      },
+      {
+        icon: '✨',
+        title: '8 offizielle 3D-Foliendesigns & Maskottchen-Chancen',
+        description: 'Jeder Booster besitzt seine eigene 3D-Metallicfolie, passgenaue Elementar-Lichtkegel und erhöhte Ziehchancen für seine Titel-Pokémon.'
+      },
+      {
+        icon: '🗣️',
+        title: 'Vollständige Sprachausgabe beim Durchstöbern',
+        description: 'Amala liest beim Wechseln mit den Pfeiltasten oder Antippen der Kacheln jedes der 8 Packs laut und verständlich für Levi vor.'
+      }
+    ]
+  },
   {
     version: '2.2.2',
     date: '30. Oktober 2026',

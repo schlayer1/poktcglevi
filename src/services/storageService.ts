@@ -25,6 +25,16 @@ export type QuestType =
   | 'open_booster'
   | 'attach_energy';
 
+export type PackTheme =
+  | 'glurak'
+  | 'pikachu'
+  | 'mewtu'
+  | 'mew'
+  | 'turtok'
+  | 'bisaflor'
+  | 'lugia'
+  | 'ho_oh';
+
 export interface ResearchQuest {
   id: string;
   type: QuestType;
@@ -238,20 +248,42 @@ class StorageService {
    * pikachu: 75% affinity to Elektro, Wasser, Farblos (Pikachu, Zapdos, Arktos, Turtok, etc.)
    * mewtu: 75% affinity to Psycho, Finsternis, Kampf (Mewtu, Gengar, Simsala, Smogmog, etc.)
    * mew: High-rarity mythical mix across all types
+   * turtok: 75% affinity to Wasser, Farblos, Kampf (Turtok, Starmie, Lapras, etc.)
+   * bisaflor: 75% affinity to Pflanze, Psycho, Farblos (Bisaflor, Gengar, Sarzenia, etc.)
+   * lugia: 75% affinity to Wasser, Psycho, Farblos & Johto-Legenden (Lugia-ex, Psiana, etc.)
+   * ho_oh: 75% affinity to Feuer, Elektro, Drache & Johto-Legenden (Ho-Oh-ex, Ampharos, etc.)
    */
   public generateBoosterCards(
     allCards: Card[],
-    packTheme: 'glurak' | 'pikachu' | 'mewtu' | 'mew' = 'glurak'
+    packTheme: PackTheme = 'glurak'
   ): Card[] {
-    const themeTypes: Record<string, PokemonType[]> = {
+    const themeTypes: Record<PackTheme, PokemonType[]> = {
       glurak: ['Feuer', 'Pflanze', 'Kampf'],
       pikachu: ['Elektro', 'Wasser', 'Farblos'],
       mewtu: ['Psycho', 'Finsternis', 'Kampf'],
-      mew: ['Wasser', 'Psycho', 'Pflanze', 'Feuer', 'Elektro', 'Farblos', 'Drache']
+      mew: ['Wasser', 'Psycho', 'Pflanze', 'Feuer', 'Elektro', 'Farblos', 'Drache'],
+      turtok: ['Wasser', 'Farblos', 'Kampf'],
+      bisaflor: ['Pflanze', 'Psycho', 'Farblos'],
+      lugia: ['Wasser', 'Psycho', 'Farblos'],
+      ho_oh: ['Feuer', 'Elektro', 'Drache', 'Farblos']
     };
 
     const targetTypes = themeTypes[packTheme] || themeTypes.glurak;
     const isThemed = (c: Card) => c.types.some((t) => targetTypes.includes(t));
+
+    // Specific Mascot bonus (e.g. Turtok in Turtok-Pack, Lugia in Lugia-Pack)
+    const mascotDexIds: Record<PackTheme, number[]> = {
+      glurak: [4, 5, 6], // Glumanda, Glutexo, Glurak
+      pikachu: [25, 26, 172], // Pikachu, Raichu, Pichu
+      mewtu: [150], // Mewtu
+      mew: [151], // Mew
+      turtok: [7, 8, 9], // Schiggy, Schillok, Turtok
+      bisaflor: [1, 2, 3], // Bisasam, Bisaknosp, Bisaflor
+      lugia: [249, 152, 155, 158, 175, 181, 196], // Lugia-ex & Johto
+      ho_oh: [250, 155, 181, 197, 208, 212] // Ho-Oh-ex & Johto
+    };
+    const mascotTargets = mascotDexIds[packTheme] || [];
+    const mascotCards = allCards.filter((c) => mascotTargets.includes(c.dexId));
 
     const allCommons = allCards.filter((c) => !c.isEx && c.stage === 'Basis');
     const allUncommons = allCards.filter((c) => !c.isEx && c.stage !== 'Basis');
@@ -262,6 +294,13 @@ class StorageService {
     const themedRares = allRares.filter(isThemed);
 
     const pullThemed = (themed: Card[], fallback: Card[]) => {
+      // 25% chance to pull a direct mascot-related card if available
+      if (mascotCards.length > 0 && Math.random() < 0.25) {
+        const mascotMatch = mascotCards.filter((c) => fallback.some((f) => f.id === c.id));
+        if (mascotMatch.length > 0) {
+          return mascotMatch[Math.floor(Math.random() * mascotMatch.length)];
+        }
+      }
       if (themed.length > 0 && Math.random() < 0.75) {
         return themed[Math.floor(Math.random() * themed.length)];
       }

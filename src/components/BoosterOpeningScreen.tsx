@@ -3,10 +3,10 @@ import { Card } from '../types/game';
 import { CardView } from './CardView';
 import { HoloCard } from './HoloCard';
 import { GodRaysOverlay } from './GodRaysOverlay';
-import { storageService } from '../services/storageService';
+import { storageService, PackTheme } from '../services/storageService';
 import { soundManager } from '../services/soundManager';
 import confetti from 'canvas-confetti';
-import { PackageOpen, Sparkles, ArrowRight, X, Scissors, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { PackageOpen, Sparkles, ArrowRight, X, Scissors, ChevronLeft, ChevronRight, CheckCircle2, Volume2 } from 'lucide-react';
 
 interface BoosterOpeningScreenProps {
   allCards: Card[];
@@ -14,13 +14,14 @@ interface BoosterOpeningScreenProps {
 }
 
 interface PackInfo {
-  id: 'glurak' | 'pikachu' | 'mewtu' | 'mew';
+  id: PackTheme;
   name: string;
   themeColor: string;
   accentBg: string;
   image: string;
   badge: string;
   subtitle: string;
+  voiceDesc: string;
 }
 
 const PACKS: PackInfo[] = [
@@ -31,7 +32,8 @@ const PACKS: PackInfo[] = [
     accentBg: 'from-amber-500/25 via-orange-600/30 to-red-950/90',
     image: '/images/packs/pack_glurak.webp',
     badge: 'Feuer & Drachen',
-    subtitle: 'Unschlagbare Gene'
+    subtitle: 'Unschlagbare Gene',
+    voiceDesc: 'Glurak-Pack! Feuer und Drachen!'
   },
   {
     id: 'pikachu',
@@ -40,7 +42,8 @@ const PACKS: PackInfo[] = [
     accentBg: 'from-yellow-400/25 via-amber-500/30 to-amber-950/90',
     image: '/images/packs/pack_pikachu.webp',
     badge: 'Elektro & Blitz',
-    subtitle: 'Unschlagbare Gene'
+    subtitle: 'Unschlagbare Gene',
+    voiceDesc: 'Pikachu-Pack! Elektro und Blitz!'
   },
   {
     id: 'mewtu',
@@ -49,7 +52,8 @@ const PACKS: PackInfo[] = [
     accentBg: 'from-purple-500/25 via-indigo-600/30 to-slate-950/90',
     image: '/images/packs/pack_mewtu.webp',
     badge: 'Psycho & Mystik',
-    subtitle: 'Unschlagbare Gene'
+    subtitle: 'Unschlagbare Gene',
+    voiceDesc: 'Mewtu-Pack! Psycho und Mystik!'
   },
   {
     id: 'mew',
@@ -58,7 +62,48 @@ const PACKS: PackInfo[] = [
     accentBg: 'from-teal-500/25 via-cyan-600/30 to-pink-950/90',
     image: '/images/packs/pack_mew.webp',
     badge: 'Insel-Serie',
-    subtitle: 'Mysteriöse Insel'
+    subtitle: 'Mysteriöse Insel',
+    voiceDesc: 'Mew-Pack! Mysteriöse Insel!'
+  },
+  {
+    id: 'turtok',
+    name: 'Turtok-Pack',
+    themeColor: '#3b82f6',
+    accentBg: 'from-sky-500/25 via-blue-600/30 to-indigo-950/90',
+    image: '/images/packs/pack_turtok.webp',
+    badge: 'Wasser & Eis',
+    subtitle: 'Kanto-Ikonen',
+    voiceDesc: 'Turtok-Pack! Wasser und Eis!'
+  },
+  {
+    id: 'bisaflor',
+    name: 'Bisaflor-Pack',
+    themeColor: '#10b981',
+    accentBg: 'from-emerald-500/25 via-green-600/30 to-emerald-950/90',
+    image: '/images/packs/pack_bisaflor.webp',
+    badge: 'Pflanze & Natur',
+    subtitle: 'Kanto-Ikonen',
+    voiceDesc: 'Bisaflor-Pack! Pflanze und Natur!'
+  },
+  {
+    id: 'lugia',
+    name: 'Lugia-Pack',
+    themeColor: '#38bdf8',
+    accentBg: 'from-slate-400/25 via-sky-600/30 to-blue-950/90',
+    image: '/images/packs/pack_lugia.webp',
+    badge: 'Sturm & Ozean',
+    subtitle: 'Silber-Legende',
+    voiceDesc: 'Lugia-Pack! Sturm und Ozean!'
+  },
+  {
+    id: 'ho_oh',
+    name: 'Ho-Oh-Pack',
+    themeColor: '#f59e0b',
+    accentBg: 'from-amber-400/25 via-orange-600/30 to-rose-950/90',
+    image: '/images/packs/pack_ho_oh.webp',
+    badge: 'Regenbogen & Flammen',
+    subtitle: 'Gold-Legende',
+    voiceDesc: 'Ho-Oh-Pack! Regenbogen und Flammen!'
   }
 ];
 
@@ -267,6 +312,30 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
             <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-pink-500/15 rounded-full blur-3xl" />
           </>
         )}
+        {activePack.id === 'turtok' && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-blue-600/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl" />
+          </>
+        )}
+        {activePack.id === 'bisaflor' && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-emerald-600/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-lime-500/15 rounded-full blur-3xl" />
+          </>
+        )}
+        {activePack.id === 'lugia' && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-sky-500/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl" />
+          </>
+        )}
+        {activePack.id === 'ho_oh' && (
+          <>
+            <div className="absolute top-1/4 left-1/4 w-[500px] h-[350px] bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-rose-500/15 rounded-full blur-3xl" />
+          </>
+        )}
       </div>
 
       {/* AUTHENTIC TCG POCKET GOD RAYS & PARTICLE BURST OVERLAY */}
@@ -304,9 +373,18 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
             <span className="text-xs font-black uppercase tracking-widest text-amber-300 bg-amber-400/15 px-3 py-1 rounded-full border border-amber-400/40 shadow-sm">
               Erweiterung: {activePack.subtitle} • {activePack.badge}
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-              Wähle deinen Booster!
-            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <h2 className="text-3xl sm:text-4xl font-black text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                Wähle deinen Booster!
+              </h2>
+              <button
+                onClick={() => soundManager.speakText(`Wähle deinen Booster! Aktuell ausgewählt: ${activePack.name}. Serie: ${activePack.subtitle}. Spezialität: ${activePack.badge}.`)}
+                className="p-1.5 rounded-full bg-amber-400/20 hover:bg-amber-400/40 text-amber-300 border border-amber-400/50 shadow active:scale-90 transition-transform cursor-pointer"
+                title="Vorlesen"
+              >
+                <Volume2 className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* 3D Pack Display Area */}
@@ -315,9 +393,11 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
             <button
               onClick={() => {
                 soundManager.playSfx('click');
-                setSelectedPackIdx((prev) => (prev === 0 ? PACKS.length - 1 : prev - 1));
+                const nextIdx = selectedPackIdx === 0 ? PACKS.length - 1 : selectedPackIdx - 1;
+                setSelectedPackIdx(nextIdx);
+                soundManager.speakText(PACKS[nextIdx].voiceDesc);
               }}
-              className="p-3.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-400 hover:bg-slate-800 shadow-2xl transition-transform active:scale-90"
+              className="p-3.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-400 hover:bg-slate-800 shadow-2xl transition-transform active:scale-90 cursor-pointer"
               title="Vorheriges Pack"
             >
               <ChevronLeft className="w-8 h-8" />
@@ -366,32 +446,35 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
             <button
               onClick={() => {
                 soundManager.playSfx('click');
-                setSelectedPackIdx((prev) => (prev === PACKS.length - 1 ? 0 : prev + 1));
+                const nextIdx = selectedPackIdx === PACKS.length - 1 ? 0 : selectedPackIdx + 1;
+                setSelectedPackIdx(nextIdx);
+                soundManager.speakText(PACKS[nextIdx].voiceDesc);
               }}
-              className="p-3.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-400 hover:bg-slate-800 shadow-2xl transition-transform active:scale-90"
+              className="p-3.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-400 hover:bg-slate-800 shadow-2xl transition-transform active:scale-90 cursor-pointer"
               title="Nächstes Pack"
             >
               <ChevronRight className="w-8 h-8" />
             </button>
           </div>
 
-          {/* 4 Pack Switcher Pills */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
+          {/* 8 Pack Switcher Pills */}
+          <div className="grid grid-cols-2 xs:grid-cols-4 gap-2 w-full max-w-2xl px-2">
             {PACKS.map((pack, idx) => (
               <button
                 key={pack.id}
                 onClick={() => {
                   soundManager.playSfx('click');
                   setSelectedPackIdx(idx);
+                  soundManager.speakText(pack.voiceDesc);
                 }}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl border transition-all ${
+                className={`flex items-center justify-center gap-2 px-2.5 py-1.5 rounded-xl border transition-all cursor-pointer ${
                   idx === selectedPackIdx
                     ? 'bg-amber-400 text-slate-950 font-black border-white shadow-lg scale-105'
                     : 'bg-slate-900/80 text-slate-300 font-bold border-slate-700 hover:bg-slate-800'
                 }`}
               >
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: pack.themeColor }} />
-                <span className="text-xs sm:text-sm">{pack.name}</span>
+                <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: pack.themeColor }} />
+                <span className="text-[11px] sm:text-xs truncate">{pack.name}</span>
               </button>
             ))}
           </div>
