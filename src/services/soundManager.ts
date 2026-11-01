@@ -784,6 +784,35 @@ class SoundManager {
     this.speakText(text, onEnded);
   }
 
+  public playPokemonName(dexId: number, onEnded?: () => void) {
+    if (this.muted || !dexId) {
+      if (onEnded) onEnded();
+      return;
+    }
+    const nameSrc = `/audio/voice/names/${dexId}.m4a`;
+    this.stopVoice();
+    const audio = this.getOrCreateAudio(nameSrc);
+    audio.volume = this.voiceVolume;
+    audio.currentTime = 0;
+    this.currentVoiceAudio = audio;
+    this.startDucking();
+
+    audio.addEventListener('ended', () => {
+      this.stopDucking();
+      if (onEnded) onEnded();
+    }, { once: true });
+
+    audio.addEventListener('error', () => {
+      this.stopDucking();
+      if (onEnded) onEnded();
+    }, { once: true });
+
+    audio.play().catch(() => {
+      this.stopDucking();
+      if (onEnded) onEnded();
+    });
+  }
+
   public playVoice(key: string, fallbackText?: string, onEnded?: () => void) {
     if (this.muted) {
       if (onEnded) onEnded();
@@ -792,46 +821,39 @@ class SoundManager {
 
     this.stopVoice();
 
+    // 1. Check in manifest, or 2. Direct fallback to /audio/voice/${key}.m4a
     const manifestEntry = this.voiceManifest[key];
+    const audioFile = manifestEntry?.file || `/audio/voice/${key}.m4a`;
 
-    if (manifestEntry?.file) {
-      const audio = this.getOrCreateAudio(manifestEntry.file);
-      audio.volume = this.voiceVolume;
-      audio.currentTime = 0;
-      this.currentVoiceAudio = audio;
-      this.startDucking();
+    const audio = this.getOrCreateAudio(audioFile);
+    audio.volume = this.voiceVolume;
+    audio.currentTime = 0;
+    this.currentVoiceAudio = audio;
+    this.startDucking();
 
-      audio.addEventListener('ended', () => {
-        this.stopDucking();
-        if (onEnded) onEnded();
-      }, { once: true });
+    audio.addEventListener('ended', () => {
+      this.stopDucking();
+      if (onEnded) onEnded();
+    }, { once: true });
 
-      audio.addEventListener('error', () => {
-        this.stopDucking();
-        if (fallbackText) {
-          this.speakText(fallbackText, onEnded);
-        } else if (onEnded) {
-          onEnded();
-        }
-      }, { once: true });
+    audio.addEventListener('error', () => {
+      this.stopDucking();
+      // Only as ultimate emergency fallback if audio file cannot be loaded
+      if (fallbackText) {
+        this.speakText(fallbackText, onEnded);
+      } else if (onEnded) {
+        onEnded();
+      }
+    }, { once: true });
 
-      audio.play().catch(() => {
-        this.stopDucking();
-        if (fallbackText) {
-          this.speakText(fallbackText, onEnded);
-        } else if (onEnded) {
-          onEnded();
-        }
-      });
-      return;
-    }
-
-    // If no pre-recorded audio file exists, speak fallbackText aloud for Levi!
-    if (fallbackText) {
-      this.speakText(fallbackText, onEnded);
-    } else if (onEnded) {
-      onEnded();
-    }
+    audio.play().catch(() => {
+      this.stopDucking();
+      if (fallbackText) {
+        this.speakText(fallbackText, onEnded);
+      } else if (onEnded) {
+        onEnded();
+      }
+    });
   }
 }
 

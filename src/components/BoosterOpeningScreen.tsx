@@ -378,7 +378,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                 Wähle deinen Booster!
               </h2>
               <button
-                onClick={() => soundManager.speakText(`Wähle deinen Booster! Aktuell ausgewählt: ${activePack.name}. Serie: ${activePack.subtitle}. Spezialität: ${activePack.badge}.`)}
+                onClick={() => soundManager.playVoice('pack_select_prompt')}
                 className="p-1.5 rounded-full bg-amber-400/20 hover:bg-amber-400/40 text-amber-300 border border-amber-400/50 shadow active:scale-90 transition-transform cursor-pointer"
                 title="Vorlesen"
               >
@@ -395,7 +395,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                 soundManager.playSfx('click');
                 const nextIdx = selectedPackIdx === 0 ? PACKS.length - 1 : selectedPackIdx - 1;
                 setSelectedPackIdx(nextIdx);
-                soundManager.speakText(PACKS[nextIdx].voiceDesc);
+                soundManager.playVoice(`pack_desc_${PACKS[nextIdx].id}`, PACKS[nextIdx].voiceDesc);
               }}
               className="p-3.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-400 hover:bg-slate-800 shadow-2xl transition-transform active:scale-90 cursor-pointer"
               title="Vorheriges Pack"
@@ -448,7 +448,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                 soundManager.playSfx('click');
                 const nextIdx = selectedPackIdx === PACKS.length - 1 ? 0 : selectedPackIdx + 1;
                 setSelectedPackIdx(nextIdx);
-                soundManager.speakText(PACKS[nextIdx].voiceDesc);
+                soundManager.playVoice(`pack_desc_${PACKS[nextIdx].id}`, PACKS[nextIdx].voiceDesc);
               }}
               className="p-3.5 rounded-full bg-slate-900/85 border border-slate-700 text-amber-400 hover:bg-slate-800 shadow-2xl transition-transform active:scale-90 cursor-pointer"
               title="Nächstes Pack"
@@ -465,7 +465,7 @@ export const BoosterOpeningScreen: React.FC<BoosterOpeningScreenProps> = ({
                 onClick={() => {
                   soundManager.playSfx('click');
                   setSelectedPackIdx(idx);
-                  soundManager.speakText(pack.voiceDesc);
+                  soundManager.playVoice(`pack_desc_${pack.id}`, pack.voiceDesc);
                 }}
                 className={`flex items-center justify-center gap-2 px-2.5 py-1.5 rounded-xl border transition-all cursor-pointer ${
                   idx === selectedPackIdx

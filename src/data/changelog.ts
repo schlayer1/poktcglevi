@@ -10,11 +10,39 @@ export interface ChangelogEntry {
   }[];
 }
 
-export const APP_VERSION = '2.2.3';
-export const APP_BUILD_NAME = '8 TCG Pocket Boosterpacks mit Turtok, Bisaflor, Lugia & Ho-Oh';
-export const APP_BUILD_TAG = `Build ${APP_VERSION} (30.10.) • ${APP_BUILD_NAME}`;
+export const APP_VERSION = '2.3.0';
+export const APP_BUILD_NAME = 'Komplette 2. Generation (100 Johto-Pokémon) & 100% Studio Edge-TTS';
+export const APP_BUILD_TAG = `Build ${APP_VERSION} (01.11.) • ${APP_BUILD_NAME}`;
 
 export const CHANGELOG_DATA: ChangelogEntry[] = [
+  {
+    version: '2.3.0',
+    date: '1. November 2026',
+    title: 'Komplette 2. Generation & 100% Edge-TTS Studio-Vertonung',
+    badge: 'Johto-Vollausbau 🌟',
+    features: [
+      {
+        icon: '🌿',
+        title: 'Alle 100 Pokémon der 2. Generation (#152–#251)',
+        description: 'Vollständiger Einzug aller Johto-Pokémon (Endivie bis Celebi)! Jedes Pokémon besitzt spielbare Kartendaten, KP, Typen, Entwicklungsstufen und offizielle Artworks.'
+      },
+      {
+        icon: '🔊',
+        title: '100% Studio Edge-TTS – Roboter-Systemstimme verbannt',
+        description: 'Alle 361 Karten, alle 251 Pokémon-Namen, Minigame-Regeln, Quizfragen und Booster-Texte ertönen ab sofort ausnahmslos in glasklarer, warmer deutscher Amala-Studioqualität.'
+      },
+      {
+        icon: '📢',
+        title: '251 vertonte Pokémon-Namen & Vorlese-Engine',
+        description: 'Beim Antippen von Karten oder Antwortoptionen spricht Amala den exakten deutschen Namen des Pokémon vor – perfekt für Levi!'
+      },
+      {
+        icon: '🏛️',
+        title: 'Top Vier & alle 8 Johto-Arenaleiter vollständig vertont',
+        description: 'Die Herausforderungen von Falk, Kai, Bianka, Jens, Hartwig, Jasmin, Norbert, Sandra sowie Lorelei, Bruno, Agathe, Siegfried und Gary Champ werden nun verlässlich mit Amalas Stimme abgespielt.'
+      }
+    ]
+  },
   {
     version: '2.2.3',
     date: '30. Oktober 2026',

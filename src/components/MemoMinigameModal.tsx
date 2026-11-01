@@ -154,7 +154,7 @@ export const MemoMinigameModal: React.FC<MemoMinigameModalProps> = ({
     soundManager.playSfx('button');
     setDifficulty(newDiff);
     const newCfg = MEMO_DIFFICULTIES[newDiff];
-    soundManager.speakText(newCfg.voiceDesc);
+    soundManager.playVoice(`memo_diff_${newDiff}`, newCfg.voiceDesc);
     initGame(newDiff);
   };
 
@@ -206,9 +206,7 @@ export const MemoMinigameModal: React.FC<MemoMinigameModalProps> = ({
             setIsWon(true);
             storageService.addBooster(cfg.boosters);
             soundManager.playSfx('victory');
-            soundManager.speakText(
-              `Klasse Gedächtnis, Levi! Du hast alle ${cfg.pairs} Pärchen auf ${cfg.label} gefunden! Hier ist deine Belohnung!`
-            );
+            soundManager.playVoice(`memo_win_${difficulty}`);
             confetti({
               particleCount: 180,
               spread: 110,
@@ -257,7 +255,7 @@ export const MemoMinigameModal: React.FC<MemoMinigameModalProps> = ({
                   Poké-Memo
                 </h2>
                 <button
-                  onClick={() => soundManager.speakText(`Poké-Memo! Finde alle passenden Pokémon-Pärchen. Aktuelle Schwierigkeit: ${cfg.label}. Du hast ${matchedCount} von ${cfg.pairs} Pärchen in ${turns} Versuchen gefunden.`)}
+                  onClick={() => soundManager.playVoice('memo_rules')}
                   className="p-1 rounded-full bg-sky-500/20 hover:bg-sky-500/40 text-sky-300 border border-sky-400/50 shadow active:scale-90 transition-transform cursor-pointer"
                   title="Anleitung vorlesen"
                 >

@@ -24,9 +24,9 @@ export const ResearchQuestsModal: React.FC<ResearchQuestsModalProps> = ({
     );
   }, []);
 
-  const speakQuest = (q: ResearchQuest) => {
+  const speakQuest = (_q: ResearchQuest) => {
     soundManager.playSfx('button');
-    soundManager.speakText(`Aufgabe: ${q.title}! ${q.description}. Fortschritt: ${q.progress} von ${q.target}.`);
+    soundManager.playVoice('quest_prompt_task');
   };
 
   const handleClaim = (questId: string) => {

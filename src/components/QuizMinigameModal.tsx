@@ -39,23 +39,20 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
 
   const playQuestionAudio = React.useCallback((q: Question, qIndex: number) => {
     setIsPlayingAudio(true);
-    if (q.type === 'cry' && q.targetDexId) {
-      const introKey = qIndex === 0 ? 'quiz_q1_intro' : 'quiz_q4_intro';
-      const introFallback = qIndex === 0 ? 'Frage 1: Hör gut hin! Welches Pokémon macht diesen Ruf?' : 'Frage 4: Zweites Ruf-Rätsel! Zu welchem Pokémon gehört dieser Ruf?';
+    const introKeys = ['quiz_q1_intro', 'quiz_q2_intro', 'quiz_q3_intro', 'quiz_q4_intro', 'quiz_q5_intro'];
+    const introKey = introKeys[qIndex] || 'quiz_q1_intro';
 
-      soundManager.playVoice(introKey, introFallback, () => {
+    soundManager.playVoice(introKey, undefined, () => {
+      if (q.type === 'cry' && q.targetDexId) {
         setTimeout(() => {
           soundManager.playCry(q.targetDexId!, () => {
             setIsPlayingAudio(false);
           });
         }, 150);
-      });
-    } else {
-      const textToRead = `Frage ${qIndex + 1}: ${q.prompt} ${q.subPrompt || ''}`;
-      soundManager.speakText(textToRead, () => {
+      } else {
         setIsPlayingAudio(false);
-      });
-    }
+      }
+    });
   }, []);
 
   // Generate 5 questions on mount
@@ -337,7 +334,7 @@ export const QuizMinigameModal: React.FC<QuizMinigameModalProps> = ({
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        soundManager.speakText(opt.card.name);
+                        soundManager.playPokemonName(opt.card.dexId);
                       }}
                       className="absolute top-2 left-2 z-20 p-1.5 rounded-full bg-slate-900/90 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-slate-700 shadow active:scale-90 transition-colors"
                       title={`${opt.card.name} vorlesen`}

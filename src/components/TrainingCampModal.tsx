@@ -97,7 +97,7 @@ export const TrainingCampModal: React.FC<TrainingCampModalProps> = ({
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    soundManager.speakText('Ruf- und Typen-Quiz! Erkenne Pokémon an ihren Rufen und teste dein Typen-Wissen mit Professor Eich!');
+                    soundManager.playVoice('camp_quiz_desc');
                   }}
                   className="p-1 rounded-full bg-slate-800 hover:bg-amber-400 hover:text-slate-950 text-amber-300 border border-slate-700 active:scale-90 shadow"
                   title="Vorlesen"
@@ -144,7 +144,7 @@ export const TrainingCampModal: React.FC<TrainingCampModalProps> = ({
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    soundManager.speakText('Poké-Memo! Finde passende Pärchen deiner eigenen Pokémon-Karten und trainiere dein Gedächtnis!');
+                    soundManager.playVoice('camp_memo_desc');
                   }}
                   className="p-1 rounded-full bg-slate-800 hover:bg-sky-400 hover:text-slate-950 text-sky-300 border border-slate-700 active:scale-90 shadow"
                   title="Vorlesen"

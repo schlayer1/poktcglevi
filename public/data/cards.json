@@ -9386,5 +9386,3519 @@
     "cardImageUrl": "/images/cards/TOOL-003.webp",
     "trainerType": "Ausrüstung",
     "trainerEffect": "Lädt das angelegte Pokémon mit zusätzlicher Energie auf."
+  },
+  {
+    "id": "J1-153",
+    "dexId": 153,
+    "name": "Lorblatt",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/153.webp",
+    "cryUrl": "/audio/cries/153.ogg",
+    "cardImageUrl": "/images/cards/J1-153.webp",
+    "preDexId": 152,
+    "evolvesFrom": "Endivie"
+  },
+  {
+    "id": "J1-154",
+    "dexId": 154,
+    "name": "Meganie",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Blättertanz",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Pflanze"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/154.webp",
+    "cryUrl": "/audio/cries/154.ogg",
+    "cardImageUrl": "/images/cards/J1-154.webp",
+    "preDexId": 153,
+    "evolvesFrom": "Lorblatt"
+  },
+  {
+    "id": "J1-156",
+    "dexId": 156,
+    "name": "Igelavar",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Flammenrad",
+        "cost": [
+          "Feuer"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Feuerwirbel",
+        "cost": [
+          "Feuer",
+          "Feuer",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/156.webp",
+    "cryUrl": "/audio/cries/156.ogg",
+    "cardImageUrl": "/images/cards/J1-156.webp",
+    "preDexId": 155,
+    "evolvesFrom": "Feurigel"
+  },
+  {
+    "id": "J1-157",
+    "dexId": 157,
+    "name": "Tornupto",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Feuerwirbel",
+        "cost": [
+          "Feuer",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Feuersturm",
+        "cost": [
+          "Feuer",
+          "Feuer",
+          "Feuer"
+        ],
+        "damage": 100,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/157.webp",
+    "cryUrl": "/audio/cries/157.ogg",
+    "cardImageUrl": "/images/cards/J1-157.webp",
+    "preDexId": 156,
+    "evolvesFrom": "Igelavar"
+  },
+  {
+    "id": "J1-159",
+    "dexId": 159,
+    "name": "Tyracroc",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/159.webp",
+    "cryUrl": "/audio/cries/159.ogg",
+    "cardImageUrl": "/images/cards/J1-159.webp",
+    "preDexId": 158,
+    "evolvesFrom": "Karnimani"
+  },
+  {
+    "id": "J1-160",
+    "dexId": 160,
+    "name": "Impergator",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Hydropumpe",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Wasser"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/160.webp",
+    "cryUrl": "/audio/cries/160.ogg",
+    "cardImageUrl": "/images/cards/J1-160.webp",
+    "preDexId": 159,
+    "evolvesFrom": "Tyracroc"
+  },
+  {
+    "id": "J1-161",
+    "dexId": 161,
+    "name": "Wiesor",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/161.webp",
+    "cryUrl": "/audio/cries/161.ogg",
+    "cardImageUrl": "/images/cards/J1-161.webp"
+  },
+  {
+    "id": "J1-162",
+    "dexId": 162,
+    "name": "Wiesenior",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Bodycheck",
+        "cost": [
+          "Farblos",
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/162.webp",
+    "cryUrl": "/audio/cries/162.ogg",
+    "cardImageUrl": "/images/cards/J1-162.webp",
+    "preDexId": 161,
+    "evolvesFrom": "Wiesor"
+  },
+  {
+    "id": "J1-163",
+    "dexId": 163,
+    "name": "Hoothoot",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/163.webp",
+    "cryUrl": "/audio/cries/163.ogg",
+    "cardImageUrl": "/images/cards/J1-163.webp"
+  },
+  {
+    "id": "J1-164",
+    "dexId": 164,
+    "name": "Noctuh",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Bodycheck",
+        "cost": [
+          "Farblos",
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/164.webp",
+    "cryUrl": "/audio/cries/164.ogg",
+    "cardImageUrl": "/images/cards/J1-164.webp",
+    "preDexId": 163,
+    "evolvesFrom": "Hoothoot"
+  },
+  {
+    "id": "J1-165",
+    "dexId": 165,
+    "name": "Ledyba",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/165.webp",
+    "cryUrl": "/audio/cries/165.ogg",
+    "cardImageUrl": "/images/cards/J1-165.webp"
+  },
+  {
+    "id": "J1-166",
+    "dexId": 166,
+    "name": "Ledian",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/166.webp",
+    "cryUrl": "/audio/cries/166.ogg",
+    "cardImageUrl": "/images/cards/J1-166.webp",
+    "preDexId": 165,
+    "evolvesFrom": "Ledyba"
+  },
+  {
+    "id": "J1-167",
+    "dexId": 167,
+    "name": "Webarak",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/167.webp",
+    "cryUrl": "/audio/cries/167.ogg",
+    "cardImageUrl": "/images/cards/J1-167.webp"
+  },
+  {
+    "id": "J1-168",
+    "dexId": 168,
+    "name": "Ariados",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/168.webp",
+    "cryUrl": "/audio/cries/168.ogg",
+    "cardImageUrl": "/images/cards/J1-168.webp",
+    "preDexId": 167,
+    "evolvesFrom": "Webarak"
+  },
+  {
+    "id": "J1-169",
+    "dexId": 169,
+    "name": "Iksbat",
+    "types": [
+      "Finsternis"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Knirscher",
+        "cost": [
+          "Finsternis",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Nachthieb",
+        "cost": [
+          "Finsternis",
+          "Finsternis",
+          "Finsternis"
+        ],
+        "damage": 80,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Pflanze",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/169.webp",
+    "cryUrl": "/audio/cries/169.ogg",
+    "cardImageUrl": "/images/cards/J1-169.webp",
+    "preDexId": 42,
+    "evolvesFrom": "Golbat"
+  },
+  {
+    "id": "J1-170",
+    "dexId": 170,
+    "name": "Lampi",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/170.webp",
+    "cryUrl": "/audio/cries/170.ogg",
+    "cardImageUrl": "/images/cards/J1-170.webp"
+  },
+  {
+    "id": "J1-171",
+    "dexId": 171,
+    "name": "Lanturn",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/171.webp",
+    "cryUrl": "/audio/cries/171.ogg",
+    "cardImageUrl": "/images/cards/J1-171.webp",
+    "preDexId": 170,
+    "evolvesFrom": "Lampi"
+  },
+  {
+    "id": "J1-173",
+    "dexId": 173,
+    "name": "Pii",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Konfusion",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/173.webp",
+    "cryUrl": "/audio/cries/173.ogg",
+    "cardImageUrl": "/images/cards/J1-173.webp"
+  },
+  {
+    "id": "J1-174",
+    "dexId": 174,
+    "name": "Fluffeluff",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/174.webp",
+    "cryUrl": "/audio/cries/174.ogg",
+    "cardImageUrl": "/images/cards/J1-174.webp"
+  },
+  {
+    "id": "J1-176",
+    "dexId": 176,
+    "name": "Togetic",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Spukball",
+        "cost": [
+          "Psycho",
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/176.webp",
+    "cryUrl": "/audio/cries/176.ogg",
+    "cardImageUrl": "/images/cards/J1-176.webp",
+    "preDexId": 175,
+    "evolvesFrom": "Togepi"
+  },
+  {
+    "id": "J1-177",
+    "dexId": 177,
+    "name": "Natu",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Konfusion",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/177.webp",
+    "cryUrl": "/audio/cries/177.ogg",
+    "cardImageUrl": "/images/cards/J1-177.webp"
+  },
+  {
+    "id": "J1-178",
+    "dexId": 178,
+    "name": "Xatu",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Spukball",
+        "cost": [
+          "Psycho",
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/178.webp",
+    "cryUrl": "/audio/cries/178.ogg",
+    "cardImageUrl": "/images/cards/J1-178.webp",
+    "preDexId": 177,
+    "evolvesFrom": "Natu"
+  },
+  {
+    "id": "J1-179",
+    "dexId": 179,
+    "name": "Voltilamm",
+    "types": [
+      "Elektro"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Funksprung",
+        "cost": [
+          "Elektro"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Donnerschock",
+        "cost": [
+          "Elektro",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/179.webp",
+    "cryUrl": "/audio/cries/179.ogg",
+    "cardImageUrl": "/images/cards/J1-179.webp"
+  },
+  {
+    "id": "J1-180",
+    "dexId": 180,
+    "name": "Waaty",
+    "types": [
+      "Elektro"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Donnerschock",
+        "cost": [
+          "Elektro"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Ladungsstoß",
+        "cost": [
+          "Elektro",
+          "Elektro",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/180.webp",
+    "cryUrl": "/audio/cries/180.ogg",
+    "cardImageUrl": "/images/cards/J1-180.webp",
+    "preDexId": 179,
+    "evolvesFrom": "Voltilamm"
+  },
+  {
+    "id": "J1-182",
+    "dexId": 182,
+    "name": "Blubella",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Blättertanz",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Pflanze"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/182.webp",
+    "cryUrl": "/audio/cries/182.ogg",
+    "cardImageUrl": "/images/cards/J1-182.webp",
+    "preDexId": 44,
+    "evolvesFrom": "Duflor"
+  },
+  {
+    "id": "J1-184",
+    "dexId": 184,
+    "name": "Azumarill",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Hydropumpe",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Wasser"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/184.webp",
+    "cryUrl": "/audio/cries/184.ogg",
+    "cardImageUrl": "/images/cards/J1-184.webp",
+    "preDexId": 183,
+    "evolvesFrom": "Marill"
+  },
+  {
+    "id": "J1-185",
+    "dexId": 185,
+    "name": "Mogelbaum",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Karateschlag",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/185.webp",
+    "cryUrl": "/audio/cries/185.ogg",
+    "cardImageUrl": "/images/cards/J1-185.webp"
+  },
+  {
+    "id": "J1-186",
+    "dexId": 186,
+    "name": "Quaxo",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Hydropumpe",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Wasser"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/186.webp",
+    "cryUrl": "/audio/cries/186.ogg",
+    "cardImageUrl": "/images/cards/J1-186.webp",
+    "preDexId": 61,
+    "evolvesFrom": "Quaputzi"
+  },
+  {
+    "id": "J1-187",
+    "dexId": 187,
+    "name": "Hoppspross",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/187.webp",
+    "cryUrl": "/audio/cries/187.ogg",
+    "cardImageUrl": "/images/cards/J1-187.webp"
+  },
+  {
+    "id": "J1-188",
+    "dexId": 188,
+    "name": "Hubelupf",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/188.webp",
+    "cryUrl": "/audio/cries/188.ogg",
+    "cardImageUrl": "/images/cards/J1-188.webp",
+    "preDexId": 187,
+    "evolvesFrom": "Hoppspross"
+  },
+  {
+    "id": "J1-189",
+    "dexId": 189,
+    "name": "Papungha",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Blättertanz",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Pflanze"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/189.webp",
+    "cryUrl": "/audio/cries/189.ogg",
+    "cardImageUrl": "/images/cards/J1-189.webp",
+    "preDexId": 188,
+    "evolvesFrom": "Hubelupf"
+  },
+  {
+    "id": "J1-190",
+    "dexId": 190,
+    "name": "Griffel",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/190.webp",
+    "cryUrl": "/audio/cries/190.ogg",
+    "cardImageUrl": "/images/cards/J1-190.webp"
+  },
+  {
+    "id": "J1-191",
+    "dexId": 191,
+    "name": "Sonnkern",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/191.webp",
+    "cryUrl": "/audio/cries/191.ogg",
+    "cardImageUrl": "/images/cards/J1-191.webp"
+  },
+  {
+    "id": "J1-192",
+    "dexId": 192,
+    "name": "Sonnflora",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/192.webp",
+    "cryUrl": "/audio/cries/192.ogg",
+    "cardImageUrl": "/images/cards/J1-192.webp",
+    "preDexId": 191,
+    "evolvesFrom": "Sonnkern"
+  },
+  {
+    "id": "J1-193",
+    "dexId": 193,
+    "name": "Yanma",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/193.webp",
+    "cryUrl": "/audio/cries/193.ogg",
+    "cardImageUrl": "/images/cards/J1-193.webp"
+  },
+  {
+    "id": "J1-194",
+    "dexId": 194,
+    "name": "Felino",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/194.webp",
+    "cryUrl": "/audio/cries/194.ogg",
+    "cardImageUrl": "/images/cards/J1-194.webp"
+  },
+  {
+    "id": "J1-195",
+    "dexId": 195,
+    "name": "Morlord",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/195.webp",
+    "cryUrl": "/audio/cries/195.ogg",
+    "cardImageUrl": "/images/cards/J1-195.webp",
+    "preDexId": 194,
+    "evolvesFrom": "Felino"
+  },
+  {
+    "id": "J1-198",
+    "dexId": 198,
+    "name": "Kramurx",
+    "types": [
+      "Finsternis"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Biss",
+        "cost": [
+          "Finsternis"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Finte",
+        "cost": [
+          "Finsternis",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Pflanze",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/198.webp",
+    "cryUrl": "/audio/cries/198.ogg",
+    "cardImageUrl": "/images/cards/J1-198.webp"
+  },
+  {
+    "id": "J1-199",
+    "dexId": 199,
+    "name": "Laschoking",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/199.webp",
+    "cryUrl": "/audio/cries/199.ogg",
+    "cardImageUrl": "/images/cards/J1-199.webp",
+    "preDexId": 79,
+    "evolvesFrom": "Flegmon"
+  },
+  {
+    "id": "J1-200",
+    "dexId": 200,
+    "name": "Traunfugil",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Konfusion",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/200.webp",
+    "cryUrl": "/audio/cries/200.ogg",
+    "cardImageUrl": "/images/cards/J1-200.webp"
+  },
+  {
+    "id": "J1-201",
+    "dexId": 201,
+    "name": "Icognito",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Konfusion",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/201.webp",
+    "cryUrl": "/audio/cries/201.ogg",
+    "cardImageUrl": "/images/cards/J1-201.webp"
+  },
+  {
+    "id": "J1-202",
+    "dexId": 202,
+    "name": "Woingenau",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Konfusion",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/202.webp",
+    "cryUrl": "/audio/cries/202.ogg",
+    "cardImageUrl": "/images/cards/J1-202.webp"
+  },
+  {
+    "id": "J1-203",
+    "dexId": 203,
+    "name": "Girafarig",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/203.webp",
+    "cryUrl": "/audio/cries/203.ogg",
+    "cardImageUrl": "/images/cards/J1-203.webp"
+  },
+  {
+    "id": "J1-204",
+    "dexId": 204,
+    "name": "Tannza",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/204.webp",
+    "cryUrl": "/audio/cries/204.ogg",
+    "cardImageUrl": "/images/cards/J1-204.webp"
+  },
+  {
+    "id": "J1-205",
+    "dexId": 205,
+    "name": "Forstellka",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Megasauger",
+        "cost": [
+          "Pflanze",
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/205.webp",
+    "cryUrl": "/audio/cries/205.ogg",
+    "cardImageUrl": "/images/cards/J1-205.webp",
+    "preDexId": 204,
+    "evolvesFrom": "Tannza"
+  },
+  {
+    "id": "J1-206",
+    "dexId": 206,
+    "name": "Dummisel",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/206.webp",
+    "cryUrl": "/audio/cries/206.ogg",
+    "cardImageUrl": "/images/cards/J1-206.webp"
+  },
+  {
+    "id": "J1-207",
+    "dexId": 207,
+    "name": "Skorgla",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Karateschlag",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/207.webp",
+    "cryUrl": "/audio/cries/207.ogg",
+    "cardImageUrl": "/images/cards/J1-207.webp"
+  },
+  {
+    "id": "J1-209",
+    "dexId": 209,
+    "name": "Snubbull",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Konfusion",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/209.webp",
+    "cryUrl": "/audio/cries/209.ogg",
+    "cardImageUrl": "/images/cards/J1-209.webp"
+  },
+  {
+    "id": "J1-210",
+    "dexId": 210,
+    "name": "Granbull",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Spukball",
+        "cost": [
+          "Psycho",
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/210.webp",
+    "cryUrl": "/audio/cries/210.ogg",
+    "cardImageUrl": "/images/cards/J1-210.webp",
+    "preDexId": 209,
+    "evolvesFrom": "Snubbull"
+  },
+  {
+    "id": "J1-211",
+    "dexId": 211,
+    "name": "Baldorfish",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/211.webp",
+    "cryUrl": "/audio/cries/211.ogg",
+    "cardImageUrl": "/images/cards/J1-211.webp"
+  },
+  {
+    "id": "J1-213",
+    "dexId": 213,
+    "name": "Pottrott",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/213.webp",
+    "cryUrl": "/audio/cries/213.ogg",
+    "cardImageUrl": "/images/cards/J1-213.webp"
+  },
+  {
+    "id": "J1-214",
+    "dexId": 214,
+    "name": "Skaraborn",
+    "types": [
+      "Pflanze"
+    ],
+    "hp": 90,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Rankenhieb",
+        "cost": [
+          "Pflanze"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Rasierblatt",
+        "cost": [
+          "Pflanze",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/214.webp",
+    "cryUrl": "/audio/cries/214.ogg",
+    "cardImageUrl": "/images/cards/J1-214.webp"
+  },
+  {
+    "id": "J1-215",
+    "dexId": 215,
+    "name": "Sniebel",
+    "types": [
+      "Finsternis"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Biss",
+        "cost": [
+          "Finsternis"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Finte",
+        "cost": [
+          "Finsternis",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Pflanze",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/215.webp",
+    "cryUrl": "/audio/cries/215.ogg",
+    "cardImageUrl": "/images/cards/J1-215.webp"
+  },
+  {
+    "id": "J1-216",
+    "dexId": 216,
+    "name": "Teddiursa",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/216.webp",
+    "cryUrl": "/audio/cries/216.ogg",
+    "cardImageUrl": "/images/cards/J1-216.webp"
+  },
+  {
+    "id": "J1-217",
+    "dexId": 217,
+    "name": "Ursaring",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Bodycheck",
+        "cost": [
+          "Farblos",
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/217.webp",
+    "cryUrl": "/audio/cries/217.ogg",
+    "cardImageUrl": "/images/cards/J1-217.webp",
+    "preDexId": 216,
+    "evolvesFrom": "Teddiursa"
+  },
+  {
+    "id": "J1-218",
+    "dexId": 218,
+    "name": "Schneckmag",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Glut",
+        "cost": [
+          "Feuer"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Flammenrad",
+        "cost": [
+          "Feuer",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/218.webp",
+    "cryUrl": "/audio/cries/218.ogg",
+    "cardImageUrl": "/images/cards/J1-218.webp"
+  },
+  {
+    "id": "J1-219",
+    "dexId": 219,
+    "name": "Magcargo",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Flammenrad",
+        "cost": [
+          "Feuer"
+        ],
+        "damage": 40,
+        "effect": ""
+      },
+      {
+        "name": "Feuerwirbel",
+        "cost": [
+          "Feuer",
+          "Feuer",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/219.webp",
+    "cryUrl": "/audio/cries/219.ogg",
+    "cardImageUrl": "/images/cards/J1-219.webp",
+    "preDexId": 218,
+    "evolvesFrom": "Schneckmag"
+  },
+  {
+    "id": "J1-220",
+    "dexId": 220,
+    "name": "Quiekel",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/220.webp",
+    "cryUrl": "/audio/cries/220.ogg",
+    "cardImageUrl": "/images/cards/J1-220.webp"
+  },
+  {
+    "id": "J1-221",
+    "dexId": 221,
+    "name": "Keifel",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/221.webp",
+    "cryUrl": "/audio/cries/221.ogg",
+    "cardImageUrl": "/images/cards/J1-221.webp",
+    "preDexId": 220,
+    "evolvesFrom": "Quiekel"
+  },
+  {
+    "id": "J1-222",
+    "dexId": 222,
+    "name": "Corasonn",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/222.webp",
+    "cryUrl": "/audio/cries/222.ogg",
+    "cardImageUrl": "/images/cards/J1-222.webp"
+  },
+  {
+    "id": "J1-223",
+    "dexId": 223,
+    "name": "Remoraid",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/223.webp",
+    "cryUrl": "/audio/cries/223.ogg",
+    "cardImageUrl": "/images/cards/J1-223.webp"
+  },
+  {
+    "id": "J1-224",
+    "dexId": 224,
+    "name": "Octillery",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/224.webp",
+    "cryUrl": "/audio/cries/224.ogg",
+    "cardImageUrl": "/images/cards/J1-224.webp",
+    "preDexId": 223,
+    "evolvesFrom": "Remoraid"
+  },
+  {
+    "id": "J1-225",
+    "dexId": 225,
+    "name": "Botogel",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/225.webp",
+    "cryUrl": "/audio/cries/225.ogg",
+    "cardImageUrl": "/images/cards/J1-225.webp"
+  },
+  {
+    "id": "J1-226",
+    "dexId": 226,
+    "name": "Mantax",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/226.webp",
+    "cryUrl": "/audio/cries/226.ogg",
+    "cardImageUrl": "/images/cards/J1-226.webp"
+  },
+  {
+    "id": "J1-227",
+    "dexId": 227,
+    "name": "Panzaeron",
+    "types": [
+      "Metall"
+    ],
+    "hp": 90,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Kratzer",
+        "cost": [
+          "Metall"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Metallklaue",
+        "cost": [
+          "Metall",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Feuer",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/227.webp",
+    "cryUrl": "/audio/cries/227.ogg",
+    "cardImageUrl": "/images/cards/J1-227.webp"
+  },
+  {
+    "id": "J1-228",
+    "dexId": 228,
+    "name": "Hunduster",
+    "types": [
+      "Finsternis"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Biss",
+        "cost": [
+          "Finsternis"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Finte",
+        "cost": [
+          "Finsternis",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Pflanze",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/228.webp",
+    "cryUrl": "/audio/cries/228.ogg",
+    "cardImageUrl": "/images/cards/J1-228.webp"
+  },
+  {
+    "id": "J1-229",
+    "dexId": 229,
+    "name": "Hundemon",
+    "types": [
+      "Finsternis"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Finte",
+        "cost": [
+          "Finsternis"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Knirscher",
+        "cost": [
+          "Finsternis",
+          "Finsternis",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Pflanze",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/229.webp",
+    "cryUrl": "/audio/cries/229.ogg",
+    "cardImageUrl": "/images/cards/J1-229.webp",
+    "preDexId": 228,
+    "evolvesFrom": "Hunduster"
+  },
+  {
+    "id": "J1-230",
+    "dexId": 230,
+    "name": "Seedraking",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 130,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Kaskade",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Hydropumpe",
+        "cost": [
+          "Wasser",
+          "Wasser",
+          "Wasser"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Trois Diamants",
+    "artworkUrl": "/images/pokemon/230.webp",
+    "cryUrl": "/audio/cries/230.ogg",
+    "cardImageUrl": "/images/cards/J1-230.webp",
+    "preDexId": 117,
+    "evolvesFrom": "Seemon"
+  },
+  {
+    "id": "J1-231",
+    "dexId": 231,
+    "name": "Phanpy",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Karateschlag",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/231.webp",
+    "cryUrl": "/audio/cries/231.ogg",
+    "cardImageUrl": "/images/cards/J1-231.webp"
+  },
+  {
+    "id": "J1-232",
+    "dexId": 232,
+    "name": "Donphan",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kreuzhieb",
+        "cost": [
+          "Kampf",
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/232.webp",
+    "cryUrl": "/audio/cries/232.ogg",
+    "cardImageUrl": "/images/cards/J1-232.webp",
+    "preDexId": 231,
+    "evolvesFrom": "Phanpy"
+  },
+  {
+    "id": "J1-233",
+    "dexId": 233,
+    "name": "Porygon2",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Bodycheck",
+        "cost": [
+          "Farblos",
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/233.webp",
+    "cryUrl": "/audio/cries/233.ogg",
+    "cardImageUrl": "/images/cards/J1-233.webp",
+    "preDexId": 137,
+    "evolvesFrom": "Porygon"
+  },
+  {
+    "id": "J1-234",
+    "dexId": 234,
+    "name": "Damhirplex",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/234.webp",
+    "cryUrl": "/audio/cries/234.ogg",
+    "cardImageUrl": "/images/cards/J1-234.webp"
+  },
+  {
+    "id": "J1-235",
+    "dexId": 235,
+    "name": "Farbeagle",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/235.webp",
+    "cryUrl": "/audio/cries/235.ogg",
+    "cardImageUrl": "/images/cards/J1-235.webp"
+  },
+  {
+    "id": "J1-236",
+    "dexId": 236,
+    "name": "Rabauz",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Karateschlag",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/236.webp",
+    "cryUrl": "/audio/cries/236.ogg",
+    "cardImageUrl": "/images/cards/J1-236.webp"
+  },
+  {
+    "id": "J1-237",
+    "dexId": 237,
+    "name": "Kapoera",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kreuzhieb",
+        "cost": [
+          "Kampf",
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/237.webp",
+    "cryUrl": "/audio/cries/237.ogg",
+    "cardImageUrl": "/images/cards/J1-237.webp",
+    "preDexId": 236,
+    "evolvesFrom": "Rabauz"
+  },
+  {
+    "id": "J1-238",
+    "dexId": 238,
+    "name": "Kussilla",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/238.webp",
+    "cryUrl": "/audio/cries/238.ogg",
+    "cardImageUrl": "/images/cards/J1-238.webp"
+  },
+  {
+    "id": "J1-239",
+    "dexId": 239,
+    "name": "Elekid",
+    "types": [
+      "Elektro"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Funksprung",
+        "cost": [
+          "Elektro"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Donnerschock",
+        "cost": [
+          "Elektro",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/239.webp",
+    "cryUrl": "/audio/cries/239.ogg",
+    "cardImageUrl": "/images/cards/J1-239.webp"
+  },
+  {
+    "id": "J1-240",
+    "dexId": 240,
+    "name": "Magby",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 50,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Glut",
+        "cost": [
+          "Feuer"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Flammenrad",
+        "cost": [
+          "Feuer",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/240.webp",
+    "cryUrl": "/audio/cries/240.ogg",
+    "cardImageUrl": "/images/cards/J1-240.webp"
+  },
+  {
+    "id": "J1-241",
+    "dexId": 241,
+    "name": "Miltank",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Tackle",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/241.webp",
+    "cryUrl": "/audio/cries/241.ogg",
+    "cardImageUrl": "/images/cards/J1-241.webp"
+  },
+  {
+    "id": "J1-242",
+    "dexId": 242,
+    "name": "Heiteira",
+    "types": [
+      "Farblos"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Ruckzuckhieb",
+        "cost": [
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Bodycheck",
+        "cost": [
+          "Farblos",
+          "Farblos",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/242.webp",
+    "cryUrl": "/audio/cries/242.ogg",
+    "cardImageUrl": "/images/cards/J1-242.webp",
+    "preDexId": 113,
+    "evolvesFrom": "Chaneira"
+  },
+  {
+    "id": "J1-243",
+    "dexId": 243,
+    "name": "Raikou",
+    "types": [
+      "Elektro"
+    ],
+    "hp": 110,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Funksprung",
+        "cost": [
+          "Elektro"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Donnerschock",
+        "cost": [
+          "Elektro",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Kampf",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Etoile",
+    "artworkUrl": "/images/pokemon/243.webp",
+    "cryUrl": "/audio/cries/243.ogg",
+    "cardImageUrl": "/images/cards/J1-243.webp"
+  },
+  {
+    "id": "J1-244",
+    "dexId": 244,
+    "name": "Entei",
+    "types": [
+      "Feuer"
+    ],
+    "hp": 110,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Glut",
+        "cost": [
+          "Feuer"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Flammenrad",
+        "cost": [
+          "Feuer",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Wasser",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Etoile",
+    "artworkUrl": "/images/pokemon/244.webp",
+    "cryUrl": "/audio/cries/244.ogg",
+    "cardImageUrl": "/images/cards/J1-244.webp"
+  },
+  {
+    "id": "J1-245",
+    "dexId": 245,
+    "name": "Suicune",
+    "types": [
+      "Wasser"
+    ],
+    "hp": 110,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Blubber",
+        "cost": [
+          "Wasser"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Aquaknarre",
+        "cost": [
+          "Wasser",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Elektro",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Etoile",
+    "artworkUrl": "/images/pokemon/245.webp",
+    "cryUrl": "/audio/cries/245.ogg",
+    "cardImageUrl": "/images/cards/J1-245.webp"
+  },
+  {
+    "id": "J1-246",
+    "dexId": 246,
+    "name": "Larvitar",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 60,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Karateschlag",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 30,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Diamant",
+    "artworkUrl": "/images/pokemon/246.webp",
+    "cryUrl": "/audio/cries/246.ogg",
+    "cardImageUrl": "/images/cards/J1-246.webp"
+  },
+  {
+    "id": "J1-247",
+    "dexId": 247,
+    "name": "Pupitar",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 90,
+    "stage": "Rang 1",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Felswurf",
+        "cost": [
+          "Kampf"
+        ],
+        "damage": 30,
+        "effect": ""
+      },
+      {
+        "name": "Kreuzhieb",
+        "cost": [
+          "Kampf",
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 2,
+    "rarity": "Deux Diamants",
+    "artworkUrl": "/images/pokemon/247.webp",
+    "cryUrl": "/audio/cries/247.ogg",
+    "cardImageUrl": "/images/cards/J1-247.webp",
+    "preDexId": 246,
+    "evolvesFrom": "Larvitar"
+  },
+  {
+    "id": "J1-248",
+    "dexId": 248,
+    "name": "Despotar",
+    "types": [
+      "Kampf"
+    ],
+    "hp": 150,
+    "stage": "Rang 2",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Kreuzhieb",
+        "cost": [
+          "Kampf",
+          "Farblos"
+        ],
+        "damage": 50,
+        "effect": ""
+      },
+      {
+        "name": "Wuchtschlag",
+        "cost": [
+          "Kampf",
+          "Kampf",
+          "Kampf"
+        ],
+        "damage": 90,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Psycho",
+      "value": "+20"
+    },
+    "retreat": 3,
+    "rarity": "Une Etoile",
+    "artworkUrl": "/images/pokemon/248.webp",
+    "cryUrl": "/audio/cries/248.ogg",
+    "cardImageUrl": "/images/cards/J1-248.webp",
+    "preDexId": 247,
+    "evolvesFrom": "Pupitar"
+  },
+  {
+    "id": "J1-251",
+    "dexId": 251,
+    "name": "Celebi",
+    "types": [
+      "Psycho"
+    ],
+    "hp": 110,
+    "stage": "Basis",
+    "isEx": false,
+    "attacks": [
+      {
+        "name": "Konfusion",
+        "cost": [
+          "Psycho"
+        ],
+        "damage": 20,
+        "effect": ""
+      },
+      {
+        "name": "Psystrahl",
+        "cost": [
+          "Psycho",
+          "Farblos"
+        ],
+        "damage": 40,
+        "effect": ""
+      }
+    ],
+    "weakness": {
+      "type": "Finsternis",
+      "value": "+20"
+    },
+    "retreat": 1,
+    "rarity": "Une Etoile",
+    "artworkUrl": "/images/pokemon/251.webp",
+    "cryUrl": "/audio/cries/251.ogg",
+    "cardImageUrl": "/images/cards/J1-251.webp"
   }
 ]
