@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate high quality voice audio using Gemini TTS cascade
-(gemini-3.8-flash-lite-tts -> gemini-3.1-flash-tts-preview -> gemini-2.5-flash-preview-tts)
+(gemini-3.8-flash-lite-tts -> gemini-3.8-flash-tts)
 with Apple Neural Voice HD fallback if daily API quota is reached.
 Audio is saved and transcoded to compact AAC M4A in public/audio/voice/
 and indexed in public/audio/voice/manifest.json.
@@ -27,8 +27,7 @@ KEY = os.environ.get("GEMINI_API_KEY") or base64.b64decode(SCHOOL_B64).decode('u
 
 CASCADE_MODELS = [
     "gemini-3.8-flash-lite-tts",
-    "gemini-3.1-flash-tts-preview",
-    "gemini-2.5-flash-preview-tts"
+    "gemini-3.8-flash-tts"
 ]
 
 VOICE_TEXTS = {
